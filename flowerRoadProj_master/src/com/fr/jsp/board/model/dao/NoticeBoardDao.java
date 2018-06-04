@@ -22,10 +22,5 @@ public class NoticeBoardDao {
 			e.printStackTrace();
 		}
 	}
-	// 전체 공지사항 게시판 게시글
-	public ArrayList<FaqBoard> admin_noticeBoardAllList(Connection con) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

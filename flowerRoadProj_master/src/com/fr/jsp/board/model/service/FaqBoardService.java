@@ -24,13 +24,6 @@ public class FaqBoardService {
 		return new FaqBoardDao().showFaq(con);
 	}
 
-	// 전체 FAQ 게시판 게시글
-	public int admin_faqBoardAllCount() {
-		ArrayList<FaqBoard> admin_faqBoardAllList = fbDao.admin_faqBoardAllList(con);
-		int admin_faqBoardCount = admin_faqBoardAllList.size();
-		return admin_faqBoardCount;
-	}
-
 	// Connection close Method
 	public void closeCon() {
 		close(con);
