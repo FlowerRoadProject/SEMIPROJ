@@ -25,14 +25,6 @@
 
         <br><br><br><br><br><br><br>
 
-        <!-- 1:1 문의
-        <div class="container-fluid">
-        <div class="col-sm-6 col-md-6 col-lg-6"></div>
-        <div class="col-sm-1 col-md-1 col-lg-1"><h2>1:1 문의</h2></div>
-        <div class="col-sm-5 col-md-5 col-lg-5"></div>
-        </div>
-        <br><br><br> -->
-
         <!-- 1:1 문의하기 -->
         <div class="container-fluid">
             <div>
@@ -44,19 +36,19 @@
                                 <div class="form-group form-group-sm">
                                   <label class="col-sm-2 control-label" for="formGroupInputLarge">이름</label>
                                   <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="nameBoard" value="홍길동" disabled>
+                                    <input class="form-control" type="text" id="nameBoard" value="<%=m.getMemberName() %>" disabled>
                                   </div>
                                 </div>
                                 <div class="form-group form-group-sm">
                                   <label class="col-sm-2 control-label" for="formGroupInputSmall">이메일</label>
                                   <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="mailBoard" value="na@email.com">
+                                    <input class="form-control" type="text" id="mailBoard" value="<%=m.getMemberEmail() %>">
                                   </div>
                                 </div>
                                 <div class="form-group form-group-sm">
                                   <label class="col-sm-2 control-label" for="formGroupInputSmall">핸드폰</label>
                                   <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="phoneBoard" value="010-2222-3333">
+                                    <input class="form-control" type="text" id="phoneBoard" value="<%=m.getMemberPhone() %>">
                                   </div>
                                 </div>
                                 <div class="form-group form-group-sm">
@@ -89,6 +81,17 @@
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4"></div>
         </div>
+        <script>
+        	function send(){
+        		var email = $('#mailBoard').val();
+        		var phone = $('#phoneBoard').val();
+        		var title = $('#titleBoard').val();
+        		var content = $('#contentBoard').val();
+        		
+        		location.href="<%=request.getContextPath() %>/oneSend.me?email="+email+"&phone="+phone+"&title="+title+"&content="+content;
+        	}
+        </script>
+        
         <%@ include file="/views/common/footer.jsp" %>
     </body>
 </html>

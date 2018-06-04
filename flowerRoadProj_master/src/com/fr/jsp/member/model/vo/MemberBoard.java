@@ -7,6 +7,8 @@ public class MemberBoard {
 	private String boardTitle;
 	private String boardContent;
 	private String memberNum;
+	private String memberSendEmail;
+	private String memberSendPhone;
 	private int viewNum;
 	private Date submitDate;
 	private String adminNum;
@@ -16,6 +18,23 @@ public class MemberBoard {
 	public String getBoardTitle() {
 		return boardTitle;
 	}
+	
+	public String getMemberSendEmail() {
+		return memberSendEmail;
+	}
+
+	public void setMemberSendEmail(String memberSendEmail) {
+		this.memberSendEmail = memberSendEmail;
+	}
+
+	public String getMemberSendPhone() {
+		return memberSendPhone;
+	}
+
+	public void setMemberSendPhone(String memberSendPhone) {
+		this.memberSendPhone = memberSendPhone;
+	}
+
 	public void setBoardTitle(String boardTitle) {
 		this.boardTitle = boardTitle;
 	}

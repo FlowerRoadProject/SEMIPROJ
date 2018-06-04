@@ -109,7 +109,7 @@
                                 <a href="<%= request.getContextPath() %>/logout.me">로그아웃</a>
                             </li>
                             <li>
-                                <a href="<%=request.getContextPath()%>/views/myPage/myPage_main.jsp">마이페이지</a>
+                                <a href="<%=request.getContextPath()%>/infoMain.me">마이페이지</a>
                             </li>
                             <%} %>
                             <li>

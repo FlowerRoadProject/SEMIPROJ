@@ -13,10 +13,6 @@
 }
 
 /* 선택된 카테고리 볼드 및 밑줄 처리 */
-#info{
-    font-weight: bold;
-    text-decoration: underline;
-}
 
 h4{
     margin-left: 125px;

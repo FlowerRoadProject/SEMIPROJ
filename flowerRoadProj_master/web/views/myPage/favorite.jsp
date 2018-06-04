@@ -56,7 +56,7 @@
                                 <td><%= i-- %></td>
                                 <td><img src="<%=request.getContextPath()%>/resources/images/product/<%= pf.getImage() %>" width="60px;" height="60px;"></td>
                                 <td><%=pf.getProductName() %></td>
-                                <td><%=pf.getProductCost() %>원</td>
+                                <td><%=pf.getProductPrice() %>원</td>
                                 <td><%=pf.getProductQuantityState() %></td>
                                 <td><input type="submit" value="장바구니"><br><input type="button" value="삭제하기"></td>
                             </tr>

@@ -5,12 +5,15 @@ import static com.fr.jdbc.common.JDBCTemplate.commit;
 import static com.fr.jdbc.common.JDBCTemplate.getConnection;
 import static com.fr.jdbc.common.JDBCTemplate.rollback;
 
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.order.model.dao.OrderDao;
 import com.fr.jsp.order.model.vo.Order;
+import com.fr.jsp.order.model.vo.MyPage_Order;
+
 public class OrderService {
 
 	private Connection con;
@@ -19,6 +22,7 @@ public class OrderService {
 	public OrderService(){
 		con = getConnection();
 		oDao = new OrderDao();
+		
 	}
 	
 	
@@ -73,5 +77,15 @@ public class OrderService {
 		
 		public void closeCon(){
 			close(con);
+		}
+		
+		public ArrayList<MyPage_Order> orderChk(String id) {
+			Connection con = getConnection();
+			
+			ArrayList<MyPage_Order> list = oDao.orderChk(con, id);
+			
+			close(con);
+			
+			return list;
 		}
 }

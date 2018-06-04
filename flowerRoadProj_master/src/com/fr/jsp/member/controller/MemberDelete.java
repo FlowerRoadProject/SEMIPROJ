@@ -24,7 +24,7 @@ public class MemberDelete extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		Member m = (Member)session.getAttribute("session");
+		Member m = (Member)session.getAttribute("m");
 		
 		MemberService ms = new MemberService();
 		
@@ -33,7 +33,7 @@ public class MemberDelete extends HttpServlet {
 			if(session != null){
 				session.invalidate();
 			}
-			response.sendRedirect("views/myPage/myPage_main.jsp");
+			response.sendRedirect("main.jsp");
 		}else{
 			System.out.println("실패!!");
 		}
