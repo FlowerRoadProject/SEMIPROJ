@@ -137,7 +137,7 @@ public class MemberDao {
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			Member resultMember = null;
-			
+			System.out.println(num);
 			try{
 				
 				String query = prop.getProperty("insertInfo");
