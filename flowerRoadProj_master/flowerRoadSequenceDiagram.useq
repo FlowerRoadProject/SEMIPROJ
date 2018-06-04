@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.2.2" icons="true" generate-combined-fragments="true">  
+  <object id="1" language="java" name="com.fr.jsp.product.controller.SelectProductListServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/controller/SelectProductListServlet.java" binary="false" 
+    label="selectProductListServlet" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="111" y="0"/>    
+    <execution id="2">      
+      <position height="192" width="165" x="5" y="107"/>    
+    </execution>    
+    <execution id="5">      
+      <position height="21" width="7" x="84" y="194"/>    
+    </execution>    
+    <execution id="6">      
+      <position height="223" width="165" x="5" y="363"/>    
+    </execution>    
+    <execution id="9">      
+      <position height="21" width="7" x="84" y="481"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="189" width="165" x="5" y="646"/>    
+    </execution>    
+    <execution id="13">      
+      <position height="21" width="7" x="84" y="730"/>    
+    </execution>    
+    <execution id="14">      
+      <position height="242" width="165" x="5" y="873"/>    
+    </execution>    
+    <execution id="17">      
+      <position height="21" width="7" x="84" y="1010"/>    
+    </execution>  
+  </object>  
+  <object id="18" language="java" name="com.fr.jsp.product.model.service.ProductService" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/model/service/ProductService.java" binary="false" 
+    label="productService" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="531" y="0"/>    
+    <execution id="4">      
+      <position height="150" width="146" x="174" y="128"/>    
+    </execution>    
+    <execution id="21">      
+      <position height="63" width="7" x="244" y="173"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="181" width="146" x="174" y="384"/>    
+    </execution>    
+    <execution id="25">      
+      <position height="63" width="7" x="244" y="460"/>    
+    </execution>    
+    <execution id="12">      
+      <position height="147" width="146" x="174" y="667"/>    
+    </execution>    
+    <execution id="29">      
+      <position height="63" width="7" x="244" y="709"/>    
+    </execution>    
+    <execution id="16">      
+      <position height="200" width="146" x="174" y="894"/>    
+    </execution>    
+    <execution id="33">      
+      <position height="73" width="7" x="244" y="979"/>    
+    </execution>  
+  </object>  
+  <object id="35" language="java" name="com.fr.jsp.product.model.dao.ProductDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/model/dao/ProductDao.java" binary="false" label="productDao" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="254" y="0"/>    
+    <execution id="20">      
+      <position height="108" width="130" x="324" y="149"/>    
+    </execution>    
+    <execution id="24">      
+      <position height="139" width="130" x="324" y="405"/>    
+    </execution>    
+    <execution id="28">      
+      <position height="105" width="130" x="324" y="688"/>    
+    </execution>    
+    <execution id="32">      
+      <position height="158" width="130" x="324" y="915"/>    
+    </execution>  
+  </object>  
+  <object id="40" language="java" name="com.fr.jsp.board.controller.InsertReviewBoardServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/controller/InsertReviewBoardServlet.java" binary="false" 
+    label="insertReviewBoardServlet" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="841" y="0"/>  
+  </object>  
+  <object id="41" language="java" name="com.fr.jsp.board.controller.SelectReviewBoardListServlet" 
+    project="flowerRoadProj" file="/flowerRoadProj/src/com/fr/jsp/board/controller/SelectReviewBoardListServlet.java" 
+    binary="false" label="selectReviewBoardListServlet" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="1099" y="0"/>    
+    <execution id="42">      
+      <position height="251" width="195" x="633" y="132"/>    
+    </execution>    
+    <execution id="45">      
+      <position height="607" width="195" x="633" y="471"/>    
+    </execution>    
+    <execution id="48">      
+      <position height="21" width="7" x="727" y="1015"/>    
+    </execution>    
+    <execution id="49">      
+      <position height="63" width="195" x="633" y="1102"/>    
+    </execution>  
+  </object>  
+  <object id="52" language="java" name="com.fr.jsp.board.model.service.ReviewBoardService" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/service/ReviewBoardService.java" binary="false" 
+    label="reviewBoardService" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="742" y="0"/>    
+    <execution id="44">      
+      <position height="209" width="141" x="832" y="153"/>    
+    </execution>    
+    <execution id="54">      
+      <position height="21" width="0" x="0" y="195"/>    
+    </execution>    
+    <execution id="58">      
+      <position height="21" width="0" x="0" y="289"/>    
+    </execution>    
+    <execution id="47">      
+      <position height="565" width="141" x="832" y="492"/>    
+    </execution>    
+    <execution id="74">      
+      <position height="21" width="7" x="899" y="964"/>    
+    </execution>    
+    <execution id="62">      
+      <position height="21" width="0" x="0" y="534"/>    
+    </execution>    
+    <execution id="66">      
+      <position height="21" width="0" x="0" y="666"/>    
+    </execution>    
+    <execution id="68">      
+      <position height="21" width="0" x="0" y="755"/>    
+    </execution>    
+    <execution id="70">      
+      <position height="21" width="0" x="0" y="838"/>    
+    </execution>    
+    <execution id="51">      
+      <position height="21" width="141" x="832" y="1123"/>    
+    </execution>  
+  </object>  
+  <object id="75" language="java" name="com.fr.jsp.board.model.dao.ReviewBoardDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/dao/ReviewBoardDao.java" binary="false" label="rbDao" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="56">      
+      <position height="21" width="0" x="0" y="226"/>    
+    </execution>    
+    <execution id="72">      
+      <position height="99" width="122" x="977" y="907"/>    
+    </execution>    
+    <execution id="64">      
+      <position height="21" width="0" x="0" y="565"/>    
+    </execution>  
+  </object>  
+  <object id="77" language="java" name="com.fr.jsp.board.model.dao.ReviewBoardDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/dao/ReviewBoardDao.java" binary="false" label="reviewBoardDao" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="879" y="0"/>    
+    <execution id="60">      
+      <position height="21" width="122" x="977" y="320"/>    
+    </execution>  
+  </object>  
+  <combined-fragment id="78" interaction-operator="OPT">    
+    <interaction-operand id="79" constraint="이벤트별/카테고리별 메뉴 선택시">      
+      <fragment refId="37"/>      
+      <fragment refId="30"/>      
+      <fragment refId="26"/>      
+      <fragment refId="34"/>      
+      <fragment refId="39"/>      
+      <fragment refId="22"/>      
+      <fragment refId="11"/>      
+      <fragment refId="3"/>      
+      <fragment refId="38"/>      
+      <fragment refId="36"/>    
+    </interaction-operand>  
+  </combined-fragment>  
+  <combined-fragment id="80" interaction-operator="ALT">    
+    <interaction-operand id="81" constraint="list!=null">      
+      <fragment refId="65"/>    
+    </interaction-operand>    
+    <interaction-operand id="82" constraint="else">      
+      <fragment refId="67"/>    
+    </interaction-operand>  
+  </combined-fragment>  
+  <message id="3" operation="getEventListCount(java.lang.String):int" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="7" 
+    operation="getEventTypeProductList(java.lang.String,com.fr.jsp.common.PageInfo):java.util.ArrayList&lt;ProductSimple&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="11" operation="getCategoryListCount(java.lang.String):int" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="15" 
+    operation="getCategorizedProduct(java.lang.String,com.fr.jsp.common.PageInfo):java.util.ArrayList&lt;ProductSimple&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="19" operation="getEventProductCount(java.sql.Connection,java.lang.String):int" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="20"/>  
+  </message>  
+  <message id="22" asynchronous="false">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="5"/>  
+  </message>  
+  <message id="23" 
+    operation="getEventTypeProductList(java.sql.Connection,java.lang.String,com.fr.jsp.common.PageInfo):java.util.ArrayList&lt;ProductSimple&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="24"/>  
+  </message>  
+  <message id="26" asynchronous="false">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="9"/>  
+  </message>  
+  <message id="27" operation="getCategoryProductCount(java.sql.Connection,java.lang.String):int" asynchronous="false">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="28"/>  
+  </message>  
+  <message id="30" asynchronous="false">    
+    <end type="SOURCE" refId="29"/>    
+    <end type="TARGET" refId="13"/>  
+  </message>  
+  <message id="31" 
+    operation="getCategorizedProductList(java.sql.Connection,java.lang.String,com.fr.jsp.common.PageInfo):java.util.ArrayList&lt;ProductSimple&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="32"/>  
+  </message>  
+  <message id="34" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="17"/>  
+  </message>  
+  <message id="36" asynchronous="false">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="21"/>  
+  </message>  
+  <message id="37" asynchronous="false">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="25"/>  
+  </message>  
+  <message id="38" asynchronous="false">    
+    <end type="SOURCE" refId="28"/>    
+    <end type="TARGET" refId="29"/>  
+  </message>  
+  <message id="39" asynchronous="false">    
+    <end type="SOURCE" refId="32"/>    
+    <end type="TARGET" refId="33"/>  
+  </message>  
+  <message id="43" operation="getListCount(java.lang.String):int" asynchronous="false">    
+    <end type="SOURCE" refId="42"/>    
+    <end type="TARGET" refId="44"/>  
+  </message>  
+  <message id="46" 
+    operation="selectList(java.lang.String,com.fr.jsp.common.PageInfo):java.util.ArrayList&lt;ReviewBoard&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="45"/>    
+    <end type="TARGET" refId="47"/>  
+  </message>  
+  <message id="50" 
+    operation="selectList(java.lang.String,com.fr.jsp.common.PageInfo):java.util.ArrayList&lt;ReviewBoard&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="49"/>    
+    <end type="TARGET" refId="51"/>  
+  </message>  
+  <message id="53" asynchronous="false">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="54"/>  
+  </message>  
+  <message id="55" operation="getListCount(java.sql.Connection,java.lang.String):int" asynchronous="false">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="56"/>  
+  </message>  
+  <message id="57" asynchronous="false">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="58"/>  
+  </message>  
+  <message id="59" operation="getListCount(java.sql.Connection,java.lang.String):int" asynchronous="false">    
+    <end type="SOURCE" refId="44"/>    
+    <end type="TARGET" refId="60"/>  
+  </message>  
+  <message id="61" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="62"/>  
+  </message>  
+  <message id="63" 
+    operation="selectList(java.sql.Connection,java.lang.String,com.fr.jsp.common.PageInfo):java.util.ArrayList&lt;ReviewBoard&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="64"/>  
+  </message>  
+  <message id="65" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="66"/>  
+  </message>  
+  <message id="67" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="68"/>  
+  </message>  
+  <message id="69" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="70"/>  
+  </message>  
+  <message id="71" 
+    operation="selectReviewList(java.sql.Connection,java.lang.String):java.util.ArrayList&lt;ReviewBoard&gt;" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="72"/>  
+  </message>  
+  <message id="73" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="48"/>  
+  </message>  
+  <message id="76" asynchronous="false">    
+    <end type="SOURCE" refId="72"/>    
+    <end type="TARGET" refId="74"/>  
+  </message>
+</sequence-diagram>
