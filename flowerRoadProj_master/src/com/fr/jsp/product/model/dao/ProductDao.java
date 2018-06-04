@@ -459,41 +459,6 @@ public class ProductDao {
 	}
 
 
-	
-	// 등록된 모든 상품 리스트
-	public ArrayList<ProductDetail> admin_allProductList(Connection con) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
-	// 오늘 등록한 상품 수
-	public int admin_todayRegiProductCount(Connection con) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	// 재고부족 상품 수
-	public int admin_stockLackProductCount(Connection con) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	// 오늘 발주한 상품 수
-	public int admin_todayProductOrderCount(Connection con) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	
-
-	
-
-
-	
-
-
-	
-
 
 
 }

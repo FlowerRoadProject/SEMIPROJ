@@ -206,32 +206,5 @@ public class ReviewBoardDao {
 	
 		return result;
 	}
-	
-	// 오늘 등록된 리뷰 게시판 게시글
-		public int admin_todayReview(Connection con) {
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
-			int admin_reviewCount = 0;
-			
-			try { 
-				String query = prop.getProperty("admin_reviewCount");
-				pstmt = con.prepareStatement(query);
-				rset = pstmt.executeQuery();
-				while(rset.next()){
-					admin_reviewCount = Integer.parseInt(rset.getString("COUNT(MEMBER_NUM)"));
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				close(rset);
-				close(pstmt);
-			}
-			return admin_reviewCount;
-		}
-		// 전체 리뷰 게시판 게시글
-		public ArrayList<ReviewBoard> admin_reviewBoardAllList(Connection con) {
-			// TODO Auto-generated method stub
-			return null;
-		}
 
 }

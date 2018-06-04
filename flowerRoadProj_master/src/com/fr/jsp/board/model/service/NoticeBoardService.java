@@ -22,13 +22,5 @@ public class NoticeBoardService {
 	public void closeCon(){
 		close(con);
 	}
-	// 전체 공지사항 게시판 게시글
-	public int admin_noticeBoardAllCount() {
-		ArrayList<FaqBoard> admin_noticeBoardAllList = nbDao.admin_noticeBoardAllList(con);
-		int admin_noticeBoardCount = admin_noticeBoardAllList.size();
-		return admin_noticeBoardCount;
-	}
-	
-
 
 }

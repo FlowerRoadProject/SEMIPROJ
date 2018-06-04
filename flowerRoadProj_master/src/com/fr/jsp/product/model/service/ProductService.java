@@ -243,27 +243,6 @@ public class ProductService {
 		public void closeCon() {
 			close(con);
 		}
-		// 등록된 모든 상품 수
-		public int admin_allProductCount() {
-			ArrayList<ProductDetail> admin_allProductList = pDao.admin_allProductList(con);
-			int admin_allProductCount = admin_allProductList.size();
-			return admin_allProductCount;
-		}
-		// 오늘 등록한 상품 수
-		public int admin_todayRegiProductCount() {
-			int admin_todayRegiProductCount = pDao.admin_todayRegiProductCount(con);
-			return admin_todayRegiProductCount;
-		}
-		// 재고부족 상품 수
-		public int admin_stockLackProductCount() {
-			int admin_stockLackProductCount = pDao.admin_stockLackProductCount(con);
-			return admin_stockLackProductCount;
-		}
-		// 오늘 발주한 상품 수
-		public int admin_todayProductOrderCount() {
-			int admin_todayProductOrderCount = pDao.admin_todayProductOrderCount(con);
-			return admin_todayProductOrderCount;
-		}
 
 
 }
