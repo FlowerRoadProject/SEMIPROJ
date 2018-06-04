@@ -17,7 +17,7 @@ import com.fr.jsp.member.model.vo.Member;
 public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public loginServlet() {
+    public loginServlet() { 
         super();
     }
 
