@@ -36,7 +36,7 @@ public class loginServlet extends HttpServlet {
 			if(m.getMemberNum().charAt(0)=='A'){
 					session.setAttribute("adminNum", m.getMemberNum());
 					System.out.println("관리자 로그인성공");
-					RequestDispatcher view = request.getRequestDispatcher("/adminFirstMain");
+					RequestDispatcher view = request.getRequestDispatcher("/firstMain.admin");
 					view.forward(request, response);
 			}else{
 				session.setAttribute("memberNum", m.getMemberNum());
