@@ -134,13 +134,24 @@ body{
 			showNoOptionProductInfo();
 		}
 
-		//팝오버 함수와 템플릿 수정
+		//상세정보 팝오버 함수와 템플릿 수정
 		$('#product_info')
 				.popover(
 						{
 							template : '<div class="popover" style="width:400px"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
 						});
 
+		$('#share').popover(
+						{
+							template : '<div class="popover" style="width:400px"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
+						});
+		
+		$('#share').attr("data-content" , $('#share_buttons').html());
+							
+						
+		
+		
+		
 		//팝오버에 들어가는 내용들 설정
 		var product_type = '<%=p.getProductCategoryName()%>';
 		var product_origin = '<%=p.getProductOriginName()%>';
@@ -645,9 +656,11 @@ body{
 					<div class="btn-group col-md-6 col-sm-6 col-xs-6 col-lg-6">
 						<button class="btn btn-default btn-sm glyphicon glyphicon-heart"
 							id="addFavBtn" onclick="addToFavorite('<%=p.getProductNum()%>');"></button>
-						<button class="btn btn-default btn-sm glyphicon glyphicon-share"
-							style="color: black"></button>
-						<a id="product_info" onclick="popover();" tabindex="0"
+						
+						<a id="share" class="btn btn-default btn-sm glyphicon glyphicon-share" tabindex="0"
+							role="button" style="color: black"  data-toggle="popover" data-html="true" data-trigger="click"title="공유" data-placement="top"></a>
+						
+						<a id="product_info"  tabindex="0"
 							class="btn btn-sm btn-default glyphicon glyphicon-question-sign"
 							role="button" data-toggle="popover" data-trigger="hover"
 							title="상세 정보" data-html="true"></a>
@@ -996,6 +1009,25 @@ body{
 				</div>
 			</div>
 		</div>
+		
+		 <div id="share_buttons">
+           <a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+             target="_blank">
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/twitter.png" alt="Share on Twitter"></a>
+           <a href="#" onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+             target="_blank">
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/facebook.png" alt="Share on Facebook"></a>
+           <a href="#" onclick="javascript:window.open('https://plus.google.com/share?url=' +encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes, scrollbars=yes,height=350,width=600');return false;"
+             target="_blank">
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/googlePlus.png" alt="Share on Google+"></a>
+           <a href="#" onclick="javascript:window.open('https://story.kakao.com/s/share?url=' +encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes, height=400,width=600');return false;"
+             target="_blank">
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/kakaoStory.jpg" alt="Share on kakaostory"></a>
+           <a href="#" onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url=' +encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title), 'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+             target="_blank">
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/naver.jpg" alt="Share on Naver"></a>
+         </div>
+		
 	</div>
 
 
