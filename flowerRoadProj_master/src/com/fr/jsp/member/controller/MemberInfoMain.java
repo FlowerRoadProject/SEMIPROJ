@@ -32,7 +32,7 @@ public class MemberInfoMain extends HttpServlet {
 		
 		MemberService ms = new MemberService();
 		
-		m = ms.insertInfo(m);
+		m = ms.insertInfo(num);
 		System.out.println(m);
 		
 		if(m != null){

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, com.fr.jsp.order.model.vo.*"%>
 <%
-	ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("list");
-
+	ArrayList<MyPage_Order> list = (ArrayList<MyPage_Order>) request.getAttribute("list");
 %>
 <!DOCTYPE>
 <html>
@@ -99,13 +98,13 @@
 				</tr>
 				<%
 					int i = list.size();
-					for (Order o : list) {
+					for (MyPage_Order o : list) {
 				%>
 				<tr>
 					<td><%=i--%></td>
 					<td><%=o.getOrdered_date()%></td>
 					<td><%=o.getProduct_num()%></td>
-					<%-- <td><%=o.getProduct_cost()%></td> --%>
+					<td><%=o.getProduct_cost()%></td>
 					<td><%=o.getAnonymous_delivery()%></td>
 					<td><%=o.getOrder_state_code()%></td>
 				</tr>

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.fr.jsp.member.model.dao.MemberDao;
 import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.member.model.vo.MemberBoard;
+import com.fr.jsp.product.model.vo.ProductFavorite;
 
 public class MemberService {
 	private MemberDao mDao;
@@ -50,9 +51,11 @@ public class MemberService {
 		return result;
 	}
 	
-	public Member insertInfo(Member m) {
+
+	
+	public Member insertInfo(String num) {
 		Connection con = getConnection();
-		Member resultM = mDao.insertInfo(con,m);
+		Member resultM = mDao.insertInfo(con,num);
 		
 		close(con);
 		
@@ -108,6 +111,40 @@ public class MemberService {
 		return result;
 	}
 	
+	public ArrayList<ProductFavorite> favorite(String num) {
+		Connection con = getConnection();
+		
+		ArrayList<ProductFavorite> list = mDao.favorite(con,num);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public ArrayList<MemberBoard> oneBoard(String num) {
+		Connection con = getConnection();
+		
+		ArrayList<MemberBoard> list = mDao.oneBoard(con,num);
+		
+		close(con);
+		
+		return list;
+	}
+
+	public int sendBoard(MemberBoard mb) {
+		Connection con = getConnection();
+		int result =0;
+		result = mDao.sendBoard(con, mb);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		System.out.println("여기 오니? ="+result);
+		return result;
+	}
+	
 	public Member loginSelectMember(Member m) {
 		Connection con = getConnection();
 		Member resultM = mDao.loginSelectMember(con,m);
@@ -148,14 +185,6 @@ public class MemberService {
 		return result;
 	}
 	
-	public ArrayList<MemberBoard> oneBoard(String num) {
-		Connection con = getConnection();
-		
-		ArrayList<MemberBoard> list = mDao.oneBoard(con,num);
-		
-		close(con);
-		
-		return list;
-	}
+	
 
 }

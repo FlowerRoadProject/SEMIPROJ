@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.fr.jsp.myShoppingBasket.model.dao.BasketDao;
+import com.fr.jsp.order.model.vo.MyPage_Order;
 import com.fr.jsp.order.model.vo.Order;
 
 public class OrderDao {
@@ -70,6 +71,5 @@ public class OrderDao {
 		
 		return result;
 	}
-	
 	
 }

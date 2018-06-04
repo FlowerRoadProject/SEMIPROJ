@@ -1,6 +1,8 @@
 package com.fr.jsp.order.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.order.model.service.OrderService;
+import com.fr.jsp.order.model.vo.MyPage_Order;
 import com.fr.jsp.order.model.vo.Order;
 
 @WebServlet("/orderChk.or")
@@ -26,19 +29,21 @@ public class MemberOrderCheck extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		Member m = (Member)session.getAttribute("session");
-		Order o = new Order();
+		ArrayList<MyPage_Order> list = null;
 		
-		OrderService os = new OrderService();
+		Member m = (Member)session.getAttribute("m");
+		String id = m.getMemberId();
 		
-		o = os.orderChk(m);
-		if(o != null){
-			request.getRequestDispatcher("/views/myPage/orderCheck.jsp")
-			.forward(request, response);
+		list = new OrderService().orderChk(id);
+		
+		String page ="";
+		if(list != null && !list.isEmpty()){
+			page = "/views/myPage/orderCheck.jsp";
+			request.setAttribute("list", list);
 		} else {
 			System.out.println("실패");
 		}
-		
+		request.getRequestDispatcher(page).forward(request, response);
 		
 	}
 

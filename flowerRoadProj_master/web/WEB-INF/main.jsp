@@ -3,7 +3,7 @@
 <html>
 <head>
  <script src="<%=request.getContextPath()%>/resources/js/jquery-1.12.2.min.js"></script>
-<title>메인1</title>
+<title>메인</title>
 <style>
  .product_img {
       display: block;

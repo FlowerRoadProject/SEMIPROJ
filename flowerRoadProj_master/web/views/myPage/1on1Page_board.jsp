@@ -2,7 +2,6 @@
     pageEncoding="UTF-8" import="java.util.*, com.fr.jsp.member.model.vo.*"%>
 <%
 	ArrayList<MemberBoard> list = (ArrayList<MemberBoard>)request.getAttribute("mblist");
-	
 %>
 <!DOCTYPE>
 <html>
