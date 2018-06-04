@@ -1,0 +1,76 @@
+/* 카테고리 블록화 */
+            
+.category{
+    margin-left: 55px;
+    font-size: 17pt;
+    text-align: center;
+    color: midnightblue;
+    /* display: inline-block; */
+}
+ /* 커서 설정 */
+.category:hover{
+    cursor: pointer;
+}
+
+/* 선택된 카테고리 볼드 및 밑줄 처리 */
+#info{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+h4{
+    margin-left: 125px;
+}
+
+/* 선 처리 및 위치조정 */
+.info{
+    margin-left: 125px;
+    margin-right: 125px;
+    border: 1px solid gray;
+    border-left: none;
+    border-right: none; 
+}
+
+/* 번호표 제거 */
+ul{
+    list-style-type: none;
+}
+li{
+    margin-top: 15px;
+}
+
+/* 탈퇴하기 뒤에 div판 */
+#withdrawDiv{
+    /* margin: 125px; */
+    height: 350px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.why{
+    font-size: 13pt;
+    font-weight: bold;
+    color: red;
+}
+
+
+/* 버튼 설정 */
+div>button{
+    width: 120px;
+    height: 50px;
+    background-color: midnightblue;
+    color: white;
+    margin-top: 50px;
+    margin-left: 125px; 
+    margin-bottom: 50px;               
+}
+
+#finalWithdraw{
+    background-color: red;
+    color: white;
+}
+
+#cancel{
+    background-color: lightgray;
+    color: midnightblue;
+}
