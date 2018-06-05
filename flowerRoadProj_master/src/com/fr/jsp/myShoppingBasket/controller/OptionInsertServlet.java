@@ -34,10 +34,10 @@ public class OptionInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//이건 옵션상품을 장바구니로 추가했을 경우 DB의 Shopping basket에 추가되게 하기 위한 서블릿이다
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		Basket bk = new Basket();
 		
-		String member_num = (String)session.getAttribute("memberNum");		
+		String member_num = (String)session.getAttribute("member_num");		
 		String product_num[] = request.getParameterValues("productNum");
 		String quantity[] = request.getParameterValues("quantity");
 		

@@ -20,10 +20,17 @@ public class FaqBoard extends Board{
 	
 	public FaqBoard(int bNum, String bTitle, String bContent, Date submitDate, String memberNum,
 			String contentCategory) {
+		
 		super(bNum, bTitle, bContent, submitDate);
 		this.memberNum = memberNum;
 		this.contentCategory = contentCategory;
 	}
+	
+	public FaqBoard(int bNum, String bTitle, String bContent, String contentCategory){
+		super(bNum, bTitle, bContent);
+		this.contentCategory = contentCategory;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -34,11 +41,6 @@ public class FaqBoard extends Board{
 		return result;
 	}
 
-	public FaqBoard(int bNum, String bTitle, String bContent, String contentCategory){
-	      super(bNum, bTitle, bContent);
-	      this.contentCategory = contentCategory;
-	   }
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -66,6 +68,9 @@ public class FaqBoard extends Board{
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+	
 	public String getMemberNum() {
 		return memberNum;
 	}

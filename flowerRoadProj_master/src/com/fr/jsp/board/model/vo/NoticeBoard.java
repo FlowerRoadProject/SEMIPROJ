@@ -20,21 +20,20 @@ public class NoticeBoard extends Board{
 	private static final long serialVersionUID = -3218731893486173271L;
 	
 	private int viewNum;
-	private String memberNum;
-
-	public NoticeBoard(int bNum, String bTitle, String bContent, Date submitDate, int viewNum, String memberNum) {
+	
+		
+	public NoticeBoard(int bNum, String bTitle, String bContent, Date submitDate, int viewNum) {
 		super(bNum, bTitle, bContent, submitDate);
 		this.viewNum = viewNum;
-		this.memberNum = memberNum;
 	}
+	
 
-	public String getMemberNum() {
-		return memberNum;
+	public NoticeBoard() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-
-	public void setMemberNum(String memberNum) {
-		this.memberNum = memberNum;
-	}
+	
+	
 
 	public int getViewNum() {
 		return viewNum;
@@ -52,20 +51,15 @@ public class NoticeBoard extends Board{
 
 	@Override
 	public String toString() {
-		return "NoticeBoard [viewNum=" + viewNum + ", memberNum=" + memberNum + "]";
+		return "NoticeBoard [viewNum=" + viewNum + "]";
 	}
 
-
-	public NoticeBoard() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((memberNum == null) ? 0 : memberNum.hashCode());
 		result = prime * result + viewNum;
 		return result;
 	}
@@ -79,11 +73,6 @@ public class NoticeBoard extends Board{
 		if (getClass() != obj.getClass())
 			return false;
 		NoticeBoard other = (NoticeBoard) obj;
-		if (memberNum == null) {
-			if (other.memberNum != null)
-				return false;
-		} else if (!memberNum.equals(other.memberNum))
-			return false;
 		if (viewNum != other.viewNum)
 			return false;
 		return true;

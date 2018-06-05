@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.myShoppingBasket.model.service.BasketService;
 import com.fr.jsp.myShoppingBasket.model.vo.Basket;
+import com.fr.jsp.myShoppingBasket.model.vo.Coupon;
 
 /**
  * Servlet implementation class BasketToPayServlet
@@ -51,18 +52,22 @@ public class BasketToPayServlet extends HttpServlet {
 			}
 		}*/
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		
 		String member_num = (String)session.getAttribute("member_num");
 		
 		BasketService bService = new BasketService();
-		ArrayList<Basket> list = bService.sendPayPage(member_num);
-		Member m = bService.sendInfoToPayPage(member_num);
 		
+		ArrayList<Basket> list = bService.sendPayPage(member_num);
+				
+		Member m = bService.sendInfoToPayPage(member_num);
+		ArrayList<Coupon> cList = new BasketService().selectCoupon(member_num);
+		
+		System.out.println("cList.size(): "+cList.size());
+		request.setAttribute("cList", cList);
 		request.setAttribute("pList", list);
 		request.setAttribute("member",m);
 		request.getRequestDispatcher("/views/myShoppingBasket/order&pay.jsp").forward(request, response);
-		
 		
 		
 	}
