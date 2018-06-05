@@ -25,11 +25,19 @@
         @media (max-width:768px) {
             #no1,
             #no2 {
-                width: 750px;
+                width: 500px;
             }
             .container {
-                width: 750px;
+                width: 500px;
             }
+        }
+        @media (max-width:1100px){
+        	#no1,#no2{
+        	width:900px;
+        	}
+        	.container{
+        	width:900px;
+        	}
         }
     .navbar-default {
       background-color: rgba(255, 254, 254, 0.9);
@@ -56,6 +64,7 @@
    
     
     <br>
+    
     <div class="visible-md">md</div>
     <div class="visible-sm">sm</div>
     
@@ -125,4 +134,16 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+    <script>
+    (window).resize(function() {
+    	var windowWidth = $( window ).width();
+    	$('#width1').innerHTML=(windowWidth);
+    	
+    	var windowHeight = $( window ).height();
+    	$('#height1').text(windowHeight);
+    	});
+    </script>
+    <br><br><br><br><br><br>
+    <div id="width1">width</div>
+    <div id="height1">height</div>
     
