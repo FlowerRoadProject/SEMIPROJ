@@ -83,12 +83,14 @@ public class InsertOrderServlet extends HttpServlet {
 		String tag = null;
 		if(request.getParameter("cardMsg") !=""){
 			message = request.getParameter("cardMsg");
+			
 		}
 		
 		if(request.getParameter("tagMsg") != ""){
 			tag = request.getParameter("tagMsg");
+			
 		}
-		
+		System.out.println("productNum[0]: "+productNum[0].substring(2, 4));
 		
 		//이후 셀렉트를 통해 orderNum을 가져와야한다..
 		String orderNum = oService.selectOrderNum(member_num);
@@ -101,11 +103,12 @@ public class InsertOrderServlet extends HttpServlet {
 		
 		int insertProList = 0;
 		for(int i = 0; i< productNum.length; i++){
-			if(Integer.parseInt(productNum[i].substring(1, 3)) >=37 && Integer.parseInt(productNum[i].substring(1, 3)) <=39){
+			
+			if(Integer.parseInt(productNum[i].substring(2, 4)) >=37 && Integer.parseInt(productNum[i].substring(2, 4)) <=39){
 				//메세지카드일때 메세지를 삽입
 				insertProList += oService.insertOrderProList(orderNum, productNum[i], Integer.parseInt(quantity[i]), message);
 				System.out.println("메세지카드있어서 실행");
-			}else if(Integer.parseInt(productNum[i].substring(1, 3)) >=40 && Integer.parseInt(productNum[i].substring(1, 3)) <=43){
+			}else if(Integer.parseInt(productNum[i].substring(2, 4)) >=40 && Integer.parseInt(productNum[i].substring(2, 4)) <=43){
 				//메세지태그일때 메세지를 삽입
 				insertProList += oService.insertOrderProList(orderNum, productNum[i], Integer.parseInt(quantity[i]), tag);
 				System.out.println("메세지태그있어서 실행");

@@ -245,7 +245,7 @@ public class OrderDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = prop.getProperty("insertProList");
-		
+		System.out.println("잘들어오니?");
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, orderNum);

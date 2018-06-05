@@ -79,7 +79,7 @@ public class OrderService {
 		int result = 0;
 		result = oDao.insertOrderProList(con,orderNum, productNum, quantity, message);
 		
-		if(result >0)commit(con);
+		if(result >0) commit(con);
 		else rollback(con);	
 		
 		
