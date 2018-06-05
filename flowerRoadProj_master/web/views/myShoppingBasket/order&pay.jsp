@@ -872,7 +872,7 @@ Member member = (Member)request.getAttribute("member");
         	}
         });
        
-          	
+        //주문한 상품은 장바구니에서 사라지게 하는 ajax 필요  	
         
 		}
        });
