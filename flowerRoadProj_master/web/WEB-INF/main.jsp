@@ -92,15 +92,17 @@
         alert($(this).attr('src'));
       })
 
-     
-     $.ajax({
-    	url:'/getTopSelling.do',
-    	data:{"index",1},
-    	success:function(data){
-    		
-    	},error:function(data){
-    		
-    	}
+      $('.btn_recommend').click(function () {//추천순 버튼 이벤트
+        alert('추천순');
+      });
+
+      $('.btn_popularity').click(function () {//추천순 버튼 이벤트
+        alert('인기순');
+      });
+
+      $('.btn_price').click(function () {//추천순 버튼 이벤트
+        alert('가격순');
+      });
 
     });
   </script>

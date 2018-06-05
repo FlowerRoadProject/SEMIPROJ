@@ -468,7 +468,7 @@ public class ProductDao {
 		
 		try {
 			
-			String query = prop.getProperty("searchProductList");
+			String query = prop.getProperty("getTopSelingProduct");
 			
 			pstmt = con.prepareStatement(query);
 			
@@ -502,7 +502,6 @@ public class ProductDao {
 
 		}
 
-		
 		return result;
 	}
 
