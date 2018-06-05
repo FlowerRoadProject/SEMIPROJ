@@ -25,11 +25,19 @@
         @media (max-width:768px) {
             #no1,
             #no2 {
-                width: 750px;
+                width: 500px;
             }
             .container {
-                width: 750px;
+                width: 500px;
             }
+        }
+        @media (max-width:1100px){
+        	#no1,#no2{
+        	width:900px;
+        	}
+        	.container{
+        	width:900px;
+        	}
         }
     .navbar-default {
       background-color: rgba(255, 254, 254, 0.9);
@@ -56,6 +64,7 @@
    
     
     <br>
+    
     <div class="visible-md">md</div>
     <div class="visible-sm">sm</div>
     
@@ -64,7 +73,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header col-xs-2 col-sm-2 col-md-2 col-lg-2">
                 <a href="#" id="favorite">
-                    <img src="<%=request.getContextPath()%>/resources/images/main/favorite.png" width="75px" height="75px">
+                    <img src="<%=request.getContextPath()%>/resources/images/favorite.png" width="75px" height="75px">
                 </a>
             </div>
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align:center; display:inline-block;">
@@ -102,7 +111,7 @@
                                 <a href="<%=request.getContextPath()%>/views/mainPage/login.jsp">로그인</a>
                             </li>
                             <li>
-                                <a href="#">회원가입</a>
+                                <a href="<%=request.getContextPath()%>/views/mainPage/signUp.jsp">회원가입</a>
                             </li>
                             <%}else{ %>
                             <li>
@@ -125,4 +134,16 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
+    <script>
+    (window).resize(function() {
+    	var windowWidth = $( window ).width();
+    	$('#width1').innerHTML=(windowWidth);
+    	
+    	var windowHeight = $( window ).height();
+    	$('#height1').text(windowHeight);
+    	});
+    </script>
+    <br><br><br><br><br><br>
+    <div id="width1">width</div>
+    <div id="height1">height</div>
     

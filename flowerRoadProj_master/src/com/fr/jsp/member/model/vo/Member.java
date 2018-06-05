@@ -1,6 +1,6 @@
 package com.fr.jsp.member.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Member {
 
@@ -38,13 +38,30 @@ public class Member {
 		this.memberEmail = memberEmail;
 	}
 	
-	public Member(String id) {
-		this.memberId = id;
-	}
+	public Member() {
+		super();
+	} 
+	   public Member(String id) {
+	      this.memberId = id;
+	   }
 
-	public Member(String id, String pwd) {
-		this.memberId = id;
-		this.memberPw = pwd;
+	   public Member(String id, String pwd) {
+	      this.memberId = id;
+	      this.memberPw = pwd;
+	   }
+	   
+
+	   public Member(String memberId, String memberPw, String memberName, String memberAddress, String memberPhone,
+			char memberGender, Date memberBirthDate, String memberEmail) {
+		super();
+		this.memberId = memberId;
+		this.memberPw = memberPw;
+		this.memberName = memberName;
+		this.memberAddress = memberAddress;
+		this.memberPhone = memberPhone;
+		this.memberGender = memberGender;
+		this.memberBirthDate = memberBirthDate;
+		this.memberEmail = memberEmail;
 	}
 	
 	public String getMemberEmail() {
@@ -226,10 +243,7 @@ public class Member {
 				+ "]";
 	}
 	
-	public Member() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	   
 	   
 	
