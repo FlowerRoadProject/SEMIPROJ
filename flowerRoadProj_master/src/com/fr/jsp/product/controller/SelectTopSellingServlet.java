@@ -35,9 +35,7 @@ public class SelectTopSellingServlet extends HttpServlet {
 			index= Integer.parseInt(request.getParameter("idx"));
 		
 		list = ps.getTopSellingProduct(index);
-		
-		System.out.println(list);
-		
+	
 		
 		new Gson().toJson(list,response.getWriter());
 	}

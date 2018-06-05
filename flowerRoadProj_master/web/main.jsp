@@ -108,22 +108,30 @@ img {
 		$('.anniversary_Img').click(function() {//기념일 이미지 클릭에대한 이벤트
 			alert($(this).attr('src'));
 		})
+		
+		setTopSelling(1);
 	});
 
-	$(function() {
+	
 
+	function setTopSelling(index){
+		
+		if(index>=2)
+			$('#showMore').css("display","none");
+		
 		$.ajax({
 			url : 'getTopSelling.do',
 			data : {
-				idx : 1
+				idx : index
 			},
 			type : "get",
 			success : function(data) {
-
+	
 				var $parsedList = $.parseJSON(data);
 				
 				
 				var $item_container = $('#item-container');
+				
 				
 				for (var i = 0; i < $parsedList.length; ++i) {
 					var $item = $('[name=clone-item]').clone(true,true);
@@ -144,11 +152,12 @@ img {
 				
 			},
 			error : function(data) {
-
+	
 			}
-
+			
+	
 		});
-	});
+	}
 	
 	function addToBasket(productNum){
 		
@@ -181,6 +190,7 @@ img {
 		return true;
 	<%}%>
 	}
+	
 </script>
 </head>
 <body>
@@ -300,7 +310,12 @@ img {
 		
 	</div>
 	<div class="container">
-		<div class="col-lg-12" id="item-container"></div>
+		<div class="col-lg-12" id="item-container">
+			
+		</div>
+		<div style="text-align:center;">
+			<button id="showMore" class="btn btn-default btn-info" onclick="setTopSelling(2);">더 보기</button>
+		</div>
 	</div>
 	<%@include file="/views/common/footer.jsp"%>
 </body>
