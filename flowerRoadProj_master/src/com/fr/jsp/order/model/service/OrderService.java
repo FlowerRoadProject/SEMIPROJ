@@ -56,19 +56,7 @@ public class OrderService {
 			return list;
 		}
 		
-	public ArrayList<Order> selectDT(String memberNum, int length){
-		ArrayList<Order> list = oDao.selectDT(con, memberNum, length);
-		return list;	
-	}
-	public ArrayList<Order> selectCD(String memberNum, int length){
-		ArrayList<Order> list = oDao.selectDT(con, memberNum, length);
-		return list;	
-	}
-	public ArrayList<Order> selectTG(String memberNum, int length){
-		ArrayList<Order> list = oDao.selectDT(con, memberNum, length);
-		return list;	
-	}
-
+	
 
 	public String selectOrderNum(String memberNum) {
 		String orderNum = oDao.selectOrderNum(con, memberNum);
