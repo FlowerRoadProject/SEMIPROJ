@@ -12,11 +12,27 @@ public class Basket implements Serializable{
 	private int product_price;
 	private String product_name;
 	private String image;
+	private String category;
 	
 	public Basket(){
 		
 	}
 	
+	
+	
+	public Basket(String product_num, int quantity, int product_price, String product_name,
+			String image, String category) {
+		super();		
+		this.product_num = product_num;
+		this.quantity = quantity;
+		this.product_price = product_price;
+		this.product_name = product_name;
+		this.image = image;
+		this.category = category;
+	}
+
+
+
 	public Basket(String product_num, int quantity, int product_price, String product_name, String image) {
 		super();		
 		this.product_num = product_num;
@@ -61,6 +77,17 @@ public class Basket implements Serializable{
 	}
 	
 	
+	public String getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+
 	public String getMember_num() {
 		return member_num;
 	}

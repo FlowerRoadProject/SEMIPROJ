@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fr.jsp.myShoppingBasket.model.service.BasketService;
-import com.fr.jsp.myShoppingBasket.model.vo.Basket;
+import com.fr.jsp.myShoppingBasket.model.vo.*;
 
 /**
  * Servlet implementation class BasketSelectServlet

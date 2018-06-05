@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import= "com.fr.jsp.myShoppingBasket.model.vo.Basket, java.util.*, javax.servlet.http.*" %>
+    pageEncoding="UTF-8" import= "com.fr.jsp.myShoppingBasket.model.vo.*, java.util.*, javax.servlet.http.*" %>
     
 <%
 	ArrayList<Basket> list = (ArrayList<Basket>)request.getAttribute("list");	

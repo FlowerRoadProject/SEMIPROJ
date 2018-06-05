@@ -60,27 +60,38 @@ public class InsertOrderServlet extends HttpServlet {
 		
 		//주문상품정보
 		String[] productNum = request.getParameterValues("productNum");		
-		String[] quantity = request.getParameterValues("quantity");
+		String[] quantity = request.getParameterValues("quantity");		
+		String[] category = request.getParameterValues("pCategory");
 		String receiver = request.getParameter("receiver");
 		String receiveAddress = request.getParameter("receiveAddress");
 		String receivePhone = request.getParameter("receivePhone");
 		String anony = request.getParameter("anony");
 		//메모 추가해야됨..
 		String memo = request.getParameter("sendMemo");
+		
+		
+		
 			
 		ArrayList<Order> list = new ArrayList<Order>();
 		//ArrayList<Basket> bList = new ArrayList<Basket>();		
+		
+		
+		
 		for(int i = 0; i < productNum.length;i++){
 			System.out.println("productNum: "+productNum[i]);
 			o = new Order(member_num, productNum[i], orderDate, receiver, receiveAddress, receivePhone, anony, memo,Integer.parseInt(quantity[i]));
 			list.add(o);
-		}	
+		}
+		
+		
 		
 		OrderService oService = new OrderService();		
 		
 		int result = oService.insertOrder(list);
 		
 		new Gson().toJson(result, response.getWriter());
+		
+		
 		
 		
 	}

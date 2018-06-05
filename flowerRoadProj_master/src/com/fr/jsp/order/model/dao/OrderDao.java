@@ -107,5 +107,124 @@ public class OrderDao {
 	            
 	         return list;
 	      }
+	   
+	   
+	   public ArrayList<Order> selectDT(Connection con, String memberNum, int length){
+		   ArrayList<Order> list = null;
+		   PreparedStatement pstmt = null;
+		   ResultSet rset = null;
+		   Order o = null;
+		   String query = prop.getProperty("selectDT");
+		   
+		   try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberNum);
+			pstmt.setInt(2, length);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Order>();
+			while(rset.next()){
+				o = new Order();
+				o.setOrder_num(rset.getString("ORDER_NUM"));
+				o.setProduct_num(rset.getString("PRODUCT_NUM"));
+				o.setQuantity(rset.getInt("PRODUCT_AMOUNT"));
+				
+				list.add(o);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		  
+		   return list;
+		   
+		   
+	   }
+	   public ArrayList<Order> selectCD(Connection con, String memberNum, int length){
+		   ArrayList<Order> list = null;
+		   PreparedStatement pstmt = null;
+		   ResultSet rset = null;
+		   Order o = null;
+		   String query = prop.getProperty("selectCD");
+		   
+		   try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberNum);
+			pstmt.setInt(2, length);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Order>();
+			while(rset.next()){
+				o = new Order();
+				o.setOrder_num(rset.getString("ORDER_NUM"));
+				o.setProduct_num(rset.getString("PRODUCT_NUM"));
+				o.setQuantity(rset.getInt("PRODUCT_AMOUNT"));
+				
+				list.add(o);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		  
+		   return list;
+		   
+		   
+	   }
+	   public ArrayList<Order> selectTG(Connection con, String memberNum, int length){
+		   ArrayList<Order> list = null;
+		   PreparedStatement pstmt = null;
+		   ResultSet rset = null;
+		   Order o = null;
+		   String query = prop.getProperty("selectTG");
+		   
+		   try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberNum);
+			pstmt.setInt(2, length);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<Order>();
+			while(rset.next()){
+				o = new Order();
+				o.setOrder_num(rset.getString("ORDER_NUM"));
+				o.setProduct_num(rset.getString("PRODUCT_NUM"));
+				o.setQuantity(rset.getInt("PRODUCT_AMOUNT"));
+				
+				list.add(o);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		  
+		   return list;
+		   
+		   
+	   }
+	   
+	   /*public int insertOptionOrder(Connection con, Order order){
+		   int result = 0;
+		   PreparedStatement pstmt = null;
+		   
+		   String query = prop.getProperty(arg0)
+		   
+		   return result;
+	   }*/
 	
 }

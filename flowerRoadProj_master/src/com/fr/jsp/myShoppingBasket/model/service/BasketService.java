@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.myShoppingBasket.model.dao.BasketDao;
-import com.fr.jsp.myShoppingBasket.model.vo.Basket;
+import com.fr.jsp.myShoppingBasket.model.vo.*;
 import com.fr.jsp.myShoppingBasket.model.vo.Coupon;
 
 public class BasketService {
