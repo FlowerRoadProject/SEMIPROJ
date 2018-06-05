@@ -41,7 +41,6 @@ public class AdminFaqBoardService {
 		int updateFAQBoardCount = afbDao.admin_updateFAQBoard(con, faqBoard);
 		if(updateFAQBoardCount>0) commit(con);
 		else rollback(con);
-		
 	}
 	// FAQ 삭제
 	public void admin_deleteFAQBoard(String faqNum) {

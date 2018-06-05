@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.fr.jsp.admin.model.service.AdminProductService;
 import com.fr.jsp.admin.model.vo.AdminProductOrder;
 
-@WebServlet("/todayProductOrder.admin")
-public class AdminTodayProductOrderServlet extends HttpServlet {
+@WebServlet("/retrieveProductOrder.admin")
+public class AdminProductOrderRetrieveServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public AdminTodayProductOrderServlet() {
+    public AdminProductOrderRetrieveServlet() {
         super();
     }
 
@@ -31,8 +31,8 @@ public class AdminTodayProductOrderServlet extends HttpServlet {
 		// 오늘 발주한 상품 수
 		int admin_todayProductOrderCount = aps.admin_todayProductOrderList().size();
 		
-		// 오늘 발주 상품 리스트
-		ArrayList<AdminProductOrder> admin_todayProductOrderList = aps.admin_todayProductOrderList();
+		// 발주 현황 리스트
+		ArrayList<AdminProductOrder> admin_productOrderList = aps.admin_productOrderList();
 		
 		// connection close
 		aps.closeCon();
@@ -42,9 +42,9 @@ public class AdminTodayProductOrderServlet extends HttpServlet {
 		request.setAttribute("admin_stockLackProductCount", admin_stockLackProductCount);
 		request.setAttribute("admin_todayProductOrderCount", admin_todayProductOrderCount);
 		
-		request.setAttribute("admin_productOrderList", admin_todayProductOrderList);
+		request.setAttribute("admin_productOrderList", admin_productOrderList);
 		
-		request.getRequestDispatcher("views/admin_views/admin_TodayProductOrder.jsp").forward(request, response);
+		request.getRequestDispatcher("views/admin_views/admin_ProductOrderRetrieve.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
