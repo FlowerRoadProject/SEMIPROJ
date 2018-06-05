@@ -512,7 +512,7 @@ Member member = (Member)request.getAttribute("member");
                         <h4>메세지태그</h4>
                     </div>
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                        <input type="text" class="col-md-12 col-lg-12 form-control" id="sMemo" placeholder="메세지태그에 남길 글을 입력해주세요" aria-describedby="basic-addon1"><br>
+                        <input type="text" class="col-md-12 col-lg-12 form-control" id="tag" placeholder="메세지태그에 남길 글을 입력해주세요" aria-describedby="basic-addon1"><br>
                         <span style="color:lightgray">메세지태그는 최대 40자까지 입력할 수 있습니다</span>
                     </div>
                 </div>               
@@ -860,7 +860,9 @@ Member member = (Member)request.getAttribute("member");
         		receivePhone: $("#receivePhone").val(),
         		sendMemo: $("#sMemo").val(),
         		anony: $('#anony').val(),
-        		quantity: quanArr       		        		
+        		quantity: quanArr,
+        		cardMsg: $('#message').val(),
+        		tagMsg: $('#tag').text()
         	},
         	success: function(data){
         		alert('주문에 성공하였습니다!');
@@ -870,21 +872,7 @@ Member member = (Member)request.getAttribute("member");
         	}
         });
        
-       
-      	$.ajax({
-      		url: "InsertOptionOrder.bk",
-      		type:"POST",
-      		data:{
-      			productNum: pNumArr,
-      			quantity: quanArr,
-      			pCategory: category
-      		},
-      		success: function(data){
-      			console.log('옵션리스트에 추가 성공');
-      		},error: function(data){
-      			console.log('옵션리스트에 추가 실패');
-      		}
-      	})
+          	
         
 		}
        });

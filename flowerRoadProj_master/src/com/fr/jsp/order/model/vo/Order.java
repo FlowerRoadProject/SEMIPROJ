@@ -23,13 +23,32 @@ private String delivery_message;
 private int quantity;
 
 
-
 public Order(String order_num, String product_num, int quantity) {
 	super();
 	this.order_num = order_num;
 	this.product_num = product_num;
 	this.quantity = quantity;
 }
+
+
+
+
+
+public Order(String member_num, Timestamp reservation_date, String receiver_name, String receiver_address,
+		String receiver_phone, String anonymous_delivery, String delivery_message) {
+	super();
+	this.member_num = member_num;
+	this.reservation_date = reservation_date;
+	this.receiver_name = receiver_name;
+	this.receiver_address = receiver_address;
+	this.receiver_phone = receiver_phone;
+	this.anonymous_delivery = anonymous_delivery;
+	this.delivery_message = delivery_message;
+}
+
+
+
+
 
 public Order(String order_num, String member_num, String product_num, Timestamp ordered_date,
 		Timestamp reservation_date, String receiver_name, String receiver_address, String receiver_phone,

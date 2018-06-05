@@ -61,33 +61,66 @@ public class InsertOrderServlet extends HttpServlet {
 		//주문상품정보
 		String[] productNum = request.getParameterValues("productNum");		
 		String[] quantity = request.getParameterValues("quantity");		
-		String[] category = request.getParameterValues("pCategory");
+		
 		String receiver = request.getParameter("receiver");
 		String receiveAddress = request.getParameter("receiveAddress");
 		String receivePhone = request.getParameter("receivePhone");
 		String anony = request.getParameter("anony");
 		//메모 추가해야됨..
-		String memo = request.getParameter("sendMemo");
-		
-		
-		
+		String memo = request.getParameter("sendMemo");		
 			
 		ArrayList<Order> list = new ArrayList<Order>();
 		//ArrayList<Basket> bList = new ArrayList<Basket>();		
 		
-		
-		
-		for(int i = 0; i < productNum.length;i++){
-			System.out.println("productNum: "+productNum[i]);
-			o = new Order(member_num, productNum[i], orderDate, receiver, receiveAddress, receivePhone, anony, memo,Integer.parseInt(quantity[i]));
-			list.add(o);
-		}
-		
-		
-		
+		o = new Order(member_num, orderDate, receiver, receiveAddress, receivePhone, anony, memo);
+		list.add(o);
+				
 		OrderService oService = new OrderService();		
 		
 		int result = oService.insertOrder(list);
+		
+		String message = null;
+		String tag = null;
+		if(request.getParameter("cardMsg") !=""){
+			message = request.getParameter("cardMsg");
+		}
+		
+		if(request.getParameter("tagMsg") != ""){
+			tag = request.getParameter("tagMsg");
+		}
+		
+		
+		//이후 셀렉트를 통해 orderNum을 가져와야한다..
+		String orderNum = oService.selectOrderNum(member_num);
+		System.out.println("주문번호는? : "+orderNum);
+		System.out.println("메세지카드: "+message);
+		System.out.println("메세지태그: "+tag);
+		//orderProList에 insert
+		
+		
+		
+		int insertProList = 0;
+		for(int i = 0; i< productNum.length; i++){
+			if(Integer.parseInt(productNum[i].substring(1, 3)) >=37 && Integer.parseInt(productNum[i].substring(1, 3)) <=39){
+				//메세지카드일때 메세지를 삽입
+				insertProList += oService.insertOrderProList(orderNum, productNum[i], Integer.parseInt(quantity[i]), message);
+				System.out.println("메세지카드있어서 실행");
+			}else if(Integer.parseInt(productNum[i].substring(1, 3)) >=40 && Integer.parseInt(productNum[i].substring(1, 3)) <=43){
+				//메세지태그일때 메세지를 삽입
+				insertProList += oService.insertOrderProList(orderNum, productNum[i], Integer.parseInt(quantity[i]), tag);
+				System.out.println("메세지태그있어서 실행");
+			}else{
+				insertProList += oService.insertOrderProList(orderNum, productNum[i], Integer.parseInt(quantity[i]), null);
+				System.out.println("일반 상품 인서트 실행");
+			}
+			
+		}
+		
+		System.out.println("insertProList(구입한 물품종류): "+insertProList);
+		
+		
+		
+		
 		
 		new Gson().toJson(result, response.getWriter());
 		
