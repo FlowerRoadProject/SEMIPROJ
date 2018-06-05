@@ -38,7 +38,7 @@ public class InsertOptionOrderServlet extends HttpServlet {
 		String[] productNum = request.getParameterValues("productNum");		
 		String[] quantity = request.getParameterValues("quantity");		
 		String[] category = request.getParameterValues("pCategory");
-		
+		 
 		/*ArrayList<String> orderNumDT = new ArrayList<String>();
 		ArrayList<String> orderNumCD = new ArrayList<String>();
 		ArrayList<String> orderNumTG = new ArrayList<String>();*/
