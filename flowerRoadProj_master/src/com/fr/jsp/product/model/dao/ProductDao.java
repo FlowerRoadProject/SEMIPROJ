@@ -459,6 +459,54 @@ public class ProductDao {
 	}
 
 
+	public ArrayList<ProductSimple> getTopSellingProduct(Connection con, int startRow, int endRow) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<ProductSimple> result = new ArrayList<ProductSimple>();
+		ProductSimple p = null;
+
+		
+		try {
+			
+			String query = prop.getProperty("searchProductList");
+			
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+
+				p = new ProductSimple();
+
+				p.setProductNum(rset.getString(2));
+				p.setProductName(rset.getString(3));
+				p.setProductPrice(rset.getInt(4));
+				p.setReviewCount(rset.getInt(5));
+				p.setImage(rset.getString(6));
+				p.setProductTypeName(rset.getString(7));
+				p.setReviewAvg(rset.getInt(8));
+
+				result.add(p);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+
+		}
+
+		
+		return result;
+	}
+
+
 
 
 }
