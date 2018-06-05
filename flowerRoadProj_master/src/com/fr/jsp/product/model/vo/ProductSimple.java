@@ -20,7 +20,7 @@ public class ProductSimple implements java.io.Serializable {
 	public String getProductNum() {
 		return productNum;
 	}
-
+  
 	public void setProductNum(String productNum) {
 		this.productNum = productNum;
 	}
