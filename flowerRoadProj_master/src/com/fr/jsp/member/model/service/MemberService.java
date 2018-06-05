@@ -185,6 +185,77 @@ public class MemberService {
 		return result;
 	}
 	
-	
+	public int accessMember(Member m) {
+		Connection con = getConnection();
+		int result = 0;
+		result= mDao.accessMember(con,m);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+	public String idSearch(String name, String phone, String email) {
+		Connection con = getConnection();
+		String result = "";
+		result= mDao.idSearch(con,name,phone,email);
+		
+		close(con);
+		return result;
+	}
+	public String pwSearch(Member m) {
+		Connection con = getConnection();
+		int result =0;
+		String pwd="";
+		
+		for(int i=0; i<2; i++) 
+			pwd+=((char)((int)(Math.random()*26)+65));
+		
+		for(int i=0; i<6; i++) 
+		pwd += (int) (Math.random()*10);
+		//임시비밀번호
+		System.out.println(pwd);
+		result= mDao.pwSearch(con,m,pwd);
+		if(result > 0){
+			commit(con);
+		}else{
+			//값을 못찾았을때
+			rollback(con);
+			pwd="";
+		}
+		close(con);
+		return pwd;
+	}
+	public int checkId(String userId) {
+		Connection con = getConnection();
+		int result =0;
+		result=mDao.checkId(con,userId);
+		return result;
+	}
+	public int InsertMember(Member m) {
+		Connection con = getConnection();
+		int result = 0;
+		result= mDao.insertMember(con,m);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+	public String emailSendNum(String email) {
+		
+		String Num="";
+		
+		for(int i=0; i<6; i++) 
+		Num += (int) (Math.random()*10);
+		//임시비밀번호
+		//System.out.println(Num);
+		
+		return Num;
+	}
 
 }

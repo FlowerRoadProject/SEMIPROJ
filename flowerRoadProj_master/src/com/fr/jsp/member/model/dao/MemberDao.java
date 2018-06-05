@@ -507,6 +507,112 @@ public class MemberDao {
 		return resultMember;
 	}
 	
-	
+	public int accessMember(Connection con, Member m) {
+		PreparedStatement pstmt= null;
+		int result=0;
+		try {
+			String sql = prop.getProperty("accessMember");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m.getMemberNum());		
+			System.out.println(m.getMemberNum());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public String idSearch(Connection con, String name, String phone, String email) {
+		
+		PreparedStatement pstmt= null;
+		ResultSet rset= null;
+		String result="";
+		try {
+			String sql = prop.getProperty("idSearch");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, email);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				result=rset.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int pwSearch(Connection con, Member m , String pwd) {
+		PreparedStatement pstmt= null;
+		int result=0;
+		/*System.out.println(pwd);
+		System.out.println(m.getMemberId());
+		System.out.println(m.getMemberName());
+		System.out.println(m.getMemberEmail());*/
+		try {	
+			String sql = prop.getProperty("pwSearch");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pwd);
+			pstmt.setString(2, m.getMemberId());
+			pstmt.setString(3, m.getMemberName());
+			pstmt.setString(4, m.getMemberEmail());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int checkId(Connection con, String userId) {
+		PreparedStatement pstmt= null;
+		ResultSet rset = null;
+		int result=0;
+		try {
+			String query =  prop.getProperty("checkId");
+			pstmt=con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				result=rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	public int insertMember(Connection con, Member m) {
 
+				PreparedStatement pstmt= null;
+				int result=0;
+				try {
+					String sql = prop.getProperty("memberInsert");
+					System.out.println(sql);
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, m.getMemberId());
+					pstmt.setString(2, m.getMemberPw());
+					pstmt.setString(3, m.getMemberName());
+					pstmt.setString(4, m.getMemberAddress());
+					pstmt.setString(5, m.getMemberPhone());
+					pstmt.setString(6, String.valueOf(m.getMemberGender()));
+					//pstmt.setObject(6,  m.getMemberGender(), java.sql.Types.CHAR);
+					pstmt.setDate(7, m.getMemberBirthDate());
+					pstmt.setString(8, m.getMemberEmail());
+					result = pstmt.executeUpdate();
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					close(pstmt);
+				}
+				
+				return result;
+	}
+	
 }

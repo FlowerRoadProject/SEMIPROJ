@@ -64,7 +64,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header col-xs-2 col-sm-2 col-md-2 col-lg-2">
                 <a href="#" id="favorite">
-                    <img src="<%=request.getContextPath()%>/resources/images/main/favorite.png" width="75px" height="75px">
+                    <img src="<%=request.getContextPath()%>/resources/images/favorite.png" width="75px" height="75px">
                 </a>
             </div>
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="text-align:center; display:inline-block;">
@@ -102,7 +102,7 @@
                                 <a href="<%=request.getContextPath()%>/views/mainPage/login.jsp">로그인</a>
                             </li>
                             <li>
-                                <a href="#">회원가입</a>
+                                <a href="<%=request.getContextPath()%>/views/mainPage/signUp.jsp">회원가입</a>
                             </li>
                             <%}else{ %>
                             <li>
