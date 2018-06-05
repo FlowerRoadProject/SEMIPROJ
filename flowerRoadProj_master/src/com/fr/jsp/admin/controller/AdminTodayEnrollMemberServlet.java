@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.fr.jsp.admin.model.service.AdminMemberService;
 import com.fr.jsp.admin.model.vo.AdminMember;
 
-@WebServlet("/member.admin")
-public class AdminMemberServlet extends HttpServlet {
+@WebServlet("/todayEnrollMember.admin")
+public class AdminTodayEnrollMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public AdminMemberServlet() {
+    public AdminTodayEnrollMemberServlet() {
         super();
     }
 
@@ -32,9 +32,10 @@ public class AdminMemberServlet extends HttpServlet {
 		int admin_todayEnrollCount = ams.admin_todayEnrollMemberList().size();
 		// 탈퇴한 회원 수
 		int admin_withdrawMemberCount = ams.admin_withdrawMemberCount();
-		// 회원 리스트
-		ArrayList<AdminMember> admin_memberList = ams.admin_memberList();
 		
+		// 회원 리스트
+		ArrayList<AdminMember> admin_memberList = ams.admin_todayEnrollMemberList();
+
 		// connection close
 		ams.closeCon();
 		

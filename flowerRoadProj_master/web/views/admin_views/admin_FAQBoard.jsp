@@ -60,8 +60,8 @@
                         <div class="tile-stats">
                           <div class="icon"><i class="fa fa-bullhorn"></i>
                           </div>
-                          <div class="count"><%=admin_noticeBoardCount %></div>
-                          <a href="/flowerRoadProj/noticeBoard.admin"><h3>공지사항</h3></a>
+                          <div class="count noticeBoardCount"><%=admin_noticeBoardCount %></div>
+                          <a href="<%=request.getContextPath() %>/noticeBoard.admin"><h3>공지사항</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -70,7 +70,7 @@
                           <div class="icon"><i class="fa fa-star"></i>
                           </div>
                           <div class="count faqBoardCount"><%=admin_faqBoardCount %></div>
-                          <a href="/flowerRoadProj/faqBoard.admin"><h3>FAQ</h3></a>
+                          <a href="<%=request.getContextPath() %>/faqBoard.admin"><h3>FAQ</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -80,7 +80,7 @@
                           </div>
                           <div class="count"><%=admin_userQuestionBoardCount %></div>
 
-                          <a href="/flowerRoadProj/userQuestionBoard.admin"><h3>1:1문의</h3></a>
+                          <a href="<%=request.getContextPath() %>/userQuestionBoard.admin"><h3>1:1문의</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -90,7 +90,7 @@
                           </div>
                           <div class="count"><%=admin_reviewBoardCount %></div>
 
-                          <a href="/flowerRoadProj/reviewBoard.admin"><h3>상품리뷰</h3></a>
+                          <a href="<%=request.getContextPath() %>/reviewBoard.admin"><h3>상품리뷰</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -141,7 +141,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>게시글 등록/수정/삭제 <small>공지/FAQ</small></h2>
+                    <h2>게시글 등록/수정/삭제 <small>FAQ</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>

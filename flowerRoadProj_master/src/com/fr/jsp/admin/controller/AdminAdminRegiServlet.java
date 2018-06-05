@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fr.jsp.admin.model.service.AdminMemberService;
-import com.fr.jsp.admin.model.vo.AdminMember;
+import com.fr.jsp.admin.model.vo.AdminAdmin;
 
-@WebServlet("/member.admin")
-public class AdminMemberServlet extends HttpServlet {
+@WebServlet("/regiAdmin.admin")
+public class AdminAdminRegiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public AdminMemberServlet() {
+    public AdminAdminRegiServlet() {
         super();
     }
 
@@ -32,8 +32,9 @@ public class AdminMemberServlet extends HttpServlet {
 		int admin_todayEnrollCount = ams.admin_todayEnrollMemberList().size();
 		// 탈퇴한 회원 수
 		int admin_withdrawMemberCount = ams.admin_withdrawMemberCount();
-		// 회원 리스트
-		ArrayList<AdminMember> admin_memberList = ams.admin_memberList();
+		
+		// 관리자 리스트
+		ArrayList<AdminAdmin> admin_adminList = ams.admin_adminList();
 		
 		// connection close
 		ams.closeCon();
@@ -44,9 +45,9 @@ public class AdminMemberServlet extends HttpServlet {
 		request.setAttribute("admin_todayEnrollCount", admin_todayEnrollCount);
 		request.setAttribute("admin_withdrawMemberCount", admin_withdrawMemberCount);
 		
-		request.setAttribute("admin_memberList", admin_memberList);
+		request.setAttribute("admin_adminList", admin_adminList);		
 		
-		request.getRequestDispatcher("views/admin_views/admin_Member.jsp").forward(request, response);
+		request.getRequestDispatcher("views/admin_views/admin_AdminRegi.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

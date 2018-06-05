@@ -39,7 +39,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <a href="/flowerRoadProj/delivery.admin"><h3>주문/배송 관리</a> <small>(Order/Delivery: <%=admin_allDeliveryCount %> 건)</small></h3>
+                <a href="<%=request.getContextPath() %>/delivery.admin"><h3>주문/배송 관리</a> <small>(Order/Delivery: <%=admin_allDeliveryCount %> 건)</small></h3>
               </div>
 
               <div class="title_right">
@@ -63,7 +63,7 @@
                           <div class="icon payCompleteList"><i class="fa fa-check-square-o"></i>
                           </div>
                           <div class="count"><%=admin_paycompleteCount %></div>
-                          <a href="/flowerRoadProj/payComplete.admin"><h3>결제완료</h3></a>
+                          <a href="<%=request.getContextPath() %>/payComplete.admin"><h3>결제완료</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -73,7 +73,7 @@
                           </div>
                           <div class="count"><%=admin_productReadyCount %></div>
 
-                          <a href="/flowerRoadProj/productReady.admin"><h3>상품준비</h3></a>
+                          <a href="<%=request.getContextPath() %>/productReady.admin"><h3>상품준비</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -83,7 +83,7 @@
                           </div>
                           <div class="count"><%=admin_deliverystartCount %></div>
 
-                          <a href="/flowerRoadProj/deliveryStart.admin"><h3>배송출발</h3></a>
+                          <a href="<%=request.getContextPath() %>/deliveryStart.admin"><h3>배송출발</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -93,7 +93,7 @@
                           </div>
                           <div class="count"><%=admin_deliverycompleteCount %></div>
 
-                          <a href="/flowerRoadProj/deliveryComplete.admin"><h3>배송완료</h3></a>
+                          <a href="<%=request.getContextPath() %>/deliveryComplete.admin"><h3>배송완료</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -102,7 +102,7 @@
                           <div class="icon"><i class="fa fa-frown-o"></i>
                           </div>
                           <div class="count"><%=admin_ordercancleCount %></div>
-                          <a href="/flowerRoadProj/orderCancle.admin"><h3>구매취소</h3></a>
+                          <a href="<%=request.getContextPath() %>/orderCancle.admin"><h3>구매취소</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
