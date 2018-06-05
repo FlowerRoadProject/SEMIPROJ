@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.myShoppingBasket.model.vo.Basket;
+import com.fr.jsp.myShoppingBasket.model.vo.Coupon;
 
 
 public class BasketDao {
@@ -299,5 +300,36 @@ public class BasketDao {
 		return result;
 	}
 	
+	public ArrayList<Coupon> selectCoupon(Connection con, String member_num){
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Coupon> list = new ArrayList<Coupon>();
+		Coupon c;
+		
+		String query = prop.getProperty("selectCoupon");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, member_num);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				c = new Coupon();
+				c.setDistNum(rset.getString("DIST_NUM"));
+				c.setCouponName(rset.getString("COUPON_NAME"));
+				c.setAmount(rset.getInt("DISCOUNT_AMOUNT"));
+				c.setExpiration(rset.getInt("EXPIRATION"));
+				list.add(c);		
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
 }
