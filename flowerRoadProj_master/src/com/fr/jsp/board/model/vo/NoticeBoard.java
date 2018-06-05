@@ -20,13 +20,16 @@ public class NoticeBoard extends Board{
 	private static final long serialVersionUID = -3218731893486173271L;
 	
 	private int viewNum;
+	private String memberNum;
 	
-		
-	public NoticeBoard(int bNum, String bTitle, String bContent, Date submitDate, int viewNum) {
+
+	public NoticeBoard(int bNum, String bTitle, String bContent, Date submitDate, int viewNum, String memberNum) {
 		super(bNum, bTitle, bContent, submitDate);
 		this.viewNum = viewNum;
+		this.memberNum = memberNum;
 	}
-	
+
+
 
 	public NoticeBoard() {
 		super();
@@ -76,6 +79,18 @@ public class NoticeBoard extends Board{
 		if (viewNum != other.viewNum)
 			return false;
 		return true;
+	}
+
+
+
+	public String getMemberNum() {
+		return memberNum;
+	}
+
+
+
+	public void setMemberNum(String memberNum) {
+		this.memberNum = memberNum;
 	}
 
 	

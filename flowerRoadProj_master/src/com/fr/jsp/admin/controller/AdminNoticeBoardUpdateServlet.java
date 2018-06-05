@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fr.jsp.admin.model.service.AdminNoticeBoardService;
 import com.fr.jsp.board.model.vo.NoticeBoard;
@@ -22,15 +21,12 @@ public class AdminNoticeBoardUpdateServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
 		
-		String adminNum = (String) session.getAttribute("adminNum");
 		int noticeNum = Integer.parseInt(request.getParameter("noticeNum"));
 		String noticeTitle = request.getParameter("noticeTitle");
 		String noticeContent = request.getParameter("noticeContent");
 		
 		NoticeBoard noticeBoard = new NoticeBoard();
-		noticeBoard.setMemberNum(adminNum);
 		noticeBoard.setbNum(noticeNum);
 		noticeBoard.setbTitle(noticeTitle);
 		noticeBoard.setbContent(noticeContent);
