@@ -20,6 +20,11 @@ img {
 	width: 40%;
 	margin: auto;
 }
+
+ .items{
+        width:auto;
+        height: 540px;
+       }
 </style>
 <script>
 	//즐겨찾기
@@ -119,17 +124,22 @@ img {
 				
 				
 				var $item_container = $('#item-container');
-				console.log($parsedList.length);
 				
 				for (var i = 0; i < $parsedList.length; ++i) {
 					var $item = $('[name=clone-item]').clone(true,true);
+					$item.attr("name","clone-item_"+i);
 					$item.find('[name=detailLink]').attr("href","<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum);
 					$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
 					$item.find('[name=productName]').text($parsedList[i].productName);
 					$item.find('[name=productPrice]').text($parsedList[i].productPrice);
-					$item.find('[name=reviewNum]').text($parsedList[i].reviewNum);
+					$item.find('[name=reviewNum]').text($parsedList[i].reviewCount);
+					
+					$item.find('[name=productDetail]').attr("onclick","location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum+"'");
+					$item.find('[name=addBasket]').attr("onclick","addToBasket("+"'"+$parsedList[i].productNum+"'"+")");
+					
+					
 					$item_container.append($item);
-					console.log(i);
+					
 				}
 				
 			},
@@ -139,6 +149,38 @@ img {
 
 		});
 	});
+	
+	function addToBasket(productNum){
+		
+		if(!checkLogin())
+			return;
+		
+			$.ajax({
+				url:"addBasket.do",
+				data:{pno:productNum},
+				success:function(data){
+					
+					if(data>0)
+						alert("장바구니에 성공적으로 추가!!");
+					
+				},error:function(data){
+					alert("장바구니에 추가 실패!!");
+				}
+			
+			});
+		
+		}
+
+
+	function checkLogin(){
+	
+	<%if(request.getSession(false).getAttribute("memberNum")==null){%>
+		alert("로그인 해주세요");
+		 return false;
+	<%}else{%>
+		return true;
+	<%}%>
+	}
 </script>
 </head>
 <body>
@@ -248,13 +290,14 @@ img {
 					<div class="col-lg-12 ">
 
 						<a class="col-lg-4 btn btn-default" role="button"
-							onclick="addBasket('');" name="addBasket">장바구니</a> <a name="productDetail"
-							class="col-lg-7 col-lg-offset-1 btn btn-primary" role="button"
-							>바로구매</a>
+							 name="addBasket">장바구니</a> 
+						<a name="productDetail"
+							class="col-lg-7 col-lg-offset-1 btn btn-primary" role="button">바로구매</a>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	<div class="container">
 		<div class="col-lg-12" id="item-container"></div>

@@ -26,7 +26,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
 
-
+<sript src=""></sript>
 
 <style>
 /*xs 사이즈 이하면 컨테이너 사이즈 고정*/
@@ -191,7 +191,7 @@ body{
 	
 	//스티키 NAVBAR
   	 function AdjustHeader(){
-  		 console.log($(window).scrollTop());
+
  	    if ($(window).scrollTop() > 600) {
  	      if (!$navbar.hasClass("navbar-fixed-top")) {
  	        $navbar.addClass("navbar-fixed-top");
