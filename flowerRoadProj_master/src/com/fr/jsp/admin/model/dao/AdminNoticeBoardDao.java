@@ -63,5 +63,43 @@ public class AdminNoticeBoardDao {
 		
 		return admin_noticeBoardAllList;
 	}
+	// 공지사항 등록
+	public int admin_insertNoticeBoard(Connection con, NoticeBoard noticeBoard) {
+		PreparedStatement pstmt = null;
+		int rset = 0;
+		
+		try { 
+			String query = prop.getProperty("admin_insertNoticeBoard");
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1,noticeBoard.getbTitle());
+			pstmt.setString(2,noticeBoard.getbContent());
+			pstmt.setString(3,noticeBoard.getMemberNum());
+			rset = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return rset;
+	}
+	// 공지사항 수정
+	public int admin_updateNoticeBoard(Connection con, NoticeBoard noticeBoard) {
+		PreparedStatement pstmt = null;
+		int rset = 0;
+		
+		try { 
+			String query = prop.getProperty("admin_updateNoticeBoard");
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1,noticeBoard.getMemberNum());
+			pstmt.setString(2,noticeBoard.getbTitle());
+			pstmt.setString(3,noticeBoard.getbContent());
+			rset = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return rset;
+	}
 
 }

@@ -65,10 +65,4 @@ public class FaqBoardDao implements Serializable {
 		
 	}
 	
-	// 전체 FAQ 게시판 게시글
-		public ArrayList<FaqBoard> admin_faqBoardAllList(Connection con) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	
 }

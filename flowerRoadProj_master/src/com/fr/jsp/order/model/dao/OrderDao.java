@@ -71,57 +71,8 @@ public class OrderDao {
 		
 		return result;
 	}
-	
-	
-	// 오늘 등록된 주문 수
-		public int admin_todayOrder(Connection con) {
-			PreparedStatement pstmt = null;
-			ResultSet rset = null;
-			int admin_orderCount = 0;
-			
-			try { 
-				String query = prop.getProperty("admin_orderCount");
-				pstmt = con.prepareStatement(query);
-				rset = pstmt.executeQuery();
-				while(rset.next()){
-					admin_orderCount = Integer.parseInt(rset.getString("COUNT(MEMBER_NUM)"));
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				close(rset);
-				close(pstmt);
-			}
-			return admin_orderCount;
-		}
-		// 전체 주문/배송 리스트
-		public ArrayList<Order> admin_allDeliveryList(Connection con) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		// 결제 완료된 주문 수
-		public int admin_paycompleteCount(Connection con) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-		// 배송 출발한 주문 수
-		public int admin_deliverystartCount(Connection con) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-		// 배송 완료된 주문 수
-		public int admin_deliverycompleteCount(Connection con) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-		// 구매 취소된 주문 수
-		public int admin_ordercancleCount(Connection con) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-		
-		
-		public ArrayList<MyPage_Order> orderChk(Connection con, String id) {
+	  
+	   public ArrayList<MyPage_Order> orderChk(Connection con, String id) {
 
 			ArrayList<MyPage_Order> list = null;
 			PreparedStatement pstmt = null;
@@ -156,4 +107,6 @@ public class OrderDao {
 			   
 			return list;
 		}
+
+	
 }

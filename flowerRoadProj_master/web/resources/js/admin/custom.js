@@ -7359,7 +7359,7 @@ $('#adminQuiz').on({
 	'click':function(){
 		var answerPw = window.prompt('제일 존경하는 인물은?');
 		$.ajax({
-			url: "/flowerRoadProj/secondPwCheck.admin",
+			url: "<%=request.getContextPath() %>/secondPwCheck.admin",
 			type: "GET",
 			data: {
 				adminNum: $('#adminNum').val()
@@ -7401,7 +7401,7 @@ $('#editProduct').on({
 			var check = confirm("수정하려구?");
 			if(check==true){
 				$.ajax({
-					url: "/flowerRoadProj/editProduct.admin",
+					url: "<%=request.getContextPath() %>/editProduct.admin",
 					type: "post",
 					data: {
 						pNum: $('.PNum').val(),
@@ -7470,7 +7470,7 @@ $('#insertProduct').on({
 				var check = confirm("등록하려구?");
 				if(check==true){
 					$.ajax({
-						url: "/flowerRoadProj/insertProduct.admin",
+						url: "<%=request.getContextPath() %>/insertProduct.admin",
 						type: "post",
 						data: {
 							insertPImage: $('.PInfoImage2').val().substr(12),
@@ -7522,7 +7522,7 @@ $('#insertProductOrder').on({
 			var check = confirm("주문하려구?");
 			if(check==true){
 				$.ajax({
-					url: "/flowerRoadProj/insertProductOrder.admin",
+					url: "<%=request.getContextPath() %>/insertProductOrder.admin",
 					type: "post",
 					data: {
 						insertPNumO: $('.insertPNumO').val(),
@@ -7574,7 +7574,7 @@ $('#editAdmin').on({
 			var check = confirm("수정하려구?");
 			if(check==true){
 				$.ajax({
-					url: "/flowerRoadProj/editAdmin.admin",
+					url: "<%=request.getContextPath() %>/editAdmin.admin",
 					type: "post",
 					data: {
 						aNum: $('.ANum').val(),
@@ -7651,7 +7651,7 @@ $('#insertAdmin').on({
 			var check = confirm("관리자야?");
 			if(check==true){
 				$.ajax({
-					url: "/flowerRoadProj/insertAdmin.admin",
+					url: "<%=request.getContextPath() %>/insertAdmin.admin",
 					type: "post",
 					data: {
 						insertAImage: $('.AInfoImage2').val().substr(12),
@@ -7695,7 +7695,7 @@ $('#editOrderState').on({
 			alert("상품 번호가 읍당~");
 		}else if(recheck){
 			$.ajax({
-				url: "/flowerRoadProj/editOrderState.admin",
+				url: "<%=request.getContextPath() %>/editOrderState.admin",
 				type: "post",
 				data: {
 					oNum: $('.ONum').text(),
@@ -7733,7 +7733,7 @@ $('#refundOrder').on({
 			var refundCheck = confirm("꼭 이래야만 하니?");
 			if(refundCheck){
 				$.ajax({
-					url: "/flowerRoadProj/refundOrder.admin",
+					url: "<%=request.getContextPath() %>/refundOrder.admin",
 					type: "post",
 					data: {
 						oNum: $('.ONum').text()
@@ -7777,7 +7777,7 @@ $('#insertFAQ').on({
 			var faqCheck = confirm("등록하려구?");
 			if(faqCheck && $('.faqNum').val()==""){
 				$.ajax({
-					url: "/flowerRoadProj/insertFAQBoard.admin",
+					url: "<%=request.getContextPath() %>/insertFAQBoard.admin",
 					type: "post",
 					data: {
 						faqCatecory: $('.faqCatecory').val(),
@@ -7803,8 +7803,10 @@ $('#insertFAQ').on({
 // FAQ 수정
 $('#updateFAQ').on({
 	'click':function(){
-		if($('.faqNum').val()==""){
-			alert("이건 등록해야지~");
+		if($('.faqNum').val()=="" && $('.faqCatecory').val()=="카테고리 선택" && $('.faqQuestion').val()=="" && $('.faqAnswer').text()==""){
+			alert("입력좀...");
+		}else if($('.faqNum').val()=="" && $('.faqCatecory').val()!="카테고리 선택" || $('.faqQuestion').val()!="" || $('.faqAnswer').text()!=""){
+			alert("이건 입력해야지~");
 		}else if($('.faqCatecory').val()=="카테고리 선택"){
 			alert("카테고리는?");
 		}else if($('.faqQuestion').val()==""){
@@ -7813,7 +7815,7 @@ $('#updateFAQ').on({
 			alert("답변내용은?");
 		}else{
 			$.ajax({
-				url: "/flowerRoadProj/updateFAQBoard.admin",
+				url: "<%=request.getContextPath() %>/updateFAQBoard.admin",
 				type: "post",
 				data: {
 					faqNum: $('.faqNum').val(),
@@ -7842,25 +7844,128 @@ $('#cancleFAQ').on({
 // FAQ 삭제
 $('#deleteFAQ').on({
 	'click':function(){
-		var faqAnswerPw = window.prompt('제일 존경하는 인물은?');
-		$.ajax({
-			url: "/flowerRoadProj/deleteFAQBoard.admin",
-			type: "post",
-			data: {
-				faqNum: $('.faqNum').val(),
-				faqAnswerPw: faqAnswerPw
-			},
-			success: function(data){
-				if(data){
-					alert($('.faqNum').val()+" 삭제 완료!");
-				}else{ 
-					alert("누구냐 넌..");
+		if($('.faqNum').val()==""){
+			alert("삭제할 게 없넹~");
+		}else{
+			var faqAnswerPw = window.prompt('제일 존경하는 인물은?');
+			$.ajax({
+				url: "<%=request.getContextPath() %>/deleteFAQBoard.admin",
+				type: "post",
+				data: {
+					faqNum: $('.faqNum').val(),
+					faqAnswerPw: faqAnswerPw
+				},
+				success: function(data){
+					if(data){
+						alert($('.faqNum').val()+" 삭제 완료!");
+					}else{ 
+						alert("누구냐 넌..");
+					}
+				},
+				error: function(data){
+					alert("전달 실패!!");
 				}
-			},
-			error: function(data){
-				alert("전달 실패!!");
+			});
+		}
+	}
+});
+// 공지사항 등록
+$('#insertNotice').on({
+	'click':function(){
+		if($('.noticeTitle').val()==""){
+			alert("제목이 없어~");
+		}else if($('.noticeContent').text()==""){
+			alert("내용이 읍넹~");
+		}else{
+			var faqCheck = confirm("등록하려구?");
+			if(faqCheck && $('.noticeNum').val()==""){
+				$.ajax({
+					url: "<%=request.getContextPath() %>/insertNoticeBoard.admin",
+					type: "post",
+					data: {
+						noticeTitle: $('.noticeTitle').val(),
+						noticeContent: $('.noticeContent').text()
+					},
+					success: function(data){
+						alert("공지사항 등록 완료!");
+						$('.noticeBoardCount').text(data);
+					},
+					error: function(data){
+						alert("전달 실패!!");
+					}
+				});
+			}else if($('.noticeNum').val()!=""){
+				alert("이건 수정해야지~");
+			}else{
+				alert("다시 확인해~");
 			}
-		});
+		}
+	}
+});
+// 공지사항 수정
+$('#updateFAQ').on({
+	'click':function(){
+		if($('.noticeNum').val()=="" && $('.noticeTitle').val()=="" && $('.noticeContent').text()==""){
+			alert("입력좀...");
+		}else if($('.noticeNum').val()=="" && $('.noticeTitle').val()!="카테고리 선택" || $('.noticeContent').text()!=""){
+			alert("이건 입력해야지~");
+		}else if($('.noticeTitle').val()==""){
+			alert("제목?");
+		}else if($('.noticeContent').text()==""){
+			alert("내용?");
+		}else{
+			$.ajax({
+				url: "<%=request.getContextPath() %>/updateNoticeBoard.admin",
+				type: "post",
+				data: {
+					noticeNum: $('.noticeNum').val(),
+					noticeTitle: $('.noticeTitle').val(),
+					noticeContent: $('.noticeContent').text()
+				},
+				success: function(data){
+					alert($('.noticeNum').val()+" 수정 완료!");
+				},
+				error: function(data){
+					alert("전달 실패!!");
+				}
+			});
+		}
+	}
+});
+// 공지사항 취소
+$('#cancleFAQ').on({
+	'click':function(){
+		if($('.faqCatecory').val()!="카테고리 선택" || $('.faqQuestion').val()!="" || $('.faqAnswer').text()!=""){
+			location.reload();
+		}
+	}
+});
+// 공지사항 삭제
+$('#deleteFAQ').on({
+	'click':function(){
+		if($('.faqNum').val()==""){
+			alert("삭제할 게 없넹~");
+		}else{
+			var faqAnswerPw = window.prompt('제일 존경하는 인물은?');
+			$.ajax({
+				url: "<%=request.getContextPath() %>/deleteFAQBoard.admin",
+				type: "post",
+				data: {
+					faqNum: $('.faqNum').val(),
+					faqAnswerPw: faqAnswerPw
+				},
+				success: function(data){
+					if(data){
+						alert($('.faqNum').val()+" 삭제 완료!");
+					}else{ 
+						alert("누구냐 넌..");
+					}
+				},
+				error: function(data){
+					alert("전달 실패!!");
+				}
+			});
+		}
 	}
 });
 //메소드 실행
