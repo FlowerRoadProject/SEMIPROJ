@@ -71,42 +71,7 @@ public class OrderDao {
 		
 		return result;
 	}
-	   public ArrayList<MyPage_Order> orderChk(Connection con, String id) {
-
-	         ArrayList<MyPage_Order> list = null;
-	         PreparedStatement pstmt = null;
-	         ResultSet rset = null;
-	         
-	         String query = prop.getProperty("orderChk");
-	         
-	         try {
-	            pstmt = con.prepareStatement(query);
-	            pstmt.setString(1, id);
-	            
-	            rset = pstmt.executeQuery();
-	            
-	            list = new ArrayList<MyPage_Order>();
-	            while(rset.next()){
-	               MyPage_Order mpo = new MyPage_Order();
-	               mpo.setOrdered_date(rset.getDate(1));
-	               mpo.setProduct_num(rset.getString(2));
-	               mpo.setProduct_cost(rset.getInt(3));
-	               mpo.setAnonymous_delivery(rset.getString(4));
-	               mpo.setOrder_state_code(rset.getString(5));
-	               
-	               list.add(mpo);
-	            }
-	            
-	            
-	         } catch (SQLException e) {
-	            // TODO Auto-generated catch block
-	            e.printStackTrace();
-	         }
-	         
-	            
-	         return list;
-	      }
-	
+	  
 	   public ArrayList<MyPage_Order> orderChk(Connection con, String id) {
 
 	         ArrayList<MyPage_Order> list = null;
