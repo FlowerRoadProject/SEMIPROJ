@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fr.jsp.admin.model.service.AdminMemberService;
-import com.fr.jsp.admin.model.vo.AdminAdmin;
 import com.fr.jsp.admin.model.vo.AdminMember;
 
 @WebServlet("/member.admin")
@@ -35,8 +34,7 @@ public class AdminMemberServlet extends HttpServlet {
 		int admin_withdrawMemberCount = ams.admin_withdrawMemberCount();
 		// 회원 리스트
 		ArrayList<AdminMember> admin_memberList = ams.admin_memberList();
-		// 관리자 리스트
-		ArrayList<AdminAdmin> admin_adminList = ams.admin_adminList();
+		
 		// connection close
 		ams.closeCon();
 		
@@ -45,8 +43,8 @@ public class AdminMemberServlet extends HttpServlet {
 		request.setAttribute("admin_adminCount", admin_adminCount);
 		request.setAttribute("admin_todayEnrollCount", admin_todayEnrollCount);
 		request.setAttribute("admin_withdrawMemberCount", admin_withdrawMemberCount);
+		
 		request.setAttribute("admin_memberList", admin_memberList);
-		request.setAttribute("admin_adminList", admin_adminList);		
 		
 		request.getRequestDispatcher("views/admin_views/admin_Member.jsp").forward(request, response);
 	}

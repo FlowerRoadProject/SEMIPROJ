@@ -1,5 +1,6 @@
 package com.fr.jsp.myShoppingBasket.model.service;
 
+import static com.fr.jdbc.common.JDBCTemplate.close;
 import static com.fr.jdbc.common.JDBCTemplate.commit;
 import static com.fr.jdbc.common.JDBCTemplate.getConnection;
 import static com.fr.jdbc.common.JDBCTemplate.rollback;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.myShoppingBasket.model.dao.BasketDao;
 import com.fr.jsp.myShoppingBasket.model.vo.Basket;
+import com.fr.jsp.myShoppingBasket.model.vo.Coupon;
 
 public class BasketService {
 	
@@ -119,6 +121,12 @@ public class BasketService {
 		else rollback(con);
 		
 		return result;
+	}
+	public ArrayList<Coupon> selectCoupon(String member_num){
+		Connection con = getConnection();
+		ArrayList<Coupon> list = new BasketDao().selectCoupon(con, member_num);
+		close(con);
+		return list;
 	}
 	
 }

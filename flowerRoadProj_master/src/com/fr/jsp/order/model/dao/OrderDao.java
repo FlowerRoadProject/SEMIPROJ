@@ -71,7 +71,7 @@ public class OrderDao {
 		
 		return result;
 	}
-	
+	  
 	   public ArrayList<MyPage_Order> orderChk(Connection con, String id) {
 
 	         ArrayList<MyPage_Order> list = null;
