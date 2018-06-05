@@ -33,9 +33,8 @@ public class BasketSelectServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-		String member_num = (String)request.getParameter("member_num");
-		
 		HttpSession session = request.getSession(false);
+		String member_num = (String)session.getAttribute("memberNum");
 		session.setAttribute("member_num", member_num);	
 		
 		System.out.println("서블릿에서 멤버넘버 받은 것: "+member_num);
