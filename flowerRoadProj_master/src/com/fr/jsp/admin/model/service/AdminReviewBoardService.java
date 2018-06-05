@@ -6,17 +6,17 @@ import static com.fr.jdbc.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.fr.jsp.board.model.dao.ReviewBoardDao;
+import com.fr.jsp.admin.model.dao.AdminReviewBoardDao;
 import com.fr.jsp.board.model.vo.ReviewBoard;
 
 public class AdminReviewBoardService {
 	private Connection con;
-	private ReviewBoardDao arbDao;
+	private AdminReviewBoardDao arbDao;
 	
 	public AdminReviewBoardService() {
 		super();
 		con = getConnection();
-		arbDao = new ReviewBoardDao();
+		arbDao = new AdminReviewBoardDao();
 	}
 	// Connection close Method
 	public void closeCon(){

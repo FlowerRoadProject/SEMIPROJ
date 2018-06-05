@@ -100,18 +100,6 @@ public class ReviewBoardService {
 		
 		return list;
 	}
-	
-	// 오늘 등록된 리뷰 게시판 게시글
-		public int admin_todayReview() {
-			int admin_reviewCount = rbDao.admin_todayReview(con);
-			return admin_reviewCount;
-		}
-		// 전체 리뷰 게시판 게시글
-		public int admin_reviewBoardAllCount() {
-			ArrayList<ReviewBoard> admin_reviewBoardAllList = rbDao.admin_reviewBoardAllList(con);
-			int admin_reviewBoardCount = admin_reviewBoardAllList.size();
-			return admin_reviewBoardCount;
-		}
 		
 		// Connection close Method
 		public void closeCon(){

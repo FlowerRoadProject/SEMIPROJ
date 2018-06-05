@@ -26,31 +26,5 @@ public class UserQuestionBoardDao {
 			e.printStackTrace();
 		}
 	}
-	// 오늘 등록된 1:1 게시판 게시글
-	public int admin_todayUserQuestion(Connection con) {
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		int admin_userQuestionCount = 0;
-		
-		try { 
-			String query = prop.getProperty("admin_userQuestionCount");
-			pstmt = con.prepareStatement(query);
-			rset = pstmt.executeQuery();
-			while(rset.next()){
-				admin_userQuestionCount = Integer.parseInt(rset.getString("COUNT(MEMBER_NUM)"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return admin_userQuestionCount;
-	}
-	// 전체 1:1 게시판 게시글
-	public ArrayList<FaqBoard> admin_userQuestionBoardAllList(Connection con) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

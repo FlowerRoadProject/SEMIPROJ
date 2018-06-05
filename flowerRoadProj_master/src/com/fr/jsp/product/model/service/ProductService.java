@@ -217,6 +217,26 @@ public class ProductService {
 		return list;
 	}
 	
+	public ArrayList<ProductSimple> getTopSellingProduct(int index) {
+		
+		con = getConnection();
+		ArrayList<ProductSimple> result =new ArrayList<ProductSimple>();
+		
+		
+		int startRow = (index-1)*9+1;
+		int endRow = index*9;
+		
+		if(endRow>20)
+			endRow=20;
+		
+		result= pDao.getTopSellingProduct(con,startRow,endRow);
+		
+		if(result!=null)commit(con);
+		else rollback(con);
+		
+		return result;
+	}
+	
 	
 	public ArrayList<ProductSimple> getOrderdProductList(ArrayList<ProductSimple> sessionList, String order) {
 		
@@ -243,27 +263,8 @@ public class ProductService {
 		public void closeCon() {
 			close(con);
 		}
-		// 등록된 모든 상품 수
-		public int admin_allProductCount() {
-			ArrayList<ProductDetail> admin_allProductList = pDao.admin_allProductList(con);
-			int admin_allProductCount = admin_allProductList.size();
-			return admin_allProductCount;
-		}
-		// 오늘 등록한 상품 수
-		public int admin_todayRegiProductCount() {
-			int admin_todayRegiProductCount = pDao.admin_todayRegiProductCount(con);
-			return admin_todayRegiProductCount;
-		}
-		// 재고부족 상품 수
-		public int admin_stockLackProductCount() {
-			int admin_stockLackProductCount = pDao.admin_stockLackProductCount(con);
-			return admin_stockLackProductCount;
-		}
-		// 오늘 발주한 상품 수
-		public int admin_todayProductOrderCount() {
-			int admin_todayProductOrderCount = pDao.admin_todayProductOrderCount(con);
-			return admin_todayProductOrderCount;
-		}
+
+		
 
 
 }
