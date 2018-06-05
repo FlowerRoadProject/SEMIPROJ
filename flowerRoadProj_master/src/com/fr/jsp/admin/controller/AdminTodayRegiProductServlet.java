@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fr.jsp.admin.model.service.AdminProductService;
 import com.fr.jsp.admin.model.vo.AdminProduct;
-import com.fr.jsp.admin.model.vo.AdminProductOrder;
 
 @WebServlet("/todayRegiProduct.admin")
 public class AdminTodayRegiProductServlet extends HttpServlet {
@@ -38,8 +37,7 @@ public class AdminTodayRegiProductServlet extends HttpServlet {
 		ArrayList<String> admin_productCategoryList = aps.admin_productCategoryList();
 		// 상품 원산지 리스트
 		ArrayList<String> admin_productOriginList = aps.admin_productOriginList();
-		// 발주 현황 리스트
-		ArrayList<AdminProductOrder> admin_productOrderList = aps.admin_productOrderList();
+		
 		// connection close
 		aps.closeCon();
 		
@@ -51,9 +49,8 @@ public class AdminTodayRegiProductServlet extends HttpServlet {
 		request.setAttribute("admin_productList", admin_todayRegiProductList);
 		request.setAttribute("admin_productCategoryList", admin_productCategoryList);
 		request.setAttribute("admin_productOriginList", admin_productOriginList);
-		request.setAttribute("admin_productOrderList", admin_productOrderList);
 		
-		request.getRequestDispatcher("views/admin_views/admin_Product.jsp").forward(request, response);
+		request.getRequestDispatcher("views/admin_views/admin_ProductRetrieve.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
