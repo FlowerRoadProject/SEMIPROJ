@@ -131,7 +131,7 @@
            			alert($('#excessMsg').val());
            			alert($('#excessName').val());
            		}
-           		console.log($('#excessName').val());
+           		console.log($('#excessName').val()); 
            		
            	});
            </script>
