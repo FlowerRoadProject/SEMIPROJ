@@ -134,7 +134,7 @@
            		console.log($('#excessName').val()); 
            		
            	});
-           </script>
+           </script> 
             
                         
             <%for(int i = 0; i< list.size(); i++){ %>
