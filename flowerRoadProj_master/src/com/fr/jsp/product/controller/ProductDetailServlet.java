@@ -89,9 +89,14 @@ public class ProductDetailServlet extends HttpServlet {
 		//연관 카테고리 상품 가져오기
 		relatedCategoryProduct= 
 				ps.getProductList("none", p.getProductCategoryName());
-		relatedCategoryProduct= (ArrayList<ProductSimple>) 
-				relatedCategoryProduct.subList(0, 10>relatedCategoryProduct.size()?relatedCategoryProduct.size():10);
+		relatedCategoryProduct= new ArrayList(relatedCategoryProduct.subList(0, 10>relatedCategoryProduct.size()?relatedCategoryProduct.size():10)) ;
 		
+		for(int i=0;i<relatedCategoryProduct.size();++i){
+			if(relatedCategoryProduct.get(i).getProductName().equals(p.getProductName())){
+				relatedCategoryProduct.remove(i);
+				break;
+			}
+		}
 		
 		
 		if (p != null&&reviewList!=null&&optionProduct!=null) {
