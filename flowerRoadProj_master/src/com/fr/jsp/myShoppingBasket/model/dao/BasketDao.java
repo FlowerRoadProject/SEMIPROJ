@@ -333,11 +333,10 @@ public class BasketDao {
 		return list;
 	}
 	
-	public String selectExcess(Connection con, String memberNum){
+	public Basket selectExcess(Connection con, String memberNum){
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String excessProduct = null;
-		
+		Basket excess = new Basket();
 		String query = prop.getProperty("selectExcess");
 		try {
 			pstmt = con.prepareStatement(query);
@@ -345,7 +344,8 @@ public class BasketDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()){
-				excessProduct = rset.getString("PRODUCT_NUM");
+				excess.setProduct_name(rset.getString("PRODUCT_NAME"));
+				excess.setProduct_num(rset.getString("PRODUCT_NUM"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -354,7 +354,7 @@ public class BasketDao {
 			close(rset);
 			close(pstmt);
 		}
-		return excessProduct;
+		return excess;
 		
 		
 	}

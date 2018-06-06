@@ -7,6 +7,9 @@
 	
 	String member_num = (String)session.getAttribute("member_num");
 	
+	String excessMsg = (String)request.getAttribute("excessRemoveMsg");
+	String excessName = (String)request.getAttribute("excessPName");
+	
 	int length = list.size();
 %>
 
@@ -96,8 +99,9 @@
         <%@include file="/views/common/header.jsp" %>
    		
        <br><br><br><br><br><br><br><br /><br />
-		
-		
+				
+		<input type="hidden" value="<%=excessMsg%>" id="excessMsg"/>
+		<input type="hidden" value="<%=excessName%>" id="excessName"/>
 		
 		
         <div class="container">
@@ -121,6 +125,12 @@
            		if($('.product-each').length == 0){ 
            			$('.empty').css('display','inline-block'); 
            		}
+           		if($('#excessMsg').val() != null && $('#excessName').val() != null){
+           			alert($('#excessMsg').val());
+           			alert($('#excessName').val());
+           		}
+           		
+           		
            	});
            </script>
             

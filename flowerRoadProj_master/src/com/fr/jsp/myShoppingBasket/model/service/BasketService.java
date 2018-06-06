@@ -137,9 +137,9 @@ public class BasketService {
 		return list;
 	}
 	
-	public String selectExcess(String memberNum){
+	public Basket selectExcess(String memberNum){
 		Connection con = getConnection();
-		String excessProduct = new BasketDao().selectExcess(con, memberNum);
+		Basket excessProduct = new BasketDao().selectExcess(con, memberNum);
 		close(con);
 		return excessProduct;
 	}
