@@ -873,9 +873,23 @@ Member member = (Member)request.getAttribute("member");
         });
        
         //주문한 상품은 장바구니에서 사라지게 하는 ajax 필요  	
-        
-		}
-       });
+        $.ajax({
+        	url: "removeFrom.bk",
+        	type:"GET",
+        	data:{
+        		productNum: pNumArr,
+        		quantity: quanArr
+        	},
+        	success: function(){
+        		console.log("장바구니에서 차감성공");
+        	},error: function(){
+        		console.log("장바구니에서 차감실패..");
+        	}
+        })
+		
+		
+		}//else의 마지막부분
+       });//click의 마지막부분
        
        </script>
         
