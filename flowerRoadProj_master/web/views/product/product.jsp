@@ -24,9 +24,11 @@
 <!-- 부트스트랩 -->
 
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js">
+</script>
 
-<sript src=""></sript>
+<!-- font link -->
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"> 
 
 <style>
 /*xs 사이즈 이하면 컨테이너 사이즈 고정*/
@@ -98,6 +100,25 @@ body{
 .test{
 	border:1px solid;
 }
+
+.product_desc{
+	padding-left:80px;
+	line-height: 2em;
+	font-family:'Nanum Gothic', sans-serif;
+	width:40%;
+	border:1px transparent;
+	background:white;
+}
+
+.product_desc :FIRST-LINE{
+	font:bold;
+}
+
+body *{
+	font-family:'Nanum Gothic', sans-serif;
+}
+
+#mNavbar li.active a { color: grey !important; background-color: #FFB3A7 !important; } 
 
 </style>
 
@@ -195,7 +216,7 @@ body{
  	    if ($(window).scrollTop() > 600) {
  	      if (!$navbar.hasClass("navbar-fixed-top")) {
  	        $navbar.addClass("navbar-fixed-top");
- 	        $navbar.css("top","135px");
+ 	        $navbar.css("top","130px");
  	      }
  	    } else {
  	      $navbar.removeClass("navbar-fixed-top");
@@ -276,7 +297,7 @@ body{
 		
 		$temp.children("[name=selected_name]").text($temp.attr("name").split(",")[2]);//안에 상품이름 세팅
 			
-		$temp.children("[name=selected_price]").text($temp.attr("name").split(",")[3]);//안에 가격 세팅
+		$temp.children("[name=selected_price]").text($temp.attr("name").split(",")[3]+"원");//안에 가격 세팅
 		
 		return $temp;
 	}
@@ -523,8 +544,6 @@ body{
 	//찜 목록에 추가 / 삭제
 	function addToFavorite(productNum){
 		
-		
-		
 		$.ajax({
 			url:"addFavorite.do",
 			data:{pno:productNum},
@@ -768,7 +787,8 @@ body{
 	<%
 		for (int i = 1; i < p.getImages().size(); ++i) {
 	%>
-	<!--상품 설명-->
+	<!--상품 사진-->
+	
 	<div class="container">
 		<div class="row">
 			<div style="text-align: center;">
@@ -781,12 +801,12 @@ body{
 		</div>
 	</div>
 
-	<!--상품 사진-->
+	<!--상품 설명-->
 	<div class="container">
 		<%
 			if (p.getImageDesc().get(i) != null) {
 		%>
-		<pre class="text-left" style="line-height: 2em;"><%=p.getImageDesc().get(i)%></pre>
+		<pre class="product_desc"><%=p.getImageDesc().get(i)%></pre>
 		<%
 			}
 		%>
@@ -803,7 +823,7 @@ body{
 	<!--배송 관련 글 -->
 	<div class="container">
 		<div class="row">
-			<div class="col-xs col-lg col-md col-sm">
+			<div class="col-xs col-lg col-md col-sm product_desc">
 				<h4>
 					<b>배송알림 메시지</b>
 				</h4>

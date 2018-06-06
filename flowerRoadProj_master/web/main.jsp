@@ -25,6 +25,31 @@ img {
         width:auto;
         height: 540px;
        }
+  .thumbnail img:HOVER{
+  
+  	opacity: 0.5;
+	filter: alpha(opacity=50);
+  	animation-name: opaque;
+	animation-duration: 10s;
+  }
+  
+  .tag{
+        	position: relative;
+        	top: -3em;
+        	right: -1em;
+        }
+        
+    .font-title{
+       	font-size: 1.2em;
+       	color: #4a4a4a;
+		padding-left: 0;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		display:block;
+       }     
+        
+        
 </style>
 <script>
 	//즐겨찾기
@@ -266,18 +291,10 @@ img {
 	<br>
 	<br>
 	<%@ include file="/views/common/eventMenu.jsp"%>
-	<div class="container-fluid">
-		<div class="col-sm-1 col-md-1 col-lg-1"></div>
-		<div class="col-sm-1 col-md-1 col-lg-1">
-			<button type="button" class="btn btn_recommend">추천순</button>
-		</div>
-		<div class="col-sm-1 col-md-1 col-lg-1">
-			<button type="button" class="btn btn_popularity">인기순</button>
-		</div>
-		<div class="col-sm-1 col-md-1 col-lg-1">
-			<button type="button" class="btn btn_price">가격순</button>
-		</div>
-		<div class="col-sm-8 col-md-8 col-lg-8"></div>
+	<div class="container">
+		
+	
+		
 	</div>
 	<br>
 	<br>
@@ -286,10 +303,13 @@ img {
 	<div style="display: none;">
 		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" name="clone-item">
 			<div class="col-lg-12 thumbnail items ">
-				<a name="detailLink" href=""> <img name="imageSource" src="" alt="...">
-				</a> <span class="label label-primary tag">Primary</span> <span
-					class="label label-success tag">success</span>
-				<div class="col-lg-12 caption">
+				<div class="">
+					<a name="detailLink" href=""><img name="imageSource" src="" alt="..."></a> 
+
+					<span class="label label-primary tag">Primary</span> 
+					<span class="label label-success tag">success</span>
+				</div>
+				<div class="col-lg-12   ">
 					<h4 class="col-lg-12 ">
 						<br /> <b name="productName" class="font-title text-truncate"></b>
 					</h4>
@@ -310,11 +330,15 @@ img {
 		
 	</div>
 	<div class="container">
+		<p><b>베스트 셀러</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 팔리는 제품 입니다.</p>
+		<hr />
 		<div class="col-lg-12" id="item-container">
 			
 		</div>
-		<div style="text-align:center;">
-			<button id="showMore" class="btn btn-default btn-info" onclick="setTopSelling(2);">더 보기</button>
+		<div class="row" style="text-align:center;">
+			<div class="col-xs-12">
+				<button id="showMore" class="btn btn-default btn-info" onclick="setTopSelling(2);">더 보기</button>
+			</div>
 		</div>
 	</div>
 	<%@include file="/views/common/footer.jsp"%>

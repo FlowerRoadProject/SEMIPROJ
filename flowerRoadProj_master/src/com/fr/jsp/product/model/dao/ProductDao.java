@@ -472,8 +472,11 @@ public class ProductDao {
 			
 			pstmt = con.prepareStatement(query);
 			
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setString(1, "카드");
+			pstmt.setString(2, "디저트");
+			pstmt.setString(3, "메시지태그");
+			pstmt.setInt(4, startRow);
+			pstmt.setInt(5, endRow);
 			
 			rset = pstmt.executeQuery();
 
@@ -502,10 +505,13 @@ public class ProductDao {
 
 		}
 
+		
 		return result;
+		
+		
 	}
 
-
+	
 
 
 }
