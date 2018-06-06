@@ -25,6 +25,7 @@
  
  		<%-- <script src="<%=request.getContextPath() %>/resources/js/jquery-1.12.2.min.js"></script>
          --%>
+         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <style>           
             .price-gray{
                 color: rgb(177, 176, 176); 
@@ -49,6 +50,16 @@
             .top-margin{
                 margin-top: 1.5em;
             }
+            .empty{
+            	display: none;
+            }
+            #emptyMessage{
+            	background: lightgray;
+            	text-align: center;
+            	font-size: 2em;            	
+            	height: auto;
+            	padding: 3em;
+            }
             
             /*border관련 클래스*/
             .test-border{
@@ -63,7 +74,9 @@
             .align-right{
             	text-align: right;
             }
-           
+            #moreDT{
+            	color: gray;
+            }
             
             @media (min-width: 992px) and (max-width: 1920px) {
                 .right-border{
@@ -82,14 +95,14 @@
     <body>      
         <%@include file="/views/common/header.jsp" %>
    		
-        <br><br><br><br><br><br><br>
+       <br><br><br><br><br><br><br><br /><br />
 		
 		
 		
 		
         <div class="container">
               <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin">
-                    <span><strong>장바구니</strong></span>&nbsp;&gt;&nbsp; <span>주문/결제</span>&nbsp;&gt;&nbsp; <span>주문완료</span>&nbsp;&gt;&nbsp;                
+                    <span style="color:rgb(51, 122, 183); font-size:1.3em;"><strong><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>장바구니</strong></span>&nbsp;&gt;&nbsp; <span><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>주문/결제</span>&nbsp;&gt;&nbsp; <span><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>주문완료</span>&nbsp;&nbsp;                
               </div>
         <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1" id="frame"> <!--선택한 상품 리스트 프레임-->
             <h4><b class="col-xs-3 col-sm-3 col-md-3">장바구니</b></h4>
@@ -97,7 +110,19 @@
             
             <input type="hidden" name="length" value="<%=length%>"/>
             
+           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 empty">
+           		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="emptyMessage">
+           			<i class="material-icons" style="font-size:5em">mood_bad</i><br /><br />장바구니가 비었습니다 상품을 추가해주세요
+           		</div>
+           </div>
            
+           <script>
+           	$(function(){
+           		if($('.product-each').length == 0){
+           			$('.empty').css('display','inline-block');
+           		}
+           	});
+           </script>
             
                         
             <%for(int i = 0; i< list.size(); i++){ %>
@@ -216,48 +241,61 @@
 
         //삭제하기 버튼을 누르면 상품이 사라지는 함수. DB에서도 DELETE를 시킨다
         $('.delete-btn').click(function(){
-           	//var thisPrice = $(this).parents('.product-each').children().children().children().children().children('.total-price');
-           	//console.log(thisPrice.text());            	
+        	
+        	if(confirm('선택한 물품을 장바구니에서 삭제하시겠습니까?')){
+           		console.log("삭제해!");
+           		//var thisPrice = $(this).parents('.product-each').children().children().children().children().children('.total-price');
+               	//console.log(thisPrice.text());            	
+               	
+               	var $oName = $(this).parent().parent().siblings().find('.product-name').text();
+               	console.log("상품이름 : "+$oName);   
+               	
+               	//티라미슈, 휘낭시에, 당근케이크, 초콜릿 케이크
+               	//바로지우지 않고 willRemove라는 성질을 준것은
+               	//버튼이 속한 칸을 지우는것 뿐만 아니라 아래쪽의 가격표시줄의 정보도 함께 지우기 위해서다
+               
+               	
+               	$(this).parents('.product-each').attr("willRemove","y");            	
+               	var productEach = $('.product-each');
+               	var productEach1 = $('.product-each1');            	            	
+               	var sum = 0;
+               	
+               	for(var i = 0 ; i < productEach.length; i++){
+                   	if(productEach.eq(i).attr("willRemove") == "y"){
+                   		productEach.eq(i).remove();
+               			productEach1.eq(i).remove();
+               		}
+               	}               	
+               	
+               	var outputPrice = $('.product-each1 .outputPrice');
+               	for(var i = 0; i< outputPrice.length; i++){
+               		sum += parseInt(outputPrice.eq(i).text());
+               	}         	
+               	
+               	console.log(sum);            
+               	$('#finalPrice').text(sum+"원");   
+               	
+               	var product_num= $(this).parent().parent().parent().find('.productNum').val();
+        		//var quantity = $(this).parent().siblings().find('.product-number').val();            	
+               	
+               	$.ajax({
+               		url: "delete.bk",
+               		type: "GET",
+               		data:{pNum: product_num},
+               		success: function(){console.log("delete성공");},
+               		error: function(){console.log("delete실패");}
+               		});
+               	
+               	if($('.product-each').length == 0){
+               		$('.empty').css('display','inline-block');
+               	}
+               
+           	}else{
+           		console.log("노삭제!");
+           	}
+        	
+        	
            	
-           	var $oName = $(this).parent().parent().siblings().find('.product-name').text();
-           	console.log("상품이름 : "+$oName);   
-           	
-           	//티라미슈, 휘낭시에, 당근케이크, 초콜릿 케이크
-           	//바로지우지 않고 willRemove라는 성질을 준것은
-           	//버튼이 속한 칸을 지우는것 뿐만 아니라 아래쪽의 가격표시줄의 정보도 함께 지우기 위해서다
-           	
-           	$(this).parents('.product-each').attr("willRemove","y");            	
-           	var productEach = $('.product-each');
-           	var productEach1 = $('.product-each1');            	            	
-           	var sum = 0;
-           	
-           	for(var i = 0 ; i < productEach.length; i++){
-               	if(productEach.eq(i).attr("willRemove") == "y"){
-               		productEach.eq(i).remove();
-           			productEach1.eq(i).remove();
-           		}
-           	}               	
-           	
-           	var outputPrice = $('.product-each1 .outputPrice');
-           	for(var i = 0; i< outputPrice.length; i++){
-           		sum += parseInt(outputPrice.eq(i).text());
-           	}         	
-           	
-           	console.log(sum);            
-           	$('#finalPrice').text(sum+"원");   
-           	
-           	var product_num= $(this).parent().parent().parent().find('.productNum').val();
-    		//var quantity = $(this).parent().siblings().find('.product-number').val();            	
-           	
-           	$.ajax({
-           		url: "delete.bk",
-           		type: "GET",
-           		data:{pNum: product_num},
-           		success: function(){console.log("delete성공");},
-           		error: function(){console.log("delete실패");}
-           		});
-           	
-           
            	
         });
     	    </script>
@@ -265,7 +303,7 @@
     <!-- 옵션상품 -->
     <div class="container">
     <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1 top-margin">
-        <h4><b class="col-xs-3 col-sm-3 col-md-3 col-lg-3 ">추가선물</b><small class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-sm-offset-8 col-md-offset-8 col-lg-offset-8 ">more</small></h4> <!--한글로 더보기를 쓰고싶었는데.. col-1에 한줄로 들어가지 않는다..-->
+        <h4><b class="col-xs-3 col-sm-3 col-md-3 col-lg-3 ">추가선물</b><span class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-sm-offset-8 col-md-offset-8 col-lg-offset-8" id="moreDT">more</span></h4> <!--한글로 더보기를 쓰고싶었는데.. col-1에 한줄로 들어가지 않는다..-->
         <hr class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         
         <%for(int i =0; i< 4; i++){ %>
@@ -292,6 +330,17 @@
                 
     </div>
     </div>
+    
+    <script>
+    	//more를 누르면 디저트 메뉴로 가도록
+    	$('#moreDT').on('click',function(){
+    		location.href="<%=request.getContextPath()%>/productList.do?category=디저트";
+    	});
+    	$('#moreDT').hover(function(){
+    		$(this).css('cursor','pointer');
+    	});
+    </script>
+    
     
     
     <div class="container">
@@ -356,6 +405,7 @@
 	
     <script>
     $('.addBasket').on('click',function(){  
+    	$('.empty').css("display","none");
     	var duplication = true;
     	var productName = $(this).siblings().find('.option-name').text();  
     	var $form = $('[name=addProduct]');   						

@@ -67,7 +67,7 @@ public class InsertOrderServlet extends HttpServlet {
 		String receivePhone = request.getParameter("receivePhone");
 		String anony = request.getParameter("anony");
 		//메모 추가해야됨..
-		String memo = request.getParameter("sendMemo");		
+		String memo = request.getParameter("sendMemo");		  
 			
 		ArrayList<Order> list = new ArrayList<Order>();
 		//ArrayList<Basket> bList = new ArrayList<Basket>();		
