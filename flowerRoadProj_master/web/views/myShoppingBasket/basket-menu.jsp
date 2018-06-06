@@ -410,7 +410,7 @@
               </script>
                     
              
-            	<form action="<%=request.getContextPath() %>/basketPay.bk" method="post" id="toPayPage">            		
+            	<form action="" method="post" id="toPayPage">            		
             	<button class="col-md-12 col-xs-12 btn btn-primary btn-lg buy-btn" id="pay">결제하기</button>
        			</form>     			     
          </div>
@@ -422,16 +422,20 @@
     	var containMain = false;
     	
     	for(var i = 0; i< $('.product-each').length; i++){
-    		if(  $('.pCategory').eq(i).equals('FD') || $('.pCategory').eq(i).equals('FB') || $('.pCategory').eq(i).equals('HH')){
+    		if(  $('.pCategory').eq(i).val()=='FD' || $('.pCategory').eq(i).val()=='FB' || $('.pCategory').eq(i).val()=='HH'){
     			console.log("메인상품 포함!");
     			containMain = true;
     		}
     	}
-    	
-    	if(containMain){
-    		$('#toPayPage').submit();
-    	}else{
-    		alert('꽃다발, 꽃바구니, 화환등의 메인상품 없이 옵션상품만 구매하는 것은 불가능합니다');
+    	if(parseInt($('#finalPrice').text()) == 0){
+    		alert('상품을 장바구니에 담은 후 결제해 주세요');
+    		location.href="<%=request.getContextPath()%>/select.bk";
+    	}else if(containMain == false){
+    		alert('꽃다발, 꽃바구니, 화환등의 메인상품 없이 구매하는 것은 불가능합니다');
+    		location.href="<%=request.getContextPath()%>/select.bk";
+    	}else{  
+    		alert('주문페이지로 이동합니다');
+    		$('#toPayPage').attr('action','<%=request.getContextPath() %>/basketPay.bk').submit();
     	}	
     });
     
