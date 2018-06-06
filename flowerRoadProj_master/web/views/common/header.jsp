@@ -87,7 +87,7 @@
                             <a href="<%=request.getContextPath()%>/productList.do?category=디저트">디저트</a>
                         </li>
                         <li class="col-sm-2 col-xs-2">
-                            <a href="<%=request.getContextPath()%>/productList.do?category=카드">선물</a>
+                            <a href="<%=request.getContextPath()%>/productList.do?category=선물">선물</a>
                         </li>
                     </ul>
                 </div>

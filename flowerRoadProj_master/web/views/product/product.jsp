@@ -817,7 +817,7 @@ body *{
 	%>
 
 	<div class="container" style="margin-top: 10px">
-		<hr class="review_divider">
+		<hr >
 	</div>
 
 	<!--배송 관련 글 -->
@@ -844,12 +844,12 @@ body *{
 				<h4>
 					<b>결제 안내</b>
 				</h4>
-				<hr id="review_start" style="visibility: hidden;">
+				
 				가상계좌 입금이 확인되지 않으면 취소될 수 있습니다. <br> 주문 취소/변경 (콜센터 02-512-8180) <br>
+				
 				<br>
-				<h4>
-					<b>교환 및 환불 안내</b>
-				</h4>
+				<h4><b>교환 및 환불 안내</b></h4>
+				<hr id="review_start" style="visibility: hidden;">
 				꽃은 식물이기 때문에 배송된 이후에는 변심 및 훼손에 의한 환불이 불가한 점 양해 부탁드립니다. <br> 배송된
 				상품의 신선도나 구성품 누락시 원모먼트의 책임인 경우 새로운 구성으로 교환해 드립니다. <br> 교환 및 환불
 				문의 (콜센터 02-512-8180)<br>
@@ -859,12 +859,16 @@ body *{
 
 	</div>
 	<div class="container" style="margin-top: 10px">
+		<h5><b>고객 리뷰</b></h5>
 		<hr class="review_divider">
 	</div>
 
 
 	<!--리뷰 게시판 -->
+
 	<div class="container">
+	
+	
 		<div class="row">
 			<div class="col-xs-12" id="reviewBoard">
 
@@ -1033,19 +1037,19 @@ body *{
 		 <div id="share_buttons">
            <a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
              target="_blank">
-             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/twitter.png" alt="Share on Twitter"></a>
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/twitter.png" alt="Share on Twitter"></a>
            <a href="#" onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
              target="_blank">
-             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/facebook.png" alt="Share on Facebook"></a>
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/facebook.png" alt="Share on Facebook"></a>
            <a href="#" onclick="javascript:window.open('https://plus.google.com/share?url=' +encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes, scrollbars=yes,height=350,width=600');return false;"
              target="_blank">
-             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/googlePlus.png" alt="Share on Google+"></a>
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/googlePlus.png" alt="Share on Google+"></a>
            <a href="#" onclick="javascript:window.open('https://story.kakao.com/s/share?url=' +encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes, height=400,width=600');return false;"
              target="_blank">
-             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/kakaoStory.jpg" alt="Share on kakaostory"></a>
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/kakaoStory.jpg" alt="Share on kakaostory"></a>
            <a href="#" onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url=' +encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title), 'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
              target="_blank">
-             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/naver.jpg" alt="Share on Naver"></a>
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/naver.jpg" alt="Share on Naver"></a>
          </div>
 		
 	</div>

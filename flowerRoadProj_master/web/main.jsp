@@ -49,6 +49,12 @@ img {
 		display:block;
        }     
         
+     .img-fluid{
+     	
+     	
+     	width:100% !important;
+     	background:rgb(255,255,255) !important;
+     }
         
 </style>
 <script>
@@ -227,32 +233,20 @@ img {
 	<br />
 	<br />
 	<div class="container-fluid">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin:0px;height:420;mheight:190">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<!-- <li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li> -->
 			</ol>
 
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
 					<img
-						src="<%=request.getContextPath()%>/resources/images/main/flower1.PNG"
-						value="1" class="image_Carousel" alt="Los Angeles">
-				</div>
-
-				<div class="item">
-					<img
-						src="<%=request.getContextPath()%>/resources/images/main/flower2.PNG"
-						value="2" class="image_Carousel" alt="Chicago">
-				</div>
-
-				<div class="item">
-					<img
-						src="<%=request.getContextPath()%>/resources/images/main/flower3.PNG"
-						value="3" class="image_Carousel" alt="New york">
+						src="<%=request.getContextPath()%>/resources/images/mainEventCarousel/geoberaEvent.jpg"
+						value="1" class="image_Carousel img-fluid" alt="geobera">
 				</div>
 			</div>
 

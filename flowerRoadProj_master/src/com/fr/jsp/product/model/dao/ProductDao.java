@@ -328,19 +328,22 @@ public class ProductDao {
 		ResultSet rset = null;
 		ArrayList<ProductSimple> result = new ArrayList<ProductSimple>();
 		ProductSimple p = null;
-
+		String query =null;
 		
 		try {
-			
-			String query = prop.getProperty("getProductList");
-			query = query.replace("1", tableName);
-			query = query.replace("2", columnName);
-			
+			if(columnValue.equals("선물")){
+				query = prop.getProperty("getPresentCategoryProduct");
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, "카드");
+				pstmt.setString(2, "메시지태그");
+			}else{
+				query = prop.getProperty("getProductList");
+				query = query.replace("1", tableName);
+				query = query.replace("2", columnName);
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, columnValue);
+			}
 		
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setString(1, columnValue);
-			
 			
 			rset = pstmt.executeQuery();
 
