@@ -95,7 +95,7 @@
 				<div>
 				<a href="<%=request.getContextPath()%>/productList.do?event=생일">
 					<img class=" img-responsive margin_center"
-						src="<%=request.getContextPath()%>/resources/images/wedding-cake.png" />
+						src="<%=request.getContextPath()%>/resources/images/eventMenu/wedding-cake.png" />
 				</a>
 				</div>
 			</div>
@@ -108,7 +108,7 @@
 				<div>
 				<a href="<%=request.getContextPath()%>/productList.do?event=연인">
 					<img class=" img-responsive margin_center"
-						src="<%=request.getContextPath()%>/resources/images/heart-shape-silhouette.png" />
+						src="<%=request.getContextPath()%>/resources/images/eventMenu/heart-shape-silhouette.png" />
 				</a>
 				</div>
 			</div>
@@ -120,7 +120,7 @@
 				<div>
 				<a href="<%=request.getContextPath()%>/productList.do?event=부부">
 					<img class=" img-responsive margin_center"
-						src="<%=request.getContextPath()%>/resources/images/wedding-rings.png" />
+						src="<%=request.getContextPath()%>/resources/images/eventMenu/wedding-rings.png" />
 				</a>
 				</div>
 			</div>
@@ -132,7 +132,7 @@
 				<div>
 				<a href="<%=request.getContextPath()%>/productList.do?event=부모님">
 					<img class=" img-responsive margin_center"
-						src="<%=request.getContextPath()%>/resources/images/family.png" />
+						src="<%=request.getContextPath()%>/resources/images/eventMenu/family.png" />
 				</a>
 				</div>
 			</div>
@@ -144,7 +144,7 @@
 				<div>
 				<a href="<%=request.getContextPath()%>/productList.do?event=승진">
 					<img class=" img-responsive margin_center"
-						src="<%=request.getContextPath()%>/resources/images/career.png" />
+						src="<%=request.getContextPath()%>/resources/images/eventMenu/career.png" />
 				</a>
 				</div>
 			</div>
@@ -156,7 +156,7 @@
 				<div>
 				<a href="<%=request.getContextPath()%>/productList.do?event=근조">
 					<img class=" img-responsive margin_center"
-						src="<%=request.getContextPath()%>/resources/images/grave.png" />
+						src="<%=request.getContextPath()%>/resources/images/eventMenu/grave.png" />
 				</a>
 				</div>
 			</div>

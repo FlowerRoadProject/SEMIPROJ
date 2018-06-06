@@ -20,6 +20,42 @@ img {
 	width: 40%;
 	margin: auto;
 }
+
+ .items{
+        width:auto;
+        height: 540px;
+       }
+  .thumbnail img:HOVER{
+  
+  	opacity: 0.5;
+	filter: alpha(opacity=50);
+  	animation-name: opaque;
+	animation-duration: 10s;
+  }
+  
+  .tag{
+        	position: relative;
+        	top: -3em;
+        	right: -1em;
+        }
+        
+    .font-title{
+       	font-size: 1.2em;
+       	color: #4a4a4a;
+		padding-left: 0;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		display:block;
+       }     
+        
+     .img-fluid{
+     	
+     	
+     	width:100% !important;
+     	background:rgb(255,255,255) !important;
+     }
+        
 </style>
 <script>
 	//즐겨찾기
@@ -103,42 +139,89 @@ img {
 		$('.anniversary_Img').click(function() {//기념일 이미지 클릭에대한 이벤트
 			alert($(this).attr('src'));
 		})
+		
+		setTopSelling(1);
 	});
 
-	$(function() {
+	
 
+	function setTopSelling(index){
+		
+		if(index>=2)
+			$('#showMore').css("display","none");
+		
 		$.ajax({
 			url : 'getTopSelling.do',
 			data : {
-				idx : 1
+				idx : index
 			},
 			type : "get",
 			success : function(data) {
-
+	
 				var $parsedList = $.parseJSON(data);
 				
 				
 				var $item_container = $('#item-container');
-				console.log($parsedList.length);
+				
 				
 				for (var i = 0; i < $parsedList.length; ++i) {
 					var $item = $('[name=clone-item]').clone(true,true);
+					$item.attr("name","clone-item_"+i);
 					$item.find('[name=detailLink]').attr("href","<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum);
 					$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
 					$item.find('[name=productName]').text($parsedList[i].productName);
 					$item.find('[name=productPrice]').text($parsedList[i].productPrice);
-					$item.find('[name=reviewNum]').text($parsedList[i].reviewNum);
+					$item.find('[name=reviewNum]').text($parsedList[i].reviewCount);
+					
+					$item.find('[name=productDetail]').attr("onclick","location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum+"'");
+					$item.find('[name=addBasket]').attr("onclick","addToBasket("+"'"+$parsedList[i].productNum+"'"+")");
+					
+					
 					$item_container.append($item);
-					console.log(i);
+					
 				}
 				
 			},
 			error : function(data) {
-
+	
 			}
-
+			
+	
 		});
-	});
+	}
+	
+	function addToBasket(productNum){
+		
+		if(!checkLogin())
+			return;
+		
+			$.ajax({
+				url:"addBasket.do",
+				data:{pno:productNum},
+				success:function(data){
+					
+					if(data>0)
+						alert("장바구니에 성공적으로 추가!!");
+					
+				},error:function(data){
+					alert("장바구니에 추가 실패!!");
+				}
+			
+			});
+		
+		}
+
+
+	function checkLogin(){
+	
+	<%if(request.getSession(false).getAttribute("memberNum")==null){%>
+		alert("로그인 해주세요");
+		 return false;
+	<%}else{%>
+		return true;
+	<%}%>
+	}
+	
 </script>
 </head>
 <body>
@@ -150,32 +233,20 @@ img {
 	<br />
 	<br />
 	<div class="container-fluid">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin:0px;height:420;mheight:190">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<!-- <li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li> -->
 			</ol>
 
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
 					<img
-						src="<%=request.getContextPath()%>/resources/images/main/flower1.PNG"
-						value="1" class="image_Carousel" alt="Los Angeles">
-				</div>
-
-				<div class="item">
-					<img
-						src="<%=request.getContextPath()%>/resources/images/main/flower2.PNG"
-						value="2" class="image_Carousel" alt="Chicago">
-				</div>
-
-				<div class="item">
-					<img
-						src="<%=request.getContextPath()%>/resources/images/main/flower3.PNG"
-						value="3" class="image_Carousel" alt="New york">
+						src="<%=request.getContextPath()%>/resources/images/mainEventCarousel/geoberaEvent.jpg"
+						value="1" class="image_Carousel img-fluid" alt="geobera">
 				</div>
 			</div>
 
@@ -214,18 +285,10 @@ img {
 	<br>
 	<br>
 	<%@ include file="/views/common/eventMenu.jsp"%>
-	<div class="container-fluid">
-		<div class="col-sm-1 col-md-1 col-lg-1"></div>
-		<div class="col-sm-1 col-md-1 col-lg-1">
-			<button type="button" class="btn btn_recommend">추천순</button>
-		</div>
-		<div class="col-sm-1 col-md-1 col-lg-1">
-			<button type="button" class="btn btn_popularity">인기순</button>
-		</div>
-		<div class="col-sm-1 col-md-1 col-lg-1">
-			<button type="button" class="btn btn_price">가격순</button>
-		</div>
-		<div class="col-sm-8 col-md-8 col-lg-8"></div>
+	<div class="container">
+		
+	
+		
 	</div>
 	<br>
 	<br>
@@ -234,10 +297,13 @@ img {
 	<div style="display: none;">
 		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" name="clone-item">
 			<div class="col-lg-12 thumbnail items ">
-				<a name="detailLink" href=""> <img name="imageSource" src="" alt="...">
-				</a> <span class="label label-primary tag">Primary</span> <span
-					class="label label-success tag">success</span>
-				<div class="col-lg-12 caption">
+				<div class="">
+					<a name="detailLink" href=""><img name="imageSource" src="" alt="..."></a> 
+
+					<span class="label label-primary tag">Primary</span> 
+					<span class="label label-success tag">success</span>
+				</div>
+				<div class="col-lg-12   ">
 					<h4 class="col-lg-12 ">
 						<br /> <b name="productName" class="font-title text-truncate"></b>
 					</h4>
@@ -248,16 +314,26 @@ img {
 					<div class="col-lg-12 ">
 
 						<a class="col-lg-4 btn btn-default" role="button"
-							onclick="addBasket('');" name="addBasket">장바구니</a> <a name="productDetail"
-							class="col-lg-7 col-lg-offset-1 btn btn-primary" role="button"
-							>바로구매</a>
+							 name="addBasket">장바구니</a> 
+						<a name="productDetail"
+							class="col-lg-7 col-lg-offset-1 btn btn-primary" role="button">바로구매</a>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	<div class="container">
-		<div class="col-lg-12" id="item-container"></div>
+		<p><b>베스트 셀러</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 팔리는 제품 입니다.</p>
+		<hr />
+		<div class="col-lg-12" id="item-container">
+			
+		</div>
+		<div class="row" style="text-align:center;">
+			<div class="col-xs-12">
+				<button id="showMore" class="btn btn-default btn-info" onclick="setTopSelling(2);">더 보기</button>
+			</div>
+		</div>
 	</div>
 	<%@include file="/views/common/footer.jsp"%>
 </body>
