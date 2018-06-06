@@ -118,7 +118,7 @@
            
            <script>
            	$(function(){
-           		if($('.product-each').length == 0){
+           		if($('.product-each').length == 0){ 
            			$('.empty').css('display','inline-block'); 
            		}
            	});
