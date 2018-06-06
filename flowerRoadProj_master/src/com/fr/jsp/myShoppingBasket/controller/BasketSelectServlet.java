@@ -44,15 +44,18 @@ public class BasketSelectServlet extends HttpServlet {
 		
 		//재고보다 많이 들어온 상품은 장바구니에서 제거하기			
 		Basket excess = new BasketService().selectExcess(member_num);
-		String excessRemoveMsg = null;
-		String excessPName = null;
+		String excessRemoveMsg = "none";
+		String excessPName = "none";
+		System.out.println("excess: "+excess);		
 		if(excess != null){
-			int remove = new BasketService().deleteBasket(excess.getProduct_num());
+			int remove = new BasketService().deleteBasket(excess.getProduct_num());			
 			excessRemoveMsg = remove+"개의 상품이 재고가 부족해 장바구니에서 제거되었습니다.";
 			excessPName = "재고부족 상품 : "+excess.getProduct_name();
 			System.out.println(remove+"개의 물량초과 상품이 제거됨");
-			
 		}
+		
+			
+		
 		
 		
 		//화면에 표시

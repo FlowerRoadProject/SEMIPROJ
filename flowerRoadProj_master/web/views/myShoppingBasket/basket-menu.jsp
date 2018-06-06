@@ -122,14 +122,16 @@
            
            <script>
            	$(function(){
+           		//장바구니에 아무것도 없을때 아무것도 없다는 내용의 메세지를 띄움
            		if($('.product-each').length == 0){ 
            			$('.empty').css('display','inline-block'); 
            		}
-           		if($('#excessMsg').val() != null && $('#excessName').val() != null){
+           		//재고보다 많은 양의 상품을 들여왔을 경우 제거메세지를 띄운다
+           		if($('#excessName').val() != "none"){
            			alert($('#excessMsg').val());
            			alert($('#excessName').val());
            		}
-           		
+           		console.log($('#excessName').val());
            		
            	});
            </script>
@@ -138,6 +140,7 @@
             <%for(int i = 0; i< list.size(); i++){ %>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 product-each"> <!--제품 한개-->
             	<input type="hidden" name="productNum" class="productNum" value="<%=list.get(i).getProduct_num()%>"/>            	
+               	<input type="hidden" name="pCategory" class="pCategory" value="<%=list.get(i).getCategory()%>"/>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 top-margin bottom-margin"> <!--사진 칸-->
                     <img src="<%=request.getContextPath() %>/resources/images/product/<%=list.get(i).getImage() %>" class="image img-responsive product-img" alt="">
                		<input type="hidden" class="product-image" value="<%=list.get(i).getImage() %>"/>
@@ -172,6 +175,7 @@
         <div style="display:none">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 optionPlus" name="addProduct"> <!--제품 한개-->
              <input type="hidden" name="productNum" class="productNum" value="" />
+             
              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 top-margin bottom-margin"> <!--사진 칸-->
                     <img src="" class="image img-responsive product-img" alt="">
                		<input type="hidden" class="product-image" value=""/>
@@ -415,13 +419,20 @@
 	
     <script>
     $('#pay').on('click',function(){
+    	var containMain = false;
     	
+    	for(var i = 0; i< $('.product-each').length; i++){
+    		if(  $('.pCategory').eq(i).equals('FD') || $('.pCategory').eq(i).equals('FB') || $('.pCategory').eq(i).equals('HH')){
+    			console.log("메인상품 포함!");
+    			containMain = true;
+    		}
+    	}
     	
-    	
-    	
-    	
-    	
-    	$('#toPayPage').submit();
+    	if(containMain){
+    		$('#toPayPage').submit();
+    	}else{
+    		alert('꽃다발, 꽃바구니, 화환등의 메인상품 없이 옵션상품만 구매하는 것은 불가능합니다');
+    	}	
     });
     
     

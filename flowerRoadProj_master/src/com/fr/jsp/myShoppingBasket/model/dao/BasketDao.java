@@ -57,6 +57,7 @@ public class BasketDao {
 			bk.setProduct_price(rset.getInt("PRODUCT_PRICE"));
 			bk.setProduct_name(rset.getString("PRODUCT_NAME"));
 			bk.setImage(rset.getString("IMAGE_PATH"));
+			bk.setCategory(rset.getString("PRODUCT_CATEGORY"));
 			
 			
 			list.add(bk);
@@ -336,14 +337,15 @@ public class BasketDao {
 	public Basket selectExcess(Connection con, String memberNum){
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		Basket excess = new Basket();
+		Basket excess = null;
 		String query = prop.getProperty("selectExcess");
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, memberNum);
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()){
+			while(rset.next()){
+				excess = new Basket();
 				excess.setProduct_name(rset.getString("PRODUCT_NAME"));
 				excess.setProduct_num(rset.getString("PRODUCT_NUM"));
 			}
