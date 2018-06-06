@@ -185,14 +185,11 @@ Member member = (Member)request.getAttribute("member");
     
     <%@include file="/views/common/header.jsp" %>
     
-        <br><br><br><br><br><br><br>
-	
-		<div><%=request.getAttribute("name") %></div>
-
+        <br><br><br><br><br><br><br><br /><br />
         
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin"><!--상단 진행페이지 구문-->
-                <span>장바구니</span>&nbsp;&gt;&nbsp; <span><strong>주문/결제</strong></span>&nbsp;&gt;&nbsp; <span>주문완료</span>&nbsp;&gt;&nbsp;                
+                <span><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>장바구니</span>&nbsp;&gt;&nbsp; <span style="color:rgb(51, 122, 183); font-size:1.3em;"><strong><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>주문/결제</strong></span>&nbsp;&gt;&nbsp; <span><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>주문완료</span>&nbsp;&nbsp;
             </div>
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1"><!--총 선택 상품나열 칸-->
                 <h4><b class="col-xs-3 col-sm-3 col-md-3">주문내용</b></h4>
