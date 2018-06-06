@@ -119,7 +119,7 @@
            <script>
            	$(function(){
            		if($('.product-each').length == 0){
-           			$('.empty').css('display','inline-block');
+           			$('.empty').css('display','inline-block'); 
            		}
            	});
            </script>
