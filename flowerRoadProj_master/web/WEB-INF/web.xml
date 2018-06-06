@@ -3,6 +3,5 @@
   <display-name>flowerRoadProj</display-name>
   <welcome-file-list>
     <welcome-file>product.jsp</welcome-file>
-    <welcome-file>main.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

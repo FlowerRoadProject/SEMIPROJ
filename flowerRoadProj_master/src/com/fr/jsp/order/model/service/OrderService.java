@@ -55,4 +55,35 @@ public class OrderService {
 			
 			return list;
 		}
+		
+	public ArrayList<Order> selectDT(String memberNum, int length){
+		ArrayList<Order> list = oDao.selectDT(con, memberNum, length);
+		return list;	
+	}
+	public ArrayList<Order> selectCD(String memberNum, int length){
+		ArrayList<Order> list = oDao.selectDT(con, memberNum, length);
+		return list;	
+	}
+	public ArrayList<Order> selectTG(String memberNum, int length){
+		ArrayList<Order> list = oDao.selectDT(con, memberNum, length);
+		return list;	
+	}
+
+
+	public String selectOrderNum(String memberNum) {
+		String orderNum = oDao.selectOrderNum(con, memberNum);
+		return orderNum;
+	}
+	
+	public int insertOrderProList(String orderNum, String productNum, int quantity, String message){
+		int result = 0;
+		result = oDao.insertOrderProList(con,orderNum, productNum, quantity, message);
+		
+		if(result >0) commit(con);
+		else rollback(con);	
+		
+		
+		return result;
+	}
+		
 }

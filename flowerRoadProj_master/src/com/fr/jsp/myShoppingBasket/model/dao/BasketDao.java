@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.fr.jsp.member.model.vo.Member;
-import com.fr.jsp.myShoppingBasket.model.vo.Basket;
-import com.fr.jsp.myShoppingBasket.model.vo.Coupon;
+import com.fr.jsp.myShoppingBasket.model.vo.*;
+
 
 
 public class BasketDao {
@@ -57,6 +57,7 @@ public class BasketDao {
 			bk.setProduct_price(rset.getInt("PRODUCT_PRICE"));
 			bk.setProduct_name(rset.getString("PRODUCT_NAME"));
 			bk.setImage(rset.getString("IMAGE_PATH"));
+			
 			
 			list.add(bk);
 			}
@@ -183,7 +184,7 @@ public class BasketDao {
 			
 			while(rset.next()){
 				bk = new Basket(rset.getString("PRODUCT_NUM"),rset.getInt("QUANTITY"), 
-						rset.getInt("PRODUCT_PRICE"), rset.getString("PRODUCT_NAME"),rset.getString("IMAGE_PATH"));
+						rset.getInt("PRODUCT_PRICE"), rset.getString("PRODUCT_NAME"),rset.getString("IMAGE_PATH"),rset.getString("PRODUCT_CATEGORY"));
 				list.add(bk);
 			}
 			
