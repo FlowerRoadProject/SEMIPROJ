@@ -41,8 +41,15 @@ public class BasketSelectServlet extends HttpServlet {
 		
 		ArrayList<Basket> list = new BasketService().selectBasket(member_num);
 		ArrayList<Basket> oList = new BasketService().selectOption();				
-		String page="";
 		
+		//재고보다 많이 들어온 상품은 장바구니에서 제거하기
+		String excess = new BasketService().selectExcess(member_num);
+		int remove = new BasketService().deleteBasket(excess);
+		System.out.println(remove+"개의 물량초과 상품이 제거됨");
+		
+		//화면에 표시
+		String page="";
+			
 		if(list != null){
 			page="/views/myShoppingBasket/basket-menu.jsp";
 			request.setAttribute("list",list);

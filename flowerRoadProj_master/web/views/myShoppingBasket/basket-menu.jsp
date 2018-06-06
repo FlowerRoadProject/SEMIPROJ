@@ -396,14 +396,35 @@
               </script>
                     
              
-            	<form action="<%=request.getContextPath() %>/basketPay.bk" method="post">            		
-            	<button class="col-md-12 col-xs-12 btn btn-primary btn-lg buy-btn" id="pay" type="submit">결제하기</button>
+            	<form action="<%=request.getContextPath() %>/basketPay.bk" method="post" id="toPayPage">            		
+            	<button class="col-md-12 col-xs-12 btn btn-primary btn-lg buy-btn" id="pay">결제하기</button>
        			</form>     			     
          </div>
     </div>
 </div>
 	
     <script>
+    $('#pay').on('click',function(){
+    	
+    	
+    	
+    	
+    	
+    	
+    	$('#toPayPage').submit();
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     $('.addBasket').on('click',function(){  
     	$('.empty').css("display","none");
     	var duplication = true;

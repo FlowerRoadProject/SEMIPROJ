@@ -333,4 +333,30 @@ public class BasketDao {
 		return list;
 	}
 	
+	public String selectExcess(Connection con, String memberNum){
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String excessProduct = null;
+		
+		String query = prop.getProperty("selectExcess");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberNum);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				excessProduct = rset.getString("PRODUCT_NUM");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return excessProduct;
+		
+		
+	}
+	
 }
