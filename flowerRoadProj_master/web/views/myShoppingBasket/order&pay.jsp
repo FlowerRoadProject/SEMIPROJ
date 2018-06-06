@@ -752,7 +752,7 @@ Member member = (Member)request.getAttribute("member");
                     	 <input type="hidden" name="isCouponUsed" id="isCouponUsed" value=""/>
                     		
                     		<button type="button" class="btn btn-primary btn-lg bottom-margin col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="payingMe">결제하기</button><br><br /><br />
-                    		<button type="button" class="btn btn-primary btn-lg bottom-margin col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1">취소하기</button><br> <br /><br />
+                    		<button type="button" class="btn btn-primary btn-lg bottom-margin col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="canclePay">취소하기</button><br> <br /><br />
                 			
                 		</form>
                 	</div>
@@ -761,6 +761,17 @@ Member member = (Member)request.getAttribute("member");
         
         
        <script>
+       
+       $('#canclePay').on('click',function(){
+    	  if(confirm('진행된 결제를 취소할까요?')){
+    		  alert('결제를 취소하고 메인으로 돌아갑니다');
+    		  location.href="<%=request.getContextPath()%>/main.jsp";
+    	  }else{
+    		  console.log('취소를 취소한다');
+    	  }
+    	   
+       });
+       
        
        $('#payingMe').on('click',function(){
     	/* 회원가입 후 생성된 가맹점 식별코드를 이용해서 window.IMP 변수를 초기화합니다.

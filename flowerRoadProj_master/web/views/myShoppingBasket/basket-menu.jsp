@@ -216,48 +216,58 @@
 
         //삭제하기 버튼을 누르면 상품이 사라지는 함수. DB에서도 DELETE를 시킨다
         $('.delete-btn').click(function(){
-           	//var thisPrice = $(this).parents('.product-each').children().children().children().children().children('.total-price');
-           	//console.log(thisPrice.text());            	
+        	
+        	if(confirm('선택한 물품을 장바구니에서 삭제하시겠습니까?')){
+           		console.log("삭제해!");
+           		//var thisPrice = $(this).parents('.product-each').children().children().children().children().children('.total-price');
+               	//console.log(thisPrice.text());            	
+               	
+               	var $oName = $(this).parent().parent().siblings().find('.product-name').text();
+               	console.log("상품이름 : "+$oName);   
+               	
+               	//티라미슈, 휘낭시에, 당근케이크, 초콜릿 케이크
+               	//바로지우지 않고 willRemove라는 성질을 준것은
+               	//버튼이 속한 칸을 지우는것 뿐만 아니라 아래쪽의 가격표시줄의 정보도 함께 지우기 위해서다
+               
+               	
+               	$(this).parents('.product-each').attr("willRemove","y");            	
+               	var productEach = $('.product-each');
+               	var productEach1 = $('.product-each1');            	            	
+               	var sum = 0;
+               	
+               	for(var i = 0 ; i < productEach.length; i++){
+                   	if(productEach.eq(i).attr("willRemove") == "y"){
+                   		productEach.eq(i).remove();
+               			productEach1.eq(i).remove();
+               		}
+               	}               	
+               	
+               	var outputPrice = $('.product-each1 .outputPrice');
+               	for(var i = 0; i< outputPrice.length; i++){
+               		sum += parseInt(outputPrice.eq(i).text());
+               	}         	
+               	
+               	console.log(sum);            
+               	$('#finalPrice').text(sum+"원");   
+               	
+               	var product_num= $(this).parent().parent().parent().find('.productNum').val();
+        		//var quantity = $(this).parent().siblings().find('.product-number').val();            	
+               	
+               	$.ajax({
+               		url: "delete.bk",
+               		type: "GET",
+               		data:{pNum: product_num},
+               		success: function(){console.log("delete성공");},
+               		error: function(){console.log("delete실패");}
+               		});
+               	
+               
+           	}else{
+           		console.log("노삭제!");
+           	}
+        	
+        	
            	
-           	var $oName = $(this).parent().parent().siblings().find('.product-name').text();
-           	console.log("상품이름 : "+$oName);   
-           	
-           	//티라미슈, 휘낭시에, 당근케이크, 초콜릿 케이크
-           	//바로지우지 않고 willRemove라는 성질을 준것은
-           	//버튼이 속한 칸을 지우는것 뿐만 아니라 아래쪽의 가격표시줄의 정보도 함께 지우기 위해서다
-           	
-           	$(this).parents('.product-each').attr("willRemove","y");            	
-           	var productEach = $('.product-each');
-           	var productEach1 = $('.product-each1');            	            	
-           	var sum = 0;
-           	
-           	for(var i = 0 ; i < productEach.length; i++){
-               	if(productEach.eq(i).attr("willRemove") == "y"){
-               		productEach.eq(i).remove();
-           			productEach1.eq(i).remove();
-           		}
-           	}               	
-           	
-           	var outputPrice = $('.product-each1 .outputPrice');
-           	for(var i = 0; i< outputPrice.length; i++){
-           		sum += parseInt(outputPrice.eq(i).text());
-           	}         	
-           	
-           	console.log(sum);            
-           	$('#finalPrice').text(sum+"원");   
-           	
-           	var product_num= $(this).parent().parent().parent().find('.productNum').val();
-    		//var quantity = $(this).parent().siblings().find('.product-number').val();            	
-           	
-           	$.ajax({
-           		url: "delete.bk",
-           		type: "GET",
-           		data:{pNum: product_num},
-           		success: function(){console.log("delete성공");},
-           		error: function(){console.log("delete실패");}
-           		});
-           	
-           
            	
         });
     	    </script>
