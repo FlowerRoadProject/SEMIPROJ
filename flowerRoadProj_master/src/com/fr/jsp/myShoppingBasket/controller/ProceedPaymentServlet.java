@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.myShoppingBasket.model.service.BasketService;
 import com.fr.jsp.myShoppingBasket.model.vo.Basket;
+import com.fr.jsp.myShoppingBasket.model.vo.Coupon;
 
 /**
  * Servlet implementation class ProceedPaymentServlet
@@ -41,7 +42,7 @@ public class ProceedPaymentServlet extends HttpServlet {
 
 		String memberNum = (String) session.getAttribute("memberNum");
 		String page = "";
-
+		
 		if (memberNum == null) {
 			request.setAttribute("msg", "잘못된 접근입니다");
 			page = "views/common/errorPage.jsp";
@@ -51,7 +52,7 @@ public class ProceedPaymentServlet extends HttpServlet {
 			String[] prices = request.getParameter("sub_product_price").split(",");
 			String[] pNames = request.getParameter("sub_product_name").split(",");
 			String[] pImages = request.getParameter("sub_product_image").split(",");
-
+			ArrayList<Coupon> cList = new BasketService().selectCoupon(memberNum);
 			ArrayList<Basket> pList = new ArrayList<Basket>();
 			Basket b = null;
 
@@ -66,7 +67,7 @@ public class ProceedPaymentServlet extends HttpServlet {
 			Member m = new BasketService().sendInfoToPayPage((String) session.getAttribute("memberNum"));
 			request.setAttribute("member", m);
 			request.setAttribute("pList", pList);
-
+			request.setAttribute("cList", cList);
 		}
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/myShoppingBasket/order&pay.jsp");

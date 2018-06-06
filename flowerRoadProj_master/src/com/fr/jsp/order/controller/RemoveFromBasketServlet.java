@@ -48,24 +48,27 @@ public class RemoveFromBasketServlet extends HttpServlet {
 		
 		int result = 0;
 				
+		
 		for(int i = 0; i< orderList.size();i++){
 			String orderPNum = orderList.get(i).getProduct_num();
 			int orderQuan = orderList.get(i).getQuantity();
-			
-			if(basketList.get(i).getProduct_num().equals(orderPNum)){
-				//basketList에서 orderList의 물품 갯수만큼 차감해야한다
-				int difference = basketList.get(i).getQuantity()-orderQuan;
-			
-				if(difference <= 0){
-					//basket에서 remove
-					result += new BasketService().deleteBasket(orderPNum);
-				}else{
-					//basket에서 j번째의 상품의 갯수를 difference로 update
-					Basket upBk = new Basket(orderPNum, difference);
-					result += new BasketService().updateQuantity(upBk);
+			for(int j = 0; j< basketList.size();j++){
+				if(basketList.get(j).getProduct_num().equals(orderPNum)){
+					//basketList에서 orderList의 물품 갯수만큼 차감해야한다
+					int difference = basketList.get(j).getQuantity()-orderQuan;
+				
+					if(difference <= 0){
+						//basket에서 remove
+						result += new BasketService().deleteBasket(orderPNum);
+					}else{
+						//basket에서 j번째의 상품의 갯수를 difference로 update
+						Basket upBk = new Basket(orderPNum, difference);
+						result += new BasketService().updateQuantity(upBk);
+					}
+							
 				}
-						
 			}
+			
 			
 		}
 		
