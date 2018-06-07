@@ -254,7 +254,9 @@
         <button id="send" class="btn btn-sm btn-success" type="button">보내기</button>
       </div>
     </div>
-    
+   	<script>
+		var mainPath = '<%=request.getContextPath() %>';
+	</script>
     <!-- admin_JS -->
     <%@ include file="common/admin_JS.jsp" %>
   </body>

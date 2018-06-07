@@ -1,7 +1,9 @@
 package com.fr.jsp.admin.model.service;
 
 import static com.fr.jdbc.common.JDBCTemplate.close;
+import static com.fr.jdbc.common.JDBCTemplate.commit;
 import static com.fr.jdbc.common.JDBCTemplate.getConnection;
+import static com.fr.jdbc.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -38,6 +40,23 @@ public class AdminUserQuestionBoardService {
 	public ArrayList<UserQuestionBoard> admin_userQuestionBoardList() {
 		ArrayList<UserQuestionBoard> admin_userQuestionBoardAllList = auqbDao.admin_userQuestionBoardAllList(con);
 		return admin_userQuestionBoardAllList;
+	}
+	// 1:1문의 삭제
+	public void admin_deleteUserQuestionBoard(int userQuestionNum) {
+		int deleteUserQuestionBoardCount = auqbDao.admin_deleteUserQuestionBoard(con, userQuestionNum);
+		if(deleteUserQuestionBoardCount>0) commit(con);
+		else rollback(con);
+	}
+	// 1:1문의 수정
+	public void admin_updateUserQuestionBoard(UserQuestionBoard userQuestionBoard) {
+		int updateUserQuestionBoardCount = auqbDao.admin_updateUserQuestionBoard(con, userQuestionBoard);
+		if(updateUserQuestionBoardCount>0) commit(con);
+		else rollback(con);
+	}
+	// 1:1문의 한 개 조회
+	public UserQuestionBoard admin_selectUserQuestionBoard(int getbNum) {
+		UserQuestionBoard admin_selectUserQuestionBoard = auqbDao.admin_selectUserQuestionBoard(con, getbNum);
+		return admin_selectUserQuestionBoard;
 	}
 
 }
