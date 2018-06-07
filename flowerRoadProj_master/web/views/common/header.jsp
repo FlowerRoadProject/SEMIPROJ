@@ -16,7 +16,7 @@
   
  
     <link rel="icon" href="<%=request.getContextPath()%>/images/FlowerRoadLogo.png" type="image/ico" />
-    <style>
+    <style>  
     
         .navbar-bottom-font {
             font-weight: bold;
