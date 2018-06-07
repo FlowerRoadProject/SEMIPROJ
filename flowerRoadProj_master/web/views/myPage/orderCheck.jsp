@@ -55,7 +55,7 @@
 	<div class="container-fluid">
 		<div class="col-sm-4 col-md-4 col-lg-4">
 			<h4>
-				<i>주문 조회</i> <small>: 회원님의 주문내역을 조회하실수 있습니다.</small>
+				<i>주문 조회</i> <small>: [<%= m.getMemberName() %>]님의 주문내역을 조회하실수 있습니다.</small>
 			</h4>
 		</div>
 		<div class="col-sm-8 col-md-8 col-lg-8"></div>
