@@ -128,8 +128,8 @@
            		}
            		//재고보다 많은 양의 상품을 들여왔을 경우 제거메세지를 띄운다
            		if($('#excessName').val() != "none"){
-           			alert($('#excessMsg').val());
-           			alert($('#excessName').val());
+           			alert($('#excessMsg').val()+"\n"+$('#excessName').val());
+           			
            		}
            		console.log($('#excessName').val()); 
            		

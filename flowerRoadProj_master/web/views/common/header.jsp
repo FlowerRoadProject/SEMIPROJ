@@ -64,9 +64,9 @@
    
     
     <br>
-    
+    <!-- 
     <div class="visible-md">md</div>
-    <div class="visible-sm">sm</div>
+    <div class="visible-sm">sm</div> -->
     
     <nav class="navbar navbar-default navbar-fixed-top" id="naaaaav">
         <div class="container-fluid">
@@ -134,7 +134,7 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    <script>
+    <!-- <script>
     (window).resize(function() {
     	var windowWidth = $( window ).width();
     	$('#width1').innerHTML=(windowWidth);
@@ -145,5 +145,5 @@
     </script>
     <br><br><br><br><br><br>
     <div id="width1">width</div>
-    <div id="height1">height</div>
+    <div id="height1">height</div> -->
     
