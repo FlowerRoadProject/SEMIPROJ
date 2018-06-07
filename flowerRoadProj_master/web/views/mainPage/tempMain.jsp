@@ -70,6 +70,16 @@
 </style>
 
 
+<script>
+	$(function(){
+		
+		console.log(test);
+		
+		test();
+	});
+
+</script>
+
 
 </head>
 <body>
@@ -81,17 +91,14 @@
 	<div class="visible-xs">xs입니다!</div>
 </div>
 	
+	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
 	
 	
-	<%@ include file="../common/header.jsp" %>
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
+	<%@ include file="../common/loginModal.jsp" %>
 
 
-	<%@ include file="../common/eventMenu.jsp" %>
+	
 </body>
 </html>
