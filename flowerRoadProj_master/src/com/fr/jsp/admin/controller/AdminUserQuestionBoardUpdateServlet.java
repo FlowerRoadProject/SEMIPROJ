@@ -24,7 +24,7 @@ public class AdminUserQuestionBoardUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		String adminNum = (String) session.getAttribute("adminNum");
+		String adminNum = (String) session.getAttribute("memberNum");
 		int userQuestionNum = Integer.parseInt(request.getParameter("userQuestionNum"));
 		String userQuestionReply = request.getParameter("userQuestionReply");
 
