@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, com.fr.jsp.order.model.vo.*"%>
+	pageEncoding="UTF-8" import="java.util.*, com.fr.jsp.order.model.vo.*,
+								com.fr.jsp.common.*" %>
 <%
 	ArrayList<MyPage_Order> list = (ArrayList<MyPage_Order>) request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	System.out.println(pi.getStartPage());
+	System.out.println(pi.getEndPage());
 %>
 <!DOCTYPE>
 <html>
@@ -125,15 +129,29 @@
 		<div class="col-sm-2 col-md-2 col-lg-2">
 			<nav style="color: midnightblue;">
 				<ul class="pagination">
-					<li><a href="#"><span aria-hidden="true">«</span><span
+				<!-- 한페이지 씩 앞으로 이동 -->
+				<%if(pi.getCurrPage() <=1){ %>
+					<li><span disabled>«</span></li>
+				<% } else { %>
+					<li><a href="<%=request.getContextPath() %>/orderChk.or?currentPage=<%=pi.getCurrPage()-1%>"><span aria-hidden="true">«</span><span
 							class="sr-only">Previous</span></a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#"><span aria-hidden="true">»</span><span
-							class="sr-only">Next</span></a></li>
+				<% } %>
+				<!-- 각 페이지 별 리스트 작성 -->
+				<%for(int j = pi.getStartPage(); j<=pi.getEndPage(); j++){ %>
+					<% if(j== pi.getCurrPage()){ %>
+					<li><span disabled><%=j%></span></li>
+					<%} else { %>
+					<li><a href="<%=request.getContextPath() %>/orderChk.or?currentPage=<%=j%>"><%=j %></a></li>
+					<%} %>
+				<%} %>
+				
+				<!--한페이지씩 뒤로 이동 -->
+				<%if(pi.getCurrPage()>=pi.getMaxPage()){ %>
+				<li><span disabled>»</span></li>
+				<% }else{ %>
+				<li><a href="<%=request.getContextPath() %>/orderChk.or?currentPage=<%=pi.getCurrPage()+1%>"><span aria-hidden="true">»</span><span
+						class="sr-only">Next</span></a></li>
+				<% } %>
 				</ul>
 			</nav>
 		</div>
