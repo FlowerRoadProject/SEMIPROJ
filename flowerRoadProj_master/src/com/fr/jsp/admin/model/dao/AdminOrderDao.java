@@ -78,7 +78,7 @@ public class AdminOrderDao {
 		        order.setReceiverAddress(rset.getString("RECEIVER_ADDRESS"));
 		        order.setReceiverPhone(rset.getString("RECEIVER_PHONE"));
 		        order.setOrderStateName(rset.getString("ORDER_STATE_NAME"));
-		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_AMOUNT")));
+		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_QUANTITY")));
 		        if(rset.getString("DELIVERY_MESSAGE")==null){
 		        	order.setDeliveryMessage("");
 		        }else{
@@ -126,7 +126,7 @@ public class AdminOrderDao {
 		        order.setReceiverAddress(rset.getString("RECEIVER_ADDRESS"));
 		        order.setReceiverPhone(rset.getString("RECEIVER_PHONE"));
 		        order.setOrderStateName(rset.getString("ORDER_STATE_NAME"));
-		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_AMOUNT")));
+		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_QUANTITY")));
 		        if(rset.getString("DELIVERY_MESSAGE")==null){
 		        	order.setDeliveryMessage("");
 		        }else{
@@ -174,7 +174,7 @@ public class AdminOrderDao {
 		        order.setReceiverAddress(rset.getString("RECEIVER_ADDRESS"));
 		        order.setReceiverPhone(rset.getString("RECEIVER_PHONE"));
 		        order.setOrderStateName(rset.getString("ORDER_STATE_NAME"));
-		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_AMOUNT")));
+		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_QUANTITY")));
 		        if(rset.getString("DELIVERY_MESSAGE")==null){
 		        	order.setDeliveryMessage("");
 		        }else{
@@ -222,7 +222,7 @@ public class AdminOrderDao {
 		        order.setReceiverAddress(rset.getString("RECEIVER_ADDRESS"));
 		        order.setReceiverPhone(rset.getString("RECEIVER_PHONE"));
 		        order.setOrderStateName(rset.getString("ORDER_STATE_NAME"));
-		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_AMOUNT")));
+		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_QUANTITY")));
 		        if(rset.getString("DELIVERY_MESSAGE")==null){
 		        	order.setDeliveryMessage("");
 		        }else{
@@ -270,7 +270,7 @@ public class AdminOrderDao {
 		        order.setReceiverAddress(rset.getString("RECEIVER_ADDRESS"));
 		        order.setReceiverPhone(rset.getString("RECEIVER_PHONE"));
 		        order.setOrderStateName(rset.getString("ORDER_STATE_NAME"));
-		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_AMOUNT")));
+		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_QUANTITY")));
 		        if(rset.getString("DELIVERY_MESSAGE")==null){
 		        	order.setDeliveryMessage("");
 		        }else{
@@ -318,7 +318,7 @@ public class AdminOrderDao {
 		        order.setReceiverAddress(rset.getString("RECEIVER_ADDRESS"));
 		        order.setReceiverPhone(rset.getString("RECEIVER_PHONE"));
 		        order.setOrderStateName(rset.getString("ORDER_STATE_NAME"));
-		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_AMOUNT")));
+		        order.setProductAmount(Integer.parseInt(rset.getString("PRODUCT_QUANTITY")));
 		        if(rset.getString("DELIVERY_MESSAGE")==null){
 		        	order.setDeliveryMessage("");
 		        }else{

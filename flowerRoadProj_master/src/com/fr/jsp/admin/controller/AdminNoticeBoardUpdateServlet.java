@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fr.jsp.admin.model.service.AdminNoticeBoardService;
 import com.fr.jsp.board.model.vo.NoticeBoard;
@@ -21,12 +22,15 @@ public class AdminNoticeBoardUpdateServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
 		
+		String adminNum = (String) session.getAttribute("adminNum");
 		int noticeNum = Integer.parseInt(request.getParameter("noticeNum"));
 		String noticeTitle = request.getParameter("noticeTitle");
 		String noticeContent = request.getParameter("noticeContent");
 		
 		NoticeBoard noticeBoard = new NoticeBoard();
+		noticeBoard.setMemberNum(adminNum);
 		noticeBoard.setbNum(noticeNum);
 		noticeBoard.setbTitle(noticeTitle);
 		noticeBoard.setbContent(noticeContent);
@@ -34,12 +38,13 @@ public class AdminNoticeBoardUpdateServlet extends HttpServlet {
 		AdminNoticeBoardService anbs = new AdminNoticeBoardService();
 		// 공지사항 수정
 		anbs.admin_updateNoticeBoard(noticeBoard);
-		
+		// 공지사항 한 개 조회
+		NoticeBoard newNoticeBoard = anbs.admin_selectNoticeBoard(noticeBoard.getbNum());
 		// Connection close Method
 		anbs.closeCon();
 		
 		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(noticeBoard, response.getWriter());
+		new Gson().toJson(newNoticeBoard, response.getWriter());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
