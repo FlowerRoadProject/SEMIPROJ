@@ -28,7 +28,7 @@ public class MemberOrderCheck extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(false);
 		
 		ArrayList<MyPage_Order> list = null;
 		OrderService oService = new OrderService();
@@ -52,7 +52,6 @@ HttpSession session = request.getSession(false);
 		if(request.getParameter("currentPage")!=null){
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		System.out.println(currentPage);
 		
 				
 		//전체 게시글의 수
