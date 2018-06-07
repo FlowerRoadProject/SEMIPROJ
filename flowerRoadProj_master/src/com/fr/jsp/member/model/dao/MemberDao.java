@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -277,15 +278,21 @@ public class MemberDao {
 			return result;
 		}
 
-		public ArrayList<ProductFavorite> favorite(Connection con, String num) {
+		public ArrayList<ProductFavorite> favorite(Connection con, String num, int currentPage, int limit) {
 			ArrayList<ProductFavorite> list = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
+			
 			String query = prop.getProperty("memberFavorite");
 			
 			try {
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, num);
+				
+				int startRow = (currentPage - 1)* limit +1;
+			    int endRow = startRow + (limit - 1);
+			    pstmt.setInt(2, startRow);
+			    pstmt.setInt(3, endRow);
 				
 				rset = pstmt.executeQuery();
 				
@@ -295,9 +302,9 @@ public class MemberDao {
 				while(rset.next()){
 					ProductFavorite pf = new ProductFavorite();
 					
-					pf.setImage(rset.getString(1));
-					pf.setProductName(rset.getString(2));
-					pf.setProductPrice(rset.getInt(3));
+					pf.setImage(rset.getString(2));
+					pf.setProductName(rset.getString(3));
+					pf.setProductPrice(rset.getInt(4));
 					if(rset.getInt(4) > 0){
 						quantity = "재고있음";
 						pf.setProductQuantityState(quantity);
@@ -315,7 +322,6 @@ public class MemberDao {
 				close(rset);
 				close(pstmt);
 			}
-			System.out.println(list);
 			return list;
 		}
 		
@@ -338,7 +344,6 @@ public class MemberDao {
 					
 					mb.setBoardTitle(rset.getString(1));
 					mb.setSubmitDate(rset.getDate(2));
-					System.out.println(rset.getDate(2));
 					if(rset.getString(3) != null){
 						status = "답변 완료";
 						mb.setReplyStatus(status);
@@ -507,6 +512,138 @@ public class MemberDao {
 		return resultMember;
 	}
 	
-	
+	public int accessMember(Connection con, Member m) {
+		PreparedStatement pstmt= null;
+		int result=0;
+		try {
+			String sql = prop.getProperty("accessMember");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m.getMemberNum());		
+			System.out.println(m.getMemberNum());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public String idSearch(Connection con, String name, String phone, String email) {
+		
+		PreparedStatement pstmt= null;
+		ResultSet rset= null;
+		String result="";
+		try {
+			String sql = prop.getProperty("idSearch");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, email);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				result=rset.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int pwSearch(Connection con, Member m , String pwd) {
+		PreparedStatement pstmt= null;
+		int result=0;
+		/*System.out.println(pwd);
+		System.out.println(m.getMemberId());
+		System.out.println(m.getMemberName());
+		System.out.println(m.getMemberEmail());*/
+		try {	
+			String sql = prop.getProperty("pwSearch");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pwd);
+			pstmt.setString(2, m.getMemberId());
+			pstmt.setString(3, m.getMemberName());
+			pstmt.setString(4, m.getMemberEmail());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int checkId(Connection con, String userId) {
+		PreparedStatement pstmt= null;
+		ResultSet rset = null;
+		int result=0;
+		try {
+			String query =  prop.getProperty("checkId");
+			pstmt=con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				result=rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+	public int insertMember(Connection con, Member m) {
+
+				PreparedStatement pstmt= null;
+				int result=0;
+				try {
+					String sql = prop.getProperty("memberInsert");
+					System.out.println(sql);
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, m.getMemberId());
+					pstmt.setString(2, m.getMemberPw());
+					pstmt.setString(3, m.getMemberName());
+					pstmt.setString(4, m.getMemberAddress());
+					pstmt.setString(5, m.getMemberPhone());
+					pstmt.setString(6, String.valueOf(m.getMemberGender()));
+					//pstmt.setObject(6,  m.getMemberGender(), java.sql.Types.CHAR);
+					pstmt.setDate(7, m.getMemberBirthDate());
+					pstmt.setString(8, m.getMemberEmail());
+					result = pstmt.executeUpdate();
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					close(pstmt);
+				}
+				
+				return result;
+	}
+	public int getListCount(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result =0;
+		String query = prop.getProperty("listCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result=rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return result;
+	}
 
 }

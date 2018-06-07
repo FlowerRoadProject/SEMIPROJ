@@ -24,9 +24,11 @@
 <!-- 부트스트랩 -->
 
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js">
+</script>
 
-
+<!-- font link -->
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"> 
 
 <style>
 /*xs 사이즈 이하면 컨테이너 사이즈 고정*/
@@ -98,6 +100,25 @@ body{
 .test{
 	border:1px solid;
 }
+
+.product_desc{
+	padding-left:80px;
+	line-height: 2em;
+	font-family:'Nanum Gothic', sans-serif;
+	width:40%;
+	border:1px transparent;
+	background:white;
+}
+
+.product_desc :FIRST-LINE{
+	font:bold;
+}
+
+body *{
+	font-family:'Nanum Gothic', sans-serif;
+}
+
+#mNavbar li.active a { color: grey !important; background-color: #FFB3A7 !important; } 
 
 </style>
 
@@ -191,11 +212,11 @@ body{
 	
 	//스티키 NAVBAR
   	 function AdjustHeader(){
-  		 console.log($(window).scrollTop());
+
  	    if ($(window).scrollTop() > 600) {
  	      if (!$navbar.hasClass("navbar-fixed-top")) {
  	        $navbar.addClass("navbar-fixed-top");
- 	        $navbar.css("top","135px");
+ 	        $navbar.css("top","130px");
  	      }
  	    } else {
  	      $navbar.removeClass("navbar-fixed-top");
@@ -276,7 +297,7 @@ body{
 		
 		$temp.children("[name=selected_name]").text($temp.attr("name").split(",")[2]);//안에 상품이름 세팅
 			
-		$temp.children("[name=selected_price]").text($temp.attr("name").split(",")[3]);//안에 가격 세팅
+		$temp.children("[name=selected_price]").text($temp.attr("name").split(",")[3]+"원");//안에 가격 세팅
 		
 		return $temp;
 	}
@@ -523,8 +544,6 @@ body{
 	//찜 목록에 추가 / 삭제
 	function addToFavorite(productNum){
 		
-		
-		
 		$.ajax({
 			url:"addFavorite.do",
 			data:{pno:productNum},
@@ -768,7 +787,8 @@ body{
 	<%
 		for (int i = 1; i < p.getImages().size(); ++i) {
 	%>
-	<!--상품 설명-->
+	<!--상품 사진-->
+	
 	<div class="container">
 		<div class="row">
 			<div style="text-align: center;">
@@ -781,12 +801,12 @@ body{
 		</div>
 	</div>
 
-	<!--상품 사진-->
+	<!--상품 설명-->
 	<div class="container">
 		<%
 			if (p.getImageDesc().get(i) != null) {
 		%>
-		<pre class="text-left" style="line-height: 2em;"><%=p.getImageDesc().get(i)%></pre>
+		<pre class="product_desc"><%=p.getImageDesc().get(i)%></pre>
 		<%
 			}
 		%>
@@ -797,13 +817,13 @@ body{
 	%>
 
 	<div class="container" style="margin-top: 10px">
-		<hr class="review_divider">
+		<hr >
 	</div>
 
 	<!--배송 관련 글 -->
 	<div class="container">
 		<div class="row">
-			<div class="col-xs col-lg col-md col-sm">
+			<div class="col-xs col-lg col-md col-sm product_desc">
 				<h4>
 					<b>배송알림 메시지</b>
 				</h4>
@@ -824,12 +844,12 @@ body{
 				<h4>
 					<b>결제 안내</b>
 				</h4>
-				<hr id="review_start" style="visibility: hidden;">
+				
 				가상계좌 입금이 확인되지 않으면 취소될 수 있습니다. <br> 주문 취소/변경 (콜센터 02-512-8180) <br>
+				
 				<br>
-				<h4>
-					<b>교환 및 환불 안내</b>
-				</h4>
+				<h4><b>교환 및 환불 안내</b></h4>
+				<hr id="review_start" style="visibility: hidden;">
 				꽃은 식물이기 때문에 배송된 이후에는 변심 및 훼손에 의한 환불이 불가한 점 양해 부탁드립니다. <br> 배송된
 				상품의 신선도나 구성품 누락시 원모먼트의 책임인 경우 새로운 구성으로 교환해 드립니다. <br> 교환 및 환불
 				문의 (콜센터 02-512-8180)<br>
@@ -839,12 +859,16 @@ body{
 
 	</div>
 	<div class="container" style="margin-top: 10px">
+		<h5><b>고객 리뷰</b></h5>
 		<hr class="review_divider">
 	</div>
 
 
 	<!--리뷰 게시판 -->
+
 	<div class="container">
+	
+	
 		<div class="row">
 			<div class="col-xs-12" id="reviewBoard">
 
@@ -1013,19 +1037,19 @@ body{
 		 <div id="share_buttons">
            <a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
              target="_blank">
-             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/twitter.png" alt="Share on Twitter"></a>
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/twitter.png" alt="Share on Twitter"></a>
            <a href="#" onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
              target="_blank">
-             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/facebook.png" alt="Share on Facebook"></a>
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/facebook.png" alt="Share on Facebook"></a>
            <a href="#" onclick="javascript:window.open('https://plus.google.com/share?url=' +encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes, scrollbars=yes,height=350,width=600');return false;"
              target="_blank">
-             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/googlePlus.png" alt="Share on Google+"></a>
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/googlePlus.png" alt="Share on Google+"></a>
            <a href="#" onclick="javascript:window.open('https://story.kakao.com/s/share?url=' +encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes, height=400,width=600');return false;"
              target="_blank">
-             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/kakaoStory.jpg" alt="Share on kakaostory"></a>
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/kakaoStory.jpg" alt="Share on kakaostory"></a>
            <a href="#" onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url=' +encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title), 'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
              target="_blank">
-             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/naver.jpg" alt="Share on Naver"></a>
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/naver.jpg" alt="Share on Naver"></a>
          </div>
 		
 	</div>

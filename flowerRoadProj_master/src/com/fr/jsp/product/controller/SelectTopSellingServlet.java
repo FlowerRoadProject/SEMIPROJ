@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fr.jsp.product.model.service.ProductService;
 import com.fr.jsp.product.model.vo.ProductSimple;
+import com.google.gson.Gson;
 
 /**
  * Servlet implementation class SelectTopSellingServlet
@@ -28,9 +29,15 @@ public class SelectTopSellingServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<ProductSimple> list = null;
-		int index = (Integer)request.getAttribute("index");
-		list = ps.getTopSellingProduct(index);
+		int index =0;
 		
+		if(request.getParameter("idx")!=null)
+			index= Integer.parseInt(request.getParameter("idx"));
+		
+		list = ps.getTopSellingProduct(index);
+	
+		
+		new Gson().toJson(list,response.getWriter());
 	}
 
 	

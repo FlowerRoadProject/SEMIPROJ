@@ -8,6 +8,9 @@
         <meta charset="utf-8">
          <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/myInfo.css">
         <script src="<%=request.getContextPath() %>/resources/js/myPage.js?ver=1"></script>
+        <script>
+        	var mainPath = '<%=request.getContextPath() %>';
+        </script>
     </head>
     <!-- <body onload="testCommand();"> -->
     <body>

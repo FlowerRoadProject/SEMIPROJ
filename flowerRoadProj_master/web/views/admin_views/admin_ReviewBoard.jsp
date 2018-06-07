@@ -37,7 +37,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>게시글 관리 <small>(Posting)</small></h3>
+                <h3>상품리뷰 관리 <small>(Board)</small></h3>
               </div>
 
               <div class="title_right">
@@ -101,7 +101,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>게시글 조회<small>상품후기</small></h2>
+                    <h2>게시글 조회<small>상품리뷰</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -110,7 +110,7 @@
                   </div>
                   <div class="x_content">
 					
-                   <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                   <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap reviewTable" cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th>글번호</th>
@@ -140,6 +140,55 @@
                   </div>
                 </div>
               </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+              	<div class="x_panel">
+                  <div class="x_title">
+                    <h2>상세보기 <small>상품리뷰</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                    
+                    <div class="x_content">
+                        <div id="alerts"></div>
+                         <form id="demo-form" data-parsley-validate>
+                          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+	                          <label for="fullname">글번호</label>
+	                          <input type="text" id="" class="form-control reviewNum" name="" required disabled/>
+                          </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+                          	<label for="fullname">회원번호</label>
+                          	<input type="text" id="" class="form-control reviewMemberNum" name="" required disabled/>
+                          </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+	                          <label for="fullname">상품번호</label>
+	                          <input type="text" id="" class="form-control reviewProductNum" name="" required disabled/>
+                          </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+                          	<label for="fullname">별점</label>
+                          	<input type="text" id="" class="form-control reviewRating" name="" required disabled/>
+                          </div>
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                          	<label for="fullname">제목</label>
+                          	<input type="text" id="" class="form-control reviewTitle" name="" required disabled/>
+                          </div>
+                          
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+	                          <label for="fullname">내용</label>
+	                          <textarea class="resizable_textarea form-control reviewContent" placeholder="..." disabled></textarea>
+	                          
+                          </div>
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="margin-top:20px">
+	                          <button type="button" class="btn btn-round btn-success col-lg-5 col-md-5 col-sm-5 col-xs-5" style="margin-left:30%" id="checkReview">확인</button>
+                          </div>
+                        </form>
+                      
+                  </div>
+                </div>
+              
+            </div>
             </div>
             
           </div>
@@ -156,7 +205,9 @@
         <!-- /footer content -->
       </div>
     </div>
-
+	<script>
+		var mainPath = '<%=request.getContextPath()%>';
+	</script>
 	<!-- admin_JS -->
     <%@ include file="common/admin_JS.jsp" %>
   </body>

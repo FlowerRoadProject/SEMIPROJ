@@ -17,13 +17,15 @@ import com.fr.jsp.member.model.vo.Member;
 public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public loginServlet() { 
+    public loginServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String id = request.getParameter("userId");
 		String pwd = request.getParameter("userPwd");
+		
 		Member m = new Member(id,pwd);
 		
 		MemberService ms = new MemberService();
@@ -34,19 +36,29 @@ public class loginServlet extends HttpServlet {
 		if(m!=null){//로그인성공
 			HttpSession session = request.getSession();
 			if(m.getMemberNum().charAt(0)=='A'){
-					session.setAttribute("adminNum", m.getMemberNum());
-					System.out.println("관리자 로그인성공1");
+					session.setAttribute("memberNum", m.getMemberNum());
+					System.out.println("관리자 로그인성공");
 					RequestDispatcher view = request.getRequestDispatcher("/firstMain.admin");
 					view.forward(request, response);
 			}else{
-				session.setAttribute("memberNum", m.getMemberNum());
-				System.out.println("로그인성공");
-				RequestDispatcher view = request.getRequestDispatcher("main.jsp");
-				view.forward(request, response);	
+				if(ms.accessMember(m) !=0){
+					//액세스 로그 가 성공햇을때
+					System.out.println("액세스 로그 삽입 성공");
+					session.setAttribute("memberNum", m.getMemberNum());
+					System.out.println("로그인성공");
+					RequestDispatcher view = request.getRequestDispatcher("main.jsp");
+					view.forward(request, response);	
+				}else{
+					request.setAttribute("msg", "액세스로그 접속 실패");
+					RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+					view.forward(request, response);
+				}
+				
 			}
 		}else{//로그인 실패
+			System.out.println("아이디비번틀림");
 			request.setAttribute("msg", "로그인 실패 아이디나 비밀번호를 다시 확인하세요");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/mainPage/login.jsp");
 			view.forward(request, response);
 		}
 	}

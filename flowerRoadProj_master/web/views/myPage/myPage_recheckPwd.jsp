@@ -29,6 +29,9 @@
 
             
         </style>
+        <script>
+        	var mainPath = '<%=request.getContextPath() %>';
+        </script>
     </head>
     <body>
         <!-- 상단의 nav 바 -->

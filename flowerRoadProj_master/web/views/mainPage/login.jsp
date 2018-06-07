@@ -3,6 +3,9 @@
     <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.security.SecureRandom" %>
 <%@ page import="java.math.BigInteger" %>
+<%
+	String msg = (String)request.getAttribute("msg");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,32 +15,13 @@
 <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="477566022295-va6h7acae97e1sfavcdnbrfcii3g7r8s.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <%@include file = "/views/common/header.jsp" %>
 <style>
-        /* 박스 크기
-        .SNSbtn{
-            
-        }
-*/
 
         .login {
             background-color: lightpink;
         }
 
-       /*  #kakao {
-            background-color: yellow;
-        }
-
-        #facebook {
-            background-color: skyblue
-        }
-
-        #google {
-            background-color: mediumvioletred
-        }
-
-        #naver {
-            background-color: greenyellow
-        } */
 
         #SignUp {
             background-color: orange;
@@ -48,6 +32,19 @@
         }
         </style>
 <script>
+$(document).ready(function() {
+var msg = "<%=msg%>";
+if(msg != "null"){
+	alert(msg);	
+}
+$("input[name=userPwd]").keydown(function (key) {
+    
+    if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+       login();
+    }
+
+});
+});
 //페이스북 스크립트
   // This is called with the results from from FB.getLoginStatus().
   var facebookClicked=false;
@@ -133,17 +130,17 @@
 </head>
 <body>
 
-<%@include file = "/views/common/header.jsp" %>
+
 <br /><br /><br /><br /><br /><br />
 <div style="overflow:scroll;  background-color:white;" class="form-grorp">
         <h2 class="header" style="text-align: center">로그인</h2>
 
         <form id="loginForm" class="form-Member" action="<%=request.getContextPath()%>/login.me" method="post">
             <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
-                <input type="id" class="form-control" name="userId" placeholder="아이디">
+                <input type="text" class="form-control" name="userId" id="userId" placeholder="아이디">
             </div>
             <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
-                <input type="password" class="form-control" name="userPwd" placeholder="비밀번호">
+                <input type="password" class="form-control" name="userPwd" id="userPwd" placeholder="비밀번호">
             </div>
             <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
                 <input type="checkbox" id="id_hold_check" name="IdSave">
@@ -169,11 +166,11 @@
                 </div>
             </div>
             <div class="find_account col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" id="find">
-                <a href="findUser.jsp">아이디 찾기</a><span class="txt_bar">ㅣ</span><a href="./Find-Pwd.jsp">비밀번호 찾기</a>
+                <a href="<%=request.getContextPath()%>/views/mainPage/findUser.jsp">아이디 찾기</a><span class="txt_bar">ㅣ</span><a href="<%=request.getContextPath()%>/views/mainPage/findUser.jsp">비밀번호 찾기</a>
             </div>
 
             <div class="find_account form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
-                <button type="button" class="btn col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" id="SingUp" onclick="signUp();">회원가입</button>
+                <button type="button" class="btn col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" id="signUp">회원가입</button>
             </div>
         </form>
     </div>
@@ -182,11 +179,19 @@
 <%@include file = "/views/common/footer.jsp" %>
 <script type='text/javascript'>
 function login(){
-	$('#loginForm').submit();
+	if ($("#userId").val() == "") {
+		alert("아이디를 꼭 입력하세요!");
+        $("#userId").focus();
+    }else if($("#userPwd").val() == "") {
+		alert("비밀번호를 꼭 입력하세요!");
+        $("#userPwd").focus();
+    }else{
+		$('#loginForm').submit();
+    }
 }
-function signUp(){
-	location.href="signUp.jsp";
-}
+$('#signUp').click(function(){
+	location.href="<%=request.getContextPath()%>/views/mainPage/signUp.jsp";
+});
 //카카오 스크립트
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.

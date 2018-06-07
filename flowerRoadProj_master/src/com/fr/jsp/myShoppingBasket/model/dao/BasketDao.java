@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.fr.jsp.member.model.vo.Member;
-import com.fr.jsp.myShoppingBasket.model.vo.Basket;
-import com.fr.jsp.myShoppingBasket.model.vo.Coupon;
+import com.fr.jsp.myShoppingBasket.model.vo.*;
+
 
 
 public class BasketDao {
@@ -57,6 +57,8 @@ public class BasketDao {
 			bk.setProduct_price(rset.getInt("PRODUCT_PRICE"));
 			bk.setProduct_name(rset.getString("PRODUCT_NAME"));
 			bk.setImage(rset.getString("IMAGE_PATH"));
+			bk.setCategory(rset.getString("PRODUCT_CATEGORY"));
+			
 			
 			list.add(bk);
 			}
@@ -183,7 +185,7 @@ public class BasketDao {
 			
 			while(rset.next()){
 				bk = new Basket(rset.getString("PRODUCT_NUM"),rset.getInt("QUANTITY"), 
-						rset.getInt("PRODUCT_PRICE"), rset.getString("PRODUCT_NAME"),rset.getString("IMAGE_PATH"));
+						rset.getInt("PRODUCT_PRICE"), rset.getString("PRODUCT_NAME"),rset.getString("IMAGE_PATH"),rset.getString("PRODUCT_CATEGORY"));
 				list.add(bk);
 			}
 			
@@ -330,6 +332,33 @@ public class BasketDao {
 		}
 		
 		return list;
+	}
+	
+	public Basket selectExcess(Connection con, String memberNum){
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Basket excess = null;
+		String query = prop.getProperty("selectExcess");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberNum);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				excess = new Basket();
+				excess.setProduct_name(rset.getString("PRODUCT_NAME"));
+				excess.setProduct_num(rset.getString("PRODUCT_NUM"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return excess;
+		
+		
 	}
 	
 }

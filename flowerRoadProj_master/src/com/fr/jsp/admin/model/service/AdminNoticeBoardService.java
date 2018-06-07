@@ -41,5 +41,16 @@ public class AdminNoticeBoardService {
 		if(updateNoticeBoardCount>0) commit(con);
 		else rollback(con);
 	}
+	// 공지사항 한 개 조회
+	public NoticeBoard admin_selectNoticeBoard(int getbNum) {
+		NoticeBoard admin_selectNoticeBoard = anbDao.admin_selectNoticeBoard(con, getbNum);
+		return admin_selectNoticeBoard;
+	}
+	// 공지사항 삭제
+	public void admin_deleteNoticeBoard(int noticeNum) {
+		int deleteNoticeBoardCount = anbDao.admin_deleteNoticeBoard(con, noticeNum);
+		if(deleteNoticeBoardCount>0) commit(con);
+		else rollback(con);
+	}
 
 }
