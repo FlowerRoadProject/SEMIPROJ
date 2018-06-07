@@ -117,13 +117,14 @@
 <%@include file="../common/header.jsp"%>
 <br /><br /><br /><br /><br /><br />
 <%-- <%@ include file="../common/eventMenu.jsp"%> --%>
+<%@include file="../common/loginModal.jsp" %>
 
 <jsp:include page="../common/eventMenu.jsp">
 
 <jsp:param name="category" value="<%=event %>" />
  
 </jsp:include>
-   	
+  
    <!-- 여기부터 내용을 넣겠다 -->
 	<div class="container">
 	<div class="col-lg-12 visible-lg " style="margin-top: 4em"></div>
@@ -161,11 +162,11 @@
         							<%if(!pagedList.get(i).getProductTypeName().equals("디저트")&&
         									!pagedList.get(i).getProductTypeName().equals("메시지태그")&&
         									!pagedList.get(i).getProductTypeName().equals("카드")) {%>
-        							 <a class="col-lg-4 btn btn-default" role="button" onclick="addBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
+        							 <a class="col-lg-4 btn btn-default" role="button" onclick="addToBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
         							<a class="col-lg-7 col-lg-offset-1 btn btn-primary" role="button" 
         							onclick="location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+<%=pagedList.get(i).getProductNum()%>'">바로구매</a>
         							<%}else{ %>
-        							 <a class="col-lg-12 btn btn-default" role="button" onclick="addBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
+        							 <a class="col-lg-12 btn btn-default" role="button" onclick="addToBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
         							
         							<%} %>
         							 	
@@ -255,8 +256,16 @@
 <%@include file="../common/footer.jsp"%>
 
 <script>
-	function addBasket(productNum){
+function addToBasket(productNum){
+	
+	console.log("들어오니");
+	
+	if(!checkLogin())
+	{
+		$('#myModal').modal({"show":true});
 		
+		return;
+	}
 		$.ajax({
 			url:"addBasket.do",
 			data:{pno:productNum},
@@ -264,8 +273,6 @@
 				
 				if(data>0)
 					alert("장바구니에 성공적으로 추가!!");
-				else if(data==-1)
-					alert("로그인을 해주세요");
 				
 			},error:function(data){
 				alert("장바구니에 추가 실패!!");
@@ -274,6 +281,16 @@
 		});
 	
 	}
+	
+	function checkLogin(){
+		
+		<%if(request.getSession(false).getAttribute("memberNum")==null){%>
+			 return false;
+		<%}else{%>
+			return true;
+		<%}%>
+	}
+
 		
 </script>
 

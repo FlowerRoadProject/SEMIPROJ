@@ -244,9 +244,11 @@ img {
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
+				<a href="<%=request.getContextPath()%>/productDetail.do?productNum=+P056">
 					<img
 						src="<%=request.getContextPath()%>/resources/images/mainEventCarousel/geoberaEvent.jpg"
-						value="1" class="image_Carousel img-fluid" alt="geobera">
+						value="0" class="image_Carousel img-fluid">
+				</a>
 				</div>
 			</div>
 

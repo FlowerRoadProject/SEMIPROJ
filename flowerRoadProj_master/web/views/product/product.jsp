@@ -396,8 +396,10 @@ body *{
 	function submit_review() {
 		
 		
-		if(!checkLogin())
+		if(!checkLogin()){
+			$('#myModal').modal({"show":true});
 			return;
+		}
 		
 		
 		if($('[name=title]').val().length<=0){
@@ -585,8 +587,11 @@ body *{
 	function addToBasket(productNum){
 			
 		if(!checkLogin())
+		{
+			$('#myModal').modal({"show":true});
+			
 			return;
-		
+		}
 			$.ajax({
 				url:"addBasket.do",
 				data:{pno:productNum},
@@ -609,8 +614,10 @@ body *{
 		function purchase(){
 			
 			
-			if(!checkLogin())
+			if(!checkLogin()){
+				$('#myModal').modal({"show":true});
 				return;
+			}
 			
 			var $optionList =  $('#optionDiv div[name*=selected_option_row_]');
 			
@@ -639,7 +646,6 @@ body *{
 		function checkLogin(){
 			
 			<%if(request.getSession(false).getAttribute("memberNum")==null){%>
-				alert("로그인 해주세요");
 				 return false;
 			<%}else{%>
 				return true;
@@ -653,7 +659,7 @@ body *{
 <body data-spy="scroll" data-target="#mNavbar" data-offset="400">
 	<br id="page_start"/>
 	<%@include file="../common/header.jsp"%>
-	
+	<%@include file="../common/loginModal.jsp" %>
 	<br />
 	<br />
 	<br />
@@ -851,7 +857,7 @@ body *{
 				<h4><b>교환 및 환불 안내</b></h4>
 				<hr id="review_start" style="visibility: hidden;">
 				꽃은 식물이기 때문에 배송된 이후에는 변심 및 훼손에 의한 환불이 불가한 점 양해 부탁드립니다. <br> 배송된
-				상품의 신선도나 구성품 누락시 원모먼트의 책임인 경우 새로운 구성으로 교환해 드립니다. <br> 교환 및 환불
+				상품의 신선도나 구성품 누락시 꽃길의 책임인 경우 새로운 구성으로 교환해 드립니다. <br> 교환 및 환불
 				문의 (콜센터 02-512-8180)<br>
 
 			</div>

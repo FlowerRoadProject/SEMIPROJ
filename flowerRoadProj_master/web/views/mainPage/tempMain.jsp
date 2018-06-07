@@ -70,6 +70,16 @@
 </style>
 
 
+<script>
+	$(function(){
+		
+		console.log(test);
+		
+		test();
+	});
+
+</script>
+
 
 </head>
 <body>
@@ -83,15 +93,10 @@
 	
 	
 	
-	<%@ include file="../common/header.jsp" %>
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
+	
+	<%@ include file="../common/loginModal.jsp" %>
 
 
-	<%@ include file="../common/eventMenu.jsp" %>
+	
 </body>
 </html>
