@@ -152,16 +152,5 @@
     
     </nav>
     
-    <!-- <script>
-    (window).resize(function() {
-    	var windowWidth = $( window ).width();
-    	$('#width1').innerHTML=(windowWidth);
-    	
-    	var windowHeight = $( window ).height();
-    	$('#height1').text(windowHeight);
-    	});
-    </script>
-    <br><br><br><br><br><br>
-    <div id="width1">width</div>
-    <div id="height1">height</div> -->
+   
     
