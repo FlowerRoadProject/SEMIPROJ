@@ -41,12 +41,32 @@ public class BasketSelectServlet extends HttpServlet {
 		
 		ArrayList<Basket> list = new BasketService().selectBasket(member_num);
 		ArrayList<Basket> oList = new BasketService().selectOption();				
-		String page="";
 		
+		//재고보다 많이 들어온 상품은 장바구니에서 제거하기			
+		Basket excess = new BasketService().selectExcess(member_num);
+		String excessRemoveMsg = "none";
+		String excessPName = "none";
+		System.out.println("excess: "+excess);		
+		if(excess != null){
+			int remove = new BasketService().deleteBasket(excess.getProduct_num());			
+			excessRemoveMsg = remove+"개의 상품이 재고가 부족해 장바구니에서 제거되었습니다.";
+			excessPName = "재고부족 상품 : "+excess.getProduct_name();
+			System.out.println(remove+"개의 물량초과 상품이 제거됨");
+		}
+		
+			
+		
+		
+		
+		//화면에 표시
+		String page="";
+			
 		if(list != null){
 			page="/views/myShoppingBasket/basket-menu.jsp";
 			request.setAttribute("list",list);
 			request.setAttribute("oList", oList);
+			request.setAttribute("excessRemoveMsg", excessRemoveMsg);
+			request.setAttribute("excessPName", excessPName);
 		}else{
 			page="/views/myShoppingBasket/test.jsp";
 			request.setAttribute("msg", "select.bk 실패");
