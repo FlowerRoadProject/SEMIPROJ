@@ -59,7 +59,7 @@
                   </div>
                   <div class="x_content">
 
-                    <div class="col-lg-12 col-md-3 col-sm-3 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                       <!-- required for floating -->
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs bar_tabs">
@@ -76,7 +76,7 @@
                       </ul>
                     </div>
 
-                    <div class="col-lg-12 col-md-9 col-sm-9 col-xs-12">
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                       <!-- Tab panes -->
                       <div class="tab-content">
                         <div class="tab-pane active" id="top1left">

@@ -177,11 +177,11 @@ public class AdminStatisticsDao {
 			pstmt.setInt(1, i);
 			rset = pstmt.executeQuery();
 			while(rset.next()){
-				clickProduct.setProductNum(rset.getString("MEMBER_NUM"));
-				clickProduct.setProductName(rset.getString("MEMBER_NAME"));
+				clickProduct.setProductNum(rset.getString("PRODUCT_NUM"));
+				clickProduct.setProductName(rset.getString("PRODUCT_NAME"));
 				clickProduct.setProductImage(rset.getString("IMAGE_PATH"));
-				clickProduct.setProductClickCount(Integer.parseInt(rset.getString("GRADE_NAME")));
-				clickProduct.setProductFavoriteCount(Integer.parseInt(rset.getString("GRADE_NAME")));
+				clickProduct.setProductClickCount(Integer.parseInt(rset.getString("P_CHECK")));
+				clickProduct.setProductFavoriteCount(Integer.parseInt(rset.getString("P_FAVORITE")));
 				clickProduct.setRateBytotalClickCount(Double.parseDouble(rset.getString("RATE_BY_TOTAL")));
 			}
 		} catch (Exception e) {
