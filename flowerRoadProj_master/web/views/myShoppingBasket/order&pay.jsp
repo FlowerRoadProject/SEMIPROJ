@@ -185,14 +185,11 @@ Member member = (Member)request.getAttribute("member");
     
     <%@include file="/views/common/header.jsp" %>
     
-        <br><br><br><br><br><br><br>
-	
-		<div><%=request.getAttribute("name") %></div>
-
+        <br><br><br><br><br><br><br><br /><br />
         
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin"><!--상단 진행페이지 구문-->
-                <span>장바구니</span>&nbsp;&gt;&nbsp; <span><strong>주문/결제</strong></span>&nbsp;&gt;&nbsp; <span>주문완료</span>&nbsp;&gt;&nbsp;                
+                <span><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>장바구니</span>&nbsp;&gt;&nbsp; <span style="color:rgb(51, 122, 183); font-size:1.3em;"><strong><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>주문/결제</strong></span>&nbsp;&gt;&nbsp; <span><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>주문완료</span>&nbsp;&nbsp;
             </div>
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1"><!--총 선택 상품나열 칸-->
                 <h4><b class="col-xs-3 col-sm-3 col-md-3">주문내용</b></h4>
@@ -512,7 +509,7 @@ Member member = (Member)request.getAttribute("member");
                         <h4>메세지태그</h4>
                     </div>
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                        <input type="text" class="col-md-12 col-lg-12 form-control" id="sMemo" placeholder="메세지태그에 남길 글을 입력해주세요" aria-describedby="basic-addon1"><br>
+                        <input type="text" class="col-md-12 col-lg-12 form-control" id="tag" placeholder="메세지태그에 남길 글을 입력해주세요" aria-describedby="basic-addon1"><br>
                         <span style="color:lightgray">메세지태그는 최대 40자까지 입력할 수 있습니다</span>
                     </div>
                 </div>               
@@ -734,6 +731,7 @@ Member member = (Member)request.getAttribute("member");
                     	<form action="<%=request.getContextPath()%>/order.bk" method="POST" id="buy">
                          
                          <%for(int i = 0;i < list.size();i++){ %>
+                         	<input type="hidden" name="category" class="category" value="<%=list.get(i).getCategory()%>"/>
                          	<input type="hidden" name="productNum" class="productNum" value='<%=list.get(i).getProduct_num() %>'/> 
                          	<input type="hidden" name="quantity" class="quantity" value='<%=list.get(i).getQuantity()%>'/> 
                          	<input type="hidden" name="price" class="price" value='<%=list.get(i).getProduct_price()%>'/>
@@ -751,14 +749,26 @@ Member member = (Member)request.getAttribute("member");
                     	 <input type="hidden" name="isCouponUsed" id="isCouponUsed" value=""/>
                     		
                     		<button type="button" class="btn btn-primary btn-lg bottom-margin col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="payingMe">결제하기</button><br><br /><br />
-                    		<button type="button" class="btn btn-primary btn-lg bottom-margin col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1">취소하기</button><br> <br /><br />
+                    		<button type="button" class="btn btn-primary btn-lg bottom-margin col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="canclePay">취소하기</button><br> <br /><br />
                 			
                 		</form>
                 	</div>
                 </div>
         </div>       
         
+        
        <script>
+       
+       $('#canclePay').on('click',function(){
+    	  if(confirm('진행된 결제를 취소할까요?')){
+    		  alert('결제를 취소하고 메인으로 돌아갑니다');
+    		  location.href="<%=request.getContextPath()%>/main.jsp";
+    	  }else{
+    		  console.log('취소를 취소한다');
+    	  }
+    	   
+       });
+       
        
        $('#payingMe').on('click',function(){
     	/* 회원가입 후 생성된 가맹점 식별코드를 이용해서 window.IMP 변수를 초기화합니다.
@@ -834,13 +844,15 @@ Member member = (Member)request.getAttribute("member");
         var priceArr = new Array();
         var pNameArr = new Array();
         var imageArr = new Array();
-        
+        category = new Array();
        	console.log("orderDate: "+$('#orderDate').val())
         
         for(var i = 0; i<$('.productNum').length;i++){
         	pNumArr.push($('.productNum').eq(i).val()); 
         	quanArr.push($('.quantity').eq(i).val());
+        	category.push($('.category').eq(i).val());
         	console.log(pNumArr[i]);
+        	
         }
         
        jQuery.ajaxSettings.traditional = true;//ajax로 배열을 넘기려면 이게 필요하다.. 하..ㅠㅠ
@@ -856,8 +868,9 @@ Member member = (Member)request.getAttribute("member");
         		receivePhone: $("#receivePhone").val(),
         		sendMemo: $("#sMemo").val(),
         		anony: $('#anony').val(),
-        		quantity: quanArr
-        		
+        		quantity: quanArr,
+        		cardMsg: $('#message').val(),
+        		tagMsg: $('#tag').text()
         	},
         	success: function(data){
         		alert('주문에 성공하였습니다!');
@@ -866,10 +879,25 @@ Member member = (Member)request.getAttribute("member");
         		alert('주문에 실패하였습니다');
         	}
         });
-      
-        
-		}
-       });
+       
+        //주문한 상품은 장바구니에서 사라지게 하는 ajax 필요  	
+        $.ajax({
+        	url: "removeFrom.bk",
+        	type:"GET",
+        	data:{
+        		productNum: pNumArr,
+        		quantity: quanArr
+        	},
+        	success: function(){
+        		console.log("장바구니에서 차감성공");
+        	},error: function(){
+        		console.log("장바구니에서 차감실패..");
+        	}
+        })
+		
+		
+		}//else의 마지막부분
+       });//click의 마지막부분
        
        </script>
         

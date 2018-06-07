@@ -23,7 +23,7 @@ public class AdminAdminEditServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		String adminNum = (String) session.getAttribute("adminNum");
+		String adminNum = (String) session.getAttribute("memberNum");
 		
 		String aNum = request.getParameter("aNum");
 		String aImage = request.getParameter("aImage");

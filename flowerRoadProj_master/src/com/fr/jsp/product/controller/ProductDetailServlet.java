@@ -76,6 +76,7 @@ public class ProductDetailServlet extends HttpServlet {
 		//표시할 옵션 프로덕트 정보 가져오기
 		optionProduct = ps.getOptionProductList();
 		
+		
 		// 페이지 관련 변수 전달용 VO 생성
 		pi = new PageInfo(currPage, rbs.getListCount(productNum), limit);
 
@@ -88,8 +89,14 @@ public class ProductDetailServlet extends HttpServlet {
 		//연관 카테고리 상품 가져오기
 		relatedCategoryProduct= 
 				ps.getProductList("none", p.getProductCategoryName());
+		relatedCategoryProduct= new ArrayList(relatedCategoryProduct.subList(0, 10>relatedCategoryProduct.size()?relatedCategoryProduct.size():10)) ;
 		
-		
+		for(int i=0;i<relatedCategoryProduct.size();++i){
+			if(relatedCategoryProduct.get(i).getProductName().equals(p.getProductName())){
+				relatedCategoryProduct.remove(i);
+				break;
+			}
+		}
 		
 		
 		if (p != null&&reviewList!=null&&optionProduct!=null) {

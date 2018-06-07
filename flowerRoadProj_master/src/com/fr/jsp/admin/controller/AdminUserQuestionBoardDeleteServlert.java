@@ -26,7 +26,7 @@ public class AdminUserQuestionBoardDeleteServlert extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		String adminNum = (String) session.getAttribute("adminNum");
+		String adminNum = (String) session.getAttribute("memberNum");
 		int userQuestionNum = Integer.parseInt(request.getParameter("userQuestionNum"));
 		String userQuestionAnswerPw = request.getParameter("userQuestionAnswerPw");
 		

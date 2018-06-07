@@ -24,7 +24,7 @@ public class AdminNoticeBoardUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		String adminNum = (String) session.getAttribute("adminNum");
+		String adminNum = (String) session.getAttribute("memberNum");
 		int noticeNum = Integer.parseInt(request.getParameter("noticeNum"));
 		String noticeTitle = request.getParameter("noticeTitle");
 		String noticeContent = request.getParameter("noticeContent");

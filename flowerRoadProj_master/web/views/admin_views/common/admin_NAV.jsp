@@ -145,7 +145,7 @@
 					<ul class="dropdown-menu dropdown-usermenu pull-right">
 						<li><a href="<%=request.getContextPath() %>/admin.admin">관리자 정보</a></li>
 						<li><a href="<%=request.getContextPath() %>/thema.admin">테마 변경</a></li>
-						<li><a href="login.me">회원 페이지</a></li>
+						<li><a href="main.jsp">회원 페이지</a></li>
 						<li><a href="<%=request.getContextPath() %>/main.jsp"><i class="fa fa-sign-out pull-right"></i>로그아웃</a></li>
 					</ul>
 				</li>
