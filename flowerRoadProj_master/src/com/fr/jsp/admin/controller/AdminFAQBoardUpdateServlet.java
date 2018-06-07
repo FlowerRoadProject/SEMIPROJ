@@ -24,7 +24,7 @@ public class AdminFAQBoardUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		String adminNum = (String) session.getAttribute("adminNum");
+		String adminNum = (String) session.getAttribute("memberNum");
 		int faqNum = Integer.parseInt(request.getParameter("faqNum"));
 		String faqCatecory = request.getParameter("faqCatecory");
 		String faqQuestion = request.getParameter("faqQuestion");
@@ -40,12 +40,13 @@ public class AdminFAQBoardUpdateServlet extends HttpServlet {
 		AdminFaqBoardService afbs = new AdminFaqBoardService();
 		// FAQ 수정
 		afbs.admin_updateFAQBoard(faqBoard);
-		
+		// FAQ 한 개 조회
+		FaqBoard newFAQBoard = afbs.admin_selectFaqBoard(faqBoard.getbNum());
 		// Connection close Method
 		afbs.closeCon();
 		
 		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(faqBoard, response.getWriter());
+		new Gson().toJson(newFAQBoard, response.getWriter());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

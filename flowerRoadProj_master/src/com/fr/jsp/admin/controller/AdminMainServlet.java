@@ -25,7 +25,7 @@ public class AdminMainServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		String adminNum = (String) session.getAttribute("adminNum");
+		String adminNum = (String) session.getAttribute("memberNum");
 		
 		AdminMemberService ams = new AdminMemberService();
 		// 관리자 메인 이름, 사진

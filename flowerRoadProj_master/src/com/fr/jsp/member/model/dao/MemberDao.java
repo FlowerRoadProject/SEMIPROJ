@@ -278,15 +278,21 @@ public class MemberDao {
 			return result;
 		}
 
-		public ArrayList<ProductFavorite> favorite(Connection con, String num) {
+		public ArrayList<ProductFavorite> favorite(Connection con, String num, int currentPage, int limit) {
 			ArrayList<ProductFavorite> list = null;
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
+			
 			String query = prop.getProperty("memberFavorite");
 			
 			try {
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, num);
+				
+				int startRow = (currentPage - 1)* limit +1;
+			    int endRow = startRow + (limit - 1);
+			    pstmt.setInt(2, startRow);
+			    pstmt.setInt(3, endRow);
 				
 				rset = pstmt.executeQuery();
 				
@@ -296,9 +302,9 @@ public class MemberDao {
 				while(rset.next()){
 					ProductFavorite pf = new ProductFavorite();
 					
-					pf.setImage(rset.getString(1));
-					pf.setProductName(rset.getString(2));
-					pf.setProductPrice(rset.getInt(3));
+					pf.setImage(rset.getString(2));
+					pf.setProductName(rset.getString(3));
+					pf.setProductPrice(rset.getInt(4));
 					if(rset.getInt(4) > 0){
 						quantity = "재고있음";
 						pf.setProductQuantityState(quantity);
@@ -316,7 +322,6 @@ public class MemberDao {
 				close(rset);
 				close(pstmt);
 			}
-			System.out.println(list);
 			return list;
 		}
 		
@@ -339,7 +344,6 @@ public class MemberDao {
 					
 					mb.setBoardTitle(rset.getString(1));
 					mb.setSubmitDate(rset.getDate(2));
-					System.out.println(rset.getDate(2));
 					if(rset.getString(3) != null){
 						status = "답변 완료";
 						mb.setReplyStatus(status);
@@ -614,6 +618,32 @@ public class MemberDao {
 				}
 				
 				return result;
+	}
+	public int getListCount(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result =0;
+		String query = prop.getProperty("listCount");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				result=rset.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return result;
 	}
 
 }

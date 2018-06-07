@@ -97,7 +97,12 @@ Member member = (Member)request.getAttribute("member");
                         }                      
                         
                         $('#finalPay').text( parseInt($('#totalPrice').text()) + parseInt($('#dvPrice').text()) +"원");
-                        
+                        //쿠폰금액 0원으로 바꾸기
+                        $('#couponInput').text( 0 +"원" );
+                        $('#finalPay').text( parseInt($('#finalPay').text()) + "원" );
+                        //사용하기 버튼 활성화, 취소하기 버튼 안보이게
+                        $('.coupon-btn').css('display','inline-block');
+                        $('.coupon-cancle').css('display','none');
                     }
                 }).open();
             }
@@ -662,7 +667,13 @@ Member member = (Member)request.getAttribute("member");
                     <script>
                     	//쿠폰 구현하기
                     	$('#selectCoupon').on('click',function(){
-                    		$('.coupon').slideToggle();
+                    		
+                    		if( $('#sample6_address').val() == "" || $('#sample6_address2').val() == "" || $('#sample6_postcode').val() =="" ){
+                    			alert('주소를 먼저 모두 입력해주세요');
+                    		}else{
+                    			$('.coupon').slideToggle();
+                    		}                   		
+                    		
                     	});
                     	//쿠폰 선택 버튼
                     	$('.coupon-btn').on('click',function(){
@@ -694,6 +705,7 @@ Member member = (Member)request.getAttribute("member");
                     		var discount = parseInt($(this).parents().siblings('.cDiscount').text());
                     		$('#couponInput').text( 0 +"원" );
                     		$('#finalPay').text( (parseInt($('#finalPay').text()) + parseInt(discount)) +"원" );
+                    		
                     		//취소버튼 사라지게하기
                     		$(this).css('display','none');
                     		$(this).parents().siblings('.use').children('.coupon-btn').css('display','inline-block');

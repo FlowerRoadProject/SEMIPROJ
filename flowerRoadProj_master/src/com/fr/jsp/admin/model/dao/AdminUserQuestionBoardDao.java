@@ -96,5 +96,78 @@ public class AdminUserQuestionBoardDao {
 		
 		return admin_userQuestionBoardAllList;
 	}
+	// 1:1문의 삭제
+	public int admin_deleteUserQuestionBoard(Connection con, int userQuestionNum) {
+		PreparedStatement pstmt = null;
+		int rset = 0;
+		
+		try { 
+			String query = prop.getProperty("admin_deleteUserQuestionBoard");
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1,userQuestionNum);
+			rset = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return rset;
+	}
+	// 1:1문의 수정
+	public int admin_updateUserQuestionBoard(Connection con, UserQuestionBoard userQuestionBoard) {
+		PreparedStatement pstmt = null;
+		int rset = 0;
+		
+		try { 
+			String query = prop.getProperty("admin_updateUserQuestionBoard");
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1,userQuestionBoard.getMemberNum());
+			pstmt.setString(2,userQuestionBoard.getReplyContent());
+			pstmt.setInt(3,userQuestionBoard.getbNum());
+			rset = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return rset;
+	}
+	// 1:1문의 한 개 조회
+	public UserQuestionBoard admin_selectUserQuestionBoard(Connection con, int getbNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		UserQuestionBoard admin_selectUserQuestionBoard = null;
+		
+		try { 
+			String query = prop.getProperty("admin_selectUserQuestionBoard");
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, getbNum);
+			rset = pstmt.executeQuery();
+			admin_selectUserQuestionBoard = new UserQuestionBoard();
+			while(rset.next()){
+				admin_selectUserQuestionBoard.setMemberNum(rset.getString("MEMBER_NUM"));
+				admin_selectUserQuestionBoard.setbNum(Integer.parseInt(rset.getString("BNUM")));
+				admin_selectUserQuestionBoard.setbTitle(rset.getString("BTITLE"));
+				admin_selectUserQuestionBoard.setbContent(rset.getString("BCONTENT"));
+				admin_selectUserQuestionBoard.setViewNum(Integer.parseInt(rset.getString("VIEW_NUM")));
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		        Date u_date = format.parse(rset.getString("SUBMIT_DATE"));
+		        java.sql.Date s_date = new java.sql.Date(u_date.getTime());
+		        admin_selectUserQuestionBoard.setSubmitDate(s_date);
+		        admin_selectUserQuestionBoard.setManagerNum(rset.getString("ADMIN_NUM"));
+				admin_selectUserQuestionBoard.setReplyContent(rset.getString("BOARD_REPLY_CONTENT"));
+				Date u_date1 = format.parse(rset.getString("REPLY_DATE"));
+		        java.sql.Date s_date1 = new java.sql.Date(u_date1.getTime());
+		        admin_selectUserQuestionBoard.setSubmitDate(s_date1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return admin_selectUserQuestionBoard;
+	}
 
 }
