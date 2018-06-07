@@ -205,10 +205,10 @@ public class AdminStatisticsDao {
 			pstmt.setInt(1, i);
 			rset = pstmt.executeQuery();
 			while(rset.next()){
-				merchandiseProduct.setProductNum(rset.getString("MEMBER_NUM"));
-				merchandiseProduct.setProductName(rset.getString("MEMBER_NAME"));
+				merchandiseProduct.setProductNum(rset.getString("PRODUCT_NUM"));
+				merchandiseProduct.setProductName(rset.getString("PRODUCT_NAME"));
 				merchandiseProduct.setProductImage(rset.getString("IMAGE_PATH"));
-				merchandiseProduct.setProductMerchandiseCount(Integer.parseInt(rset.getString("GRADE_NAME")));
+				merchandiseProduct.setProductMerchandiseCount(Integer.parseInt(rset.getString("PO_COUNT")));
 				merchandiseProduct.setRateByTotalMerchandiseCount(Double.parseDouble(rset.getString("RATE_BY_TOTAL")));
 			}
 		} catch (Exception e) {
@@ -232,11 +232,11 @@ public class AdminStatisticsDao {
 			pstmt.setInt(1, i);
 			rset = pstmt.executeQuery();
 			while(rset.next()){
-				starProduct.setProductNum(rset.getString("MEMBER_NUM"));
-				starProduct.setProductName(rset.getString("MEMBER_NAME"));
+				starProduct.setProductNum(rset.getString("PRODUCT_NUM"));
+				starProduct.setProductName(rset.getString("PRODUCT_NAME"));
 				starProduct.setProductImage(rset.getString("IMAGE_PATH"));
-				starProduct.setProductStarAverage(Integer.parseInt(rset.getString("GRADE_NAME")));
-				starProduct.setProductReviewCount(Integer.parseInt(rset.getString("REVIEW_TIME")));
+				starProduct.setProductStarAverage(Double.parseDouble(rset.getString("P_STAR_AVG")));
+				starProduct.setProductReviewCount(Integer.parseInt(rset.getString("P_REVIEW")));
 				starProduct.setRateBytotalReviewCount(Double.parseDouble(rset.getString("RATE_BY_TOTAL")));
 			}
 		} catch (Exception e) {
