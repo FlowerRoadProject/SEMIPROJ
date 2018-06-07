@@ -37,7 +37,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>게시글 관리 <small>(Posting)</small></h3>
+                <h3>공지사항 관리 <small>(Board)</small></h3>
               </div>
 
               <div class="title_right">
@@ -110,7 +110,7 @@
                   </div>
                   <div class="x_content">
 					
-                   <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                   <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap noticeTable" cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th>글번호</th>
@@ -124,7 +124,7 @@
                       <tbody>
                       <% for(NoticeBoard nb : admin_noticeBoardList){ %>
                         <tr>
-                          <td><%=nb.getbNum() %></td>
+                          <td class="noticeNumTd"><%=nb.getbNum() %></td>
                           <td><%=nb.getMemberNum() %></td>
                           <td><%=nb.getSubmitDate() %></td>
                           <td><%=nb.getViewNum() %></td>
@@ -152,9 +152,13 @@
                     <div class="x_content">
                         <div id="alerts"></div>
                          <form id="demo-form" data-parsley-validate>
-                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
 	                          <label for="fullname">글번호</label>
 	                          <input type="text" id="" class="form-control noticeNum" name="" required disabled/>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+	                          <label for="fullname">작성자</label>
+	                          <input type="text" id="" class="form-control noticeMemberNum" name="" required disabled/>
                           </div>
                           
                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -257,7 +261,9 @@
         <!-- /footer content -->
       </div>
     </div>
-
+	<script>
+		var mainPath = '<%=request.getContextPath() %>';
+	</script>
 	<!-- admin_JS -->
     <%@ include file="common/admin_JS.jsp" %>
   </body>

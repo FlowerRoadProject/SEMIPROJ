@@ -156,6 +156,7 @@ public class AdminDao {
 		        java.sql.Date enrollDate = new java.sql.Date(u_date1.getTime());
 		        member.setEnrollDate(enrollDate);
 		        member.setMemberEmail(rset.getString("MEMBER_EMAIL"));
+		        member.setTotalPrice(Integer.parseInt(rset.getString("TOTAL_PRICE")));
 		        
 		        admin_memberList.add(member);
 			}

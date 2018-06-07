@@ -48,7 +48,7 @@
 							<li><a href="<%=request.getContextPath() %>/regiAdmin.admin">관리자등록</a></li>
 						</ul>
 					</li>
-					<li><a><i class="fa fa-tree"></i> 주문제작관리 <span class="label label-success pull-right">Coming Soon</span></a>
+					<li><a><i class="fa fa-tree"></i> 제작관리 <span class="label label-success pull-right">Coming Soon</span></a>
 						<ul class="nav child_menu">
 							<li><a href="<%=request.getContextPath() %>/DIY.admin">주문제작조회</a></li>
 							<li><a href="<%=request.getContextPath() %>/DIY.admin">주문제작처리</a></li>
@@ -82,18 +82,18 @@
 				<ul class="nav side-menu">
 					<li><a><i class="fa fa-bar-chart"></i> 상품통계 <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href="<%=request.getContextPath() %>/productStatistics.admin">최고매출상품TOP5</a></li>
-							<li><a href="<%=request.getContextPath() %>/productStatistics.admin">최다판매상품TOP5</a></li>
-							<li><a href="<%=request.getContextPath() %>/productStatistics.admin">최고별점상품TOP5</a></li>
-							<li><a href="<%=request.getContextPath() %>/productStatistics.admin">최다조회상품TOP5</a></li>
+							<li><a href="<%=request.getContextPath() %>/productStatisticsSell.admin">최고매출상품TOP5</a></li>
+							<li><a href="<%=request.getContextPath() %>/productStatisticsMerchandise.admin">최다판매상품TOP5</a></li>
+							<li><a href="<%=request.getContextPath() %>/productStatisticsStar.admin">최고별점상품TOP5</a></li>
+							<li><a href="<%=request.getContextPath() %>/productStatisticsClick.admin">최다조회상품TOP5</a></li>
 						</ul>
 					</li>
 					<li><a><i class="fa fa-pie-chart"></i> 회원통계 <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href="<%=request.getContextPath() %>/memberStatistics.admin">최고구입회원TOP5</a></li>
-							<li><a href="<%=request.getContextPath() %>/memberStatistics.admin">최다구매회원TOP5</a></li>
-							<li><a href="<%=request.getContextPath() %>/memberStatistics.admin">최다방문회원TOP5</a></li>
-							<li><a href="<%=request.getContextPath() %>/memberStatistics.admin">최다댓글회원TOP5</a></li>
+							<li><a href="<%=request.getContextPath() %>/memberStatisticsPurchase.admin">최고구입회원TOP5</a></li>
+							<li><a href="<%=request.getContextPath() %>/memberStatisticsBuy.admin">최다구매회원TOP5</a></li>
+							<li><a href="<%=request.getContextPath() %>/memberStatisticsVisit.admin">최다방문회원TOP5</a></li>
+							<li><a href="<%=request.getContextPath() %>/memberStatisticsReview.admin">최다댓글회원TOP5</a></li>
 						</ul>
 					</li>
 					<li><a><i class="fa fa-line-chart"></i> 기타통계 <span class="fa fa-chevron-down"></span></a>
@@ -145,7 +145,7 @@
 					<ul class="dropdown-menu dropdown-usermenu pull-right">
 						<li><a href="<%=request.getContextPath() %>/admin.admin">관리자 정보</a></li>
 						<li><a href="<%=request.getContextPath() %>/thema.admin">테마 변경</a></li>
-						<li><a href="login.me">회원 페이지</a></li>
+						<li><a href="main.jsp">회원 페이지</a></li>
 						<li><a href="<%=request.getContextPath() %>/main.jsp"><i class="fa fa-sign-out pull-right"></i>로그아웃</a></li>
 					</ul>
 				</li>
@@ -168,7 +168,7 @@
 					</a>
 				</li>
 				<li role="presentation" class="dropdown">
-					<a href="<%=request.getContextPath() %>userQuestionBoard.admin" class="dropdown-toggle info-number">
+					<a href="<%=request.getContextPath() %>/userQuestionBoard.admin" class="dropdown-toggle info-number">
 						<i class="fa fa-comment-o" title="1:1문의" data-toggle="tooltip" data-placement="bottom"></i>
 						<span class="badge bg-blue"><%=admin_userQuestionCount %></span>
 					</a>

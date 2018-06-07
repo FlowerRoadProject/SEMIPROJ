@@ -93,6 +93,56 @@ public class AdminNoticeBoardDao {
 			pstmt.setString(1,noticeBoard.getMemberNum());
 			pstmt.setString(2,noticeBoard.getbTitle());
 			pstmt.setString(3,noticeBoard.getbContent());
+			pstmt.setInt(4,noticeBoard.getbNum());
+			rset = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return rset;
+	}
+	// 공지사항 한 개 조회
+	public NoticeBoard admin_selectNoticeBoard(Connection con, int getbNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		NoticeBoard admin_selectNoticeBoard = null;
+		
+		try { 
+			String query = prop.getProperty("admin_selectNoticeBoard");
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, getbNum);
+			rset = pstmt.executeQuery();
+			admin_selectNoticeBoard = new NoticeBoard();
+			while(rset.next()){
+				admin_selectNoticeBoard.setMemberNum(rset.getString("MEMBER_NUM"));
+				admin_selectNoticeBoard.setbNum(Integer.parseInt(rset.getString("BNUM")));
+				admin_selectNoticeBoard.setbTitle(rset.getString("BTITLE"));
+				admin_selectNoticeBoard.setbContent(rset.getString("BCONTENT"));
+				admin_selectNoticeBoard.setViewNum(Integer.parseInt(rset.getString("VIEW_NUM")));
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		        Date u_date = format.parse(rset.getString("SUBMIT_DATE"));
+		        java.sql.Date s_date = new java.sql.Date(u_date.getTime());
+		        admin_selectNoticeBoard.setSubmitDate(s_date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return admin_selectNoticeBoard;
+	}
+	// 공지사항 삭제
+	public int admin_deleteNoticeBoard(Connection con, int noticeNum) {
+		PreparedStatement pstmt = null;
+		int rset = 0;
+		
+		try { 
+			String query = prop.getProperty("admin_deleteNoticeBoard");
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1,noticeNum);
 			rset = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

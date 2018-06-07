@@ -136,6 +136,7 @@
                           <th>이메일</th>
                           <th>주소</th>
                           <th>이미지</th>
+                          <th>총구매액</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -153,6 +154,7 @@
                           <td><%=am.getMemberEmail() %></td>
                           <td><%=am.getMemberAddress() %></td>
                           <td><%=am.getImagePath() %></td>
+                          <td><%=am.getTotalPrice() %></td>
                         </tr>
                         <%} %>
                       </tbody>
@@ -202,7 +204,7 @@
                           </div>
                           <div class="col-md-6 col-sm-6 col-xs-6" style="">
                               <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">총 구매액</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12"  type="number" min='0' style="margin-bottom: 15px" disabled>
+                              <input class="col-md-12 col-sm-12 col-xs-12 MTotalPrice"  type="number" min='0' style="margin-bottom: 15px" disabled>
                           </div>
                       </div>
                       <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">

@@ -111,10 +111,10 @@ public class MemberService {
 		return result;
 	}
 	
-	public ArrayList<ProductFavorite> favorite(String num) {
+	public ArrayList<ProductFavorite> favorite(String num, int currentPage, int limit) {
 		Connection con = getConnection();
 		
-		ArrayList<ProductFavorite> list = mDao.favorite(con,num);
+		ArrayList<ProductFavorite> list = mDao.favorite(con,num, currentPage,limit);
 		
 		close(con);
 		
@@ -257,5 +257,12 @@ public class MemberService {
 		
 		return Num;
 	}
+	public int getListCount(String num) {
+			Connection con = getConnection();
+			int result= mDao.getListCount(con, num);
+			
+			close(con);
+			return result;
+		}
 
 }
