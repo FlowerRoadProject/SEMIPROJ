@@ -69,118 +69,7 @@ $('#signUp').click(function(){
 	location.href="<%=request.getContextPath()%>/views/mainPage/signUp.jsp";
 });
 
-//카카오 스크립트
-  //<![CDATA[
-    // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('ffe240f1f5d43606e139b9ca607a0597');
-    // 카카오 로그인 버튼을 생성합니다.
-    Kakao.Auth.createLoginButton({
-      container: '#kakao-login-btn',
-      success: function(authObj) {
-        var auth = JSON.stringify(authObj);
-        console.log(auth);
-        Kakao.API.request({
-            url: '/v1/user/me',
-            success: function(res) {
-            	console.log(JSON.stringify(res));
-              console.log(JSON.stringify(res.kaccount_email));
-              console.log(JSON.stringify(res.id));
-              console.log(JSON.stringify(res.properties.profile_image));
-              console.log(JSON.stringify(res.properties.nickname));
-              location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=kakao"+JSON.stringify(res.id);
-            },
-            fail: function(error) {
-              alert(JSON.stringify(error));
-            }
-          });
-      },
-      fail: function(err) {
-         alert(JSON.stringify(err));
-      }
-    });
-  //]]>
-//카카오 스크립트
-  
-  //네이버 스크립트
-  var naverLogin = new naver.LoginWithNaverId(
-			{
-				clientId: "ctuF5pktgpuwbay7zj12",
-				callbackUrl: "http://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "/flowerRoadProj/navercall.jsp",
-				isPopup: false,
-				loginButton: {color: "green", type: 3, height: 60}
-			}
-		);
-		/* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
-		naverLogin.init();
-		
-		/* naverLogin.getLoginStatus(function (status) {
-			if (status) {
-				var email = naverLogin.user.getEmail();
-				var name = naverLogin.user.getNickName();
-				var profileImage = naverLogin.user.getProfileImage();
-				var birthday = naverLogin.user.getBirthday();			var uniqId = naverLogin.user.getId();
-				var age = naverLogin.user.getAge();
-				var userid = naverLogin.user.getId();
-				console.log(email);
-				console.log(name);
-				console.log(profileImage);
-				console.log(birthday);
-				console.log(age);
-				console.log(userid);//id
-			} else {
-				console.log("AccessToken이 올바르지 않습니다.");
-			}
-		}); */
-		/* (4-1) 임의의 링크를 설정해줄 필요가 있는 경우 */
-		/* $("#gnbLogin").attr("href", naverLogin.generateAuthorizeUrl()); */
 
-		/* (5) 현재 로그인 상태를 확인 */
-		/* window.addEventListener('load', function () {
-			naverLogin.getLoginStatus(function (status) {
-				if (status) {
-					 (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. 
-					setLoginStatus();
-				}
-			});
-		}); */
-
-		/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
-		/* function setLoginStatus() {
-			var profileImage = naverLogin.user.getProfileImage();
-			var nickName = naverLogin.user.getNickName();
-			$("#gnbLogin").html("Logout");
-			$("#gnbLogin").attr("href", "#");
-			(7) 로그아웃 버튼을 설정하고 동작을 정의합니다. 
-			$("#gnbLogin").click(function () {
-				naverLogin.logout();
-				location.reload();
-			});
-		} */
-	//구글 스크립트
-var googleClicked=false;//Global Variable
-function GoogleLogin()
-{
-	googleClicked=true;
-}
-function onSignIn(googleUser) {
-    if (googleClicked) {
-    	// Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-    	
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        /* console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl()); */
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        /* var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token); */
-        location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=google"+ profile.getId();
-		}
-		;
-	}
 //페이스북 스크립트
 // This is called with the results from from FB.getLoginStatus().
 var facebookClicked=false;
@@ -310,10 +199,9 @@ function statusChangeCallback(response) {
 									class="btn btn-lg login"
 									onclick='login()'>회원 로그인</button>
 							</div>
-							<div
-								class="form-group">
-								<a id="kakao-login-btn" class=""></a>
-							</div>
+								<div class="form-group">
+									<a id="kakao-login-btn" class=""></a>
+								</div>
 							<div
 								class="form-group">
 								<div
@@ -357,6 +245,119 @@ function statusChangeCallback(response) {
 			</div>
 		</div>
 	</div>
+<script>
+//카카오 스크립트
+//<![CDATA[
+  // 사용할 앱의 JavaScript 키를 설정해 주세요.
+  Kakao.init('ffe240f1f5d43606e139b9ca607a0597');
+  // 카카오 로그인 버튼을 생성합니다.
+  Kakao.Auth.createLoginButton({
+    container: '#kakao-login-btn',
+    success: function(authObj) {
+      var auth = JSON.stringify(authObj);
+      console.log(auth);
+      Kakao.API.request({
+          url: '/v1/user/me',
+          success: function(res) {
+          	console.log(JSON.stringify(res));
+            console.log(JSON.stringify(res.kaccount_email));
+            console.log(JSON.stringify(res.id));
+            console.log(JSON.stringify(res.properties.profile_image));
+            console.log(JSON.stringify(res.properties.nickname));
+            location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=kakao"+JSON.stringify(res.id);
+          },
+          fail: function(error) {
+            alert(JSON.stringify(error));
+          }
+        });
+    },
+    fail: function(err) {
+       alert(JSON.stringify(err));
+    }
+  });
+//]]>
+//카카오 스크립트
 
+//네이버 스크립트
+var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "ctuF5pktgpuwbay7zj12",
+				callbackUrl: "http://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "/flowerRoadProj/navercall.jsp",
+				isPopup: false,
+				loginButton: {color: "green", type: 3, height: 60}
+			}
+		);
+		/* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
+		naverLogin.init();
+		
+		/* naverLogin.getLoginStatus(function (status) {
+			if (status) {
+				var email = naverLogin.user.getEmail();
+				var name = naverLogin.user.getNickName();
+				var profileImage = naverLogin.user.getProfileImage();
+				var birthday = naverLogin.user.getBirthday();			var uniqId = naverLogin.user.getId();
+				var age = naverLogin.user.getAge();
+				var userid = naverLogin.user.getId();
+				console.log(email);
+				console.log(name);
+				console.log(profileImage);
+				console.log(birthday);
+				console.log(age);
+				console.log(userid);//id
+			} else {
+				console.log("AccessToken이 올바르지 않습니다.");
+			}
+		}); */
+		/* (4-1) 임의의 링크를 설정해줄 필요가 있는 경우 */
+		/* $("#gnbLogin").attr("href", naverLogin.generateAuthorizeUrl()); */
+
+		/* (5) 현재 로그인 상태를 확인 */
+		/* window.addEventListener('load', function () {
+			naverLogin.getLoginStatus(function (status) {
+				if (status) {
+					 (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. 
+					setLoginStatus();
+				}
+			});
+		}); */
+
+		/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+		/* function setLoginStatus() {
+			var profileImage = naverLogin.user.getProfileImage();
+			var nickName = naverLogin.user.getNickName();
+			$("#gnbLogin").html("Logout");
+			$("#gnbLogin").attr("href", "#");
+			(7) 로그아웃 버튼을 설정하고 동작을 정의합니다. 
+			$("#gnbLogin").click(function () {
+				naverLogin.logout();
+				location.reload();
+			});
+		} */
+	//구글 스크립트
+var googleClicked=false;//Global Variable
+function GoogleLogin()
+{
+	googleClicked=true;
+}
+function onSignIn(googleUser) {
+  if (googleClicked) {
+  	// Useful data for your client-side scripts:
+      var profile = googleUser.getBasicProfile();
+  	
+      console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+      /* console.log('Full Name: ' + profile.getName());
+      console.log('Given Name: ' + profile.getGivenName());
+      console.log('Family Name: ' + profile.getFamilyName());
+      console.log("Image URL: " + profile.getImageUrl()); */
+      console.log("Email: " + profile.getEmail());
+
+      // The ID token you need to pass to your backend:
+      /* var id_token = googleUser.getAuthResponse().id_token;
+      console.log("ID Token: " + id_token); */
+      location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=google"+ profile.getId();
+		}
+		;
+	}
+</script>
 </body>
 </html>

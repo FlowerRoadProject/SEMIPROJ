@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<% %>
 <html>
 <head>
 <script
@@ -55,6 +56,19 @@ img {
      	width:100% !important;
      	background:rgb(255,255,255) !important;
      }
+     
+      .thumbnail_soldOut{
+        	opacity: 0.5;
+   			filter: alpha(opacity=50);
+        
+        }
+        
+        .soldOut_text{
+         position: absolute;
+   		 top: 50%;
+    	 left: 50%;
+    	 transform: translate(-50%, -50%);
+        }
         
 </style>
 <script>
@@ -168,13 +182,26 @@ img {
 					var $item = $('[name=clone-item]').clone(true,true);
 					$item.attr("name","clone-item_"+i);
 					$item.find('[name=detailLink]').attr("href","<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum);
+					if($parsedList[i].productQuantity<=0){
+					
 					$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
+					$item.find('[name=imageSource]').addClass("thumbnail_soldOut");
+					$item.find('[name=detailLink]').append("<span class='soldOut_text'> <h4><b>곧 준비할게요 :)</b></h4></span>");
+					$item.find('[name=productDetail]').remove();
+					$item.find('[name=addBasket]').off();
+					$item.find('[name=addBasket]').removeClass("col-lg-4");
+					$item.find('[name=addBasket]').addClass("col-xs-12");
+					$item.find('[name=addBasket]').text("품절");
+					}else{
+						$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
+						$item.find('[name=productDetail]').attr("onclick","location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum+"'");
+						$item.find('[name=addBasket]').attr("onclick","addToBasket("+"'"+$parsedList[i].productNum+"'"+")");
+					}
 					$item.find('[name=productName]').text($parsedList[i].productName);
 					$item.find('[name=productPrice]').text($parsedList[i].productPrice);
 					$item.find('[name=reviewNum]').text($parsedList[i].reviewCount);
 					
-					$item.find('[name=productDetail]').attr("onclick","location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum+"'");
-					$item.find('[name=addBasket]').attr("onclick","addToBasket("+"'"+$parsedList[i].productNum+"'"+")");
+					
 					
 					
 					$item_container.append($item);
@@ -192,9 +219,12 @@ img {
 	
 	function addToBasket(productNum){
 		
-		if(!checkLogin())
-			return;
 		
+		if(!checkLogin()){
+			
+			 $('#myModal').modal({"show":true}); 
+			return;
+		}
 			$.ajax({
 				url:"addBasket.do",
 				data:{pno:productNum},
@@ -215,8 +245,7 @@ img {
 	function checkLogin(){
 	
 	<%if(request.getSession(false).getAttribute("memberNum")==null){%>
-		alert("로그인 해주세요");
-		 return false;
+		return false;
 	<%}else{%>
 		return true;
 	<%}%>
@@ -226,6 +255,7 @@ img {
 </head>
 <body>
 	<%@include file="/views/common/header.jsp"%>
+	<%@include file="/views/common/loginModal.jsp" %>
 	<br />
 	<br />
 	<br />
@@ -247,7 +277,7 @@ img {
 				<a href="<%=request.getContextPath()%>/productDetail.do?productNum=+P056">
 					<img
 						src="<%=request.getContextPath()%>/resources/images/mainEventCarousel/geoberaEvent.jpg"
-						value="0" class="image_Carousel img-fluid">
+						value="0" class=" img-fluid">
 				</a>
 				</div>
 			</div>
@@ -265,25 +295,6 @@ img {
 	</div>
 	<br>
 
-	<%--   <div class="container-fluid">
-    <div class="col-sm-1 col-md-1 col-lg-1"></div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <img src="<%=request.getContextPath()%>/resources/images/main/1.PNG" class="img-responsive anniversary_Img">
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <img src="<%=request.getContextPath()%>/resources/images/main/2.PNG" class="img-responsive anniversary_Img">
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <img src="<%=request.getContextPath()%>/resources/images/main/3.PNG" class="img-responsive anniversary_Img">
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <img src="<%=request.getContextPath()%>/resources/images/main/4.PNG" class="img-responsive anniversary_Img">
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <img src="<%=request.getContextPath()%>/resources/images/main/5.PNG" class="img-responsive anniversary_Img">
-    </div>
-    <div class="col-sm-1 col-md-1 col-lg-1"></div>
-  </div> --%>
 	<br>
 	<br>
 	<%@ include file="/views/common/eventMenu.jsp"%>
@@ -302,8 +313,8 @@ img {
 				<div class="">
 					<a name="detailLink" href=""><img name="imageSource" src="" alt="..."></a> 
 
-					<span class="label label-primary tag">Primary</span> 
-					<span class="label label-success tag">success</span>
+					<!-- <span class="label label-primary tag">Primary</span> 
+					<span class="label label-success tag">success</span> -->
 				</div>
 				<div class="col-lg-12   ">
 					<h4 class="col-lg-12 ">
