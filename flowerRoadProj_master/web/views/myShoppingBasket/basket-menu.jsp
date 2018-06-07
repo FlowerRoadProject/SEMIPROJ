@@ -7,6 +7,9 @@
 	
 	String member_num = (String)session.getAttribute("member_num");
 	
+	String excessMsg = (String)request.getAttribute("excessRemoveMsg");
+	String excessName = (String)request.getAttribute("excessPName");
+	
 	int length = list.size();
 %>
 
@@ -96,8 +99,9 @@
         <%@include file="/views/common/header.jsp" %>
    		
        <br><br><br><br><br><br><br><br /><br />
-		
-		
+				
+		<input type="hidden" value="<%=excessMsg%>" id="excessMsg"/>
+		<input type="hidden" value="<%=excessName%>" id="excessName"/>
 		
 		
         <div class="container">
@@ -118,16 +122,25 @@
            
            <script>
            	$(function(){
-           		if($('.product-each').length == 0){
-           			$('.empty').css('display','inline-block');
+           		//장바구니에 아무것도 없을때 아무것도 없다는 내용의 메세지를 띄움
+           		if($('.product-each').length == 0){ 
+           			$('.empty').css('display','inline-block'); 
            		}
+           		//재고보다 많은 양의 상품을 들여왔을 경우 제거메세지를 띄운다
+           		if($('#excessName').val() != "none"){
+           			alert($('#excessMsg').val()+"\n"+$('#excessName').val());
+           			
+           		}
+           		console.log($('#excessName').val()); 
+           		
            	});
-           </script>
+           </script> 
             
                         
             <%for(int i = 0; i< list.size(); i++){ %>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 product-each"> <!--제품 한개-->
             	<input type="hidden" name="productNum" class="productNum" value="<%=list.get(i).getProduct_num()%>"/>            	
+               	<input type="hidden" name="pCategory" class="pCategory" value="<%=list.get(i).getCategory()%>"/>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 top-margin bottom-margin"> <!--사진 칸-->
                     <img src="<%=request.getContextPath() %>/resources/images/product/<%=list.get(i).getImage() %>" class="image img-responsive product-img" alt="">
                		<input type="hidden" class="product-image" value="<%=list.get(i).getImage() %>"/>
@@ -162,6 +175,7 @@
         <div style="display:none">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 optionPlus" name="addProduct"> <!--제품 한개-->
              <input type="hidden" name="productNum" class="productNum" value="" />
+             
              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 top-margin bottom-margin"> <!--사진 칸-->
                     <img src="" class="image img-responsive product-img" alt="">
                		<input type="hidden" class="product-image" value=""/>
@@ -396,14 +410,46 @@
               </script>
                     
              
-            	<form action="<%=request.getContextPath() %>/basketPay.bk" method="post">            		
-            	<button class="col-md-12 col-xs-12 btn btn-primary btn-lg buy-btn" id="pay" type="submit">결제하기</button>
+            	<form action="" method="post" id="toPayPage">            		
+            	<button class="col-md-12 col-xs-12 btn btn-primary btn-lg buy-btn" id="pay">결제하기</button>
        			</form>     			     
          </div>
     </div>
 </div>
 	
     <script>
+    $('#pay').on('click',function(){
+    	var containMain = false;
+    	
+    	for(var i = 0; i< $('.product-each').length; i++){
+    		if(  $('.pCategory').eq(i).val()=='FD' || $('.pCategory').eq(i).val()=='FB' || $('.pCategory').eq(i).val()=='HH'){
+    			console.log("메인상품 포함!");
+    			containMain = true;
+    		}
+    	}
+    	if(parseInt($('#finalPrice').text()) == 0){
+    		alert('상품을 장바구니에 담은 후 결제해 주세요');
+    		location.href="<%=request.getContextPath()%>/select.bk";
+    	}else if(containMain == false){
+    		alert('꽃다발, 꽃바구니, 화환등의 메인상품 없이 구매하는 것은 불가능합니다');
+    		location.href="<%=request.getContextPath()%>/select.bk";
+    	}else{  
+    		alert('주문페이지로 이동합니다');
+    		$('#toPayPage').attr('action','<%=request.getContextPath() %>/basketPay.bk').submit();
+    	}	
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     $('.addBasket').on('click',function(){  
     	$('.empty').css("display","none");
     	var duplication = true;

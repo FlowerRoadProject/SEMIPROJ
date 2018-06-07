@@ -46,14 +46,22 @@ public class OrderService {
 			close(con);
 		}
 		
-		public ArrayList<MyPage_Order> orderChk(String id) {
+		public ArrayList<MyPage_Order> orderChk(String num, int currentPage, int limit) {
 			Connection con = getConnection();
 			
-			ArrayList<MyPage_Order> list = oDao.orderChk(con, id);
+			ArrayList<MyPage_Order> list = oDao.orderChk(con, num, currentPage,limit);
 			
 			close(con);
 			
 			return list;
+		}
+
+		public int getListCount(String num) {
+			Connection con = getConnection();
+			int result= oDao.getListCount(con, num);
+			
+			close(con);
+			return result;
 		}
 		
 	
