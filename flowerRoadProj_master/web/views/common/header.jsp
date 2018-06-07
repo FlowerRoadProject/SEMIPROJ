@@ -149,7 +149,11 @@
         
         </div>
         <!-- /.container-fluid -->
+<<<<<<< TYP_branch
     
     </nav>
 
+=======
+   
+>>>>>>> master
     
