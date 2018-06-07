@@ -118,6 +118,14 @@ body *{
 	font-family:'Nanum Gothic', sans-serif;
 }
 
+.test{
+	border:1px solid;
+}
+
+textarea{
+	resize:none;
+}
+
 #mNavbar li.active a { color: grey !important; background-color: #FFB3A7 !important; } 
 
 </style>
@@ -145,6 +153,9 @@ body *{
 		var $temp = $("<option value='<%=optionProduct.get(i).getProductNum()%>,<%=optionProduct.get(i).getProductName()%>,<%=optionProduct.get(i).getProductPrice()%>,<%=optionProduct.get(i).getProductTypeName()%>,<%=optionProduct.get(i).getImage()%>'><%=optionProduct.get(i).getProductName()%></option>");
 		$('#option_product').append($temp);
 		 
+		
+		if(parseInt(<%=p.getProductQuantity()%>)<=0)
+			$('#option_product').attr("disabled",true);
 		
 		<%}%>
 		//캐러셀 적용
@@ -396,14 +407,24 @@ body *{
 	function submit_review() {
 		
 		
-		if(!checkLogin())
+		if(!checkLogin()){
+			$('#myModal').modal({"show":true});
 			return;
+		}
 		
 		
 		if($('[name=title]').val().length<=0){
+			$('[name=title]').closest('.form-group').addClass("has-error");
 			alert("제목을 입력해 주세요.");
-		}else if($('[name=content]').val().length<=0){
+		}else{
+			$('[name=title]').closest().addClass("has-error");
+		} 
+			
+		if($('[name=content]').val().length<=0){
 			alert("내용을 입력해 주세요.");
+			$('[name=content]').closest('.form-group').addClass("has-error");
+		}else{
+			$('[name=content]').closest('.form-group').removeClass("has-error");
 		}
 		
 		$.ajax({
@@ -585,8 +606,11 @@ body *{
 	function addToBasket(productNum){
 			
 		if(!checkLogin())
+		{
+			$('#myModal').modal({"show":true});
+			
 			return;
-		
+		}
 			$.ajax({
 				url:"addBasket.do",
 				data:{pno:productNum},
@@ -609,8 +633,10 @@ body *{
 		function purchase(){
 			
 			
-			if(!checkLogin())
+			if(!checkLogin()){
+				$('#myModal').modal({"show":true});
 				return;
+			}
 			
 			var $optionList =  $('#optionDiv div[name*=selected_option_row_]');
 			
@@ -639,7 +665,6 @@ body *{
 		function checkLogin(){
 			
 			<%if(request.getSession(false).getAttribute("memberNum")==null){%>
-				alert("로그인 해주세요");
 				 return false;
 			<%}else{%>
 				return true;
@@ -650,10 +675,12 @@ body *{
 </script>
 </head>
 
-<body data-spy="scroll" data-target="#mNavbar" data-offset="400">
-	<br id="page_start"/>
+<body data-spy="scroll" data-target="#mNavbar" data-offset="5">
+	<span id="page_start"> test</span>
 	<%@include file="../common/header.jsp"%>
+	<%@include file="../common/loginModal.jsp" %>
 	
+	<br />
 	<br />
 	<br />
 	<br />
@@ -722,30 +749,32 @@ body *{
 					<div class="form-group col-xs-12">
 
 						
-						
-						<%if(!p.getProductCategoryName().equals("디저트")&&
-        									!p.getProductCategoryName().equals("메시지태그")&&
-        									!p.getProductCategoryName().equals("카드")) {%>
-        				<label for="to_basket" class="control-label sr-only">장바구니</label>
-						<button class="btn btn-lg btn-default col-xs-offset-1 col-xs-4"
-							id="to_basket" onclick="addToBasket('<%=p.getProductNum()%>')">장바구니</button>
-						<label for="to_purchase" class="control-label sr-only">구매하기</label>
-						
-						
-						<form id="purchase" action="<%=request.getContextPath()%>/payment.bk" method="post">
-							<input type="hidden" value="" name="sub_product_num"/>
-							<input type="hidden" value="" name="sub_product_price"/>
-							<input type="hidden" value="" name="sub_product_name"/>
-							<input type="hidden" value="" name="sub_product_image"/>
-							<button class="btn btn-primary btn-lg col-xs-offset-1 col-xs-6"
-							 type="button" id="to_purchase" onclick="purchase();">구매하기</button>
-						</form>
+						<%if(p.getProductQuantity()>0){ %>
+							<%if(!p.getProductCategoryName().equals("디저트")&&
+	        									!p.getProductCategoryName().equals("메시지태그")&&
+	        									!p.getProductCategoryName().equals("카드")) {%>
+	        				<label for="to_basket" class="control-label sr-only">장바구니</label>
+							<button class="btn btn-lg btn-default col-xs-offset-1 col-xs-4"
+								id="to_basket" onclick="addToBasket('<%=p.getProductNum()%>')">장바구니</button>
+							<label for="to_purchase" class="control-label sr-only">구매하기</label>
+							
+							
+							<form id="purchase" action="<%=request.getContextPath()%>/payment.bk" method="post">
+								<input type="hidden" value="" name="sub_product_num"/>
+								<input type="hidden" value="" name="sub_product_price"/>
+								<input type="hidden" value="" name="sub_product_name"/>
+								<input type="hidden" value="" name="sub_product_image"/>
+								<button class="btn btn-primary btn-lg col-xs-offset-1 col-xs-6"
+								 type="button" id="to_purchase" onclick="purchase();">구매하기</button>
+							</form>
+							<%} else {%>
+								<label for="to_basket" class="control-label sr-only">장바구니</label>
+								<button class="btn btn-lg btn-default col-xs-offset-2 col-xs-8"
+								id="to_basket" onclick="addToBasket('<%=p.getProductNum()%>')">장바구니</button>
+							<%} %>
 						<%} else {%>
-							<label for="to_basket" class="control-label sr-only">장바구니</label>
-							<button class="btn btn-lg btn-default col-xs-offset-2 col-xs-8"
-							id="to_basket" onclick="addToBasket('<%=p.getProductNum()%>')">장바구니</button>
-						<%} %>
-						
+							<button class="btn btn-default col-xs-12">품절</button>
+						<% } %>
 						</div>
 					</div>
 
@@ -776,7 +805,7 @@ body *{
 	        <ul class="nav navbar-nav navbar-right ">
 	          <li class="active"><a href="#page_start" >상품구매</a></li>
 	          <li><a href="#content_start">상품 설명</a></li>
-	          <li><a href="#review_start">리뷰</a></li>
+	          <li><a href="#review_start">리뷰 &nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -851,7 +880,7 @@ body *{
 				<h4><b>교환 및 환불 안내</b></h4>
 				<hr id="review_start" style="visibility: hidden;">
 				꽃은 식물이기 때문에 배송된 이후에는 변심 및 훼손에 의한 환불이 불가한 점 양해 부탁드립니다. <br> 배송된
-				상품의 신선도나 구성품 누락시 원모먼트의 책임인 경우 새로운 구성으로 교환해 드립니다. <br> 교환 및 환불
+				상품의 신선도나 구성품 누락시 꽃길의 책임인 경우 새로운 구성으로 교환해 드립니다. <br> 교환 및 환불
 				문의 (콜센터 02-512-8180)<br>
 
 			</div>
@@ -894,17 +923,18 @@ body *{
 	<div class="container">
 
 		<div class="row">
+		<div class="col-xs-12">
 			<a class="btn btn-primary btn-lg col-xs-3" data-toggle="collapse"
 				href="#reviewCollapse" id="reviewBtn">리뷰 남기기</a>
+		</div>
 
-
-			<div class="collapse col-xs-10 col-md-10 col-sm-10 col-lg-10"
+			<div class="collapse col-xs-8 col-md-8 col-sm-8 col-lg-8"
 				id="reviewCollapse">
 				<form class="form-horizontal">
 
 					<div class="form-group">
 						<label for="title" class="control-label" style="font-size: 1.3em">제목<span
-							style="color: red">*</span></label> <input class="form-control input-lg"
+							style="color: red">*</span></label> <input class="form-control input-lg col-xs-8"
 							type="text" name="title" placeholder="" maxlength="50">
 					</div>
 

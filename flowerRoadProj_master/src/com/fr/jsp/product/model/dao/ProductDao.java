@@ -250,6 +250,7 @@ public class ProductDao {
 				p.setImage(rset.getString(5));
 				p.setProductTypeName(rset.getString(6));
 				p.setReviewAvg(rset.getInt(7));
+				p.setProductQuantity(rset.getInt(8));
 				result.add(p);
 			}
 			
@@ -305,6 +306,7 @@ public class ProductDao {
 				p.setImage(rset.getString(6));
 				p.setProductTypeName(rset.getString(7));
 				p.setReviewAvg(rset.getInt(8));
+				p.setProductQuantity(rset.getInt(9));
 				result.add(p);
 
 			}
@@ -358,7 +360,9 @@ public class ProductDao {
 				p.setImage(rset.getString(6));
 				p.setProductTypeName(rset.getString(7));
 				p.setReviewAvg(rset.getInt(8));
-
+				p.setProductQuantity(rset.getInt(9));
+				
+				
 				result.add(p);
 
 			}
@@ -371,7 +375,6 @@ public class ProductDao {
 			close(pstmt);
 
 		}
-
 		
 		return result;
 	}
@@ -443,7 +446,7 @@ public class ProductDao {
 				p.setImage(rset.getString(6));
 				p.setProductTypeName(rset.getString(7));
 				p.setReviewAvg(rset.getInt(8));
-
+				p.setProductQuantity(rset.getInt(9));
 				result.add(p);
 
 			}
@@ -494,7 +497,7 @@ public class ProductDao {
 				p.setImage(rset.getString(6));
 				p.setProductTypeName(rset.getString(7));
 				p.setReviewAvg(rset.getInt(8));
-
+				p.setProductQuantity(rset.getInt(9));
 				result.add(p);
 
 			}
