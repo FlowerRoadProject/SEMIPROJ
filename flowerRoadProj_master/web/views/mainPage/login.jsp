@@ -50,33 +50,22 @@ $("input[name=userPwd]").keydown(function (key) {
 
 });
 //페이스북 스크립트
-  // This is called with the results from from FB.getLoginStatus().
   var facebookClicked=false;
   function statusChangeCallback(response) {
     
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
     if(facebookClicked){
 	    if (response.status === 'connected') {
-	      // Logged into your app and Facebook.
 	      console.log('statusChangeCallback');
 	    console.log(response);
 	    console.log(response.authResponse.userID);//id 찾음!
 	    location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=facebook"+response.authResponse.userID;
-	      //testAPI();
+	   
 	    } else {
-	     /*  // The person is not logged into your app or we are unable to tell.
-	      document.getElementById('status').innerHTML = 'Please log ' +
-	        'into this app.'; */
+	    
 	    }
     }
   }
 
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
   function checkLoginState() {
 	  facebookClicked=true;
     FB.getLoginStatus(function(response) {
@@ -93,17 +82,6 @@ $("input[name=userPwd]").keydown(function (key) {
       version    : 'v2.8' // use graph api version 2.8
     });
 
-    // Now that we've initialized the JavaScript SDK, we call 
-    // FB.getLoginStatus().  This function gets the state of the
-    // person visiting this page and can return one of three states to
-    // the callback you provide.  They can be:
-    //
-    // 1. Logged into your app ('connected')
-    // 2. Logged into Facebook, but not your app ('not_authorized')
-    // 3. Not logged into Facebook and can't tell if they are logged into
-    //    your app or not.
-    //
-    // These three cases are handled in the callback function.
 
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
@@ -120,16 +98,6 @@ $("input[name=userPwd]").keydown(function (key) {
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  /* function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', {fields: 'email'},function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-    });
-  } */
 </script>
 </head>
 <body>
@@ -166,7 +134,7 @@ $("input[name=userPwd]").keydown(function (key) {
                     <div id="naverIdLogin" class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4"></div>
                 </div>
                 <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" >
-                    <div class="g-signin2 col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" onclick="GoogleLogin()" data-onsuccess="onSignIn" data-theme="dark"></div>
+                    <div class="g-signin2 col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" onclick="GoogleLogin()" data-width="220" data-height="50" data-onsuccess="onSignIn" data-theme="dark"></div>
                 </div>
             </div>
             <div class="find_account col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" id="find">
@@ -234,55 +202,14 @@ $('#signUp').click(function(){
 				clientId: "ctuF5pktgpuwbay7zj12",
 				callbackUrl: "http://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "/flowerRoadProj/navercall.jsp",
 				isPopup: false,
-				loginButton: {color: "green", type: 3, height: 60}
+				loginButton: {color: "green", type: 3, height: 50}
 			}
 		);
 		/* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
 		naverLogin.init();
 		
-		/* naverLogin.getLoginStatus(function (status) {
-			if (status) {
-				var email = naverLogin.user.getEmail();
-				var name = naverLogin.user.getNickName();
-				var profileImage = naverLogin.user.getProfileImage();
-				var birthday = naverLogin.user.getBirthday();			var uniqId = naverLogin.user.getId();
-				var age = naverLogin.user.getAge();
-				var userid = naverLogin.user.getId();
-				console.log(email);
-				console.log(name);
-				console.log(profileImage);
-				console.log(birthday);
-				console.log(age);
-				console.log(userid);//id
-			} else {
-				console.log("AccessToken이 올바르지 않습니다.");
-			}
-		}); */
-		/* (4-1) 임의의 링크를 설정해줄 필요가 있는 경우 */
-		/* $("#gnbLogin").attr("href", naverLogin.generateAuthorizeUrl()); */
+		
 
-		/* (5) 현재 로그인 상태를 확인 */
-		/* window.addEventListener('load', function () {
-			naverLogin.getLoginStatus(function (status) {
-				if (status) {
-					 (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. 
-					setLoginStatus();
-				}
-			});
-		}); */
-
-		/* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
-		/* function setLoginStatus() {
-			var profileImage = naverLogin.user.getProfileImage();
-			var nickName = naverLogin.user.getNickName();
-			$("#gnbLogin").html("Logout");
-			$("#gnbLogin").attr("href", "#");
-			(7) 로그아웃 버튼을 설정하고 동작을 정의합니다. 
-			$("#gnbLogin").click(function () {
-				naverLogin.logout();
-				location.reload();
-			});
-		} */
 	//구글 스크립트
 var googleClicked=false;//Global Variable
 function GoogleLogin()
@@ -295,15 +222,9 @@ function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
     	
         console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-        /* console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl()); */
+   
         console.log("Email: " + profile.getEmail());
 
-        // The ID token you need to pass to your backend:
-        /* var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token); */
         location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=google"+profile.getId();
       };
     }

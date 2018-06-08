@@ -7,7 +7,6 @@
 
 </head>
 <body>
-callback 처리중입니다. 이 페이지에서는 callback을 처리하고 바로 main으로 redirect하기때문에 이 메시지가 보이면 안됩니다.
 <button onclick="back();">뒤로가기</button>
 
 	<!-- (1) LoginWithNaverId Javscript SDK -->
