@@ -53,7 +53,7 @@ img {
      	
      	
      	width:100% !important;
-     	height:auto !important;
+     	height:100% !important;
      	background:rgb(255,255,255) !important;
      }
      
@@ -171,9 +171,29 @@ img {
 		})
 		
 		setTopSelling(1);
+		setMostViewed();
 	});
 
+	function setMostViewed(){
+		
+		$.ajax({
+			url : 'selectMostViewed.do',
+			type : "get",
+			success : function(data) {
 	
+				var $parsedList = $.parseJSON(data);
+				
+				
+				appendItemstoContainer($parsedList,'mostViewed');
+		
+				
+			},
+			error : function(data) {
+	
+			}
+			
+		});
+	}
 
 	function setTopSelling(index){
 		
@@ -191,45 +211,8 @@ img {
 				var $parsedList = $.parseJSON(data);
 				
 				
-				var $item_container = $('#item-container');
-				
-				console.log($parsedList.length);
-				for (var i = 0; i < $parsedList.length; ++i) {
-					var $item = $('[name=clone-item]').clone(true,true);
-					$item.attr("name","clone-item_"+i);
-					$item.find('[name=detailLink]').attr("href","<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum);
-					if($parsedList[i].productQuantity<=0){
-					
-					$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
-					$item.find('[name=imageSource]').addClass("thumbnail_soldOut");
-					$item.find('[name=detailLink]').append("<span class='soldOut_text'> <h4><b>곧 준비할게요 :)</b></h4></span>");
-					$item.find('[name=productDetail]').remove();
-					$item.find('[name=addBasket]').off();
-					$item.find('[name=addBasket]').removeClass("col-lg-4");
-					$item.find('[name=addBasket]').addClass("col-xs-12");
-					$item.find('[name=addBasket]').text("품절");
-					}else{
-						$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
-						$item.find('[name=productDetail]').attr("onclick","location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum+"'");
-						$item.find('[name=addBasket]').attr("onclick","addToBasket("+"'"+$parsedList[i].productNum+"'"+")");
-					}
-					$item.find('[name=productName]').text($parsedList[i].productName);
-					$item.find('[name=productPrice]').text($parsedList[i].productPrice);
-					$item.find('[name=reviewNum]').text($parsedList[i].reviewCount);
-					for(var j=0;j<$parsedList[i].reviewAvg;++j){
-						$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star'></span>");
-					}
-
-					for(var k=0;k<5-$parsedList[i].reviewAvg;++k){
-							
-						$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star_empty'></span>");
-					} 
-					
-					
-					
-					$item_container.append($item);
-					
-				}
+				appendItemstoContainer($parsedList,'topItem');
+		
 				
 			},
 			error : function(data) {
@@ -238,6 +221,49 @@ img {
 			
 	
 		});
+	}
+	
+	function appendItemstoContainer(data,containerID){
+		var $item_container = $('#'+containerID);
+		
+		var $parsedList = data;
+		
+		for (var i = 0; i < $parsedList.length; ++i) {
+			var $item = $('[name=clone-item]').clone(true,true);
+			$item.attr("name","clone-item_"+i);
+			$item.find('[name=detailLink]').attr("href","<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum);
+			if($parsedList[i].productQuantity<=0){
+			
+			$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
+			$item.find('[name=imageSource]').addClass("thumbnail_soldOut");
+			$item.find('[name=detailLink]').append("<span class='soldOut_text'> <h4><b>곧 준비할게요 :)</b></h4></span>");
+			$item.find('[name=productDetail]').remove();
+			$item.find('[name=addBasket]').off();
+			$item.find('[name=addBasket]').removeClass("col-lg-4");
+			$item.find('[name=addBasket]').addClass("col-xs-12");
+			$item.find('[name=addBasket]').text("품절");
+			}else{
+				$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
+				$item.find('[name=productDetail]').attr("onclick","location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum+"'");
+				$item.find('[name=addBasket]').attr("onclick","addToBasket("+"'"+$parsedList[i].productNum+"'"+")");
+			}
+			$item.find('[name=productName]').text($parsedList[i].productName);
+			$item.find('[name=productPrice]').text($parsedList[i].productPrice);
+			$item.find('[name=reviewNum]').text($parsedList[i].reviewCount);
+			for(var j=0;j<$parsedList[i].reviewAvg;++j){
+				$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star'></span>");
+			}
+
+			for(var k=0;k<5-$parsedList[i].reviewAvg;++k){
+					
+				$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star_empty'></span>");
+			} 
+			
+			
+			
+			$item_container.append($item);
+		}
+		
 	}
 	
 	function addToBasket(productNum){
@@ -370,7 +396,7 @@ img {
 	<div class="container">
 		<p><b>베스트 셀러</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 팔리는 제품 입니다.</p>
 		<hr />
-		<div class="col-lg-12" id="item-container">
+		<div class="col-lg-12" id="topItem">
 			
 		</div>
 		<div class="row" style="text-align:center;">
@@ -379,6 +405,21 @@ img {
 			</div>
 		</div>
 	</div>
+	
+	<div class="container">
+		<p><b>지금 가장 많이 조회한 상품</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 조회 되는 상품입니다.</p>
+		<hr />
+		<div class="col-lg-12" id="mostViewed">
+			
+		</div>
+		<div class="row" style="text-align:center;">
+			<div class="col-xs-12">
+				
+			</div>
+		</div>
+	</div>
+	
+	
 	<%@include file="/views/common/footer.jsp"%>
 </body>
 </html>

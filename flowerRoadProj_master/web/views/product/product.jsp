@@ -146,6 +146,10 @@ textarea{
 }
 #mNavbar li.active a { color: grey !important; background-color: #ffbb33 !important; } 
 
+.star_large{
+	font-size:2em;
+}
+
 </style>
 
 <script>
@@ -454,7 +458,7 @@ textarea{
 				  member_num:$('[name=member_num]').val(),
 				  title:$('[name=title]').val(),
 				  content:$('[name=content]').val(),
-				  rating:$('[name=rating]:checked').val()
+				  rating:$('[name=rating]').val()
 				  },
 			type:"get",
 			success:function(data){
@@ -690,6 +694,25 @@ textarea{
 			<%}else{%>
 				return true;
 			<%}%>
+		}
+		
+		function clickRatingStar(idx){
+			
+			var $stars = $('.stars span');
+			
+			for(var i =0; i<idx;++i){
+				$stars.eq(i).removeClass("rating_star_empty");
+				$stars.eq(i).addClass("rating_star");
+			}
+			
+			for(var i =idx; i<5;++i){
+				$stars.eq(i).removeClass("rating_star");
+				$stars.eq(i).addClass("rating_star_empty");
+			}
+			
+			$('[name=rating]').val(idx);
+			
+			console.log($('[name=rating]').val());
 		}
 
 	
@@ -967,20 +990,20 @@ textarea{
 						<input type="hidden" name="member_num" value='<%=request.getSession().getAttribute("memberNum") %>' /> <input
 							type="hidden" name="product_num" value="<%=p.getProductNum()%>" />
 					</div>
-
+					
 					<div class="form-group">
 						<label for="" class="control-label" style="font-size: 1.3em">평가<span
-							style="color: red">*</span></label><br> <label class="radio-inline"><input
-							type="radio" name="rating" value="1"> 1</label> <label
-							class="radio-inline"><input type="radio" name="rating"
-							value="2"> 2</label> <label class="radio-inline"><input
-							type="radio" name="rating" value="3" checked> 3</label> <label
-							class="radio-inline"><input type="radio" name="rating"
-							value="4"> 4</label> <label class="radio-inline"><input
-							type="radio" name="rating" value="5"> 5</label>
-
+							style="color: red">*</span></label><br>
+						<div class="stars">
+							<span class='glyphicon glyphicon-star rating_star star_large' onclick="clickRatingStar(1);"></span>
+							<span class='glyphicon glyphicon-star rating_star star_large' onclick="clickRatingStar(2);"></span>
+							<span class='glyphicon glyphicon-star rating_star star_large'onclick="clickRatingStar(3);"></span>
+							<span class='glyphicon glyphicon-star rating_star_empty star_large' onclick="clickRatingStar(4);"></span>
+							<span class='glyphicon glyphicon-star rating_star_empty star_large' onclick="clickRatingStar(5);"></span>
+							
+						</div>
+						<input type="hidden" name="rating" value="3"/>
 					</div>
-
 					<div class="form-group">
 						<button class="btn btn-primary" type="button" onclick="submit_review();">등록</button>
 						<button class="btn btn-warning" type="button"
@@ -1067,7 +1090,7 @@ textarea{
 			</div>
 		</div>
 	</div>
-
+</div>
 
 
 	<!--clone용 html 태그들 (보이지는 않음)-->
