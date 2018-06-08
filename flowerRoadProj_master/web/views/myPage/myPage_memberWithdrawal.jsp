@@ -40,7 +40,7 @@
                     <b style="font-size: 13pt;">그동안 저희 사이트를 이용해주셔서 감사합니다</b> <br><br>
                     <p class="text-muted" style="font-weight:bold;">더욱더 개선하여 좋은 서비스와 품질로 보답하겠습니다. <br>
                         사이트 탈퇴하셔도 언제나 고객님이 원하실 때 재가입 하실 수 있습니다. <br>
-                        회원 탈퇴시 회원님의 <mark style="color:red;">개인 정보는 모두 삭제됩니다.</mark> <br>
+                        회원 탈퇴시 회원님의 <mark style="color:red;">아이디를 제외한 개인 정보는 모두 삭제됩니다.</mark> <br>
                         회원님의 <mark style="color:red;">적립금이 남아있는 경우에도 모두 삭제</mark>되며 탈퇴 후
                         재가입 하셔도 적립금이 복원되지 않습니다. 
                     </p>
@@ -66,8 +66,17 @@
         </div>
         
         <script>
+	        function cancle(){
+	    		location.href = "<%= request.getContextPath() %>/views/myPage/myPage_main.jsp"
+	    	}
         	function finalWithdraw(){
-        		location.href = "<%= request.getContextPath() %>/delMember.me";
+        		
+        		var cf = confirm("정말 탈퇴 하시겠습니까??");
+    			if(cf == true)
+    			location.href = "<%= request.getContextPath() %>/delMember.me";
+    			else 
+    			location.reload();
+        		
         	}
         </script>
         <%@ include file="/views/common/footer.jsp" %>

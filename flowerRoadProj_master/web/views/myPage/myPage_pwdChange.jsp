@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import = "com.fr.jsp.member.model.vo.*"%>
+<%
+	Member m = (Member)session.getAttribute("m");
+%>
+    
 
 <!DOCTYPE>
 <html>
@@ -66,19 +70,28 @@
 
         <!-- 변경 확인 -->
         <div class="container-fluid">
-                <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                <div class="col-sm-4 col-md-4 col-lg-4"></div>
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                    <button id="pwd" onclick="pwd();"><b>비밀번호 변경</b></button>
+                    <button id="pwd" onclick="pwd();"><b>변경하기</b></button>
                 </div>
-                <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                <button class="grayBtn" id="cancel" onclick="cancle();"><b>변경 취소</b></button>
+           		 </div>
+                <div class="col-sm-4 col-md-4 col-lg-4"></div>
         </div>
         <script>
+        	function cancle(){
+        		location.href = "<%= request.getContextPath() %>/views/myPage/myPage_main.jsp"
+        	}
+        	
         	function isSame(){
         		var pwd = $('#userPwd').val();
         		var pwdChk = $('#userPwd2').val();
         		
-        		if(pwd == pwdChk){
+        		if(pwd == pwdChk && pwd != "" && pwdChk != ""){
         			$('#msg').css("color","green").text("비밀번호가 일치합니다.");
+        		} else if(pwd == "" && pwdChk == ""){
+        			$('#msg').css("color","red").text("비밀번호를 입력해주세요.");
         		} else {
         			$('#msg').css("color","red").text("비밀번호가 일치하지 않습니다.");
         		}
@@ -86,8 +99,19 @@
         	
         	function pwd(){
         		var pwd = $('#userPwd').val();
+        		var pwdChk = $('#userPwd2').val();
         		
-        		location.href = "<%=request.getContextPath()%>/pwdChange.me?pwd="+pwd;
+        		if(pwd == pwdChk && pwd != "" && pwdChk != ""){
+        			var cf = confirm("비밀번호를 변경하시겠습니까??");
+        			if(cf == true)
+        			location.href = "<%=request.getContextPath()%>/pwdChange.me?pwd="+pwd;
+        			else 
+        			location.reload();
+        		} else if(pwd != pwdChk || pwd == null || pwdChk == null) {
+        			alert("비밀번호를 다시 확인해주세요.");
+        		}
+        		
+        		
         	}
         </script>
         <%@ include file="/views/common/footer.jsp" %>

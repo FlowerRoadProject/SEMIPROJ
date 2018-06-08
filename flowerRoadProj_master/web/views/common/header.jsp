@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" import="com.fr.jsp.member.model.vo.*"%>
 <%
 	String memberNum = (String) session.getAttribute("memberNum");
-	Member m = (Member) session.getAttribute("m");
 %>
 <!DOCTYPE html>
 
