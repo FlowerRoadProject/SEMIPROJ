@@ -39,9 +39,9 @@
         	}
         }
         
-        @media(min-width:1332px){
+        @media(min-width:1017px) and (max-width:2000px){
         	.lg-size{
-        		height: 8em;
+        		height: 8em;        		
         	}
         }
         
@@ -52,15 +52,16 @@
     .btn {cursor:pointer;}
     
     .test{
-    border:1px solid black;
+    	border:1px solid black;
     }
-    .Pmenu{
-    	height:3.5em;
+    .PmenuList{
+    	height:3.5em;    	
     }
-    .Pmenu li a{
-    	height: 2.5em;
-    	font-size: 1.2em;
-    }
+  	.menubtn{
+  		height: 3.2em;
+  		color: black;
+  	}
+   
     
     </style>
 <%-- <script>
@@ -127,21 +128,21 @@
                 </div> --%>
                 <div style="text-align:center; display:inline-block;" id="no2" class="col-sm-12 col-xs-12 col-lg-10 col-md-12 col-lg-offset-1">
 
-                    <ul class="nav navbar-nav navbar-bottom-font Pmenu col-sm-12 col-xs-12 col-lg-12 col-md-12">
-                        <li class="col-sm-2 col-xs-2 col-sm-offset-1 col-xs-offset-1" >
-                            <a href="<%=request.getContextPath()%>/productList.do?category=꽃다발">꽃다발</a>
+                    <ul class="nav navbar-nav navbar-bottom-font Pmenu col-sm-12 col-xs-12 col-lg-12 col-md-12" >
+                        <li class="col-sm-2 col-xs-2 col-sm-offset-1 col-xs-offset-1 PmenuList" >
+                            <a href="<%=request.getContextPath()%>/productList.do?category=꽃다발"  class="menubtn">꽃다발</a>
                         </li>
                         <li class="col-lg-2 col-sm-2 col-xs-2">
-                            <a href="<%=request.getContextPath()%>/productList.do?category=꽃바구니">꽃바구니</a>
+                            <a href="<%=request.getContextPath()%>/productList.do?category=꽃바구니" class="menubtn">꽃바구니</a>
                         </li>
                         <li class="col-sm-2 col-xs-2">
-                            <a href="<%=request.getContextPath()%>/productList.do?category=화환">화환</a>
+                            <a href="<%=request.getContextPath()%>/productList.do?category=화환"  class="menubtn">화환</a>
                         </li>
                         <li class="col-sm-2 col-xs-2">
-                            <a href="<%=request.getContextPath()%>/productList.do?category=디저트">디저트</a>
+                            <a href="<%=request.getContextPath()%>/productList.do?category=디저트" class="menubtn">디저트</a>
                         </li>
                         <li class="col-sm-2 col-xs-2">
-                            <a href="<%=request.getContextPath()%>/productList.do?category=선물">선물</a>
+                            <a href="<%=request.getContextPath()%>/productList.do?category=선물" class="menubtn">선물</a>
                         </li>
                     </ul>
                 </div>
