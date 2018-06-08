@@ -14,7 +14,7 @@
 
     <style>
         .M_box {
-            width: 75%;
+            width: 30%;
             margin: auto;
             padding: auto;
         }
@@ -121,13 +121,8 @@
 
             <tr>
                 <td class="td1"><label for="inputNumber" class="control-label">휴대폰번호</label></td>
-                <td class="td2"><input type="text" class="form-control" name="my_phone" id="my_phone" placeholder="휴대폰번호"></td>
-                <td class="td3"><a class="btn btn-default" role="button" id="certBtn">인증번호 전송</a></td>
-            </tr>
-            <tr>
-                <td class="td1"><label for="inputNumberCheck" class="control-label">인증번호 확인</label></td>
-                <td class="td2"><input type="text" class="form-control" name="emailNumberCheck" id="emailNumberCheck" placeholder="인증번호 6자리"></td>
-                <td class="td3"><a class="btn btn-default" role="button" id="confirmBtn">인증번호 확인</a></td>
+                <td class="td2" colspan="2"><input type="text" class="form-control" name="my_phone" id="my_phone" placeholder="휴대폰번호"></td>
+               
             </tr>
             <tr colspan="3">
                 <td class="td1"></td>

@@ -28,7 +28,6 @@
 	
 }
 
-
 .test-border {
 	border: 1px solid black;
 }
@@ -40,8 +39,6 @@
 .bottom-margin {
 	margin-bottom: 1.5em;
 }
-
-
 
 #boardTop {
 	text-align: center;
@@ -89,9 +86,7 @@
 	background: black;
 	color:white;
 	font-size: 3em;
-	height: 7em;
-	
-	
+	height: 7em;	
 }
 </style>
 
@@ -102,11 +97,7 @@
 <body>
 	<%@include file="/views/common/header.jsp"%>
 	<!-- 1:1 게시판 창 -->	
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
+	<br />	<br />	<br />	<br />	<br />
 	
 	<div class="col-lg-8 col-lg-offset-2 container-fluid">	
 		<div class="col-lg-10 title">FAQ</div>
