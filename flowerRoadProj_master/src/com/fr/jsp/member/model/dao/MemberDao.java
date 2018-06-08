@@ -645,5 +645,25 @@ public class MemberDao {
 		
 		return result;
 	}
+	public int favoriteAllDel(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("AlldeleteFavorite");
+		try{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			System.out.println(num);
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		System.out.println(result);
+		return result;
+	}
 
 }

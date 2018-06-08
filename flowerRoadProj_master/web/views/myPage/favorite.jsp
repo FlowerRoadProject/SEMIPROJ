@@ -67,7 +67,8 @@
                                 <td><%=pf.getProductName() %></td>
                                 <td><%=pf.getProductPrice() %>원</td>
                                 <td><%=pf.getProductQuantityState() %></td>
-                                <td><input type="submit" value="장바구니"><br><input type="button" value="삭제하기"></td>
+                                <td><input type="button" value="장바구니" onclick="goBasket()"><br>
+                                <input type="button" value="삭제하기"></td>
                             </tr>
                             <% } %>
                         </table>
@@ -80,8 +81,8 @@
         <div class="container-fluid">
                 
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                <button style="width:100px; height:30px; margin-top:20px;">
-                        전체 삭제</button>
+                <button style="width:100px; height:30px; margin-top:20px;"
+                onclick="allDel()">전체 삭제</button>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3"></div>
                 <div class="col-sm-2 col-md-2 col-lg-2">
@@ -115,6 +116,15 @@
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5"></div>
         </div>
+        <script>
+        	function goBasket(){
+        		location.href="";
+        	}
+        
+        	function allDel(){
+        		location.href="<%=request.getContextPath() %>/favoriteAllDel.me";
+        	}
+        </script>
 	<%@ include file="/views/common/footer.jsp" %>
     </body>
 </html>
