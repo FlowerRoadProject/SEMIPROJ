@@ -67,16 +67,17 @@
                         <div class="col-sm-2 col-md-2 col-lg-2"><b>우편번호</b></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2">
-                                <input type="text" id="zipCode" name="zipCode">
+                                <input type="text" id="zipCode" name="zipCode" size="6">
                         </div>
-                        <div class="col-sm-1 col-md-1 col-lg-1" id="ckZip" onclick="addrSearch()">검색</div> <br><br>
+                        <div class="col-sm-1 col-md-1 col-lg-1" id="ckZip" onclick="addrSearch()">검색</div>
+                        <div class="col-sm-4 col-md-4 col-lg-4"></div> <br><br>
                         
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"><b>주소</b></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2">
                                 <input type="text" id="address1" name="address1">
-                        </div><br><br><br>
+                        </div><br><br>
                         
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"><b>상세주소</b></div>
@@ -106,11 +107,14 @@
 
         <!-- 수정 확인 -->
         <div class="container-fluid">
-            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+            <div class="col-sm-4 col-md-4 col-lg-4"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <button id="modify" onclick="modiComplete();"><b>수정완료</b></button>
+                <button id="modify" onclick="modiComplete();"><b>수정하기</b></button>
             </div>
-            <div class="col-sm-5 col-md-5 col-lg-5"></div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <button class="grayBtn" id="cancel" onclick="cancle();"><b>변경 취소</b></button>
+           		 </div>
+                <div class="col-sm-4 col-md-4 col-lg-4"></div>
         </div>
         
         <script>
@@ -160,15 +164,33 @@
 			}
         
         	function modiComplete(){
+    	    	var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);//이메일 정규식
+    	    	var getPhone = RegExp(/\d{11}/);
+        	
         		var email = $('#email').val();
-        		var addr = $('#addr').val();
+        		var addr = $('#zipCode').val()+"/"+$('#address1').val()+"/"+$('#address2').val();
         		var phone = $('#tel1').val()+$('#tel2').val()+$('#tel3').val();
-        		if($('#email').val() == "" || $('#com').val() == ""){
-        			alert("email을 입력해주세요");
-        		}
-        			
-        		}
-        		<%-- location.href = "<%= request.getContextPath()%>/infoModi.me?email="+email+"&addr="+addr+"&phone="+phone; --%>
+        		if(!getMail.test($("#email").val())){
+		            alert("이메일형식에 맞게 입력해주세요")
+		            $("#my_email").val("");
+		            $("#my_email").focus();
+		        } else if($('#zipCode').val() == ""){
+		        	alert("주소를 꼭 입력하세요!");
+	                $("#zipCode").focus();
+		        } else if ($("#address1").val() == "") {
+	                alert("주소를 꼭 입력하세요!");
+	                $("#address1").focus();
+	            } else if ($("#address2").val() == "") {
+	                alert("주소를 꼭 입력하세요!");
+	                $("#address2").focus();
+	            } else if (!getPhone.test(phone)){
+	            	alert("전화번호를 확인해주세요!");
+	            	$('#tel1').focus();
+	            } else {
+	            	var cf = confirm("비밀번호를 변경하시겠습니까??");
+        			if(cf == true)
+        			location.href = "<%= request.getContextPath()%>/infoModi.me?email="+email+"&addr="+addr+"&phone="+phone; 
+	            }
         		
         	}
         	
