@@ -14,13 +14,17 @@
 		<%@ include file="common/admin_JS.jsp" %>
 		<!-- admin_CSS -->
 		<%@ include file="common/admin_CSS.jsp" %>
+		<%-- <style>
+			body{
+				width:100%;
+				background-image:url('<%=request.getContextPath() %>/resources/images/admin/petal2.gif');
+			}
+		</style> --%>
 	</head>
-	<body>
+	<body id="adminQuiz">
 		<!-- admin_LOADING -->
 		<%@ include file="common/admin_LOADING.jsp" %>
 		
-		<input type="text" name="adminNum" id="adminNum"/>
-		<input type="button" value="퀴즈풀기" id="adminQuiz"/>
 		<a href="<%=request.getContextPath() %>/main.admin" id="admin_Main"></a>
 		
 		<script>
@@ -30,10 +34,6 @@
 				$.ajax({
 					url: "<%=request.getContextPath() %>/secondPwCheck.admin",
 					type: "post",
-					data: {
-						adminNum: $('#adminNum').val(),
-						answerPw: answerPw
-					},
 					success: function(data){
 						if(($.trim(data.secondPw))==answerPw){
 							alert(data.memberName+" 관리자님 어서오세요.");
@@ -48,7 +48,6 @@
 				})
 			}
 		});
-			
 		</script>
 	</body>
 </html>

@@ -57,7 +57,7 @@ public class AddToFavoriteServlet extends HttpServlet {
 				else
 					resultString +="실패 하였습니다.";
 			}else{
-				resultString="로그인을 해주세요.";
+				resultString="로그인 해주세요.";
 		}
 		
 			new Gson().toJson(resultString,response.getWriter());

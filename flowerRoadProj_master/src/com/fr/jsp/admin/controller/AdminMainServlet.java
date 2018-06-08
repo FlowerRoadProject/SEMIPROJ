@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fr.jsp.admin.model.service.AdminReviewBoardService;
-import com.fr.jsp.admin.model.service.AdminUserQuestionBoardService;
 import com.fr.jsp.admin.model.service.AdminMemberService;
-import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.admin.model.service.AdminOrderService;
+import com.fr.jsp.admin.model.service.AdminReviewBoardService;
+import com.fr.jsp.admin.model.service.AdminService;
+import com.fr.jsp.admin.model.service.AdminUserQuestionBoardService;
+import com.fr.jsp.admin.model.vo.AdminFortuen;
+import com.fr.jsp.admin.model.vo.AdminRandomGame;
+import com.fr.jsp.member.model.vo.Member;
 
 @WebServlet("/main.admin")
 public class AdminMainServlet extends HttpServlet {
@@ -53,11 +56,27 @@ public class AdminMainServlet extends HttpServlet {
 		// Connection close
 		auqbs.closeCon();
 		
+		AdminService as = new AdminService();
+		// 오늘의 명언
+		AdminFortuen adminFortuen = as.admin_randomFortuen();
+		// 랜덤 게임 위치
+		AdminRandomGame adminRandomGame = new AdminRandomGame();
+		adminRandomGame.setTopNum((int)(Math.random()*100)+1);
+		adminRandomGame.setLeftNum((int)(Math.random()*100)+1);
+		adminRandomGame.setGoalTopNum((int)(Math.random()*100)+1);
+		adminRandomGame.setGoalLeftNum((int)(Math.random()*100)+1);
+		// Connection close
+		as.closeCon();
+		
 		session.setAttribute("admin", admin);
 		session.setAttribute("admin_messageCount", admin_messageCount);
 		session.setAttribute("admin_orderCount", admin_orderCount);
 		session.setAttribute("admin_reviewCount", admin_reviewCount);
 		session.setAttribute("admin_userQuestionCount", admin_userQuestionCount);
+		
+		request.setAttribute("adminFortuen", adminFortuen);
+		request.setAttribute("adminRandomGame", adminRandomGame);
+		
 		request.getRequestDispatcher("views/admin_views/admin_Main.jsp").forward(request, response);
 	}
 

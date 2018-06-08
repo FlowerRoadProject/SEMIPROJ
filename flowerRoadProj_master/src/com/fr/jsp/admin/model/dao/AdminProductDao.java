@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 
-import com.fr.jsp.admin.model.dao.AdminDao;
+import com.fr.jsp.admin.model.dao.AdminMemberDao;
 import com.fr.jsp.admin.model.vo.AdminProduct;
 import com.fr.jsp.admin.model.vo.AdminProductEvent;
 import com.fr.jsp.admin.model.vo.AdminProductImage;
@@ -25,7 +25,7 @@ public class AdminProductDao {
 	public AdminProductDao() {
 		super();
 		prop = new Properties();
-		String fileName = AdminDao.class.getResource("/config/admin/product_query.properties").getPath();
+		String fileName = AdminMemberDao.class.getResource("/config/admin/product_query.properties").getPath();
 		
 		try {
 			prop.load(new FileReader(fileName));

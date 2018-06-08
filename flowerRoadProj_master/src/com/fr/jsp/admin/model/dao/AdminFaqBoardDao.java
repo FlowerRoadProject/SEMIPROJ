@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.Properties;
 
 import com.fr.jsp.board.model.vo.FaqBoard;
-import com.fr.jsp.admin.model.dao.AdminDao;
+import com.fr.jsp.admin.model.dao.AdminMemberDao;
 
 public class AdminFaqBoardDao {
 	private Properties prop;
@@ -21,7 +21,7 @@ public class AdminFaqBoardDao {
 	public AdminFaqBoardDao() {
 		super();
 		prop = new Properties();
-		String fileName = AdminDao.class.getResource("/config/admin/faqBoard_query.properties").getPath();
+		String fileName = AdminMemberDao.class.getResource("/config/admin/faqBoard_query.properties").getPath();
 		
 		try {
 			prop.load(new FileReader(fileName));
