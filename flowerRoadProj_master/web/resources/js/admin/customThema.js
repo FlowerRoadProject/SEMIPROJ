@@ -142,6 +142,38 @@ function changeCusFont(){
         'font-weight':$('#fontWeight').children('.active').text()
     });
 };
+// 글자 저장
+$('#saveCusFont').on({
+	'click':function(){
+		$.ajax({
+			url: mainPath+"/fontThemaUpdate.admin",
+			type: "post",
+			data: {
+				fontFamily: $.trim($('#fontFamily').find('.active').text()),
+				fontSize: $('#fontSize').children('.active').text(),
+				fontWeight: $('#fontWeight').children('.active').text()
+			},
+			success: function(data){
+				if(data){
+					console.log($.trim($('#fontFamily').find('.active').text()));
+					console.log(fontSize);
+					console.log(fontWeight);
+				}else{ 
+					alert("누구냐 넌..");
+				}
+			},
+			error: function(data){
+				alert("전달 실패!!");
+			}
+		});
+	}
+});
+//글자 설정 취소
+$('#cancleCusFont').on({
+	'click':function(){
+		location.reload();
+	}
+});
 //음악 설정
 $('a.music').click(function(){
     $(this).children('audio').attr('play');

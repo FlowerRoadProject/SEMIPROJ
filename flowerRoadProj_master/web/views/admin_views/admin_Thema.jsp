@@ -13,6 +13,10 @@
 
 		<!-- admin_CSS -->
 		<%@ include file="common/admin_CSS.jsp" %>
+		
+		<script>
+			var mainPath = '<%=request.getContextPath() %>';
+		</script>
 	</head>
 
 	<body class="nav-md">
@@ -74,14 +78,11 @@
 												<div class="row">
 													<div class="btn-group col-lg-12 col-md-12 col-sm-12 col-xs-12" data-toggle="buttons" id="fontFamily">
 														<label class="btn btn-default col-lg-4 col-md-4 col-sm-4 col-xs-4" style="font-family: do hyeon;font-size: 16pt">
-															<input type="radio" name="dohyeon" id="dohyeon"> Do hyeon
-														</label>
+															<input type="radio" name="dohyeon" id="dohyeon" value="do hyeon">do hyeon</label>
 														<label class="btn btn-default col-lg-4 col-md-4 col-sm-4 col-xs-4" style="font-family: cute font;font-size: 16pt">
-															<input type="radio" name="cutefont" id="cutefont"> Cute font
-														</label>
+															<input type="radio" name="cutefont" id="cutefont">cute font</label>
 														<label class="btn btn-default col-lg-4 col-md-4 col-sm-4 col-xs-4" style="font-family: poor story;font-size: 16pt">
-															<input type="radio" name="poorstory" id="poorstory"> Poor Story
-														</label>
+															<input type="radio" name="poorstory" id="poorstory">poor story</label>
 													</div>
 												</div>
 											</div>
@@ -121,7 +122,7 @@
                         <div class="row">
                           <div class="btn-group col-lg-12 col-md-12 col-sm-12 col-xs-12" data-toggle="buttons" id="fontWeight">
                             <label class="btn btn-default col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="radio" name="options" id="option1"> <l>Lighter</l>
+                              <input type="radio" name="options" id="option1"> lighter
                             </label>
                             <label class="btn btn-default col-lg-4 col-md-4 col-sm-4 col-xs-4">
                               <input type="radio" name="options" id="option2"> Normal
@@ -135,8 +136,8 @@
                       <br/>
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                          <button type="button" class="btn btn-round btn-success" style="width: 100px" onclick="changeCusFont();">글자 적용</button>
-                          <button type="button" class="btn btn-round btn-warning" style="width: 100px" onclick="saveCusFont();">설정 저장</button>
-                          <button type="button" class="btn btn-round btn-danger" style="width: 100px" onclick="cancleCusFont();">설정 취소</button>
+                          <button type="button" class="btn btn-round btn-warning" style="width: 100px" id="saveCusFont">설정 저장</button>
+                          <button type="button" class="btn btn-round btn-danger" style="width: 100px" id="cancleCusFont">설정 취소</button>
                       </div>
                       
                     </form>
@@ -325,19 +326,13 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            <a class="music" style="float: right"><i class="fa fa-headphones" style="font-size: 20pt"><audio src="../../images/admin/third.wav" loop  preload="metadata"></audio></i></a>
+            <a class="music" style="float: right"><i class="fa fa-headphones" style="font-size: 20pt"><audio src="" loop  preload="metadata"></audio></i></a>
           </div>
-          <script>
-            
-            </script>
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
       
     </div>
-	<script>
-		var mainPath = '<%=request.getContextPath() %>';
-	</script>
 	<!-- admin_JS -->
     <%@ include file="common/admin_JS.jsp" %>
   </body>
