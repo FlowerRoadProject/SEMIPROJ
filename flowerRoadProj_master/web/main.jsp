@@ -51,7 +51,7 @@ img {
      	
      	
      	width:100% !important;
-     	height:auto !important;
+     	height:100% !important;
      	background:rgb(255,255,255) !important;
      }
      
@@ -303,7 +303,7 @@ img {
 				</a>
 				</div>
 				
-				<div class="item">
+				<div class="item test">
 				<a href="<%=request.getContextPath()%>/productDetail.do?productNum=+P032">
 					<img
 						src="<%=request.getContextPath()%>/resources/images/mainEventCarousel/coralRoseEvent.jpg"
