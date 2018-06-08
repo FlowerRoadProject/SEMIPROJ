@@ -32,9 +32,9 @@ public class AdminNoticeBoardServlet extends HttpServlet {
 		
 		AdminNoticeBoardService anbs = new AdminNoticeBoardService();
 		// 전체 공지사항 게시판 게시글 수
-		int admin_noticeBoardCount = anbs.admin_noticeBoardAllCount();
+		int admin_noticeBoardCount = anbs.admin_noticeBoardAllList().size();
 		// 공지사항 게시판 리스트
-		ArrayList<NoticeBoard> admin_noticeBoardList = anbs.admin_noticeBoardList();
+		ArrayList<NoticeBoard> admin_noticeBoardList = anbs.admin_noticeBoardAllList();
 		// Connection close
 		anbs.closeCon();
 		

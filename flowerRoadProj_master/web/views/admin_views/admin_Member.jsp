@@ -8,7 +8,6 @@
 	int admin_todayEnrollCount = (int)(request.getAttribute("admin_todayEnrollCount"));
 	int admin_withdrawMemberCount = (int)(request.getAttribute("admin_withdrawMemberCount"));
 	ArrayList<AdminMember> admin_memberList = (ArrayList<AdminMember>)(request.getAttribute("admin_memberList"));
-	ArrayList<AdminAdmin> admin_adminList = (ArrayList<AdminAdmin>)(request.getAttribute("admin_adminList"));
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -75,7 +74,7 @@
                           <div class="icon"><i class="fa fa-child"></i>
                           </div>
                           <div class="count"><%=admin_todayEnrollCount %></div>
-                          <h3>오늘 가입 회원 수</h3>
+                          <a href="<%=request.getContextPath() %>/todayEnrollMember.admin"><h3>오늘 가입 회원</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -84,7 +83,7 @@
                           <div class="icon"><i class="fa fa-user"></i>
                           </div>
                           <div class="count"><%=admin_memberCount %></div>
-                          <h3>회원 수</h3>
+                          <a href="<%=request.getContextPath() %>/member.admin"><h3>회원</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -93,7 +92,7 @@
                           <div class="icon"><i class="fa fa-adn"></i>
                           </div>
                           <div class="count"><%=admin_adminCount %></div>
-                          <h3>관리자 수</h3>
+                          <a href="<%=request.getContextPath() %>/admin.admin"><h3>관리자</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -102,7 +101,7 @@
                           <div class="icon"><i class="fa fa-frown-o"></i>
                           </div>
                           <div class="count"><%=admin_withdrawMemberCount %></div>
-                          <h3>탈퇴 회원 수</h3>
+                          <h3>탈퇴 회원</h3>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -137,6 +136,7 @@
                           <th>이메일</th>
                           <th>주소</th>
                           <th>이미지</th>
+                          <th>총구매액</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -154,6 +154,7 @@
                           <td><%=am.getMemberEmail() %></td>
                           <td><%=am.getMemberAddress() %></td>
                           <td><%=am.getImagePath() %></td>
+                          <td><%=am.getTotalPrice() %></td>
                         </tr>
                         <%} %>
                       </tbody>
@@ -203,7 +204,7 @@
                           </div>
                           <div class="col-md-6 col-sm-6 col-xs-6" style="">
                               <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">총 구매액</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12"  type="number" min='0' style="margin-bottom: 15px" disabled>
+                              <input class="col-md-12 col-sm-12 col-xs-12 MTotalPrice"  type="number" min='0' style="margin-bottom: 15px" disabled>
                           </div>
                       </div>
                       <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
@@ -243,221 +244,6 @@
                       </div>
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
                          <button type="button" class="btn btn-round btn-success col-lg-5 col-md-5 col-sm-5 col-xs-5" style="margin: 4%;margin-left: 30%" id="checkMember">확인</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>관리자 조회<small>Managers</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-					
-                    <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap adminTable" cellspacing="0" width="100%">
-                      
-                       <thead>
-                        <tr>
-                          <th>관리자번호</th>
-                          <th>아이디</th>
-                          <th>비밀번호</th>
-                          <th>등록일</th>
-                          <th>이름</th>
-                          <th>보안키</th>
-                          <th>생년월일</th>
-                          <th>성별</th>
-                          <th>전화번호</th>
-                          <th>이메일</th>
-                          <th>주소</th>
-                          <th>이미지</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% for(AdminAdmin aa : admin_adminList){ %>
-                        <tr>
-                          <td class="ANumD"><%=aa.getAdminNum() %></td>
-                          <td><%=aa.getAdminId() %></td>
-                          <td><%=aa.getAdminPw() %></td>
-                          <td><%=aa.getEnrollDate() %></td>
-                          <td><%=aa.getAdminName() %></td>
-                          <td><%=aa.getSecondPw() %></td>
-                          <td><%=aa.getAdminBirthDate() %></td>
-                          <td><%=aa.getAdminGender() %></td>
-                          <td><%=aa.getAdminPhone() %></td>
-                          <td><%=aa.getAdminEmail() %></td>
-                          <td><%=aa.getAdminAddress() %></td>
-                          <td><%=aa.getImagePath() %></td>
-                        </tr>
-                        <%} %>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>관리자 상세정보 <small>Manager</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-
-                    <div class="col-md-4 col-sm-4 col-xs-12" style="margin-bottom: 20px;">
-                      <div class="product-image">
-                        <img class="AImage" src="" alt="..." />
-                        <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" class="AInfoImage" onchange="AInfoImgChange();"/>
-                      </div>
-                    </div>
-
-                    <div class="col-md-8 col-sm-8 col-xs-12" style="border:0px solid #e5e5e5;">
-                     <div class="col-md-12 col-sm-12 col-xs-12" style="">
-                          <h3 class="prod_title">관리자 번호</h3>
-                          <input  class="col-md-12 col-sm-12 col-xs-12 ANum" type="text" style="margin-bottom: 15px" disabled>
-                     </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-                          <div class="col-md-6 col-sm-6 col-xs-6" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">아이디</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 AId"  type="text" style="margin-bottom: 15px" disabled>
-                          </div>
-                          <div class="col-md-6 col-sm-6 col-xs-6" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">비밀번호</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 APw"  type="password" style="margin-bottom: 15px" >
-                          </div>
-                      </div>
-                      
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-                          <div class="col-md-6 col-sm-6 col-xs-6" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">이름</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 AName"  type="text" style="margin-bottom: 15px" disabled>
-                          </div>
-                          <div class="col-md-6 col-sm-6 col-xs-6" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">성별</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 AGender"  type="text" style="margin-bottom: 15px" disabled>
-                              
-                          </div>
-                      </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-                          <div class="col-md-6 col-sm-12 col-xs-12" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">생년월일</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 ABirth"  type="date" style="margin-bottom: 15px" disabled>
-                          </div>
-                          <div class="col-md-6 col-sm-12 col-xs-12" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">등록일</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 AEnrollDate"  type="date" style="margin-bottom: 15px" disabled>
-                          </div>
-                      </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-                          <div class="col-md-6 col-sm-12 col-xs-12" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">전화번호</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 APhone"  type="text" style="margin-bottom: 15px">
-                          </div>
-                          <div class="col-md-6 col-sm-12 col-xs-12" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">이메일</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 AEmail"  type="text" style="margin-bottom: 15px">
-                          </div>
-                      </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="">
-                          <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">주소</p>
-                          <input class="col-md-12 col-sm-12 col-xs-12 AAddress"  type="text" style="margin-bottom: 15px">
-                      </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="">
-                          <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">보안키</p>
-                          <input class="col-md-12 col-sm-12 col-xs-12 ASecurity"  type="text" style="margin-bottom: 15px">
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-                         <button type="button" class="btn btn-round btn-success col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin: 4%" id="checkAdmin">확인</button>
-                          <button type="button" class="btn btn-round btn-warning col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin: 4%" id="editAdmin">수정</button>
-                          <button type="button" class="btn btn-round btn-danger col-lg-3 col-md-3 col-sm-3 col-xs-3" style="margin: 4%" id="deleteAdmin">삭제</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>관리자 등록 <small>Manager</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-
-                    <div class="col-md-4 col-sm-4 col-xs-12" style="margin-bottom: 20px;">
-                      <div class="product-image">
-                        <img class="AImgeRegi" src="" alt="..." />
-                        <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" class="AInfoImage2" onchange="AInfoImgRegi();"/>
-                      </div>
-                    </div>
-
-                    <div class="col-md-8 col-sm-8 col-xs-12" style="border:0px solid #e5e5e5;">
-                     
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-                          <div class="col-md-6 col-sm-6 col-xs-6" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">아이디</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 insertAID"  type="text" style="margin-bottom: 15px">
-                          </div>
-                          <div class="col-md-6 col-sm-6 col-xs-6" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">비밀번호</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 insertAPW"  type="text" style="margin-bottom: 15px" >
-                          </div>
-                      </div>
-                      
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-                          <div class="col-md-6 col-sm-6 col-xs-6" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">이름</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 insertAName"  type="text" style="margin-bottom: 15px" >
-                          </div>
-                          <div class="col-md-6 col-sm-6 col-xs-6" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">성별</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 insertAGender"  type="text" style="margin-bottom: 15px" >
-                              
-                          </div>
-                      </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-                          <div class="col-md-6 col-sm-12 col-xs-12" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">생년월일</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 insertABirthDate"  type="date" style="margin-bottom: 15px">
-                          </div>
-                          <div class="col-md-6 col-sm-12 col-xs-12" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">등록일</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 insertAEnrollDate"  type="date" style="margin-bottom: 15px">
-                          </div>
-                      </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-                          <div class="col-md-6 col-sm-12 col-xs-12" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">전화번호</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 insertAPhone"  type="text" style="margin-bottom: 15px">
-                          </div>
-                          <div class="col-md-6 col-sm-12 col-xs-12" style="">
-                              <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">이메일</p>
-                              <input class="col-md-12 col-sm-12 col-xs-12 insertAEmail"  type="text" style="margin-bottom: 15px">
-                          </div>
-                      </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="">
-                          <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">주소</p>
-                          <input class="col-md-12 col-sm-12 col-xs-12 insertAAddress"  type="text" style="margin-bottom: 15px">
-                      </div>
-                      <div class="col-md-12 col-sm-12 col-xs-12" style="">
-                          <p class="col-md-12 col-sm-12 col-xs-12"  style="margin-bottom: 0px">보안키</p>
-                          <input class="col-md-12 col-sm-12 col-xs-12 insertASecondPW"  type="text" style="margin-bottom: 15px">
-                      </div>
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
-                         <button type="button" class="btn btn-round btn-success col-lg-5 col-md-5 col-sm-5 col-xs-5" style="margin: 4%" id="insertAdmin">등록</button>
-                          <button type="button" class="btn btn-round btn-danger col-lg-5 col-md-5 col-sm-5 col-xs-5" style="margin: 4%" id="cancleAdmin">취소</button>
                       </div>
                     </div>
                   </div>

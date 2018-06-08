@@ -24,9 +24,11 @@
 <!-- 부트스트랩 -->
 
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js">
+</script>
 
-
+<!-- font link -->
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet"> 
 
 <style>
 /*xs 사이즈 이하면 컨테이너 사이즈 고정*/
@@ -99,6 +101,51 @@ body{
 	border:1px solid;
 }
 
+.product_desc{
+	padding-left:80px;
+	line-height: 2em;
+	font-family:'Nanum Gothic', sans-serif;
+	width:60%;
+	border:1px transparent;
+	background:white;
+}
+
+.product_desc :FIRST-LINE{
+	font:bold;
+}
+
+body *{
+	font-family:'Nanum Gothic', sans-serif;
+}
+
+.test{
+	border:1px solid;
+}
+
+textarea{
+	resize:none;
+}
+
+.product_name_font{
+	font-weight: bold;
+
+}
+
+.carousel_caption_name{
+
+	
+	font-weight: 500;
+	background-color:rgba(220,220,220,0.5);
+	
+
+}
+
+.carousel_caption_desc{
+	color:black;
+	font-weight: 400;
+}
+#mNavbar li.active a { color: grey !important; background-color: #ffbb33 !important; } 
+
 </style>
 
 <script>
@@ -125,6 +172,9 @@ body{
 		$('#option_product').append($temp);
 		 
 		
+		if(parseInt(<%=p.getProductQuantity()%>)<=0)
+			$('#option_product').attr("disabled",true);
+		
 		<%}%>
 		//캐러셀 적용
 		$('#imageCarousel').carousel();
@@ -134,13 +184,24 @@ body{
 			showNoOptionProductInfo();
 		}
 
-		//팝오버 함수와 템플릿 수정
+		//상세정보 팝오버 함수와 템플릿 수정
 		$('#product_info')
 				.popover(
 						{
 							template : '<div class="popover" style="width:400px"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
 						});
 
+		$('#share').popover(
+						{
+							template : '<div class="popover" style="width:400px"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
+						});
+		
+		$('#share').attr("data-content" , $('#share_buttons').html());
+							
+						
+		
+		
+		
 		//팝오버에 들어가는 내용들 설정
 		var product_type = '<%=p.getProductCategoryName()%>';
 		var product_origin = '<%=p.getProductOriginName()%>';
@@ -180,11 +241,11 @@ body{
 	
 	//스티키 NAVBAR
   	 function AdjustHeader(){
-  		 console.log($(window).scrollTop());
+
  	    if ($(window).scrollTop() > 600) {
  	      if (!$navbar.hasClass("navbar-fixed-top")) {
  	        $navbar.addClass("navbar-fixed-top");
- 	        $navbar.css("top","135px");
+ 	        $navbar.css("top","200px");
  	      }
  	    } else {
  	      $navbar.removeClass("navbar-fixed-top");
@@ -265,7 +326,7 @@ body{
 		
 		$temp.children("[name=selected_name]").text($temp.attr("name").split(",")[2]);//안에 상품이름 세팅
 			
-		$temp.children("[name=selected_price]").text($temp.attr("name").split(",")[3]);//안에 가격 세팅
+		$temp.children("[name=selected_price]").text($temp.attr("name").split(",")[3]+"원");//안에 가격 세팅
 		
 		return $temp;
 	}
@@ -364,14 +425,27 @@ body{
 	function submit_review() {
 		
 		
-		if(!checkLogin())
+		if(!checkLogin()){
+			$('#myModal').modal({"show":true});
 			return;
+		}
 		
 		
 		if($('[name=title]').val().length<=0){
+			$('[name=title]').closest('.form-group').addClass("has-error");
 			alert("제목을 입력해 주세요.");
-		}else if($('[name=content]').val().length<=0){
+			return;
+			
+		}else{
+			$('[name=title]').closest().removeClass("has-error");
+		} 
+			
+		if($('[name=content]').val().length<=0){
 			alert("내용을 입력해 주세요.");
+			$('[name=content]').closest('.form-group').addClass("has-error");
+			return;
+		}else{
+			$('[name=content]').closest('.form-group').removeClass("has-error");
 		}
 		
 		$.ajax({
@@ -413,7 +487,7 @@ body{
 			if(i==pi.currPage){
 				$('ul[class=pagination]').append("<li name='pageNumber' class='active'><a onclick='setReviewList("+i+")'>"+i+"</a></li>");
 			}else{
-				$('ul[class=pagination]').append("<li name='pageNumber' ><a  onclick='setReviewList("+i+")'>"+i+"</a></li>");
+				$('ul[class=pagination]').append("<li name='pageNumber' style='cursor:pointer;'><a  onclick='setReviewList("+i+")'>"+i+"</a></li>");
 			}
 	
 		}
@@ -482,12 +556,12 @@ body{
 				for(var j=0;j<list[i].rating;++j){
 					
 					$reviewDiv.append("<span class='glyphicon glyphicon-star rating_star'></span>");
-					}
+				}
 				
 				for(var k=0;k<5-list[i].rating;++k){
 						
 					$reviewDiv.append("<span class='glyphicon glyphicon-star rating_star_empty'></span>");
-					} 
+				} 
 				
 				
 				$reviewDiv.append("<h4>"+list[i].submitDate+"</h4>");
@@ -511,8 +585,6 @@ body{
 	
 	//찜 목록에 추가 / 삭제
 	function addToFavorite(productNum){
-		
-		
 		
 		$.ajax({
 			url:"addFavorite.do",
@@ -555,8 +627,11 @@ body{
 	function addToBasket(productNum){
 			
 		if(!checkLogin())
+		{
+			$('#myModal').modal({"show":true});
+			
 			return;
-		
+		}
 			$.ajax({
 				url:"addBasket.do",
 				data:{pno:productNum},
@@ -579,8 +654,10 @@ body{
 		function purchase(){
 			
 			
-			if(!checkLogin())
+			if(!checkLogin()){
+				$('#myModal').modal({"show":true});
 				return;
+			}
 			
 			var $optionList =  $('#optionDiv div[name*=selected_option_row_]');
 			
@@ -609,7 +686,6 @@ body{
 		function checkLogin(){
 			
 			<%if(request.getSession(false).getAttribute("memberNum")==null){%>
-				alert("로그인 해주세요");
 				 return false;
 			<%}else{%>
 				return true;
@@ -620,9 +696,10 @@ body{
 </script>
 </head>
 
-<body data-spy="scroll" data-target="#mNavbar" data-offset="400">
-	<br id="page_start"/>
+<body data-spy="scroll" data-target="#mNavbar" data-offset="5">
+	<span id="page_start"> test</span>
 	<%@include file="../common/header.jsp"%>
+	<%@include file="../common/loginModal.jsp" %>
 	
 	<br />
 	<br />
@@ -645,9 +722,11 @@ body{
 					<div class="btn-group col-md-6 col-sm-6 col-xs-6 col-lg-6">
 						<button class="btn btn-default btn-sm glyphicon glyphicon-heart"
 							id="addFavBtn" onclick="addToFavorite('<%=p.getProductNum()%>');"></button>
-						<button class="btn btn-default btn-sm glyphicon glyphicon-share"
-							style="color: black"></button>
-						<a id="product_info" onclick="popover();" tabindex="0"
+						
+						<a id="share" class="btn btn-default btn-sm glyphicon glyphicon-share" tabindex="0"
+							role="button" style="color: black"  data-toggle="popover" data-html="true" data-trigger="click"title="공유" data-placement="top"></a>
+						
+						<a id="product_info"  tabindex="0"
 							class="btn btn-sm btn-default glyphicon glyphicon-question-sign"
 							role="button" data-toggle="popover" data-trigger="hover"
 							title="상세 정보" data-html="true"></a>
@@ -659,7 +738,7 @@ body{
 
 			<div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 thumbnail">
 				<div class="caption">
-					<h3 id="product_name" class="thumbnail-label "></h3>
+					<h3 id="product_name" class="thumbnail-label product_name_font"></h3>
 					<h4 id="product_price" class="thumbnail-label"></h4>
 				</div>
 
@@ -690,30 +769,32 @@ body{
 					<div class="form-group col-xs-12">
 
 						
-						
-						<%if(!p.getProductCategoryName().equals("디저트")&&
-        									!p.getProductCategoryName().equals("메시지태그")&&
-        									!p.getProductCategoryName().equals("카드")) {%>
-        				<label for="to_basket" class="control-label sr-only">장바구니</label>
-						<button class="btn btn-lg btn-default col-xs-offset-1 col-xs-4"
-							id="to_basket" onclick="addToBasket('<%=p.getProductNum()%>')">장바구니</button>
-						<label for="to_purchase" class="control-label sr-only">구매하기</label>
-						
-						
-						<form id="purchase" action="<%=request.getContextPath()%>/payment.bk" method="post">
-							<input type="hidden" value="" name="sub_product_num"/>
-							<input type="hidden" value="" name="sub_product_price"/>
-							<input type="hidden" value="" name="sub_product_name"/>
-							<input type="hidden" value="" name="sub_product_image"/>
-							<button class="btn btn-primary btn-lg col-xs-offset-1 col-xs-6"
-							 type="button" id="to_purchase" onclick="purchase();">구매하기</button>
-						</form>
+						<%if(p.getProductQuantity()>0){ %>
+							<%if(!p.getProductCategoryName().equals("디저트")&&
+	        									!p.getProductCategoryName().equals("메시지태그")&&
+	        									!p.getProductCategoryName().equals("카드")) {%>
+	        				<label for="to_basket" class="control-label sr-only">장바구니</label>
+							<button class="btn btn-lg btn-default col-xs-offset-1 col-xs-4"
+								id="to_basket" onclick="addToBasket('<%=p.getProductNum()%>')">장바구니</button>
+							<label for="to_purchase" class="control-label sr-only">구매하기</label>
+							
+							
+							<form id="purchase" action="<%=request.getContextPath()%>/payment.bk" method="post">
+								<input type="hidden" value="" name="sub_product_num"/>
+								<input type="hidden" value="" name="sub_product_price"/>
+								<input type="hidden" value="" name="sub_product_name"/>
+								<input type="hidden" value="" name="sub_product_image"/>
+								<button class="btn btn-primary btn-lg col-xs-offset-1 col-xs-6"
+								 type="button" id="to_purchase" onclick="purchase();">구매하기</button>
+							</form>
+							<%} else {%>
+								<label for="to_basket" class="control-label sr-only">장바구니</label>
+								<button class="btn btn-lg btn-default col-xs-offset-2 col-xs-8"
+								id="to_basket" onclick="addToBasket('<%=p.getProductNum()%>')">장바구니</button>
+							<%} %>
 						<%} else {%>
-							<label for="to_basket" class="control-label sr-only">장바구니</label>
-							<button class="btn btn-lg btn-default col-xs-offset-2 col-xs-8"
-							id="to_basket" onclick="addToBasket('<%=p.getProductNum()%>')">장바구니</button>
-						<%} %>
-						
+							<button class="btn btn-default col-xs-12">품절</button>
+						<% } %>
 						</div>
 					</div>
 
@@ -744,7 +825,7 @@ body{
 	        <ul class="nav navbar-nav navbar-right ">
 	          <li class="active"><a href="#page_start" >상품구매</a></li>
 	          <li><a href="#content_start">상품 설명</a></li>
-	          <li><a href="#review_start">리뷰</a></li>
+	          <li><a href="#review_start">&nbsp;&nbsp;리뷰 &nbsp;&nbsp;</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -755,7 +836,8 @@ body{
 	<%
 		for (int i = 1; i < p.getImages().size(); ++i) {
 	%>
-	<!--상품 설명-->
+	<!--상품 사진-->
+	
 	<div class="container">
 		<div class="row">
 			<div style="text-align: center;">
@@ -768,12 +850,12 @@ body{
 		</div>
 	</div>
 
-	<!--상품 사진-->
+	<!--상품 설명-->
 	<div class="container">
 		<%
 			if (p.getImageDesc().get(i) != null) {
 		%>
-		<pre class="text-left" style="line-height: 2em;"><%=p.getImageDesc().get(i)%></pre>
+		<pre class="product_desc"><%=p.getImageDesc().get(i)%></pre>
 		<%
 			}
 		%>
@@ -784,13 +866,13 @@ body{
 	%>
 
 	<div class="container" style="margin-top: 10px">
-		<hr class="review_divider">
+		<hr >
 	</div>
 
 	<!--배송 관련 글 -->
 	<div class="container">
 		<div class="row">
-			<div class="col-xs col-lg col-md col-sm">
+			<div class="col-xs col-lg col-md col-sm product_desc">
 				<h4>
 					<b>배송알림 메시지</b>
 				</h4>
@@ -811,14 +893,14 @@ body{
 				<h4>
 					<b>결제 안내</b>
 				</h4>
-				<hr id="review_start" style="visibility: hidden;">
+				
 				가상계좌 입금이 확인되지 않으면 취소될 수 있습니다. <br> 주문 취소/변경 (콜센터 02-512-8180) <br>
+				
 				<br>
-				<h4>
-					<b>교환 및 환불 안내</b>
-				</h4>
+				<h4><b>교환 및 환불 안내</b></h4>
+				<hr id="review_start" style="visibility: hidden;">
 				꽃은 식물이기 때문에 배송된 이후에는 변심 및 훼손에 의한 환불이 불가한 점 양해 부탁드립니다. <br> 배송된
-				상품의 신선도나 구성품 누락시 원모먼트의 책임인 경우 새로운 구성으로 교환해 드립니다. <br> 교환 및 환불
+				상품의 신선도나 구성품 누락시 꽃길의 책임인 경우 새로운 구성으로 교환해 드립니다. <br> 교환 및 환불
 				문의 (콜센터 02-512-8180)<br>
 
 			</div>
@@ -826,12 +908,16 @@ body{
 
 	</div>
 	<div class="container" style="margin-top: 10px">
+		<h5><b>고객 리뷰</b></h5>
 		<hr class="review_divider">
 	</div>
 
 
 	<!--리뷰 게시판 -->
+
 	<div class="container">
+	
+	
 		<div class="row">
 			<div class="col-xs-12" id="reviewBoard">
 
@@ -857,17 +943,18 @@ body{
 	<div class="container">
 
 		<div class="row">
+		<div class="col-xs-12">
 			<a class="btn btn-primary btn-lg col-xs-3" data-toggle="collapse"
 				href="#reviewCollapse" id="reviewBtn">리뷰 남기기</a>
+		</div>
 
-
-			<div class="collapse col-xs-10 col-md-10 col-sm-10 col-lg-10"
+			<div class="collapse col-xs-8 col-md-8 col-sm-8 col-lg-8"
 				id="reviewCollapse">
 				<form class="form-horizontal">
 
 					<div class="form-group">
 						<label for="title" class="control-label" style="font-size: 1.3em">제목<span
-							style="color: red">*</span></label> <input class="form-control input-lg"
+							style="color: red">*</span></label> <input class="form-control input-lg col-xs-8"
 							type="text" name="title" placeholder="" maxlength="50">
 					</div>
 
@@ -956,8 +1043,8 @@ body{
 											class="img-responsive thumbnail"  alt="">
 										</a>
 										<div class="carousel-caption">
-											<h3><%=relatedCategoryProduct.get(j).getProductName() %></h3>
-											<p><%=relatedCategoryProduct.get(j).getProductPrice() %>원</p>
+											<h3><span class="carousel_caption_name"><%=relatedCategoryProduct.get(j).getProductName() %></span></h3>
+											<p><span class="carousel_caption_desc"><%=relatedCategoryProduct.get(j).getProductPrice() %>원</span></p>
 										</div>
 									</div>
 								<%} %>
@@ -996,6 +1083,25 @@ body{
 				</div>
 			</div>
 		</div>
+		
+		 <div id="share_buttons">
+           <a href="#" onclick="javascript:window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+             target="_blank">
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/twitter.png" alt="Share on Twitter"></a>
+           <a href="#" onclick="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+             target="_blank">
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/facebook.png" alt="Share on Facebook"></a>
+           <a href="#" onclick="javascript:window.open('https://plus.google.com/share?url=' +encodeURIComponent(document.URL), 'googleplussharedialog','menubar=no,toolbar=no,resizable=yes, scrollbars=yes,height=350,width=600');return false;"
+             target="_blank">
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/googlePlus.png" alt="Share on Google+"></a>
+           <a href="#" onclick="javascript:window.open('https://story.kakao.com/s/share?url=' +encodeURIComponent(document.URL), 'kakaostorysharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes, height=400,width=600');return false;"
+             target="_blank">
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/kakaoStory.jpg" alt="Share on kakaostory"></a>
+           <a href="#" onclick="javascript:window.open('http://share.naver.com/web/shareView.nhn?url=' +encodeURIComponent(document.URL)+'&title='+encodeURIComponent(document.title), 'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+             target="_blank">
+             <img style="width:40px; height: 40px" src="<%=request.getContextPath()%>/resources/images/shareSNSicon/naver.jpg" alt="Share on Naver"></a>
+         </div>
+		
 	</div>
 
 

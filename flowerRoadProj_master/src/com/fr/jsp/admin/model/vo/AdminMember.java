@@ -16,6 +16,7 @@ public class AdminMember {
 	private String imagePath;
 	private Date enrollDate;
 	private String memberEmail;
+	private int totalPrice;
 	
 	public AdminMember() {
 		super();
@@ -23,7 +24,7 @@ public class AdminMember {
 
 	public AdminMember(String memberNum, String memberId, String memberPw, String memberName, String memberAddress,
 			String memberPhone, String memberGender, Date memberBirthDate, String gradeName, String imagePath,
-			Date enrollDate, String memberEmail) {
+			Date enrollDate, String memberEmail, int totalPrice) {
 		super();
 		this.memberNum = memberNum;
 		this.memberId = memberId;
@@ -37,7 +38,9 @@ public class AdminMember {
 		this.imagePath = imagePath;
 		this.enrollDate = enrollDate;
 		this.memberEmail = memberEmail;
+		this.totalPrice = totalPrice;
 	}
+
 
 	public String getMemberNum() {
 		return memberNum;
@@ -133,6 +136,14 @@ public class AdminMember {
 
 	public void setMemberEmail(String memberEmail) {
 		this.memberEmail = memberEmail;
+	}
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 	
 }

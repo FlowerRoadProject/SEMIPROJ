@@ -14,29 +14,29 @@
 		<%@ include file="common/admin_JS.jsp" %>
 		<!-- admin_CSS -->
 		<%@ include file="common/admin_CSS.jsp" %>
+		<%-- <style>
+			body{
+				width:100%;
+				background-image:url('<%=request.getContextPath() %>/resources/images/admin/petal2.gif');
+			}
+		</style> --%>
 	</head>
-	<body>
+	<body id="adminQuiz">
 		<!-- admin_LOADING -->
 		<%@ include file="common/admin_LOADING.jsp" %>
 		
-		<input type="text" name="adminNum" id="adminNum"/>
-		<input type="button" value="퀴즈풀기" id="adminQuiz"/>
-		<a href="/flowerRoadProj/main.admin" id="admin_Main"></a>
+		<a href="<%=request.getContextPath() %>/main.admin" id="admin_Main"></a>
 		
 		<script>
 		$('#adminQuiz').on({
 			'click':function(){
 				var answerPw = window.prompt('제일 존경하는 인물은?');
 				$.ajax({
-					url: "/flowerRoadProj/secondPwCheck.admin",
+					url: "<%=request.getContextPath() %>/secondPwCheck.admin",
 					type: "post",
-					data: {
-						adminNum: $('#adminNum').val(),
-						answerPw: answerPw
-					},
 					success: function(data){
 						if(($.trim(data.secondPw))==answerPw){
-							alert(data.memberName+"님 환영합니다.");
+							alert(data.memberName+" 관리자님 어서오세요.");
 							admin_Main.click();
 						}else{ 
 							alert("누구냐 넌..");
@@ -48,7 +48,6 @@
 				})
 			}
 		});
-			
 		</script>
 	</body>
 </html>

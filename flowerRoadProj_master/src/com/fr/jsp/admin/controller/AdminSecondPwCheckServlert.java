@@ -26,7 +26,7 @@ public class AdminSecondPwCheckServlert extends HttpServlet {
 		String adminNum = null;
 
 		HttpSession session = request.getSession(false);
-		adminNum = (String) session.getAttribute("adminNum");
+		adminNum = (String) session.getAttribute("memberNum");
 		
 		AdminMemberService ams = new AdminMemberService();
 		Member admin = ams.adminSecondPwCheck(adminNum);

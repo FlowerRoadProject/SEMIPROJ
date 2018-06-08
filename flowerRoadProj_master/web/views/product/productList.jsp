@@ -89,6 +89,19 @@
     		animation-duration: 10s;
         }
         
+        .thumbnail_soldOut{
+        	opacity: 0.5;
+   			filter: alpha(opacity=50);
+        
+        }
+        
+        .soldOut_text{
+         position: absolute;
+   		 top: 50%;
+    	 left: 50%;
+    	 transform: translate(-50%, -50%);
+        }
+        
        
         .items{
         	width:auto;
@@ -104,7 +117,25 @@
 
 		.align-center-outer{
 			text-align:center;
-		}       
+		}     
+		
+		.rating_star {
+			color: gold;
+			font-size: 1em;
+		}
+
+		.rating_star_empty {
+			color: grey;
+			font-size: 1em;
+		}  
+		
+		
+		.rating_star_align{
+			text-align:right;
+			margin-top:7px;
+		}
+		
+		
 	</style>
 
 
@@ -117,13 +148,14 @@
 <%@include file="../common/header.jsp"%>
 <br /><br /><br /><br /><br /><br />
 <%-- <%@ include file="../common/eventMenu.jsp"%> --%>
+<%@include file="../common/loginModal.jsp" %>
 
 <jsp:include page="../common/eventMenu.jsp">
 
 <jsp:param name="category" value="<%=event %>" />
  
 </jsp:include>
-   	
+  
    <!-- 여기부터 내용을 넣겠다 -->
 	<div class="container">
 	<div class="col-lg-12 visible-lg " style="margin-top: 4em"></div>
@@ -148,27 +180,53 @@
   					<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
     					<div class="col-lg-12 thumbnail items ">
     					<a href="<%=request.getContextPath()%>/productDetail.do?productNum=+<%=pagedList.get(i).getProductNum()%>">
+    					
+    					<%if(pagedList.get(i).getProductQuantity()>0){ %>
       						<img src="<%=request.getContextPath()%>/resources/images/product/<%=pagedList.get(i).getImage()%>" alt="...">
+      					<%} else {%>
+      						<img class="thumbnail_soldOut" src="<%=request.getContextPath()%>/resources/images/product/<%=pagedList.get(i).getImage()%>" alt="...">
+      						<span class="soldOut_text"><h4><b>곧 준비할게요 :)</b></h4></span>
+      					
+      					<%} %>
       					</a>
-      						<span class="label label-primary tag">Primary</span>
-      						<span class="label label-success tag">success</span>
+      					<!-- 	<span class="label label-primary tag">Primary</span>
+      						<span class="label label-success tag">success</span> -->
       						<div class="col-lg-12 caption">        						
         						<h4 class="col-lg-12 "><br /><b class="font-title text-truncate"><%=pagedList.get(i).getProductName() %></b></h4>        						
         						<h4 class=" col-lg-12 "><%=pagedList.get(i).getProductPrice() %>원</h4>
-        						<h5 class="col-lg-12 font-gray">리뷰 <span><%=pagedList.get(i).getReviewCount() %></span></h5>  
-        						<div class="col-lg-12 ">  
+        						
+       						
+        						<h5 class="col-lg-4  font-gray">리뷰 <span><%=pagedList.get(i).getReviewCount() %></span></h5>  
+        						<div class="col-lg-8  rating_star_align ">
+	        						<%for(int j=0;j<Math.floor(pagedList.get(i).getReviewAvg());++j){ %>
+	        							<span class='glyphicon glyphicon-star rating_star'></span>
+	        						<%} %>
+	        						<%for(int j=0;j<5-Math.floor(pagedList.get(i).getReviewAvg());++j){ %>
+	        							<span class='glyphicon glyphicon-star rating_star_empty'></span>
+	        						<%} %>
+        						</div>
+        						
+        						
+        						<div class="col-lg-12 " style="margin-top:15px;">  
         							
-        							<%if(!pagedList.get(i).getProductTypeName().equals("디저트")&&
-        									!pagedList.get(i).getProductTypeName().equals("메시지태그")&&
-        									!pagedList.get(i).getProductTypeName().equals("카드")) {%>
-        							 <a class="col-lg-4 btn btn-default" role="button" onclick="addBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
-        							<a class="col-lg-7 col-lg-offset-1 btn btn-primary" role="button" 
-        							onclick="location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+<%=pagedList.get(i).getProductNum()%>'">바로구매</a>
-        							<%}else{ %>
-        							 <a class="col-lg-12 btn btn-default" role="button" onclick="addBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
+        							<%if(pagedList.get(i).getProductQuantity()<=0){ %>
         							
-        							<%} %>
-        							 	
+	        							<a class="col-lg-12 btn btn-default" role="button" >품절</a>
+	        							
+        							 <%} else {%>
+        							 
+        							 	<%if(!pagedList.get(i).getProductTypeName().equals("디저트")&&
+	        									!pagedList.get(i).getProductTypeName().equals("메시지태그")&&
+	        									!pagedList.get(i).getProductTypeName().equals("카드")) {%>
+	        							 <a class="col-lg-4 btn btn-default" role="button" onclick="addToBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
+	        							<a class="col-lg-7 col-lg-offset-1 btn btn-primary" role="button" 
+	        							onclick="location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+<%=pagedList.get(i).getProductNum()%>'">바로구매</a>
+	        							<%}else{ %>
+	        							 <a class="col-lg-12 btn btn-default" role="button" onclick="addToBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
+	        							
+	        							<%} %>
+        							 
+        							 <%} %>
         							
       							</div>	 
       						</div>
@@ -255,8 +313,17 @@
 <%@include file="../common/footer.jsp"%>
 
 <script>
-	function addBasket(productNum){
+
+function addToBasket(productNum){
+	
+
+	
+	if(!checkLogin())
+	{
+		$('#myModal').modal({"show":true});
 		
+		return;
+	}
 		$.ajax({
 			url:"addBasket.do",
 			data:{pno:productNum},
@@ -264,8 +331,6 @@
 				
 				if(data>0)
 					alert("장바구니에 성공적으로 추가!!");
-				else if(data==-1)
-					alert("로그인을 해주세요");
 				
 			},error:function(data){
 				alert("장바구니에 추가 실패!!");
@@ -274,6 +339,16 @@
 		});
 	
 	}
+	
+	function checkLogin(){
+		
+		<%if(request.getSession(false).getAttribute("memberNum")==null){%>
+			 return false;
+		<%}else{%>
+			return true;
+		<%}%>
+	}
+
 		
 </script>
 

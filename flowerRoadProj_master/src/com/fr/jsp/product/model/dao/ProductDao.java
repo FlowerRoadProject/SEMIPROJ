@@ -250,6 +250,7 @@ public class ProductDao {
 				p.setImage(rset.getString(5));
 				p.setProductTypeName(rset.getString(6));
 				p.setReviewAvg(rset.getInt(7));
+				p.setProductQuantity(rset.getInt(8));
 				result.add(p);
 			}
 			
@@ -305,6 +306,7 @@ public class ProductDao {
 				p.setImage(rset.getString(6));
 				p.setProductTypeName(rset.getString(7));
 				p.setReviewAvg(rset.getInt(8));
+				p.setProductQuantity(rset.getInt(9));
 				result.add(p);
 
 			}
@@ -328,19 +330,22 @@ public class ProductDao {
 		ResultSet rset = null;
 		ArrayList<ProductSimple> result = new ArrayList<ProductSimple>();
 		ProductSimple p = null;
-
+		String query =null;
 		
 		try {
-			
-			String query = prop.getProperty("getProductList");
-			query = query.replace("1", tableName);
-			query = query.replace("2", columnName);
-			
+			if(columnValue.equals("선물")){
+				query = prop.getProperty("getPresentCategoryProduct");
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, "카드");
+				pstmt.setString(2, "메시지태그");
+			}else{
+				query = prop.getProperty("getProductList");
+				query = query.replace("1", tableName);
+				query = query.replace("2", columnName);
+				pstmt = con.prepareStatement(query);
+				pstmt.setString(1, columnValue);
+			}
 		
-			pstmt = con.prepareStatement(query);
-			
-			pstmt.setString(1, columnValue);
-			
 			
 			rset = pstmt.executeQuery();
 
@@ -355,7 +360,9 @@ public class ProductDao {
 				p.setImage(rset.getString(6));
 				p.setProductTypeName(rset.getString(7));
 				p.setReviewAvg(rset.getInt(8));
-
+				p.setProductQuantity(rset.getInt(9));
+				
+				
 				result.add(p);
 
 			}
@@ -368,7 +375,6 @@ public class ProductDao {
 			close(pstmt);
 
 		}
-
 		
 		return result;
 	}
@@ -440,7 +446,7 @@ public class ProductDao {
 				p.setImage(rset.getString(6));
 				p.setProductTypeName(rset.getString(7));
 				p.setReviewAvg(rset.getInt(8));
-
+				p.setProductQuantity(rset.getInt(9));
 				result.add(p);
 
 			}
@@ -459,6 +465,59 @@ public class ProductDao {
 	}
 
 
+	public ArrayList<ProductSimple> getTopSellingProduct(Connection con, int startRow, int endRow) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<ProductSimple> result = new ArrayList<ProductSimple>();
+		ProductSimple p = null;
+
+		
+		try {
+			
+			String query = prop.getProperty("getTopSelingProduct");
+			
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, "카드");
+			pstmt.setString(2, "디저트");
+			pstmt.setString(3, "메시지태그");
+			pstmt.setInt(4, startRow);
+			pstmt.setInt(5, endRow);
+			
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+
+				p = new ProductSimple();
+
+				p.setProductNum(rset.getString(2));
+				p.setProductName(rset.getString(3));
+				p.setProductPrice(rset.getInt(4));
+				p.setReviewCount(rset.getInt(5));
+				p.setImage(rset.getString(6));
+				p.setProductTypeName(rset.getString(7));
+				p.setReviewAvg(rset.getInt(8));
+				p.setProductQuantity(rset.getInt(9));
+				result.add(p);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+
+		}
+
+		
+		return result;
+		
+		
+	}
+
+	
 
 
 }

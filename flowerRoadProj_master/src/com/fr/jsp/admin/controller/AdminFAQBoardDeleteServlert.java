@@ -26,8 +26,8 @@ public class AdminFAQBoardDeleteServlert extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		String adminNum = (String) session.getAttribute("adminNum");
-		String faqNum = request.getParameter("faqNum");
+		String adminNum = (String) session.getAttribute("memberNum");
+		int faqNum = Integer.parseInt(request.getParameter("faqNum"));
 		String faqAnswerPw = request.getParameter("faqAnswerPw");
 		
 		AdminMemberService ams = new AdminMemberService();

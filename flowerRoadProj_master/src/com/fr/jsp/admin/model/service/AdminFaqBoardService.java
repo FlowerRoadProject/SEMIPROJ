@@ -41,13 +41,18 @@ public class AdminFaqBoardService {
 		int updateFAQBoardCount = afbDao.admin_updateFAQBoard(con, faqBoard);
 		if(updateFAQBoardCount>0) commit(con);
 		else rollback(con);
-		
 	}
 	// FAQ 삭제
-	public void admin_deleteFAQBoard(String faqNum) {
+	public void admin_deleteFAQBoard(int faqNum) {
 		int deleteFAQBoardCount = afbDao.admin_deleteFAQBoard(con, faqNum);
 		if(deleteFAQBoardCount>0) commit(con);
 		else rollback(con);
 	}
+	// FAQ 한 개 조회
+	public FaqBoard admin_selectFaqBoard(int getbNum) {
+		FaqBoard admin_selectFaqBoard = afbDao.admin_selectFaqBoard(con, getbNum);
+		return admin_selectFaqBoard;
+	}
+	
 
 }

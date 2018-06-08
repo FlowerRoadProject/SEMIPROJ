@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.fr.jsp.myShoppingBasket.model.vo.Basket, java.util.*, com.fr.jsp.member.model.vo.Member"%>
-    
+    pageEncoding="UTF-8" import="com.fr.jsp.myShoppingBasket.model.vo.*, java.util.*, com.fr.jsp.member.model.vo.Member"%>
 <% 
 ArrayList<Basket> list = (ArrayList<Basket>)request.getAttribute("pList");
-
+ArrayList<Coupon> cList = (ArrayList<Coupon>)request.getAttribute("cList");
 Member member = (Member)request.getAttribute("member");
 
 %>   
@@ -13,16 +12,16 @@ Member member = (Member)request.getAttribute("member");
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <head>
         <title>주문 및 결제페이지</title>
-        <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/bootstrap.css">
-        <script src="<%=request.getContextPath() %>/resources/js/jquery-1.12.2.js"></script>
+      <%--   <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/bootstrap.css">
+       
         <script src="<%=request.getContextPath() %>/resources/js/bootstrap.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"> --%>
         
-        
-		 <!--부트스트랩 셀렉트피커-->
-        <script src="<%=request.getContextPath() %>/resources/js/myShoppingBasket/bootstrap-select.js"></script>
+        <script src="<%=request.getContextPath() %>/resources/js/jquery-1.12.2.min.js"></script>
+
+        <!--부트스트랩 셀렉트피커-->
         <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/myShoppingBasket/bootstrap-select.min.css">
-        
+        <script src="<%=request.getContextPath() %>/resources/js/myShoppingBasket/bootstrap-select.js"></script>
 
         <!--우편번호찾기-->        
         <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
@@ -98,7 +97,12 @@ Member member = (Member)request.getAttribute("member");
                         }                      
                         
                         $('#finalPay').text( parseInt($('#totalPrice').text()) + parseInt($('#dvPrice').text()) +"원");
-                        
+                        //쿠폰금액 0원으로 바꾸기
+                        $('#couponInput').text( 0 +"원" );
+                        $('#finalPay').text( parseInt($('#finalPay').text()) + "원" );
+                        //사용하기 버튼 활성화, 취소하기 버튼 안보이게
+                        $('.coupon-btn').css('display','inline-block');
+                        $('.coupon-cancle').css('display','none');
                     }
                 }).open();
             }
@@ -166,7 +170,18 @@ Member member = (Member)request.getAttribute("member");
             	background: rgb(51, 122, 183);
             	color: white;
             }
-          
+            .coupon{
+            	border: 1px solid black;
+            	display: none;
+            	padding: 2em;            	
+            }
+            .coupon div div{
+            	text-align: center;
+            }
+          	.couponList div{
+          		font-size: 1.2em;
+          		vertical-align: middle;
+          	}
            
         </style>
 
@@ -175,14 +190,11 @@ Member member = (Member)request.getAttribute("member");
     
     <%@include file="/views/common/header.jsp" %>
     
-        <br><br><br><br><br><br><br>
-	
-		<div><%=request.getAttribute("name") %></div>
-
+        <br><br><br><br><br><br><br><br /><br /><br /><br /><br />
         
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin"><!--상단 진행페이지 구문-->
-                <span>장바구니</span>&nbsp;&gt;&nbsp; <span><strong>주문/결제</strong></span>&nbsp;&gt;&nbsp; <span>주문완료</span>&nbsp;&gt;&nbsp;                
+                <span><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>장바구니</span>&nbsp;&gt;&nbsp; <span style="color:rgb(51, 122, 183); font-size:1.3em;"><strong><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>주문/결제</strong></span>&nbsp;&gt;&nbsp; <span><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>주문완료</span>&nbsp;&nbsp;
             </div>
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1"><!--총 선택 상품나열 칸-->
                 <h4><b class="col-xs-3 col-sm-3 col-md-3">주문내용</b></h4>
@@ -195,7 +207,7 @@ Member member = (Member)request.getAttribute("member");
                     </div>
                     <div class="col-xs-10 col-sm-10 col-md-9 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-3 col-lg-offset-0 bottom-margin"><!--정보칸-->
                         
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3><%=list.get(i).getProduct_name()%></h3></div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 product-name"><h3><%=list.get(i).getProduct_name()%></h3></div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br /></div>
                             
                             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 grayFont">판매가 : </div>
@@ -318,7 +330,7 @@ Member member = (Member)request.getAttribute("member");
                         $('.selectpicker').change(function(){
                             if( $('#datepicker').val() != "" || $('.selectpicker').val() != "" ){
                             	
-                            	
+                            	console.log('들어옴');
                             	var date = new Array();
                             	date = $('#datepicker').val().split('-');
                             	var fullDate = date[0]+'년 '+date[1]+'월 '+date[2]+'일'
@@ -453,6 +465,37 @@ Member member = (Member)request.getAttribute("member");
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
                         <input type="text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-control input-text-yellow" id='rPhone' placeholder="'-'없이 입력해주세요" aria-describedby="basic-addon1">
                     </div>
+                    <script>
+                    //전화번호 정규화
+					$('#rPhone').change(function(){
+                    	var regExp1 = /(010|02|031|032|033|041|042|043|044|051|052|053|054|055|061|062|063|064)(\d{4}|\d{3})\d{4}/;
+                    		/* 02	서울특별시
+                    		031	경기도
+                    		032	인천광역시
+                    		033	강원도
+                    		041	충청남도
+                    		042	대전광역시
+                    		043	충청북도
+                    		044	세종특별자치시
+                    		051	부산광역시
+                    		052(2)	울산광역시
+                    		053	대구광역시
+                    		054	경상북도
+                    		055	경상남도
+                    		061	전라남도
+                    		062	광주광역시
+                    		063	전라북도
+                    		064	제주특별자치도(700번대만 사용) */                    	            	
+                    	var str = $('#rPhone').val();
+                    	console.log(regExp1.test(str));
+                    	if(!regExp1.test(str)){
+                    		alert('적합한 전화번호가 아닙니다 다시 입력해주세요');
+                    		$('#rPhone').val("");
+                    	}                    	
+                    });                    
+                    </script>
+                    
+                    
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -464,63 +507,58 @@ Member member = (Member)request.getAttribute("member");
                            	중요한 행사로 인해 배송시간 또는 특이사항이 있을 경우  <br class="visible-md">반드시 배송메모를 남겨주세요.</span>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin">
+                
+                <!-- 메세지태그 -->                              
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin" id="messageTag" style="display:none">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <h4>메세지태그</h4>
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                        <input type="text" class="col-md-12 col-lg-12 form-control" id="tag" placeholder="메세지태그에 남길 글을 입력해주세요" aria-describedby="basic-addon1"><br>
+                        <span style="color:lightgray">메세지태그는 최대 40자까지 입력할 수 있습니다</span>
+                    </div>
+                </div>               
+                
+                <!-- 메세지카드 -->
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin" id="messageCard" style="display:none">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                         <h4>메세지카드</h4>
-                    </div>
-                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 bottom-margin" onchange="radioChange();">
-                        
-                        <input type="radio" name="message" value="리본" id="message-radio-ribon"><label for="리본">리본</label> <!--리본일때와 메세지카드 일때 입력가능 글자수를 변경한다-->
-                        <input type="radio" name="message" value="메세지카드" id="message-radio-card"><label for="메세지카드">메세지카드</label>
-                        <br>                 
-                        <span style="color:lightgray">리본은 공백포함 30자, <br class="visible-md">메세지카드는 공백포함 110자 입력가능합니다</span>
-                       
-                    </div>
-                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 col-sm-offset-3 col-md-offset-3 col-lg-offset-3" id="message-option" style="display: none;">
-                        <textarea name="message" id="message" cols="30" rows="10" maxlength="30" placeholder="이곳에 메세지를 적어주세요"></textarea>
+                    </div>                    
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 col-sm-offset-3 col-md-offset-3 col-lg-offset-3" id="message-option">
+                        <textarea name="message" id="message" cols="30" rows="10" maxlength="110" placeholder="이곳에 메세지를 적어주세요"></textarea>
                         <div class="col-lg-9 text-count">
-                            <span id="text-count-current"></span>/<span id="text-count-total"></span>
+                            <span id="text-count-current"></span>/<span id="text-count-total">110</span>
                         </div>
-                    </div>
-                    
-                  
-                    
-                    
-                    <script>
-                        function radioChange(){
-                            if($('#message-radio-ribon').prop("checked") == true){                                 
-                                $('#message-option').css('display','inline-block');                                
-                                $('#message').val("");
-                                $('#text-count-total').text(30);
-                                $('#text-count-current').text(30);
-                            }
-                            else if($('#message-radio-card').prop("checked") == true){                                 
-                                $('#message-option').css('display','inline-block');  
-                                $('#message').val("");
-                                $('#text-count-total').text(110);
-                                $('#text-count-current').text(110);
-                            }
-                        };
-                        
-                        $(function(){
-                            $('#message').keyup(function(){
-                                var inputLength = $('#message').val().length;
-                                var textLength = parseInt($('#text-count-total').html())- parseInt(inputLength);   
-                                $('#text-count-current').html(textLength);
-                            });
-
-                        });
-
-
-
-                    
-                    </script>
-
+                    </div> 
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"></div>
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
                        <span style="color:lightgray">특수문자를 입력하실 경우 메세지 오류가 생길 수 있으니<br class="visible-md"> 결제완료페이지에서 반드시 확인해주세요.</span>
                     </div>
-                </div>                             
+                </div> 
+                
+                <!-- 메세지 입력시 글자수 카운트 -->
+                <script>   
+                   $('#message').keyup(function(){
+                   	var inputLength = $('#message').val().length;
+                   	var textLength = parseInt($('#text-count-total').html())- parseInt(inputLength);   
+                    $('#text-count-current').html(textLength);
+                   });         
+                   
+                   
+                   $(function(){
+                	   for(var i = 0; i<$('.product-name').length; i++){
+                		   var productName = $('.product-name').eq(i).text();
+                		   if(productName.substr(0,5) == '메시지태그'){
+                			   $('#messageTag').css('display','inline-block');
+                		   }
+                		   if(productName.substr(2,2) == "카드"){
+                			   $('#messageCard').css('display','inline-block');
+                		   }
+                	   }                	  
+                   });
+                   
+                </script>
+                                            
             </div>
         </div>
         <div class="container">
@@ -583,12 +621,106 @@ Member member = (Member)request.getAttribute("member");
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bottom-margin">
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                             <h4>쿠폰</h4>
-                            <button class="btn btn-success">쿠폰선택하기</button>
+                            <button class="btn btn-success" id="selectCoupon">쿠폰선택하기</button>
                         </div> 
                         <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 align-right">
-                            <h4 style="color:red">여기에 무슨 쿠폰인지 들어가면 좋겠다</h4>
+                            <h4 id="couponInput" style="color:red">0원</h4>
                         </div>                       
                     </div>
+                   <!-- 쿠폰창을 만들자 -->
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 coupon bottom-margin">
+                    	<div class="col-lg-12 couponInfo">
+                    		<div class="col-lg-4">
+                    			쿠폰이름
+                    		</div>
+                    		<div class="col-lg-3">
+                    			할인가격
+                    		</div>
+                    		<div class="col-lg-3">
+                    			유효기간
+                    		</div>
+                    		<div class="col-lg-2">
+                    			사용하기                    			
+                    		</div>
+                    		<hr class="col-lg-12"/>
+                    	</div>
+                    	<%if(cList.size() == 0){ %>
+                    		<div class="col-lg-12" align="center">보유중인 쿠폰이 없습니다.</div>
+                    	<%}else{ %>
+                    	
+                    	<%for(int i= 0 ;i < cList.size();i++){ %>   
+                    	<div class="col-lg-12 couponList">
+                    		<input type="hidden" class="dNum" value="<%=cList.get(i).getDistNum() %>" />
+                    		<div class="col-lg-4 cName"><%=cList.get(i).getCouponName() %></div>
+                    		<div class="col-lg-3 cDiscount"><%=cList.get(i).getAmount() %>원</div>
+                    		<div class="col-lg-3"><%=cList.get(i).getExpiration() %>일</div> 
+                    		<div class="col-lg-2 use">
+                    			<button class="btn btn-primary btn-xs coupon-btn">사용하기</button>
+                    		</div> 
+                    		<div class="col-lg-2 cancle">
+                    			<button class="btn btn-danger btn-xs coupon-cancle" style="display:none">취소하기</button>
+                    		</div>     
+                    	</div>
+                    	<%} %>
+                    	<%} %>
+                    </div>                    
+                    <script>
+                    	//쿠폰 구현하기
+                    	$('#selectCoupon').on('click',function(){
+                    		
+                    		if( $('#sample6_address').val() == "" || $('#sample6_address2').val() == "" || $('#sample6_postcode').val() =="" ){
+                    			alert('주소를 먼저 모두 입력해주세요');
+                    		}else{
+                    			$('.coupon').slideToggle();
+                    		}                   		
+                    		
+                    	});
+                    	//쿠폰 선택 버튼
+                    	$('.coupon-btn').on('click',function(){
+                    		console.log("선택버튼누름: "+ parseInt($(this).parents().siblings('.cDiscount').text()) );
+                    		//합계에서 차감하기
+                    		var discount = parseInt($(this).parents().siblings('.cDiscount').text());
+                    		$('#couponInput').text( discount +"원" );
+                    		$('#finalPay').text( (parseInt($('#finalPay').text()) - parseInt(discount)) +"원" );
+                    		//사용버튼 사라지게하기
+                    		$(this).css('display',"none");
+                    		$(this).parents().siblings('.cancle').children('.coupon-cancle').css('display','inline-block');
+                    		//다른 사용버튼 못쓰게하기
+							for(var i = 0;i < $('.couponList').length;i++){
+								if( $('.coupon-btn').eq(i).css('display') != 'none' ){
+									$('.coupon-btn').eq(i).prop('disabled',true);
+								}
+							}
+                    		
+                    		console.log("쿠폰이름: "+$(this).parents().siblings('.cName').text());
+                    		$('#isCouponUsed').val($(this).parents().siblings('.dNum').val());
+                    		
+
+                    		
+                    	});
+                    	//쿠폰 취소 버튼
+                    	$('.coupon-cancle').on('click',function(){
+                    		console.log("취소버튼누름: "+ parseInt($(this).parents().siblings('.cDiscount').text()) );
+                    		//합계 되돌리기
+                    		var discount = parseInt($(this).parents().siblings('.cDiscount').text());
+                    		$('#couponInput').text( 0 +"원" );
+                    		$('#finalPay').text( (parseInt($('#finalPay').text()) + parseInt(discount)) +"원" );
+                    		
+                    		//취소버튼 사라지게하기
+                    		$(this).css('display','none');
+                    		$(this).parents().siblings('.use').children('.coupon-btn').css('display','inline-block');
+                    		//취소하기 버튼 누르면 disabled 없애기
+                    		for(var i = 0;i < $('.couponList').length;i++){
+								$('.coupon-btn').eq(i).prop('disabled',false);
+							}
+                    		
+                    		console.log("취소된 쿠폰이름: "+$(this).parents().siblings('.dNum').text());
+                    		$('#isCouponUsed').val("");
+                    	});
+                    	
+                    	
+                    	
+                    </script>
                     
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bottom-margin">
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -611,6 +743,7 @@ Member member = (Member)request.getAttribute("member");
                     	<form action="<%=request.getContextPath()%>/order.bk" method="POST" id="buy">
                          
                          <%for(int i = 0;i < list.size();i++){ %>
+                         	<input type="hidden" name="category" class="category" value="<%=list.get(i).getCategory()%>"/>
                          	<input type="hidden" name="productNum" class="productNum" value='<%=list.get(i).getProduct_num() %>'/> 
                          	<input type="hidden" name="quantity" class="quantity" value='<%=list.get(i).getQuantity()%>'/> 
                          	<input type="hidden" name="price" class="price" value='<%=list.get(i).getProduct_price()%>'/>
@@ -625,15 +758,29 @@ Member member = (Member)request.getAttribute("member");
                          <input type="hidden" name="anony" id="anony" value='N'/>
                     	 <input type="hidden" name="deliveryMemo" id="deliveryMemo" value=''/>
                     	 <input type="hidden" name="payMethod" id="payMethod" value=""/>
+                    	 <input type="hidden" name="isCouponUsed" id="isCouponUsed" value=""/>
+                    		
                     		<button type="button" class="btn btn-primary btn-lg bottom-margin col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="payingMe">결제하기</button><br><br /><br />
-                    		<button type="button" class="btn btn-primary btn-lg bottom-margin col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1">취소하기</button><br> <br /><br />
+                    		<button type="button" class="btn btn-primary btn-lg bottom-margin col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="canclePay">취소하기</button><br> <br /><br />
                 			
                 		</form>
                 	</div>
                 </div>
         </div>       
         
+        
        <script>
+       
+       $('#canclePay').on('click',function(){
+    	  if(confirm('진행된 결제를 취소할까요?')){
+    		  alert('결제를 취소하고 메인으로 돌아갑니다');
+    		  location.href="<%=request.getContextPath()%>/main.jsp";
+    	  }else{
+    		  console.log('취소를 취소한다');
+    	  }
+    	   
+       });
+       
        
        $('#payingMe').on('click',function(){
     	/* 회원가입 후 생성된 가맹점 식별코드를 이용해서 window.IMP 변수를 초기화합니다.
@@ -709,16 +856,19 @@ Member member = (Member)request.getAttribute("member");
         var priceArr = new Array();
         var pNameArr = new Array();
         var imageArr = new Array();
-        
+        category = new Array();
        	console.log("orderDate: "+$('#orderDate').val())
         
         for(var i = 0; i<$('.productNum').length;i++){
         	pNumArr.push($('.productNum').eq(i).val()); 
         	quanArr.push($('.quantity').eq(i).val());
+        	category.push($('.category').eq(i).val());
         	console.log(pNumArr[i]);
+        	
         }
         
        jQuery.ajaxSettings.traditional = true;//ajax로 배열을 넘기려면 이게 필요하다.. 하..ㅠㅠ
+       
        $.ajax({
         	url: "insertOrder.bk",
         	type:"POST",
@@ -730,8 +880,9 @@ Member member = (Member)request.getAttribute("member");
         		receivePhone: $("#receivePhone").val(),
         		sendMemo: $("#sMemo").val(),
         		anony: $('#anony').val(),
-        		quantity: quanArr
-        		
+        		quantity: quanArr,
+        		cardMsg: $('#message').val(),
+        		tagMsg: $('#tag').text()
         	},
         	success: function(data){
         		alert('주문에 성공하였습니다!');
@@ -740,10 +891,25 @@ Member member = (Member)request.getAttribute("member");
         		alert('주문에 실패하였습니다');
         	}
         });
-      
-        
-		}
-       });
+       
+        //주문한 상품은 장바구니에서 사라지게 하는 ajax 필요  	
+        $.ajax({
+        	url: "removeFrom.bk",
+        	type:"GET",
+        	data:{
+        		productNum: pNumArr,
+        		quantity: quanArr
+        	},
+        	success: function(){
+        		console.log("장바구니에서 차감성공");
+        	},error: function(){
+        		console.log("장바구니에서 차감실패..");
+        	}
+        })
+		
+		
+		}//else의 마지막부분
+       });//click의 마지막부분
        
        </script>
         
@@ -791,8 +957,5 @@ Member member = (Member)request.getAttribute("member");
                 });
             });     
         </script>
-        
-       
-        
          
 </html>

@@ -217,6 +217,26 @@ public class ProductService {
 		return list;
 	}
 	
+	public ArrayList<ProductSimple> getTopSellingProduct(int index) {
+		
+		con = getConnection();
+		ArrayList<ProductSimple> result =new ArrayList<ProductSimple>();
+		
+		
+		int startRow = (index-1)*6+1;
+		int endRow = index*6;
+		
+		if(endRow>12)
+			endRow=12;
+		
+		result= pDao.getTopSellingProduct(con,startRow,endRow);
+		
+		if(result!=null)commit(con);
+		else rollback(con);
+		
+		return result;
+	}
+	
 	
 	public ArrayList<ProductSimple> getOrderdProductList(ArrayList<ProductSimple> sessionList, String order) {
 		
@@ -243,6 +263,8 @@ public class ProductService {
 		public void closeCon() {
 			close(con);
 		}
+
+		
 
 
 }

@@ -76,6 +76,7 @@ public class ProductDetailServlet extends HttpServlet {
 		//표시할 옵션 프로덕트 정보 가져오기
 		optionProduct = ps.getOptionProductList();
 		
+		
 		// 페이지 관련 변수 전달용 VO 생성
 		pi = new PageInfo(currPage, rbs.getListCount(productNum), limit);
 
@@ -85,26 +86,38 @@ public class ProductDetailServlet extends HttpServlet {
 		//상품번호를 이용해 상품 정보 가져오기
 		p = ps.getOneProduct(productNum);
 		
+		
+		if(p!= null){
 		//연관 카테고리 상품 가져오기
-		relatedCategoryProduct= 
-				ps.getProductList("none", p.getProductCategoryName());
-		
-		
-		
-		
-		if (p != null&&reviewList!=null&&optionProduct!=null) {
+			relatedCategoryProduct= 
+					ps.getProductList("none", p.getProductCategoryName());
+			relatedCategoryProduct= new ArrayList(relatedCategoryProduct.subList(0, 10>relatedCategoryProduct.size()?relatedCategoryProduct.size():10)) ;
+			
+			for(int i=0;i<relatedCategoryProduct.size();++i){
+				if(relatedCategoryProduct.get(i).getProductName().equals(p.getProductName())){
+					relatedCategoryProduct.remove(i);
+					break;
+				}
+			}
+			
+			if (reviewList!=null&&optionProduct!=null) {
 
-			request.setAttribute("reviewList", reviewList);
-			request.setAttribute("pi", pi);
-			request.setAttribute("product", p);
-			request.setAttribute("optionProduct", optionProduct);
-			request.setAttribute("relatedCategoryProduct", relatedCategoryProduct);
-			page = "views/product/product.jsp";
-
+				request.setAttribute("reviewList", reviewList);
+				request.setAttribute("pi", pi);
+				request.setAttribute("product", p);
+				request.setAttribute("optionProduct", optionProduct);
+				request.setAttribute("relatedCategoryProduct", relatedCategoryProduct);
+				page = "views/product/product.jsp";
+			}else{
+				page = "views/common/errorPage.jsp";
+				request.setAttribute("msg", "리뷰정보를 조회할 수 없습니다.");
+				
+			}
+			
 		} else {
 			
 			page = "views/common/errorPage.jsp";
-			request.setAttribute("msg", "상품 조회 실패 or 리뷰 보드 조회 실패");
+			request.setAttribute("msg", "상품 정보를 찾을 수 없습니다.");
 			
 			
 		}

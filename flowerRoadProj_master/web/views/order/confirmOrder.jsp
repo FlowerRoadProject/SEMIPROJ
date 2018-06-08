@@ -45,11 +45,11 @@
 <%@include file="/views/common/header.jsp" %>
 
 
-<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br /><br /><br /><br /><br />
    
    <div class="container bottom-margin">
       <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin">
-         <span>장바구니</span>&nbsp;&gt;&nbsp; <span>주문/결제</span>&nbsp;&gt;&nbsp; <span><strong>주문완료</strong></span>&nbsp;&gt;&nbsp;                
+         <span><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>장바구니</span>&nbsp;&gt;&nbsp; <span><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>주문/결제</span>&nbsp;&gt;&nbsp; <span style="color:rgb(51, 122, 183); font-size:1.3em;"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>주문완료</span>                
        </div>
         <h4><b class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-lg-offset-1">주문완료</b></h4>
         <hr class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" id="inputing" style="background:black;">
@@ -150,6 +150,14 @@
          </div>         
       </div>
    </div>
+   
+   <div class="container">
+   		<div class="col-lg-12" align="center">
+   			<a href="<%=request.getContextPath()%>/main.jsp"><button class="btn btn-primary">메인으로</button></a>
+   		</div>
+   </div>
+   
+   
    
    <script>
       var rDate = $('#reservationDate').text();

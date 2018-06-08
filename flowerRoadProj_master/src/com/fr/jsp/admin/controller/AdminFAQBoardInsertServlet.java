@@ -24,7 +24,7 @@ public class AdminFAQBoardInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		String adminNum = (String) session.getAttribute("adminNum");
+		String adminNum = (String) session.getAttribute("memberNum");
 		String faqCatecory = request.getParameter("faqCatecory");
 		String faqQuestion = request.getParameter("faqQuestion");
 		String faqAnswer = request.getParameter("faqAnswer");

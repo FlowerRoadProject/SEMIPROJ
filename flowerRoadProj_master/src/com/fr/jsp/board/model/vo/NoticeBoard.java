@@ -21,6 +21,7 @@ public class NoticeBoard extends Board{
 	
 	private int viewNum;
 	private String memberNum;
+	
 
 	public NoticeBoard(int bNum, String bTitle, String bContent, Date submitDate, int viewNum, String memberNum) {
 		super(bNum, bTitle, bContent, submitDate);
@@ -28,13 +29,14 @@ public class NoticeBoard extends Board{
 		this.memberNum = memberNum;
 	}
 
-	public String getMemberNum() {
-		return memberNum;
-	}
 
-	public void setMemberNum(String memberNum) {
-		this.memberNum = memberNum;
+
+	public NoticeBoard() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 	public int getViewNum() {
 		return viewNum;
@@ -52,20 +54,15 @@ public class NoticeBoard extends Board{
 
 	@Override
 	public String toString() {
-		return "NoticeBoard [viewNum=" + viewNum + ", memberNum=" + memberNum + "]";
+		return "NoticeBoard [viewNum=" + viewNum + "]";
 	}
 
-
-	public NoticeBoard() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((memberNum == null) ? 0 : memberNum.hashCode());
 		result = prime * result + viewNum;
 		return result;
 	}
@@ -79,14 +76,21 @@ public class NoticeBoard extends Board{
 		if (getClass() != obj.getClass())
 			return false;
 		NoticeBoard other = (NoticeBoard) obj;
-		if (memberNum == null) {
-			if (other.memberNum != null)
-				return false;
-		} else if (!memberNum.equals(other.memberNum))
-			return false;
 		if (viewNum != other.viewNum)
 			return false;
 		return true;
+	}
+
+
+
+	public String getMemberNum() {
+		return memberNum;
+	}
+
+
+
+	public void setMemberNum(String memberNum) {
+		this.memberNum = memberNum;
 	}
 
 	

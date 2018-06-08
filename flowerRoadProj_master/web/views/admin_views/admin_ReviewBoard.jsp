@@ -37,7 +37,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>게시글 관리 <small>(Posting)</small></h3>
+                <h3>상품리뷰 관리 <small>(Board)</small></h3>
               </div>
 
               <div class="title_right">
@@ -61,7 +61,7 @@
                           <div class="icon"><i class="fa fa-bullhorn"></i>
                           </div>
                           <div class="count"><%=admin_noticeBoardCount %></div>
-                          <a href="/flowerRoadProj/noticeBoard.admin"><h3>공지사항</h3></a>
+                          <a href="<%=request.getContextPath() %>/noticeBoard.admin"><h3>공지사항</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -70,7 +70,7 @@
                           <div class="icon"><i class="fa fa-star"></i>
                           </div>
                           <div class="count"><%=admin_faqBoardCount %></div>
-							<a href="/flowerRoadProj/faqBoard.admin"><h3>FAQ</h3></a>
+							<a href="<%=request.getContextPath() %>/faqBoard.admin"><h3>FAQ</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -80,7 +80,7 @@
                           </div>
                           <div class="count"><%=admin_userQuestionBoardCount %></div>
 
-                          <a href="/flowerRoadProj/userQuestionBoard.admin"><h3>1:1문의</h3></a>
+                          <a href="<%=request.getContextPath() %>/userQuestionBoard.admin"><h3>1:1문의</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -90,7 +90,7 @@
                           </div>
                           <div class="count"><%=admin_reviewBoardCount %></div>
 
-                          <a href="/flowerRoadProj/reviewBoard.admin"><h3>상품리뷰</h3></a>
+                          <a href="<%=request.getContextPath() %>/reviewBoard.admin"><h3>상품리뷰</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -101,7 +101,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>게시글 조회<small>상품후기</small></h2>
+                    <h2>게시글 조회<small>상품리뷰</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -110,7 +110,7 @@
                   </div>
                   <div class="x_content">
 					
-                   <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                   <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap reviewTable" cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th>글번호</th>
@@ -141,9 +141,9 @@
                 </div>
               </div>
               <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+              	<div class="x_panel">
                   <div class="x_title">
-                    <h2>게시글 등록 <small>공지/FAQ</small></h2>
+                    <h2>상세보기 <small>상품리뷰</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -154,230 +154,41 @@
                     <div class="x_content">
                         <div id="alerts"></div>
                          <form id="demo-form" data-parsley-validate>
-                          
-                          <label for="heard">게시판 선택</label>
-                          <select id="heard" class="form-control" required>
-                            <option value="">게시판을 선택하세요</option>
-                            <option value="press">공지사항</option>
-                            <option value="net">FAQ</option>
-                          </select>
-                          <label for="fullname">제목</label>
-                          <input type="text" id="fullname" class="form-control" name="fullname" required />
-                          <label for="fullname">내용</label>
-                          <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor-one">
-                            <div class="btn-group">
-                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                              </ul>
-                            </div>
-
-                            <div class="btn-group">
-                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                <li>
-                                  <a data-edit="fontSize 5">
-                                    <p style="font-size:17px">Huge</p>
-                                  </a>
-                                </li>
-                                <li>
-                                  <a data-edit="fontSize 3">
-                                    <p style="font-size:14px">Normal</p>
-                                  </a>
-                                </li>
-                                <li>
-                                  <a data-edit="fontSize 1">
-                                    <p style="font-size:11px">Small</p>
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div class="btn-group">
-                              <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
-                              <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
-                              <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
-                              <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
-                            </div>
-
-                            <div class="btn-group">
-                              <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
-                              <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
-                              <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
-                              <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
-                            </div>
-
-                            <div class="btn-group">
-                              <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
-                              <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
-                              <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
-                              <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
-                            </div>
-
-                            <div class="btn-group">
-                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
-                              <div class="dropdown-menu input-append">
-                                <input class="span2" placeholder="URL" type="text" data-edit="createLink" />
-                                <button class="btn" type="button">Add</button>
-                              </div>
-                              <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a>
-                            </div>
-                            <div class="btn-group">
-                              <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
-                              <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
-                            </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+	                          <label for="fullname">글번호</label>
+	                          <input type="text" id="" class="form-control reviewNum" name="" required disabled/>
                           </div>
-
-                          <div id="editor-one" class="editor-wrapper"></div>
-                          <br>
-                          <button type="button" class="btn btn-round btn-success" style="width: 100px" onclick="">올리기</button>
-                          <button type="button" class="btn btn-round btn-warning" style="width: 100px" onclick="">저장</button>
-                          <button type="button" class="btn btn-round btn-danger" style="width: 100px" onclick="">취소</button>
+                          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+                          	<label for="fullname">회원번호</label>
+                          	<input type="text" id="" class="form-control reviewMemberNum" name="" required disabled/>
+                          </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+	                          <label for="fullname">상품번호</label>
+	                          <input type="text" id="" class="form-control reviewProductNum" name="" required disabled/>
+                          </div>
+                          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 ">
+                          	<label for="fullname">별점</label>
+                          	<input type="text" id="" class="form-control reviewRating" name="" required disabled/>
+                          </div>
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                          	<label for="fullname">제목</label>
+                          	<input type="text" id="" class="form-control reviewTitle" name="" required disabled/>
+                          </div>
+                          
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+	                          <label for="fullname">내용</label>
+	                          <textarea class="resizable_textarea form-control reviewContent" placeholder="..." disabled></textarea>
+	                          
+                          </div>
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="margin-top:20px">
+	                          <button type="button" class="btn btn-round btn-success col-lg-5 col-md-5 col-sm-5 col-xs-5" style="margin-left:30%" id="checkReview">확인</button>
+                          </div>
                         </form>
                       
                   </div>
                 </div>
-              </div>
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>게시글 수정/삭제 <small>공지/FAQ</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                        <div id="alerts"></div>
-                         <form id="demo-form" data-parsley-validate>
-                          
-                          <label for="heard">게시판 선택</label>
-                          <select id="heard" class="form-control" required>
-                            <option value="">게시판을 선택하세요</option>
-                            <option value="press">공지사항</option>
-                            <option value="net">FAQ</option>
-                          </select>
-                          <label for="fullname">제목</label>
-                          <input type="text" id="fullname" class="form-control" name="fullname" required />
-                          <label for="fullname">내용</label>
-                          <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor-one">
-                            <div class="btn-group">
-                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                              </ul>
-                            </div>
-
-                            <div class="btn-group">
-                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
-                              <ul class="dropdown-menu">
-                                <li>
-                                  <a data-edit="fontSize 5">
-                                    <p style="font-size:17px">Huge</p>
-                                  </a>
-                                </li>
-                                <li>
-                                  <a data-edit="fontSize 3">
-                                    <p style="font-size:14px">Normal</p>
-                                  </a>
-                                </li>
-                                <li>
-                                  <a data-edit="fontSize 1">
-                                    <p style="font-size:11px">Small</p>
-                                  </a>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div class="btn-group">
-                              <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
-                              <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
-                              <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
-                              <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
-                            </div>
-
-                            <div class="btn-group">
-                              <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
-                              <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
-                              <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
-                              <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
-                            </div>
-
-                            <div class="btn-group">
-                              <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
-                              <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
-                              <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
-                              <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
-                            </div>
-
-                            <div class="btn-group">
-                              <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
-                              <div class="dropdown-menu input-append">
-                                <input class="span2" placeholder="URL" type="text" data-edit="createLink" />
-                                <button class="btn" type="button">Add</button>
-                              </div>
-                              <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a>
-                            </div>
-
-                            <div class="btn-group">
-                              <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
-                              <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
-                            </div>
-                          </div>
-
-                          <div id="editor-one" class="editor-wrapper"></div>
-                          <br>
-                          <button type="button" class="btn btn-round btn-success" style="width: 100px" onclick="">확인</button>
-                          <button type="button" class="btn btn-round btn-warning" style="width: 100px" onclick="">수정</button>
-                          <button type="button" class="btn btn-round btn-danger" style="width: 100px" onclick="">삭제</button>
-                        </form>
-                      
-                  </div>
-                </div>
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>답변 등록 <small>1:1/리뷰</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                    
-                    <div class="x_content">
-                        <div id="alerts"></div>
-                         <form id="demo-form" data-parsley-validate>
-                          
-                          <label for="heard">게시판 선택</label>
-                          <select id="heard" class="form-control" required>
-                            <option value="">게시판을 선택하세요</option>
-                            <option value="press">1:1문의</option>
-                            <option value="net">상품리뷰</option>
-                          </select>
-                          <label for="fullname">작성자</label>
-                          <input type="text" id="fullname" class="form-control" name="fullname" required />
-                          <label for="fullname">상품</label>
-                          <input type="text" id="fullname" class="form-control" name="fullname" required />
-                          <label for="fullname">제목</label>
-                          <input type="text" id="fullname" class="form-control" name="fullname" required />
-                          <label for="fullname">내용</label>
-                          
-                          <div id="editor-one" class="editor-wrapper"></div>
-                          <div class="ln_solid"></div>
-
-                          <div class="form-group" style="padding-bottom: 90px">
-                            <label class="control-label col-md-12 col-sm-12 col-xs-12">답변등록</label>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                              <textarea class="resizable_textarea form-control" placeholder="..."></textarea>
-                            </div>
-                          </div>
-                          <button type="button" class="btn btn-round btn-success" style="width: 100px" onclick="">등록</button>
-                          <button type="button" class="btn btn-round btn-warning" style="width: 100px" onclick="">저장</button>
-                          <button type="button" class="btn btn-round btn-danger" style="width: 100px" onclick="">취소</button>
-                        </form>
-                      
-                  </div>
-                </div>
-              </div>
+              
+            </div>
             </div>
             
           </div>
@@ -394,7 +205,9 @@
         <!-- /footer content -->
       </div>
     </div>
-
+	<script>
+		var mainPath = '<%=request.getContextPath()%>';
+	</script>
 	<!-- admin_JS -->
     <%@ include file="common/admin_JS.jsp" %>
   </body>

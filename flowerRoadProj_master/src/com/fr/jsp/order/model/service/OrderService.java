@@ -27,13 +27,13 @@ public class OrderService {
 	
 	
 	public int insertOrder(ArrayList<Order> list){
-		
+		Connection con= getConnection();
 		int result = oDao.insertOrder(con, list);
 		
 		if(result >0) commit(con);
 		else rollback(con);		
 		
-		
+		close(con);
 		return result;
 	}
 	
@@ -46,13 +46,43 @@ public class OrderService {
 			close(con);
 		}
 		
-		public ArrayList<MyPage_Order> orderChk(String id) {
+		public ArrayList<MyPage_Order> orderChk(String num, int currentPage, int limit) {
 			Connection con = getConnection();
 			
-			ArrayList<MyPage_Order> list = oDao.orderChk(con, id);
+			ArrayList<MyPage_Order> list = oDao.orderChk(con, num, currentPage,limit);
 			
 			close(con);
 			
 			return list;
 		}
+
+		public int getListCount(String num) {
+			Connection con = getConnection();
+			int result= oDao.getListCount(con, num);
+			
+			close(con);
+			return result;
+		}
+		
+	
+
+	public String selectOrderNum(String memberNum) {
+		Connection con= getConnection();
+		String orderNum = oDao.selectOrderNum(con, memberNum);
+		close(con);
+		return orderNum;
+	}
+	
+	public int insertOrderProList(String orderNum, String productNum, int quantity, String message){
+		Connection con= getConnection();
+		int result = 0;
+		result = oDao.insertOrderProList(con,orderNum, productNum, quantity, message);
+		
+		if(result >0) commit(con);
+		else rollback(con);	
+		
+		close(con);
+		return result;
+	}
+		
 }

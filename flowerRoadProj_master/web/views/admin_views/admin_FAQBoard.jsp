@@ -37,7 +37,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>게시글 관리 <small>(Posting)</small></h3>
+                <h3>FAQ 관리 <small>(Board)</small></h3>
               </div>
 
               <div class="title_right">
@@ -60,8 +60,8 @@
                         <div class="tile-stats">
                           <div class="icon"><i class="fa fa-bullhorn"></i>
                           </div>
-                          <div class="count"><%=admin_noticeBoardCount %></div>
-                          <a href="/flowerRoadProj/noticeBoard.admin"><h3>공지사항</h3></a>
+                          <div class="count noticeBoardCount"><%=admin_noticeBoardCount %></div>
+                          <a href="<%=request.getContextPath() %>/noticeBoard.admin"><h3>공지사항</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -70,7 +70,7 @@
                           <div class="icon"><i class="fa fa-star"></i>
                           </div>
                           <div class="count faqBoardCount"><%=admin_faqBoardCount %></div>
-                          <a href="/flowerRoadProj/faqBoard.admin"><h3>FAQ</h3></a>
+                          <a href="<%=request.getContextPath() %>/faqBoard.admin"><h3>FAQ</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -80,7 +80,7 @@
                           </div>
                           <div class="count"><%=admin_userQuestionBoardCount %></div>
 
-                          <a href="/flowerRoadProj/userQuestionBoard.admin"><h3>1:1문의</h3></a>
+                          <a href="<%=request.getContextPath() %>/userQuestionBoard.admin"><h3>1:1문의</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -90,7 +90,7 @@
                           </div>
                           <div class="count"><%=admin_reviewBoardCount %></div>
 
-                          <a href="/flowerRoadProj/reviewBoard.admin"><h3>상품리뷰</h3></a>
+                          <a href="<%=request.getContextPath() %>/reviewBoard.admin"><h3>상품리뷰</h3></a>
                           <p>Lorem ipsum psdea itgum rixt.</p>
                         </div>
                       </div>
@@ -110,7 +110,7 @@
                   </div>
                   <div class="x_content">
 					
-                   <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                   <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap faqTable" cellspacing="0" width="100%">
                       <thead>
                         <tr>
                           <th>글번호</th>
@@ -124,7 +124,7 @@
                       <tbody>
                       <% for(FaqBoard fb : admin_faqBoardList){ %>
                         <tr>
-                          <td><%=fb.getbNum() %></td>
+                          <td class="faqNumTd"><%=fb.getbNum() %></td>
                           <td><%=fb.getMemberNum() %></td>
                           <td><%=fb.getSubmitDate() %></td>
                           <td><%=fb.getContentCategory() %></td>
@@ -141,7 +141,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>게시글 등록/수정/삭제 <small>공지/FAQ</small></h2>
+                    <h2>게시글 등록/수정/삭제 <small>FAQ</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -154,9 +154,13 @@
                          <form id="demo-form" data-parsley-validate>
                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
 	                          <label for="fullname">글번호</label>
-	                          <input type="text" id="" class="form-control faqNum" name="fullname" required disabled/>
+	                          <input type="text" id="" class="form-control faqNum" name="" required disabled/>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+	                          <label for="fullname">작성자</label>
+	                          <input type="text" id="" class="form-control faqMemberNum" name="" required disabled/>
+                          </div>
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                           <label for="heard">카테고리 선택</label>
 	                          <select id="heard" class="form-control faqCatecory" required>
 	                            <option value="카테고리 선택">카테고리 선택</option>
@@ -269,7 +273,9 @@
         <!-- /footer content -->
       </div>
     </div>
-
+	<script>
+		var mainPath = '<%=request.getContextPath() %>';
+	</script>
 	<!-- admin_JS -->
     <%@ include file="common/admin_JS.jsp" %>
   </body>

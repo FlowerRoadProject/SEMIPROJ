@@ -8,6 +8,7 @@
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <head>
 <title>로그인</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -38,6 +39,7 @@ var msg = "<%=msg%>";
 if(msg != "null"){
 	alert(msg);	
 }
+<<<<<<< HEAD
 
 $("input[name=userPwd]").keydown(function (key) {
 	 
@@ -48,6 +50,15 @@ $("input[name=userPwd]").keydown(function (key) {
 });
  
 
+=======
+$("input[name=userPwd]").keydown(function (key) {
+    
+    if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+       login();
+    }
+
+});
+>>>>>>> branch 'master' of https://github.com/FlowerRoadProject/SEMIPROJ.git
 });
 //페이스북 스크립트
   // This is called with the results from from FB.getLoginStatus().
@@ -146,10 +157,10 @@ $("input[name=userPwd]").keydown(function (key) {
             <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
                 <input type="password" class="form-control" name="userPwd" id="userPwd" placeholder="비밀번호">
             </div>
-            <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+            <!-- <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
                 <input type="checkbox" id="id_hold_check" name="IdSave">
                 <label for="Id_hold_check">아이디 저장</label>
-            </div>
+            </div> -->
 
             <div class="SNSbtn">
                 <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" >
