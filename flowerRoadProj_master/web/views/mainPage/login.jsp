@@ -8,6 +8,7 @@
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <head>
 <title>로그인</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
