@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html>
 <head>
 <meta charset="UTF-8" />
@@ -22,7 +23,6 @@ $(document).ready(function() {
 	    if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
 	       login();
 	    }
-
 	});
 	
 	});
@@ -44,14 +44,12 @@ $(document).ready(function() {
 		    }
 	    }
 	  }
-
 	  function checkLoginState() {
 		  facebookClicked=true;
 	    FB.getLoginStatus(function(response) {
 	      statusChangeCallback(response);
 	    });
 	  }
-
 	  window.fbAsyncInit = function() {
 	    FB.init({
 	      appId      : '183432759043224',
@@ -60,13 +58,10 @@ $(document).ready(function() {
 	      xfbml      : true,  // parse social plugins on this page
 	      version    : 'v2.8' // use graph api version 2.8
 	    });
-
 	    FB.getLoginStatus(function(response) {
 	      statusChangeCallback(response);
 	    });
-
 	  };
-
 	  // Load the SDK asynchronously
 	  (function(d, s, id) {
 	    var js, fjs = d.getElementsByTagName(s)[0];
@@ -75,20 +70,14 @@ $(document).ready(function() {
 	    js.src = "https://connect.facebook.net/en_US/sdk.js";
 	    fjs.parentNode.insertBefore(js, fjs);
 	  }(document, 'script', 'facebook-jssdk'));
-
-
 </script>
 <style>
-
         .login {
             background-color: lightpink;
         }
-
-
         #SignUp {
             background-color: orange;
         }
-
         #find {
             text-align: center;
         }
@@ -203,7 +192,6 @@ $(document).ready(function() {
 		        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
 		      
 		        console.log("Email: " + profile.getEmail());
-
 		        location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=google"+profile.getId();
 		      };
 		    }		

@@ -147,25 +147,6 @@
   </div>
   <br>
 
-<%--   <div class="container-fluid">
-    <div class="col-sm-1 col-md-1 col-lg-1"></div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <img src="<%=request.getContextPath()%>/resources/images/main/1.PNG" class="img-responsive anniversary_Img">
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <img src="<%=request.getContextPath()%>/resources/images/main/2.PNG" class="img-responsive anniversary_Img">
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <img src="<%=request.getContextPath()%>/resources/images/main/3.PNG" class="img-responsive anniversary_Img">
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <img src="<%=request.getContextPath()%>/resources/images/main/4.PNG" class="img-responsive anniversary_Img">
-    </div>
-    <div class="col-sm-2 col-md-2 col-lg-2">
-      <img src="<%=request.getContextPath()%>/resources/images/main/5.PNG" class="img-responsive anniversary_Img">
-    </div>
-    <div class="col-sm-1 col-md-1 col-lg-1"></div>
-  </div> --%>
   <br>
   <br>
   <%@ include file ="/views/common/eventMenu.jsp" %>
