@@ -12,7 +12,7 @@ public class AdminStatisticsProduct {
 	private int productClickCount;
 	private int productFavoriteCount;
 	private double rateBytotalClickCount;
-	private int productStarAverage;
+	private double productStarAverage;
 	private int productReviewCount;
 	private double rateBytotalReviewCount;
 	
@@ -23,7 +23,7 @@ public class AdminStatisticsProduct {
 	public AdminStatisticsProduct(String productNum, String productName, String productImage,
 			int productMerchandiseCount, double rateByTotalMerchandiseCount, int productSellAmount,
 			double rateBytotalSellAmount, int productClickCount, int productFavoriteCount, double rateBytotalClickCount,
-			int productStarAverage, int productReviewCount, double rateBytotalReviewCount) {
+			double productStarAverage, int productReviewCount, double rateBytotalReviewCount) {
 		super();
 		this.productNum = productNum;
 		this.productName = productName;
@@ -120,11 +120,11 @@ public class AdminStatisticsProduct {
 		this.rateBytotalClickCount = rateBytotalClickCount;
 	}
 
-	public int getProductStarAverage() {
+	public double getProductStarAverage() {
 		return productStarAverage;
 	}
 
-	public void setProductStarAverage(int productStarAverage) {
+	public void setProductStarAverage(double productStarAverage) {
 		this.productStarAverage = productStarAverage;
 	}
 

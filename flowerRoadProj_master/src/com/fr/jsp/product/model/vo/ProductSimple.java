@@ -16,6 +16,29 @@ public class ProductSimple implements java.io.Serializable {
 	private int reviewCount;
 	private String productTypeName;
 	private int reviewAvg;
+	private int productQuantity;
+	
+	
+	public ProductSimple(String productNum, String productName, int productPrice, String image, int reviewCount,
+			String productTypeName, int reviewAvg, int product_quantity) {
+		super();
+		this.productNum = productNum;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.image = image;
+		this.reviewCount = reviewCount;
+		this.productTypeName = productTypeName;
+		this.reviewAvg = reviewAvg;
+		this.productQuantity = product_quantity;
+	}
+
+	public int getProductQuantity() {
+		return productQuantity;
+	}
+
+	public void setProductQuantity(int product_quantity) {
+		this.productQuantity = product_quantity;
+	}
 
 	public String getProductNum() {
 		return productNum;
@@ -78,6 +101,7 @@ public class ProductSimple implements java.io.Serializable {
 		result = prime * result + ((productNum == null) ? 0 : productNum.hashCode());
 		result = prime * result + productPrice;
 		result = prime * result + ((productTypeName == null) ? 0 : productTypeName.hashCode());
+		result = prime * result + productQuantity;
 		result = prime * result + reviewAvg;
 		result = prime * result + reviewCount;
 		return result;
@@ -114,6 +138,8 @@ public class ProductSimple implements java.io.Serializable {
 				return false;
 		} else if (!productTypeName.equals(other.productTypeName))
 			return false;
+		if (productQuantity != other.productQuantity)
+			return false;
 		if (reviewAvg != other.reviewAvg)
 			return false;
 		if (reviewCount != other.reviewCount)
@@ -125,20 +151,10 @@ public class ProductSimple implements java.io.Serializable {
 	public String toString() {
 		return "ProductSimple [productNum=" + productNum + ", productName=" + productName + ", productPrice="
 				+ productPrice + ", image=" + image + ", reviewCount=" + reviewCount + ", productTypeName="
-				+ productTypeName + ", reviewAvg=" + reviewAvg + "]";
+				+ productTypeName + ", reviewAvg=" + reviewAvg + ", product_quantity=" + productQuantity + "]";
 	}
 
-	public ProductSimple(String productNum, String productName, int productPrice, String image, int reviewCount,
-			String productTypeName, int reviewAvg) {
-		super();
-		this.productNum = productNum;
-		this.productName = productName;
-		this.productPrice = productPrice;
-		this.image = image;
-		this.reviewCount = reviewCount;
-		this.productTypeName = productTypeName;
-		this.reviewAvg = reviewAvg;
-	}
+
 
 	public int getReviewAvg() {
 		return reviewAvg;

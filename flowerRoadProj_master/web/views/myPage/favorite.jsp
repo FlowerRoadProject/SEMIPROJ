@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, com.fr.jsp.product.model.vo.*"%>
+    pageEncoding="UTF-8" import="java.util.*, com.fr.jsp.product.model.vo.*,
+								com.fr.jsp.common.*" %>
 <%
 	ArrayList<ProductFavorite> list = (ArrayList<ProductFavorite>)request.getAttribute("pflist");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	System.out.println("스타트:"+pi.getStartPage());
+	System.out.println("엔드:"+pi.getEndPage());
 %>
 <!DOCTYPE>
 <html>
@@ -39,7 +43,7 @@
         <!-- 관심 상품 창 -->
         <div class="container-fluid">
                 <div class="col-sm-4 col-md-4 col-lg-4"><h4><i>관심 상품</i> 
-                    <small>: 회원님의 관심상품 보관함 내역입니다.</small></h4></div>
+                    <small>: [<%= m.getMemberName() %>]님의 관심상품 보관함 내역입니다.</small></h4></div>
                 <div class="col-sm-8 col-md-8 col-lg-8"></div>
         </div>
         <div>
@@ -82,14 +86,30 @@
                 <div class="col-sm-2 col-md-2 col-lg-2">
                         <nav style="color:midnightblue;">
                                 <ul class="pagination">
-                                  <li><a href="#"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-                                  <li><a href="#">1</a></li>
-                                  <li><a href="#">2</a></li>
-                                  <li><a href="#">3</a></li>
-                                  <li><a href="#">4</a></li>
-                                  <li><a href="#">5</a></li>
-                                  <li><a href="#"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-                                </ul>
+				<!-- 한페이지 씩 앞으로 이동 -->
+				<%if(pi.getCurrPage() <=1){ %>
+					<li><span disabled>«</span></li>
+				<% } else { %>
+					<li><a href="<%=request.getContextPath() %>/favorite.me?currentPage=<%=pi.getCurrPage()-1%>"><span aria-hidden="true">«</span><span
+							class="sr-only">Previous</span></a></li>
+				<% } %>
+				<!-- 각 페이지 별 리스트 작성 -->
+				<%for(int j = pi.getStartPage(); j<=pi.getEndPage(); j++){ %>
+					<% if(j== pi.getCurrPage()){ %>
+					<li><span disabled><%=j%></span></li>
+					<%} else { %>
+					<li><a href="<%=request.getContextPath() %>/favorite.me?currentPage=<%=j%>"><%=j %></a></li>
+					<%} %>
+				<%} %>
+				
+				<!--한페이지씩 뒤로 이동 -->
+				<%if(pi.getCurrPage()>=pi.getMaxPage()){ %>
+				<li><span disabled>»</span></li>
+				<% }else{ %>
+				<li><a href="<%=request.getContextPath() %>/favorite.me?currentPage=<%=pi.getCurrPage()+1%>"><span aria-hidden="true">»</span><span
+						class="sr-only">Next</span></a></li>
+				<% } %>
+				</ul>
                               </nav>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5"></div>

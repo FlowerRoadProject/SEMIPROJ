@@ -23,7 +23,7 @@
 				<span>어서오세요!</span>
 				<h2><%=admin.getMemberName() %> 님</h2>
 			</div>
-  			<div class="logout"><a data-toggle="tooltip" href="#" title="로그아웃"><i class="glyphicon glyphicon-off"></i></a></div>
+  			<div class="logout"><a data-toggle="tooltip" href="<%=request.getContextPath() %>/logout.me" title="로그아웃"><i class="glyphicon glyphicon-off"></i></a></div>
 		</div>
 		<!-- /menu profile quick info -->
 		<br />
@@ -146,7 +146,7 @@
 						<li><a href="<%=request.getContextPath() %>/admin.admin">관리자 정보</a></li>
 						<li><a href="<%=request.getContextPath() %>/thema.admin">테마 변경</a></li>
 						<li><a href="main.jsp">회원 페이지</a></li>
-						<li><a href="<%=request.getContextPath() %>/main.jsp"><i class="fa fa-sign-out pull-right"></i>로그아웃</a></li>
+						<li><a href="<%=request.getContextPath() %>/logout.me"><i class="fa fa-sign-out pull-right"></i>로그아웃</a></li>
 					</ul>
 				</li>
 				<li role="presentation" class="dropdown">

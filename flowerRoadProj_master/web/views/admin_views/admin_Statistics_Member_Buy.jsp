@@ -57,23 +57,23 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <div  class="col-lg-12 col-md-3 col-sm-3 col-xs-12" style="float: right">
+                    <div  class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="float: right">
                       <!-- required for floating -->
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs bar_tabs">
-                        <li class="active  col-lg-2 col-md-12 col-sm-12 col-xs-2"><a href="#top1right" data-toggle="tab">TOP 1</a>
+                        <li class="active  col-lg-12 col-md-12 col-sm-12 col-xs-2"><a href="#top1right" data-toggle="tab">TOP 1</a>
                         </li>
-                        <li class="col-lg-2 col-md-12 col-sm-12 col-xs-2"><a href="#top2right" data-toggle="tab">TOP 2</a>
+                        <li class="col-lg-12 col-md-12 col-sm-12 col-xs-2"><a href="#top2right" data-toggle="tab">TOP 2</a>
                         </li>
-                        <li class="col-lg-2 col-md-12 col-sm-12 col-xs-2"><a href="#top3right" data-toggle="tab">TOP 3</a>
+                        <li class="col-lg-12 col-md-12 col-sm-12 col-xs-2"><a href="#top3right" data-toggle="tab">TOP 3</a>
                         </li>
-                        <li class="col-lg-2 col-md-12 col-sm-12 col-xs-2"><a href="#top4right" data-toggle="tab">TOP 4</a>
+                        <li class="col-lg-12 col-md-12 col-sm-12 col-xs-2"><a href="#top4right" data-toggle="tab">TOP 4</a>
                         </li>
-                        <li class="col-lg-2 col-md-12 col-sm-12 col-xs-2"><a href="#top5right" data-toggle="tab">TOP 5</a>
+                        <li class="col-lg-12 col-md-12 col-sm-12 col-xs-2"><a href="#top5right" data-toggle="tab">TOP 5</a>
                         </li>
                       </ul>
                     </div>
-                    <div class="col-lg-12 col-md-9 col-sm-9 col-xs-12" style="float: left">
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" style="float: left">
                       <!-- Tab panes -->
                       <div class="tab-content">
                         <div class="tab-pane active" id="top1right">
