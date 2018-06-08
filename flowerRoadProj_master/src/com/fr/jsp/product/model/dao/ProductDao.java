@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.fr.jsp.common.PageInfo;
-import com.fr.jsp.order.model.vo.Order;
 import com.fr.jsp.product.model.vo.ProductDetail;
 import com.fr.jsp.product.model.vo.ProductSimple;
 
@@ -515,6 +514,74 @@ public class ProductDao {
 		return result;
 		
 		
+	}
+
+
+	public ArrayList<ProductSimple> getMostViewedProduct(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<ProductSimple> result = new ArrayList<ProductSimple>();
+		ProductSimple p = null;
+		
+		
+		try {
+			
+			String query = prop.getProperty("getMostViewedProduct");
+			
+			rset = stmt.executeQuery(query);
+
+			while (rset.next()) {
+
+				p = new ProductSimple();
+
+				p.setProductNum(rset.getString(2));
+				p.setProductName(rset.getString(3));
+				p.setProductPrice(rset.getInt(4));
+				p.setReviewCount(rset.getInt(5));
+				p.setImage(rset.getString(6));
+				p.setProductTypeName(rset.getString(7));
+				p.setReviewAvg(rset.getInt(8));
+				p.setProductQuantity(rset.getInt(9));
+				result.add(p);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+
+		}
+
+		
+		return result;
+		
+		
+	}
+
+
+	public int insertProductCheck(Connection con, String memberNum, String productNum) {
+		PreparedStatement pstmt = null;
+		int result =0;
+		
+		try {
+			pstmt = con.prepareStatement(prop.getProperty("insertProductCheck"));
+			pstmt.setString(1, memberNum);
+			pstmt.setString(2, productNum);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		
+		return result;
 	}
 
 	

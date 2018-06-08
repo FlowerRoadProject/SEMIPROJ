@@ -189,45 +189,8 @@ img {
 				var $parsedList = $.parseJSON(data);
 				
 				
-				var $item_container = $('#item-container');
-				
-				console.log($parsedList.length);
-				for (var i = 0; i < $parsedList.length; ++i) {
-					var $item = $('[name=clone-item]').clone(true,true);
-					$item.attr("name","clone-item_"+i);
-					$item.find('[name=detailLink]').attr("href","<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum);
-					if($parsedList[i].productQuantity<=0){
-					
-					$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
-					$item.find('[name=imageSource]').addClass("thumbnail_soldOut");
-					$item.find('[name=detailLink]').append("<span class='soldOut_text'> <h4><b>곧 준비할게요 :)</b></h4></span>");
-					$item.find('[name=productDetail]').remove();
-					$item.find('[name=addBasket]').off();
-					$item.find('[name=addBasket]').removeClass("col-lg-4");
-					$item.find('[name=addBasket]').addClass("col-xs-12");
-					$item.find('[name=addBasket]').text("품절");
-					}else{
-						$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
-						$item.find('[name=productDetail]').attr("onclick","location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum+"'");
-						$item.find('[name=addBasket]').attr("onclick","addToBasket("+"'"+$parsedList[i].productNum+"'"+")");
-					}
-					$item.find('[name=productName]').text($parsedList[i].productName);
-					$item.find('[name=productPrice]').text($parsedList[i].productPrice);
-					$item.find('[name=reviewNum]').text($parsedList[i].reviewCount);
-					for(var j=0;j<$parsedList[i].reviewAvg;++j){
-						$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star'></span>");
-					}
-
-					for(var k=0;k<5-$parsedList[i].reviewAvg;++k){
-							
-						$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star_empty'></span>");
-					} 
-					
-					
-					
-					$item_container.append($item);
-					
-				}
+				appendItemstoContainer($parsedList,'item-container');
+		
 				
 			},
 			error : function(data) {
@@ -236,6 +199,49 @@ img {
 			
 	
 		});
+	}
+	
+	function appendItemstoContainer(data,containerID){
+		var $item_container = $('#'+containerID);
+		
+		var $parsedList = data;
+		
+		for (var i = 0; i < $parsedList.length; ++i) {
+			var $item = $('[name=clone-item]').clone(true,true);
+			$item.attr("name","clone-item_"+i);
+			$item.find('[name=detailLink]').attr("href","<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum);
+			if($parsedList[i].productQuantity<=0){
+			
+			$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
+			$item.find('[name=imageSource]').addClass("thumbnail_soldOut");
+			$item.find('[name=detailLink]').append("<span class='soldOut_text'> <h4><b>곧 준비할게요 :)</b></h4></span>");
+			$item.find('[name=productDetail]').remove();
+			$item.find('[name=addBasket]').off();
+			$item.find('[name=addBasket]').removeClass("col-lg-4");
+			$item.find('[name=addBasket]').addClass("col-xs-12");
+			$item.find('[name=addBasket]').text("품절");
+			}else{
+				$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
+				$item.find('[name=productDetail]').attr("onclick","location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum+"'");
+				$item.find('[name=addBasket]').attr("onclick","addToBasket("+"'"+$parsedList[i].productNum+"'"+")");
+			}
+			$item.find('[name=productName]').text($parsedList[i].productName);
+			$item.find('[name=productPrice]').text($parsedList[i].productPrice);
+			$item.find('[name=reviewNum]').text($parsedList[i].reviewCount);
+			for(var j=0;j<$parsedList[i].reviewAvg;++j){
+				$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star'></span>");
+			}
+
+			for(var k=0;k<5-$parsedList[i].reviewAvg;++k){
+					
+				$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star_empty'></span>");
+			} 
+			
+			
+			
+			$item_container.append($item);
+		}
+		
 	}
 	
 	function addToBasket(productNum){
@@ -303,7 +309,7 @@ img {
 				</a>
 				</div>
 				
-				<div class="item test">
+				<div class="item">
 				<a href="<%=request.getContextPath()%>/productDetail.do?productNum=+P032">
 					<img
 						src="<%=request.getContextPath()%>/resources/images/mainEventCarousel/coralRoseEvent.jpg"
