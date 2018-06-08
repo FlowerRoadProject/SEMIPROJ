@@ -16,7 +16,7 @@
   
  
     <link rel="icon" href="<%=request.getContextPath()%>/images/FlowerRoadLogo.png" type="image/ico" />
-    <style>
+    <style>  
     
         .navbar-bottom-font {
             font-weight: bold;
@@ -42,7 +42,7 @@
         
         @media(min-width:1332px){
         	.lg-size{
-        		height: 11em;
+        		height: 8em;
         	}
         }
         
@@ -54,6 +54,13 @@
     
     .test{
     border:1px solid black;
+    }
+    .Pmenu{
+    	height:3.5em;
+    }
+    .Pmenu li a{
+    	height: 2.5em;
+    	font-size: 1.2em;
     }
     
     </style>
@@ -72,10 +79,7 @@
    
     
     <br>
-    <!-- 
-    <div class="visible-md">md</div>
-    <div class="visible-sm">sm</div> -->
-    
+       
     <nav class="navbar navbar-default navbar-fixed-top" id="naaaaav">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -122,9 +126,9 @@
                 <%-- <div id="no1">
                     <a href="<%=request.getContextPath()%>/main.jsp"><img src="<%=request.getContextPath()%>/resources/images/FlowerRoadLogo.jpg" class="btn" style="width:30em; height:10em"></img></a>
                 </div> --%>
-                <div style="text-align:center; display:inline-block;" id="no2" class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+                <div style="text-align:center; display:inline-block;" id="no2" class="col-sm-12 col-xs-12 col-lg-10 col-md-12 col-lg-offset-1">
 
-                    <ul class="nav navbar-nav navbar-bottom-font col-sm-12 col-xs-12 col-lg-12 col-md-12 test">
+                    <ul class="nav navbar-nav navbar-bottom-font Pmenu col-sm-12 col-xs-12 col-lg-12 col-md-12">
                         <li class="col-sm-2 col-xs-2 col-sm-offset-1 col-xs-offset-1" >
                             <a href="<%=request.getContextPath()%>/productList.do?category=꽃다발">꽃다발</a>
                         </li>
@@ -143,17 +147,35 @@
                     </ul>
                 </div>
             </div>
+           	<script>
+           	$('.Pmenu li a').hover(function(){
+           		$(this).css({
+           			background: 'lightcoral',
+           			"color" : 'white',
+           			cursor:"pointer"
+           		});
+           	},function(){
+           		$(this).css({
+           			background: 'rgba(255, 254, 254, 0.9)',
+           			color:"black"
+           			
+           		});
+           	})	
+            
+            </script>
+            
+            
             <!-- Collect the nav links, forms, and other content for toggling -->
             
             <!-- /.navbar-collapse -->
         
         </div>
         <!-- /.container-fluid -->
-<<<<<<< TYP_branch
+
     
     </nav>
 
-=======
+    
    
->>>>>>> master
+
     

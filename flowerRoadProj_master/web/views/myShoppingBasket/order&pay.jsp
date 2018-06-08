@@ -190,7 +190,7 @@ Member member = (Member)request.getAttribute("member");
     
     <%@include file="/views/common/header.jsp" %>
     
-        <br><br><br><br><br><br><br><br /><br />
+        <br><br><br><br><br><br><br><br /><br /><br /><br /><br />
         
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin"><!--상단 진행페이지 구문-->
