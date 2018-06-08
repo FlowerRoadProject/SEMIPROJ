@@ -126,7 +126,7 @@ textarea{
 	resize:none;
 }
 
-#mNavbar li.active a { color: grey !important; background-color: #FFB3A7 !important; } 
+#mNavbar li.active a { color: grey !important; background-color: #ffbb33 !important; } 
 
 </style>
 
@@ -416,13 +416,16 @@ textarea{
 		if($('[name=title]').val().length<=0){
 			$('[name=title]').closest('.form-group').addClass("has-error");
 			alert("제목을 입력해 주세요.");
+			return;
+			
 		}else{
-			$('[name=title]').closest().addClass("has-error");
+			$('[name=title]').closest().removeClass("has-error");
 		} 
 			
 		if($('[name=content]').val().length<=0){
 			alert("내용을 입력해 주세요.");
 			$('[name=content]').closest('.form-group').addClass("has-error");
+			return;
 		}else{
 			$('[name=content]').closest('.form-group').removeClass("has-error");
 		}
@@ -466,7 +469,7 @@ textarea{
 			if(i==pi.currPage){
 				$('ul[class=pagination]').append("<li name='pageNumber' class='active'><a onclick='setReviewList("+i+")'>"+i+"</a></li>");
 			}else{
-				$('ul[class=pagination]').append("<li name='pageNumber' ><a  onclick='setReviewList("+i+")'>"+i+"</a></li>");
+				$('ul[class=pagination]').append("<li name='pageNumber' style='cursor:pointer;'><a  onclick='setReviewList("+i+")'>"+i+"</a></li>");
 			}
 	
 		}
@@ -535,12 +538,12 @@ textarea{
 				for(var j=0;j<list[i].rating;++j){
 					
 					$reviewDiv.append("<span class='glyphicon glyphicon-star rating_star'></span>");
-					}
+				}
 				
 				for(var k=0;k<5-list[i].rating;++k){
 						
 					$reviewDiv.append("<span class='glyphicon glyphicon-star rating_star_empty'></span>");
-					} 
+				} 
 				
 				
 				$reviewDiv.append("<h4>"+list[i].submitDate+"</h4>");
