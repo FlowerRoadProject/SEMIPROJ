@@ -103,11 +103,10 @@
 					<th>배송현황</th>
 				</tr>
 				<%
-					int i = list.size();
 					for (MyPage_Order o : list) {
 				%>
 				<tr>
-					<td><%=i--%></td>
+					<td><%=o.getOrder_num()%></td>
 					<td><%=o.getOrdered_date()%></td>
 					<td><%=o.getProduct_num()%></td>
 					<td><%=o.getProduct_cost()%></td>
