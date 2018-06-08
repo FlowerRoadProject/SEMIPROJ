@@ -223,11 +223,11 @@ public class ProductService {
 		ArrayList<ProductSimple> result =new ArrayList<ProductSimple>();
 		
 		
-		int startRow = (index-1)*5+1;
-		int endRow = index*5;
+		int startRow = (index-1)*6+1;
+		int endRow = index*6;
 		
-		if(endRow>10)
-			endRow=10;
+		if(endRow>12)
+			endRow=12;
 		
 		result= pDao.getTopSellingProduct(con,startRow,endRow);
 		

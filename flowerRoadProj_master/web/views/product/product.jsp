@@ -105,7 +105,7 @@ body{
 	padding-left:80px;
 	line-height: 2em;
 	font-family:'Nanum Gothic', sans-serif;
-	width:40%;
+	width:60%;
 	border:1px transparent;
 	background:white;
 }
@@ -126,7 +126,25 @@ textarea{
 	resize:none;
 }
 
-#mNavbar li.active a { color: grey !important; background-color: #FFB3A7 !important; } 
+.product_name_font{
+	font-weight: bold;
+
+}
+
+.carousel_caption_name{
+
+	
+	font-weight: 500;
+	background-color:rgba(220,220,220,0.5);
+	
+
+}
+
+.carousel_caption_desc{
+	color:black;
+	font-weight: 400;
+}
+#mNavbar li.active a { color: grey !important; background-color: #ffbb33 !important; } 
 
 </style>
 
@@ -227,7 +245,7 @@ textarea{
  	    if ($(window).scrollTop() > 600) {
  	      if (!$navbar.hasClass("navbar-fixed-top")) {
  	        $navbar.addClass("navbar-fixed-top");
- 	        $navbar.css("top","130px");
+ 	        $navbar.css("top","200px");
  	      }
  	    } else {
  	      $navbar.removeClass("navbar-fixed-top");
@@ -416,13 +434,16 @@ textarea{
 		if($('[name=title]').val().length<=0){
 			$('[name=title]').closest('.form-group').addClass("has-error");
 			alert("제목을 입력해 주세요.");
+			return;
+			
 		}else{
-			$('[name=title]').closest().addClass("has-error");
+			$('[name=title]').closest().removeClass("has-error");
 		} 
 			
 		if($('[name=content]').val().length<=0){
 			alert("내용을 입력해 주세요.");
 			$('[name=content]').closest('.form-group').addClass("has-error");
+			return;
 		}else{
 			$('[name=content]').closest('.form-group').removeClass("has-error");
 		}
@@ -466,7 +487,7 @@ textarea{
 			if(i==pi.currPage){
 				$('ul[class=pagination]').append("<li name='pageNumber' class='active'><a onclick='setReviewList("+i+")'>"+i+"</a></li>");
 			}else{
-				$('ul[class=pagination]').append("<li name='pageNumber' ><a  onclick='setReviewList("+i+")'>"+i+"</a></li>");
+				$('ul[class=pagination]').append("<li name='pageNumber' style='cursor:pointer;'><a  onclick='setReviewList("+i+")'>"+i+"</a></li>");
 			}
 	
 		}
@@ -535,12 +556,12 @@ textarea{
 				for(var j=0;j<list[i].rating;++j){
 					
 					$reviewDiv.append("<span class='glyphicon glyphicon-star rating_star'></span>");
-					}
+				}
 				
 				for(var k=0;k<5-list[i].rating;++k){
 						
 					$reviewDiv.append("<span class='glyphicon glyphicon-star rating_star_empty'></span>");
-					} 
+				} 
 				
 				
 				$reviewDiv.append("<h4>"+list[i].submitDate+"</h4>");
@@ -686,7 +707,6 @@ textarea{
 	<br />
 	<br />
 	<br />
-	<br />
 	<!--상품 사진과 옵션 선택-->
 	<div class="container ">
 
@@ -718,7 +738,7 @@ textarea{
 
 			<div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 thumbnail">
 				<div class="caption">
-					<h3 id="product_name" class="thumbnail-label "></h3>
+					<h3 id="product_name" class="thumbnail-label product_name_font"></h3>
 					<h4 id="product_price" class="thumbnail-label"></h4>
 				</div>
 
@@ -805,7 +825,7 @@ textarea{
 	        <ul class="nav navbar-nav navbar-right ">
 	          <li class="active"><a href="#page_start" >상품구매</a></li>
 	          <li><a href="#content_start">상품 설명</a></li>
-	          <li><a href="#review_start">리뷰 &nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+	          <li><a href="#review_start">&nbsp;&nbsp;리뷰 &nbsp;&nbsp;</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -1023,8 +1043,8 @@ textarea{
 											class="img-responsive thumbnail"  alt="">
 										</a>
 										<div class="carousel-caption">
-											<h3><%=relatedCategoryProduct.get(j).getProductName() %></h3>
-											<p><%=relatedCategoryProduct.get(j).getProductPrice() %>원</p>
+											<h3><span class="carousel_caption_name"><%=relatedCategoryProduct.get(j).getProductName() %></span></h3>
+											<p><span class="carousel_caption_desc"><%=relatedCategoryProduct.get(j).getProductPrice() %>원</span></p>
 										</div>
 									</div>
 								<%} %>
