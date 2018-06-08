@@ -3,7 +3,9 @@
 	<% %>
 <html>
 <head>
-<script
+
+	<%@include file="/views/common/header.jsp"%>
+ <script
 	src="<%=request.getContextPath()%>/resources/js/jquery-1.12.2.min.js"></script>
 <title>꽃길</title>
 <style>
@@ -276,7 +278,6 @@ img {
 </script>
 </head>
 <body>
-	<%@include file="/views/common/header.jsp"%>
 	<%@include file="/views/common/loginModal.jsp" %>
 	<br />
 	<br />
@@ -327,7 +328,7 @@ img {
 
 	<br>
 	<br>
-	<%@ include file="/views/common/eventMenu.jsp"%>
+	 <%@ include file="/views/common/eventMenu.jsp"%>
 	<div class="container">
 		
 	
