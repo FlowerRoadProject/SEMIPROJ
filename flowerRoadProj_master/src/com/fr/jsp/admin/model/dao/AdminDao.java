@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.util.Properties;
 
 import com.fr.jsp.admin.model.vo.AdminFortuen;
+import com.fr.jsp.admin.model.vo.AdminTheme;
 
 public class AdminDao {
 	private Properties prop;
@@ -50,6 +51,40 @@ public class AdminDao {
 		}
 		
 		return adminFortuen;
+	}
+	// 테마 저장
+	public int admin_updateTheme(Connection con, AdminTheme adminTheme) {
+		PreparedStatement pstmt = null;
+		int rset = 0;
+		
+		try { 
+			String query = prop.getProperty("admin_updateTheme");
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1,adminTheme.getFontFamily());
+			pstmt.setString(2,adminTheme.getFontSize());
+			pstmt.setString(3,adminTheme.getFontWeight());
+			pstmt.setString(4,adminTheme.getNavTitleBbc());
+			pstmt.setString(5,adminTheme.getNavCenterBgc());
+			pstmt.setString(6,adminTheme.getNavChildBgc());
+			pstmt.setString(7,adminTheme.getNavBottomBgc());
+			pstmt.setString(8,adminTheme.getTopMenuBgc());
+			pstmt.setString(9,adminTheme.getTopChildBgc());
+			pstmt.setString(10,adminTheme.getMainBgc());
+			pstmt.setString(11,adminTheme.getNavTitleColor());
+			pstmt.setString(12,adminTheme.getNavProfileColor());
+			pstmt.setString(13,adminTheme.getNavSideTitleColor());
+			pstmt.setString(14,adminTheme.getNavSideColor());
+			pstmt.setString(15,adminTheme.getNavChildColor());
+			pstmt.setString(16,adminTheme.getTopMenuColor());
+			pstmt.setString(17,adminTheme.getMainColor());
+			pstmt.setString(18,adminTheme.getAdminNum());
+			rset = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return rset;
 	}
 
 }
