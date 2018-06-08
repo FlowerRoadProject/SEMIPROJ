@@ -35,7 +35,13 @@ public class SelectMostViewedProductServlet extends HttpServlet {
 		ArrayList<ProductSimple> list = ps.getMostViewedProduct();
 		
 		
-		new Gson().toJson(list,response.getWriter());
+		ArrayList<ProductSimple> subList = new ArrayList<ProductSimple>();
+		
+		for(int i =0;i<(list.size()>6?6:list.size());++i){
+			subList.add(list.get(i));
+		}
+		
+		new Gson().toJson(subList,response.getWriter());
 		
 	}
 
