@@ -7,25 +7,22 @@
 	src="<%=request.getContextPath()%>/resources/js/jquery-1.12.2.min.js"></script>
 <title>꽃길</title>
 <style>
-.product_img {
-	display: block;
-	max-width: 100%;
-	height: 400px;
-}
+
 
 img {
 	cursor: pointer;
 }
 /* carousel 크기조정 */
-.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+/* .carousel-inner>.item>img, .carousel-inner>.item>a>img {
 	width: 40%;
 	margin: auto;
-}
+} */
 
  .items{
         width:auto;
         height: 540px;
-       }
+}
+
   .thumbnail img:HOVER{
   
   	opacity: 0.5;
@@ -54,6 +51,7 @@ img {
      	
      	
      	width:100% !important;
+     	height:auto !important;
      	background:rgb(255,255,255) !important;
      }
      
@@ -70,45 +68,61 @@ img {
     	 transform: translate(-50%, -50%);
         }
         
+        .rating_star {
+			color: gold;
+			font-size: 1em;
+		}
+
+		.rating_star_empty {
+			color: grey;
+			font-size: 1em;
+		}  
+		
+		
+		.rating_star_align{
+			text-align:right;
+			margin-top:7px;
+		}
+        
 </style>
 <script>
 	//즐겨찾기
 	$(document).ready(
-			function() {
-				$('#favorite').on(
-						'click',
-						function(e) {
-							var bookmarkURL = window.location.href;
-							var bookmarkTitle = document.title;
-							var triggerDefault = false;
-							if (window.sidebar && window.sidebar.addPanel) {
-								// Firefox version < 23 
-								window.sidebar.addPanel(bookmarkTitle,
-										bookmarkURL, '');
-							} else if ((window.sidebar && (navigator.userAgent
-									.toLowerCase().indexOf('firefox') > -1))
-									|| (window.opera && window.print)) {
-								// Firefox version >= 23 and Opera Hotlist 
-								var $this = $(this);
-								$this.attr('href', bookmarkURL);
-								$this.attr('title', bookmarkTitle);
-								$this.attr('rel', 'sidebar');
-								$this.off(e);
-								triggerDefault = true;
-							} else if (window.external
-									&& ('AddFavorite' in window.external)) {
-								// IE Favorite 
-								window.external.AddFavorite(bookmarkURL,
-										bookmarkTitle);
-							} else {
-								// WebKit - Safari/Chrome 
-								alert((navigator.userAgent.toLowerCase()
-										.indexOf('mac') != -1 ? 'Cmd' : 'Ctrl')
-										+ '+D 키를 눌러 즐겨찾기에 등록하실 수 있습니다.');
-							}
-							return triggerDefault;
-						});
-			});
+	function() {
+		$('#favorite').on(
+			'click',
+			function(e) {
+				var bookmarkURL = window.location.href;
+				var bookmarkTitle = document.title;
+				var triggerDefault = false;
+				if (window.sidebar && window.sidebar.addPanel) {
+					// Firefox version < 23 
+					window.sidebar.addPanel(bookmarkTitle,
+							bookmarkURL, '');
+				} else if ((window.sidebar && (navigator.userAgent
+						.toLowerCase().indexOf('firefox') > -1))
+						|| (window.opera && window.print)) {
+					// Firefox version >= 23 and Opera Hotlist 
+					var $this = $(this);
+					$this.attr('href', bookmarkURL);
+					$this.attr('title', bookmarkTitle);
+					$this.attr('rel', 'sidebar');
+					$this.off(e);
+					triggerDefault = true;
+				} else if (window.external
+						&& ('AddFavorite' in window.external)) {
+					// IE Favorite 
+					window.external.AddFavorite(bookmarkURL,
+							bookmarkTitle);
+				} else {
+					// WebKit - Safari/Chrome 
+					alert((navigator.userAgent.toLowerCase()
+							.indexOf('mac') != -1 ? 'Cmd' : 'Ctrl')
+							+ '+D 키를 눌러 즐겨찾기에 등록하실 수 있습니다.');
+				}
+				return triggerDefault;
+		});
+	});
 
 	// jQuery(document).ready(function () {
 	//   var wrap = jQuery(window);
@@ -200,7 +214,14 @@ img {
 					$item.find('[name=productName]').text($parsedList[i].productName);
 					$item.find('[name=productPrice]').text($parsedList[i].productPrice);
 					$item.find('[name=reviewNum]').text($parsedList[i].reviewCount);
-					
+					for(var j=0;j<$parsedList[i].reviewAvg;++j){
+						$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star'></span>");
+					}
+
+					for(var k=0;k<5-$parsedList[i].reviewAvg;++k){
+							
+						$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star_empty'></span>");
+					} 
 					
 					
 					
@@ -223,6 +244,7 @@ img {
 		if(!checkLogin()){
 			
 			 $('#myModal').modal({"show":true}); 
+			
 			return;
 		}
 			$.ajax({
@@ -267,8 +289,8 @@ img {
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<!-- <li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li> -->
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<!-- <li data-target="#myCarousel" data-slide-to="2"></li> -->
 			</ol>
 
 			<!-- Wrapper for slides -->
@@ -278,6 +300,14 @@ img {
 					<img
 						src="<%=request.getContextPath()%>/resources/images/mainEventCarousel/geoberaEvent.jpg"
 						value="0" class=" img-fluid">
+				</a>
+				</div>
+				
+				<div class="item">
+				<a href="<%=request.getContextPath()%>/productDetail.do?productNum=+P032">
+					<img
+						src="<%=request.getContextPath()%>/resources/images/mainEventCarousel/coralRoseEvent.jpg"
+						value="1" class=" img-fluid">
 				</a>
 				</div>
 			</div>
@@ -321,11 +351,11 @@ img {
 						<br /> <b name="productName" class="font-title text-truncate"></b>
 					</h4>
 					<h4 name="productPrice" class=" col-lg-12 ">원</h4>
-					<h5 class="col-lg-12 font-gray">
-						리뷰 <span name="reviewNum"></span>
-					</h5>
-					<div class="col-lg-12 ">
-
+					<h5 class="col-lg-4 font-gray">리뷰 <span name="reviewNum"></span></h5>
+					<div class="col-lg-8  rating_star_align">
+						
+					</div>
+					<div class="col-lg-12 " style="margin-top:15px;">
 						<a class="col-lg-4 btn btn-default" role="button"
 							 name="addBasket">장바구니</a> 
 						<a name="productDetail"

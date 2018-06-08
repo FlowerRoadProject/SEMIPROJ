@@ -227,7 +227,7 @@ textarea{
  	    if ($(window).scrollTop() > 600) {
  	      if (!$navbar.hasClass("navbar-fixed-top")) {
  	        $navbar.addClass("navbar-fixed-top");
- 	        $navbar.css("top","130px");
+ 	        $navbar.css("top","200px");
  	      }
  	    } else {
  	      $navbar.removeClass("navbar-fixed-top");
@@ -686,7 +686,6 @@ textarea{
 	<br />
 	<br />
 	<br />
-	<br />
 	<!--상품 사진과 옵션 선택-->
 	<div class="container ">
 
@@ -805,7 +804,7 @@ textarea{
 	        <ul class="nav navbar-nav navbar-right ">
 	          <li class="active"><a href="#page_start" >상품구매</a></li>
 	          <li><a href="#content_start">상품 설명</a></li>
-	          <li><a href="#review_start">리뷰 &nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+	          <li><a href="#review_start">&nbsp;&nbsp;리뷰 &nbsp;&nbsp;</a></li>
 	        </ul>
 	      </div>
 	    </div>

@@ -117,7 +117,25 @@
 
 		.align-center-outer{
 			text-align:center;
-		}       
+		}     
+		
+		.rating_star {
+			color: gold;
+			font-size: 1em;
+		}
+
+		.rating_star_empty {
+			color: grey;
+			font-size: 1em;
+		}  
+		
+		
+		.rating_star_align{
+			text-align:right;
+			margin-top:7px;
+		}
+		
+		
 	</style>
 
 
@@ -176,8 +194,20 @@
       						<div class="col-lg-12 caption">        						
         						<h4 class="col-lg-12 "><br /><b class="font-title text-truncate"><%=pagedList.get(i).getProductName() %></b></h4>        						
         						<h4 class=" col-lg-12 "><%=pagedList.get(i).getProductPrice() %>원</h4>
-        						<h5 class="col-lg-12 font-gray">리뷰 <span><%=pagedList.get(i).getReviewCount() %></span></h5>  
-        						<div class="col-lg-12 ">  
+        						
+       						
+        						<h5 class="col-lg-4  font-gray">리뷰 <span><%=pagedList.get(i).getReviewCount() %></span></h5>  
+        						<div class="col-lg-8  rating_star_align ">
+	        						<%for(int j=0;j<Math.floor(pagedList.get(i).getReviewAvg());++j){ %>
+	        							<span class='glyphicon glyphicon-star rating_star'></span>
+	        						<%} %>
+	        						<%for(int j=0;j<5-Math.floor(pagedList.get(i).getReviewAvg());++j){ %>
+	        							<span class='glyphicon glyphicon-star rating_star_empty'></span>
+	        						<%} %>
+        						</div>
+        						
+        						
+        						<div class="col-lg-12 " style="margin-top:15px;">  
         							
         							<%if(pagedList.get(i).getProductQuantity()<=0){ %>
         							
