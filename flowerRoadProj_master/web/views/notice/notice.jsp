@@ -58,19 +58,34 @@
 .boardList span:nth-child(2) {
 	text-indent: 2em;
 }
+.title{
+	font-size: 4em;
+	font-weight: bold;
+}
+.location{
+	margin: 1em;
+	background: black;
+	color:white;
+	font-size: 3em;
+	height: 7em;	
+}
+
 </style>
 
 
 </head>
 <body>	
 	<%@include file="/views/common/header.jsp" %>
-	<br />	<br />	<br />	<br />	<br />	<br />	<br />	<br />	<br />	<br />	<br />	<br />
-	<div class="visible-md">
-		md
+	<br />	<br />	<br />	<br />	<br />
+	<div class="col-lg-8 col-lg-offset-2 container-fluid">	
+		<div class="col-lg-10 title">공지사항</div>
+	<br />	
+	<div class="col-lg-12 location container-fluid">
+		&nbsp;공지사항&nbsp;
+		<img src="<%=request.getContextPath()%>/resources/images/footerMenu/noticeFlower.jpg" alt="" style="height: 7em; width:23.5em;"/>
 	</div>
-	<div class="visible-sm">
-		sm
 	</div>
+	
 	
 	
 	

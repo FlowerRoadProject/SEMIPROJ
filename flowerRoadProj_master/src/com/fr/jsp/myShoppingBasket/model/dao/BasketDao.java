@@ -110,8 +110,7 @@ public class BasketDao {
 	public int insertOption(Connection con, Basket bk){
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = prop.getProperty("insertOption");
-		
+		String query = prop.getProperty("insertOption");		
 		
 		try {
 			pstmt = con.prepareStatement(query);

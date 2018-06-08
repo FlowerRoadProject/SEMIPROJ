@@ -13,11 +13,6 @@
 
 <title>테스트페이지</title>
 
-<!-- 부트스트랩 -->
-<link href="<%=request.getContextPath()%>/resources/css/bootstrap.css" rel="stylesheet">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-<script src="<%=request.getContextPath()%>/resources/js/bootstrap.js"></script>
 
 
 <style>
