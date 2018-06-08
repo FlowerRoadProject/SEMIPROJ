@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, com.fr.jsp.product.model.vo.*,
-								com.fr.jsp.common.*" %>
+								com.fr.jsp.common.*, com.fr.jsp.member.model.vo.*" %>
 <%
+	Member m = (Member)session.getAttribute("m");
 	ArrayList<ProductFavorite> list = (ArrayList<ProductFavorite>)request.getAttribute("pflist");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	System.out.println("스타트:"+pi.getStartPage());
