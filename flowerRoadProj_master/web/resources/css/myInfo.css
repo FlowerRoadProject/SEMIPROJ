@@ -7,8 +7,16 @@
     color: midnightblue;
     /* display: inline-block; */
 }
+
+ #ckZip {
+		background:black;
+		border: 1px solid black;
+		color: white;
+		text-align:center;
+}
+
  /* 커서 설정 */
-.category:hover{
+.category:hover, #ckZip:hover{
     cursor: pointer;
 }
 
@@ -34,6 +42,8 @@ ul{
 li{
     margin-top: 15px;
 }
+
+
 
 /* 탈퇴하기 뒤에 div판 */
 #withdrawDiv{

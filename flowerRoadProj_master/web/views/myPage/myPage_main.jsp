@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import = "com.fr.jsp.member.model.vo.*"%>
+<%
+	Member m = (Member)session.getAttribute("m");
+	String addrArr[] = m.getMemberAddress().split("/");
+%>
 
 <!DOCTYPE>
 <html>
@@ -60,8 +64,9 @@
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>주소</b></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
-                    <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
-					<%= m.getMemberAddress() %></p></div> <br><br><br>
+                    <div class="col-sm-3 col-md-3 col-lg-3"><p class="text-muted" style="font-weight:bold;">
+					<%= addrArr[0]+" "+addrArr[1]+" "+addrArr[2] %></p></div> <br><br><br>
+			
 
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>전화번호</b></div>
