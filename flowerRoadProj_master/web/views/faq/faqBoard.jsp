@@ -102,11 +102,7 @@
 <body>
 	<%@include file="/views/common/header.jsp"%>
 	<!-- 1:1 게시판 창 -->	
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
+	<br />	<br />	<br />	<br />	<br />
 	
 	<div class="col-lg-8 col-lg-offset-2 container-fluid">	
 		<div class="col-lg-10 title">FAQ</div>

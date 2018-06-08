@@ -76,8 +76,7 @@
 </head>
 <body>	
 	<%@include file="/views/common/header.jsp" %>
-	<br />	<br />	<br />	<br />	<br />	<br />	<br />	<br />	<br />	
-	
+	<br />	<br />	<br />	<br />	<br />
 	<div class="col-lg-8 col-lg-offset-2 container-fluid">	
 		<div class="col-lg-10 title">공지사항</div>
 	<br />	
