@@ -305,6 +305,8 @@ public class MemberDao {
 					pf.setImage(rset.getString(2));
 					pf.setProductName(rset.getString(3));
 					pf.setProductPrice(rset.getInt(4));
+					pf.setProductNum(rset.getString(5));
+					
 					if(rset.getInt(4) > 0){
 						quantity = "재고있음";
 						pf.setProductQuantityState(quantity);
@@ -643,6 +645,26 @@ public class MemberDao {
 		}
 		
 		
+		return result;
+	}
+	public int favoriteAllDel(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("AlldeleteFavorite");
+		try{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			System.out.println(num);
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		System.out.println(result);
 		return result;
 	}
 
