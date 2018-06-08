@@ -98,7 +98,7 @@
     <body>      
         <%@include file="/views/common/header.jsp" %>
    		
-       <br><br><br><br><br><br><br><br /><br /><br /><br /><br />
+       <br><br><br><br><br><br>
 				
 		<input type="hidden" value="<%=excessMsg%>" id="excessMsg"/>
 		<input type="hidden" value="<%=excessName%>" id="excessName"/>

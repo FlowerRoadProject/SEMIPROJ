@@ -1,131 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 
-    
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-	
-  <style>
-   @media(max-width:1100px){
-  		.footText{
-    		width:1100px;
-    	}
-   }
-  
-  
-   @media (max-width: 900px){ 
-                .container{
-                    width: 890px;
-                }
-            }
-  	footer ul li {
-      display: inline;      
-      height: 2em;
-      font-size: 1.2em;
-      border-right: 1px solid black;
-      border-left: 1px solid black;
-      text-align: center;
-      padding-top: 0.3em;
-    }
-    .navbar-default {
-      background-color: rgba(255, 254, 254, 0.9);
-    }
-    .test-border{
-    	border: 1px solid black;
-    }
-<<<<<<< HEAD
-    fP{
-=======
-    .fP{
->>>>>>> branch 'master' of https://github.com/FlowerRoadProject/SEMIPROJ.git
-    	text-align: center;
-    }
-    .highlight{
-    	font-weight:700;
-    }
-    #accessTermsText{
-		margin: 3em;		
-		max-height: calc(80% - 100px);
-    	overflow-y: scroll;		
-	}
-	.mClose{
-		align: center;
-	}
-	
-       
-    </style>  
-        <footer>
-            <div class="footprint footText">
-              <hr>
-              <div class="footALink">
-                
-                <div class="container col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2">
-                  <ul class="col-lg-12 footList">
-                    <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1" style="border-left:2px solid black;">
-                     	 회사 소개
-                    </li>
-                    <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2" data-toggle="modal" data-target=".aTerm">
-                      	이용 약관
-                    </li>
-                    <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                      	오시는길
-                    </li>
-                    <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                    	FAQ
-                    </li>
-                    <li class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="border-right:2px solid black;">
-                     	 공지사항
-                    </li>
-                  </ul>
-                </div>
-                
-                <script>
-                	
-                $(function(){
-                	console.log( $('.footList li:first-child').text());
-                	
-                })
-               $('.footList li').hover(function(){
-               		$(this).css({
-               			'background':'lightcoral',
-               			'color':'white',
-               			'cursor': 'pointer'               			
-               			})               		
-               	},function(){
-               		$(this).css({
-               			'background':'white',
-               			'color':'black'
-               			});
-               	})
-               	$('.footList li').eq(0).click(function(){
-               		/* location.href= ''; */
-               	});                
-                $('.footList li').eq(2).click(function(){
-               		location.href= '<%=request.getContextPath()%>/views/common/comAddress.jsp';
-               	});
-                $('.footList li').eq(3).click(function(){
-               		location.href= '<%=request.getContextPath()%>/show.faq';
-               	});
-                $('.footList li').eq(4).click(function(){
-               		location.href= '<%=request.getContextPath()%>/showNotice.no';
-               	});
-               		
-                
-                </script>
-                
-               
-
-<div class="modal fade aTerm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="margin : 2em;">
-     	<div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">이용약관</h4>
-      </div>
-     	<div id="accessTermsText">
+<style>
+	#accessTermsText{
+		margin-right: 8.5em;
+		margin-left: 8.5em;
 		
+	}
+
+
+
+
+</style>
+
+
+</head>
+<body>
+
+
+	<div style="text-align: center; margin-top: 2em; margin-bottom: 2em; font-size: 3em;">
+		쇼핑몰 이용약관 
+	</div>
+	<div id="accessTermsText">
+	
 제 1 조 (목적)<br />
 본 약관은 쇼핑몰을 운영하는 주식회사 원모먼트 (이하 ‘회사’라 한다)에서 관련 서비스(이하 ‘서비스’라 하며, 접속 가능한 유,무선 단말기의 종류와 상관없이사이트가 제공하는 모든 서비스를 의미합니다.)를 이용함에 있어 회원의 권리•의무 규정함을 목적으로 합니다. <br />
 <br /><br />
@@ -204,7 +106,7 @@
 ④ ‘사이트’를 통해 구입한 ‘상품 등’에 특별한 하자가 없는데도 불구하고 일부 사용취소∙전부 또는 일부 반품 등으로 ‘회사’의 업무를 방해하는 경우<br />
 3. ‘회사’가 회원자격을 제한∙정지시킨 후 동일한 행위가 2회 이상 반복되거나 30일 이내 시정되지 아니하는 경우 ‘회사’는 회원자격을 상실시킬 수 있습니다.<br />
 4. 재판매의 목적으로 ‘사이트’에서 ‘상품 등’을 중복 구매하는 등 ‘사이트’의 거래에 심각한 혼란을 줄 경우 ‘회사’는 당해 회원의 회원자격을 상실시킬 수 있습니다.<br />
-5. ‘회사’가 회원자격을 상실시키는 경우에는 회원등록을 말소합니다. 이 경우 회원에게 제2항 (나)목에 따라 통지하고, 회원등록 말소 전에 소명할 기회를 부여합니다.  <br />
+5. ‘회사’가 회원자격을 상실시키는 경우에는 회원등록을 말소합니다. 이 경우 회원에게 제2항 (나)목에 따라 통지하고, 회원등록 말소 전에 소명할 기회를 부여합니다. <br />
 <br /><br />
 제 10 조 (회원의 ID 및 비밀번호에 대한 의무)<br />
 1. ID(전자우편번호 및 소셜네트워크 연동으로 인한 ID)와 비밀번호에 관한 관리에 대한 책임이 있으며, 이를 소홀히 하여 발생한 모든 민∙형사상의 책임은 회원 자신에게 있습니다.<br />
@@ -357,35 +259,9 @@
 부칙<br />
 1. 이 약관은 2018년 1월 1일부터 시행합니다.<br />
 2. 이 개정약관은 시행일 이후에 체결되는 계약에만 적용되고 그 이전에 체결된 계약은 개정전의 약관조항을 그대로 적용합니다.<br />
-		
+	
 	</div>
-	<div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">창닫기</button>        
-      </div>
-    </div>
-  </div>
-</div>
-                
-                
-                
-              </div>
-              
-              <hr>
-              
-              <br>
-              <br>
-              <div class="footInfo">
-               
-                <div class="col-sm-12 col-md-12 col-lg-12">
 
-                   	<p class="col-lg-12 fP">법인명 : (주)원제플라워  | 대표이사 :  이원제  | 사업장 소재지 :  서울시 강남구 역삼동 KH정보교육원  | 사업자등록번호 : 132-78-56215 | 사업자정보확인 </p>
 
-         			<p class="col-lg-12 fP">통신판매업신고 : 제2013-서울서초-0521호  | 개인정보보호책임자 :  이원제 | 고객센터 :  02-2222-2222
-                    | 팩스 : 02-2222-2222| E-mail :  help@cultwo-flower.com</p>
-                    <p class="col-lg-12 fP">Hosting by (주)코리아센터닷컴</p>
-                </div>
-                <div class="col-sm-3 col-md-3 col-lg-2"></div>
-              </div>
-            </div>
-          </footer>
-   
+</body>
+</html>
