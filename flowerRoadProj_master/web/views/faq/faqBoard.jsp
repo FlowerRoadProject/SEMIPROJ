@@ -41,10 +41,7 @@
 	margin-bottom: 1.5em;
 }
 
-.buttons button:not(:nth-child(2)){
-	background: gold;
-	border: gold;
-}
+
 
 #boardTop {
 	text-align: center;
@@ -83,6 +80,19 @@
 	height: auto;
 	
 }
+.title{
+	font-size: 4em;
+	font-weight: bold;
+}
+.location{
+	margin: 1em;
+	background: black;
+	color:white;
+	font-size: 3em;
+	height: 7em;
+	
+	
+}
 </style>
 
 
@@ -91,59 +101,52 @@
 
 <body>
 	<%@include file="/views/common/header.jsp"%>
-	<!-- 1:1 게시판 창 -->
+	<!-- 1:1 게시판 창 -->	
 	<br />
 	<br />
 	<br />
 	<br />
 	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<div class="visible-md">
-		md
+	
+	<div class="col-lg-8 col-lg-offset-2 container-fluid">	
+		<div class="col-lg-10 title">FAQ</div>
+	<br />	
+	<div class="col-lg-12 location container-fluid">
+		&nbsp;&nbsp;&nbsp;&nbsp;FAQ&nbsp;&nbsp;&nbsp;&nbsp;
+		<img src="<%=request.getContextPath()%>/resources/images/footerMenu/fullFlower.jpg" alt="" style="height: 7em; width:23.5em;"/>
 	</div>
-	<div class="visible-sm">
-		sm
-	</div>
-	<div class="visible-xs">
-		xs
 	</div>
 	
 	<div class="container-fluid">
 	
-		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-8 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 buttons bottom-margin">
+		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-6 col-sm-offset-1 col-md-offset-1 col-lg-offset-3 buttons bottom-margin">
 			<div class="col-xs-1 col-sm-1 col-lg-2 col-md-1">&nbsp</div>
 			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-primary">전체보기</button>
-			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-default">주문</button>
-			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-default">결제</button>
-			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-default">배송</button>
+			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">주문</button>
+			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">결제</button>
+			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">배송</button>
 			<br><br>
 			<div class="col-xs-1 col-sm-1 col-lg-2 col-md-1">&nbsp</div>
-			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-default">쿠폰</button>
-			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-default">교환/환불</button>
-			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-default">회원</button>
-			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-default">상품</button>
+			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">쿠폰</button>
+			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">교환/환불</button>
+			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">회원</button>
+			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">상품</button>
 		</div>
 
 		<!-- 여기는 게시판이 들어갈 곳이다 -->
 
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" id="boardTop">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-lg-offset-2" id="boardTop">
 			<span class="col-xs-1 col-sm-1 col-md-1 col-lg-1">번호</span>
 			<span class="col-xs-2 col-sm-2 col-md-2 col-lg-1">분류</span>
 			<span class="col-xs-9 col-sm-9 col-md-9 col-lg-10">제목</span>
 		</div>
 		<%for (int i = 0; i < list.size(); i++) {%>
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1 boardList">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-lg-offset-2 boardList">
 			<span class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><%=list.get(i).getbNum()%></span>
 			<span class="category col-xs-2 col-sm-2 col-md-2 col-lg-1">[<%=list.get(i).getContentCategory()%>]</span>
 			<span class="col-xs-9 col-sm-9 col-md-9 col-lg-10"><%=list.get(i).getbTitle()%></span>
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1 boardContent">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-lg-offset-2 boardContent">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<i class="fa fa-question-circle" style="font-size: 20px; color: red"></i>&nbsp;<%=list.get(i).getbTitle()%>

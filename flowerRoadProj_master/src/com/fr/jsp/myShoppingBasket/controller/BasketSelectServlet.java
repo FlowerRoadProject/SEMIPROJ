@@ -68,8 +68,8 @@ public class BasketSelectServlet extends HttpServlet {
 			request.setAttribute("excessRemoveMsg", excessRemoveMsg);
 			request.setAttribute("excessPName", excessPName);
 		}else{
-			page="/views/myShoppingBasket/test.jsp";
-			request.setAttribute("msg", "select.bk 실패");
+			page="/views/common/errorPage.jsp";
+			request.setAttribute("msg", "장바구니 조회에 실패했습니다");
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 		
