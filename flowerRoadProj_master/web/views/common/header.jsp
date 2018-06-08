@@ -54,7 +54,6 @@
 							}
 							return triggerDefault;
 						});
-			});
 </script>
 
 <style>
