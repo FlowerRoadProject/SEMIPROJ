@@ -39,7 +39,6 @@ var msg = "<%=msg%>";
 if(msg != "null"){
 	alert(msg);	
 }
-<<<<<<< HEAD
 
 $("input[name=userPwd]").keydown(function (key) {
 	 
@@ -48,17 +47,7 @@ $("input[name=userPwd]").keydown(function (key) {
     }
 
 });
- 
 
-=======
-$("input[name=userPwd]").keydown(function (key) {
-    
-    if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
-       login();
-    }
-
-});
->>>>>>> branch 'master' of https://github.com/FlowerRoadProject/SEMIPROJ.git
 });
 //페이스북 스크립트
   // This is called with the results from from FB.getLoginStatus().
