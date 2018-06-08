@@ -15,7 +15,7 @@ function info(){
     location.href = mainPath+"/views/myPage/myPage_main.jsp"
 }
 // 회원 확인 취소 버튼
-function rechkCancel(){
+function cancel(){
     location.href = mainPath+"/views/myPage/myPage_main.jsp"
 }
 // 카테고리 - 주문조회

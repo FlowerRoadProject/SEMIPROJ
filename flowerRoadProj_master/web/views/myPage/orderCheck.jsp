@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, com.fr.jsp.order.model.vo.*,
-								com.fr.jsp.common.*" %>
+								com.fr.jsp.common.*, com.fr.jsp.member.model.vo.*" %>
 <%
+	Member m = (Member)session.getAttribute("m");
 	ArrayList<MyPage_Order> list = (ArrayList<MyPage_Order>) request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	System.out.println(pi.getStartPage());
