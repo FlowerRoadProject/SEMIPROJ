@@ -191,7 +191,7 @@ img {
 				
 				var $item_container = $('#item-container');
 				
-				
+				console.log($parsedList.length);
 				for (var i = 0; i < $parsedList.length; ++i) {
 					var $item = $('[name=clone-item]').clone(true,true);
 					$item.attr("name","clone-item_"+i);

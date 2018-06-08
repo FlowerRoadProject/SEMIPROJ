@@ -105,7 +105,7 @@ body{
 	padding-left:80px;
 	line-height: 2em;
 	font-family:'Nanum Gothic', sans-serif;
-	width:40%;
+	width:60%;
 	border:1px transparent;
 	background:white;
 }
@@ -126,6 +126,24 @@ textarea{
 	resize:none;
 }
 
+.product_name_font{
+	font-weight: bold;
+
+}
+
+.carousel_caption_name{
+
+	
+	font-weight: 500;
+	background-color:rgba(220,220,220,0.5);
+	
+
+}
+
+.carousel_caption_desc{
+	color:black;
+	font-weight: 400;
+}
 #mNavbar li.active a { color: grey !important; background-color: #ffbb33 !important; } 
 
 </style>
@@ -720,7 +738,7 @@ textarea{
 
 			<div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 thumbnail">
 				<div class="caption">
-					<h3 id="product_name" class="thumbnail-label "></h3>
+					<h3 id="product_name" class="thumbnail-label product_name_font"></h3>
 					<h4 id="product_price" class="thumbnail-label"></h4>
 				</div>
 
@@ -1025,8 +1043,8 @@ textarea{
 											class="img-responsive thumbnail"  alt="">
 										</a>
 										<div class="carousel-caption">
-											<h3><%=relatedCategoryProduct.get(j).getProductName() %></h3>
-											<p><%=relatedCategoryProduct.get(j).getProductPrice() %>원</p>
+											<h3><span class="carousel_caption_name"><%=relatedCategoryProduct.get(j).getProductName() %></span></h3>
+											<p><span class="carousel_caption_desc"><%=relatedCategoryProduct.get(j).getProductPrice() %>원</span></p>
 										</div>
 									</div>
 								<%} %>
