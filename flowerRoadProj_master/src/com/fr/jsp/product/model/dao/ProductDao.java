@@ -523,10 +523,12 @@ public class ProductDao {
 		ArrayList<ProductSimple> result = new ArrayList<ProductSimple>();
 		ProductSimple p = null;
 		
-		
 		try {
 			
 			String query = prop.getProperty("getMostViewedProduct");
+			stmt= con.createStatement();
+			
+			System.out.println(query);
 			
 			rset = stmt.executeQuery(query);
 
@@ -534,14 +536,14 @@ public class ProductDao {
 
 				p = new ProductSimple();
 
-				p.setProductNum(rset.getString(2));
-				p.setProductName(rset.getString(3));
-				p.setProductPrice(rset.getInt(4));
-				p.setReviewCount(rset.getInt(5));
-				p.setImage(rset.getString(6));
-				p.setProductTypeName(rset.getString(7));
-				p.setReviewAvg(rset.getInt(8));
-				p.setProductQuantity(rset.getInt(9));
+				p.setProductNum(rset.getString(1));
+				p.setProductName(rset.getString(2));
+				p.setProductPrice(rset.getInt(3));
+				p.setReviewCount(rset.getInt(4));
+				p.setImage(rset.getString(5));
+				p.setProductTypeName(rset.getString(6));
+				p.setReviewAvg(rset.getInt(7));
+				p.setProductQuantity(rset.getInt(8));
 				result.add(p);
 
 			}

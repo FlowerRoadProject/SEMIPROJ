@@ -35,11 +35,7 @@
     .test-border{
     	border: 1px solid black;
     }
-<<<<<<< HEAD
-    fP{
-=======
     .fP{
->>>>>>> branch 'master' of https://github.com/FlowerRoadProject/SEMIPROJ.git
     	text-align: center;
     }
     .highlight{

@@ -169,7 +169,7 @@ img {
 		})
 		
 		setTopSelling(1);
-		
+		setMostViewed();
 	});
 
 	function setMostViewed(){
@@ -190,7 +190,7 @@ img {
 	
 			}
 			
-		}
+		});
 	}
 
 	function setTopSelling(index){
