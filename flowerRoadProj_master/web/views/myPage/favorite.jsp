@@ -58,17 +58,20 @@
                                 <th>가격</th>
                                 <th>재고상황</th>
                                 <th>장바구니</th>
+                                <th></th>
                             </tr>
                             <% int i = list.size(); 
-                            for(ProductFavorite pf : list) { %>
+                            for(int j = 0; j < list.size(); j++) { %>                            
+                            
                             <tr>
                                 <td><%= i-- %></td>
-                                <td><img src="<%=request.getContextPath()%>/resources/images/product/<%= pf.getImage() %>" width="60px;" height="60px;"></td>
-                                <td><%=pf.getProductName() %></td>
-                                <td><%=pf.getProductPrice() %>원</td>
-                                <td><%=pf.getProductQuantityState() %></td>
-                                <td><input type="button" value="장바구니" onclick="goBasket()"><br>
+                                <td><img src="<%=request.getContextPath()%>/resources/images/product/<%= list.get(j).getImage() %>" width="60px;" height="60px;"></td>
+                                <td><%= list.get(j).getProductName() %></td>
+                                <td><%= list.get(j).getProductPrice() %>원</td>
+                                <td><%= list.get(j).getProductQuantityState() %></td>
+                                <td><input type="button" value="장바구니" class="goBasket"><br>
                                 <input type="button" value="삭제하기"></td>
+                                <td><input type="hidden" class="pN" name="pN" value="<%=list.get(j).getProductNum()%>"></input></td>
                             </tr>
                             <% } %>
                         </table>
@@ -117,10 +120,11 @@
                 <div class="col-sm-5 col-md-5 col-lg-5"></div>
         </div>
         <script>
-        	function goBasket(){
-        		location.href="";
-        	}
-        
+        	$('.goBasket').on('click',function(){
+        		location.href="<%=request.getContextPath() %>/addBasket.do?pno="+$(this).parent().siblings().children('.pN').val();
+        	});
+        	
+        	
         	function allDel(){
         		location.href="<%=request.getContextPath() %>/favoriteAllDel.me";
         	}

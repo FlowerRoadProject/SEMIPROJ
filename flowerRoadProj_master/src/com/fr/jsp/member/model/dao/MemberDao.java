@@ -305,6 +305,8 @@ public class MemberDao {
 					pf.setImage(rset.getString(2));
 					pf.setProductName(rset.getString(3));
 					pf.setProductPrice(rset.getInt(4));
+					pf.setProductNum(rset.getString(5));
+					
 					if(rset.getInt(4) > 0){
 						quantity = "재고있음";
 						pf.setProductQuantityState(quantity);

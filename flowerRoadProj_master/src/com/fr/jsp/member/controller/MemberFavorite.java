@@ -76,6 +76,7 @@ public class MemberFavorite extends HttpServlet {
 						
 				// -- 페이지 처리 코드 부분 -- //	
 		list = ms.favorite(num, currentPage, limit);
+		System.out.println("멤버넘버: "+list.get(0).getProductName());
 		String page ="";
 		if(list != null && !list.isEmpty()){
 			page = "views/myPage/favorite.jsp";
