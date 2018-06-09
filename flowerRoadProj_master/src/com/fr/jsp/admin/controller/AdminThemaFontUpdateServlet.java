@@ -24,20 +24,22 @@ public class AdminThemaFontUpdateServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		String adminNum = (String) session.getAttribute("memberNum");
 		
-		String fontFamily = (String) request.getAttribute("fontFamily");
-		String fontSize = (String) request.getAttribute("fontSize");
-		String fontWeight = (String) request.getAttribute("fontWeight");
+		String fontFamily = (String) request.getParameter("fontFamily");
+		String fontSize = (String) request.getParameter("fontSize");
+		String fontWeight = (String) request.getParameter("fontWeight");
 		
 		AdminTheme adminTheme = new AdminTheme();
 		adminTheme.setAdminNum(adminNum);
-		adminTheme.setFontFamily(fontFamily);
-		adminTheme.setFontSize(fontSize);
-		adminTheme.setFontWeight(fontWeight);
-		System.out.println(fontFamily);
+		if(fontFamily.equals("")) adminTheme.setFontFamily("궁서체");
+		else adminTheme.setFontFamily(fontFamily);
+		if(fontSize.equals("")) adminTheme.setFontSize("12pt");
+		else adminTheme.setFontSize(fontSize);
+		if(fontWeight.equals("")) adminTheme.setFontSize("400");
+		else adminTheme.setFontWeight(fontWeight);
 		
 		AdminService as = new AdminService();
-		// 테마 저장
-		as.admin_updateTheme(adminTheme);
+		// 폰트 테마 저장
+		as.admin_updateThemeFont(adminTheme);
 		
 		request.getRequestDispatcher("views/admin_views/admin_Thema.jsp").forward(request, response);
 	}

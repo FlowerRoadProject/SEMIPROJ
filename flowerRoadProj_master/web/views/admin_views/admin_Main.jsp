@@ -17,8 +17,7 @@
 
 		<!-- admin_CSS -->
 		<%@ include file="common/admin_CSS.jsp" %>
-		<!-- admin_JS -->
-		<%@ include file="common/admin_JS.jsp" %>
+		
 		<script>
 			var mainPath = '<%=request.getContextPath() %>';
 		</script>
@@ -41,7 +40,7 @@
 	              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	                <div class="x_panel">
 	                  <div class="x_title">
-	                    <h2>RANDOM GAME<small></small></h2>
+	                    <h2>RANDOM GAME <span class="badge bg-red" id="clickCount"></span></h2>
 	                    <ul class="nav navbar-right panel_toolbox">
 	                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 	                      </li>
@@ -49,40 +48,11 @@
 	                    <div class="clearfix"></div>
 	                  </div>
 	                  <div class="randomGame"  style="height:500px">
-	                    	<img src="<%=request.getContextPath() %>/resources/images/admin/blue_flower_background.jpg" alt="" 
-	                    		style="width:50px;height:50px;position:relative;top:<%=adminRandomGame.getTopNum()%>%;left:<%=adminRandomGame.getLeftNum()%>%;"/>
-	                    	<div style="border:2px solid pink;width:50px;height:50px;position:relative;top:<%=adminRandomGame.getGoalTopNum()%>%;left:<%=adminRandomGame.getGoalLeftNum()%>%;"></div>
-	                    	<script>
-	                    		$('.randomGame img').on({
-	                    			'click':function(){
-	                    				if(<%=adminRandomGame.getTopNum()%>!=<%=adminRandomGame.getGoalTopNum()%> || <%=adminRandomGame.getLeftNum()%>!=<%=adminRandomGame.getGoalLeftNum()%>){
-	                    					var top1 = (Math.random()*100)+1;
-	                    					var left1 = (Math.random()*100)+1;
-	                    					var widthget = $(this).parent().css('width');
-	                    					var heightget = $(this).parent().css('height');
-	                    					console.log(widthget);
-	                    					console.log(heightget);
-	                    					$(this).css({'top':top1+'%', 'left':'50%'});
-	                    				}
-	                    			
-	                    				$.ajax({
-	                    					url: "<%=request.getContextPath()%>/randomGame.admin",
-	                    					type: "post",
-	                    					data: {
-	                    						topNum: <%=adminRandomGame.getTopNum()%>,
-	                    						leftNum: <%=adminRandomGame.getLeftNum()%>,
-	                    						goalTopNum: <%=adminRandomGame.getGoalTopNum()%>,
-	                    						goalLeftNum: <%=adminRandomGame.getGoalLeftNum()%>
-	                    					},
-	                    					success: function(data){
-	                    						
-	                    					},error: function(data){
-	                    						alert("전달 실패!!");
-	                    					}
-	                    				});
-	                    			}
-	                    		});
-	                    	</script>
+	                  
+	                    	<img id="target" src="<%=request.getContextPath() %>/resources/images/admin/blue_flower_background.jpg" alt="" 
+	                    		style="width:50px;height:50px;position:absolute;top:<%=adminRandomGame.getTopNum()%>%;left:<%=adminRandomGame.getLeftNum()%>%;"/>
+	                    	<div id="goal" style="border:2px solid pink;width:50px;height:50px;position:absolute;top:<%=adminRandomGame.getGoalTopNum()%>%;left:<%=adminRandomGame.getGoalLeftNum()%>%;"></div>
+	                    	
 	                  </div>
 	                </div>
 	              </div>
@@ -95,20 +65,10 @@
 	                    	<div class="clearfix"></div>
 	                  </div>
 	                  <div class="x_content">
-	                  	<button id="teachMe">승회</button>
+	                  	<button type="button" class="btn btn-round btn-warning col-lg-10 col-md-10 col-sm-10 col-xs-10"
+	                  			style="margin-left:10%;margin-right:10%;" id="teachMe">승회</button>
 	                  	<div id="english"><%=adminFortuen.getFortuenEnglish() %></div>
 	                  	<div id="korean"><%=adminFortuen.getFortuenKorean() %></div>
-	                  	<script>
-	                  		$(document).ready(function(){ 
-	                  			$("#english").slideUp();$("#korean").slideUp();
-	                  			var i = 1;
-		                        $("#teachMe").on('click',function(){ 
-		                            if(i==1){
-		                            	$("#english").slideDown("slow"); i++;
-		                            }else $("#korean").slideToggle("slow");
-		                        });
-		                    });
-				        </script>
 	                  </div>
 	                </div>
 	              </div>
@@ -123,7 +83,17 @@
 	                    <div class="clearfix"></div>
 	                  </div>
 	                  <div class="x_content">
-	                  	
+	                  		<p class="col-lg-5 col-md-3 col-sm-3 col-xs-5"  style="margin-bottom: 0px">난이도 선택</p>
+                              <select name="" id="insertPEvent" class="col-lg-7 col-md-4 col-sm-4 col-xs-7 PEvent" style="height: 30px;margin-bottom: 15px">
+                                  <option value="easy" style="background:snow;color:black;">쉬움</option>
+                                  <option value="normal" style="background:lightgreen;color:darkblue;">보통</option>
+                                  <option value="hard" style="background:darkorange;color:brown;">어려움</option>
+                                  <option value="veryHard" style="background:darkred;color:lightgoldenrodyellow;">매우 어려움</option>
+                              </select>
+                              <div class="col-lg-12 col-md-5 col-sm-5 col-xs-12" style="padding: 0px;">
+		                         <button type="button" class="btn btn-round btn-success col-lg-10 col-md-10 col-sm-10 col-xs-10" 
+		                         		style="margin-left:10%;margin-right:10%;"id="">난이도 변경</button>
+	                          </div>
 	                  </div>
 	                </div>
 	              </div>
@@ -144,5 +114,7 @@
 				<!-- /footer content -->
 			</div>
 		</div>
+		<!-- admin_JS -->
+		<%@ include file="common/admin_JS.jsp" %>
 	</body>
 </html>
