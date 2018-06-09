@@ -55,12 +55,33 @@
 										<div class="clearfix"></div>
 									</div>
 									<div class="x_content">
-										<div>프리셋 설정하기</div>
-										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<button type="button" class="btn btn-round btn-success" style="width: 100px" onclick="changeCusFont();">프리셋 적용</button>
-											<button type="button" class="btn btn-round btn-warning" style="width: 100px" onclick="saveCusFont();">설정 저장</button>
-											<button type="button" class="btn btn-round btn-danger" style="width: 100px" onclick="cancleCusFont();">설정 취소</button>
-										</div>
+										<form class="form-horizontal form-label-left">
+											<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom: 20px">
+												<p class="text-muted">Preset</p>
+												<div class="row">
+													<div class="btn-group col-lg-12 col-md-12 col-sm-12 col-xs-12" data-toggle="buttons" id="preset">
+														<label class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-6" 
+																style="font-family: 궁서체;font-size: 16pt;background-color:#2a3f54;color:#ffffff;opacity:0.7;">
+															<input type="radio" name="" id="default">DEFAULT</label>
+														<label class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-6" 
+																style="font-family: poor story;font-size: 16pt;background-color:#191919;color:#ffffff;opacity:0.7;">
+															<input type="radio" name="" id="blackRose">BLACK_ROSE</label>
+														<label class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-6" 
+																style="font-family: cute font;font-size: 16pt;background-color:#88fffe;color:#4b5a00;opacity:0.7;">
+															<input type="radio" name="" id="morningGrory">MORNING_GRORY</label>
+														<label class="btn btn-default col-lg-3 col-md-3 col-sm-3 col-xs-6" 
+																style="font-family: do hyeon;font-size: 16pt;background-color:#fd92ff;color:#7dff94;opacity:0.7;">
+															<input type="radio" name="" id="mugunghwa">MUGUNGHWA</label>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<button type="button" class="btn btn-round btn-success" style="width: 100px" onclick="changePreset();">프리셋 적용</button>
+												<button type="button" class="btn btn-round btn-warning" style="width: 100px" id="savePreset">설정 저장</button>
+												<button type="button" class="btn btn-round btn-danger" style="width: 100px" id="canclePreset">설정 취소</button>
+											</div>
+										</form>
+										
 									</div>
 								</div>
 								<div class="x_panel">
@@ -161,7 +182,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">왼쪽 상단 배경</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#2A3F54" class="form-control" id="navTitleBgc"/>
+                            <input type="text" value="<%=adminTheme.getNavTitleBbc()%>" class="form-control" id="navTitleBgc"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -170,7 +191,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">왼쪽 중간 배경</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#2A3F54" class="form-control" id="navCenterBgc"/>
+                            <input type="text" value="<%=adminTheme.getNavCenterBgc()%>" class="form-control" id="navCenterBgc"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -179,7 +200,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">왼쪽 소메뉴 배경</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#425668" class="form-control" id="childMenuBgc"/>
+                            <input type="text" value="<%=adminTheme.getNavChildBgc()%>" class="form-control" id="childMenuBgc"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -188,7 +209,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">왼쪽 하단 배경</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#2A3F54" class="form-control" id="navBottomBgc" />
+                            <input type="text" value="<%=adminTheme.getNavBottomBgc()%>" class="form-control" id="navBottomBgc" />
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -197,7 +218,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">상단 배경</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#EDEDED" class="form-control" id="topMenuBgc"/>
+                            <input type="text" value="<%=adminTheme.getTopMenuBgc()%>" class="form-control" id="topMenuBgc"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -206,7 +227,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">상단 소메뉴 배경</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#fff" class="form-control" id="topChildBgc"/>
+                            <input type="text" value="<%=adminTheme.getTopChildBgc()%>" class="form-control" id="topChildBgc"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -215,15 +236,15 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">메인 배경</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#F7F7F7" class="form-control" id="mainBgc"/>
+                            <input type="text" value="<%=adminTheme.getMainBgc()%>" class="form-control" id="mainBgc"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
                       </div>
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                          <button type="button" class="btn btn-round btn-success" style="width: 100px" onclick="changeCusBgc();">배경 적용</button>
-                          <button type="button" class="btn btn-round btn-warning" style="width: 100px" onclick="saveCusBgc();">설정 저장</button>
-                          <button type="button" class="btn btn-round btn-danger" style="width: 100px" onclick="cancleCusBgc();">설정 취소</button>
+                          <button type="button" class="btn btn-round btn-warning" style="width: 100px" id="saveCusBgc">설정 저장</button>
+                          <button type="button" class="btn btn-round btn-danger" style="width: 100px" id="cancleCusBgc">설정 취소</button>
                       </div>
                     </form>
                     
@@ -247,7 +268,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">왼쪽 타이틀 글자</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#ffffff" class="form-control" id="navTitleColor"/>
+                            <input type="text" value="<%=adminTheme.getNavTitleColor()%>" class="form-control" id="navTitleColor"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -256,7 +277,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">왼쪽 프로필 글자</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#ffffff" class="form-control" id="profileInfoColor"/>
+                            <input type="text" value="<%=adminTheme.getNavProfileColor()%>" class="form-control" id="profileInfoColor"/>
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -265,7 +286,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">왼쪽 대분류 글자</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#fff" class="form-control" id="sidebarMenuTitle" />
+                            <input type="text" value="<%=adminTheme.getNavSideTitleColor()%>" class="form-control" id="sidebarMenuTitle" />
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -274,7 +295,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">왼쪽 주메뉴 글자</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#E7E7E7" class="form-control" id="sidebarMenuColor" />
+                            <input type="text" value="<%=adminTheme.getNavSideColor()%>" class="form-control" id="sidebarMenuColor" />
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -283,7 +304,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">왼쪽 소메뉴 글자</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="rgba(255, 255, 255, 0.75)" class="form-control" id="sidebarchildmenuColor" />
+                            <input type="text" value="<%=adminTheme.getNavChildColor()%>" class="form-control" id="sidebarchildmenuColor" />
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -292,7 +313,7 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">상단 글자</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#5A738E" class="form-control" id="topMenuColor" />
+                            <input type="text" value="<%=adminTheme.getTopMenuColor()%>" class="form-control" id="topMenuColor" />
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
@@ -301,15 +322,15 @@
                         <label class="control-label col-lg-12 col-md-12 col-sm-5 col-xs-3">메인 글자</label>
                         <div class="col-lg-12 col-md-12 col-sm-7 col-xs-9">
                           <div class="input-group demo2">
-                            <input type="text" value="#73879C" class="form-control" id="bodyColor" />
+                            <input type="text" value="<%=adminTheme.getMainColor()%>" class="form-control" id="bodyColor" />
                             <span class="input-group-addon"><i></i></span>
                           </div>
                         </div>
                       </div>
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <button type="button" class="btn btn-round btn-success" style="width: 100px" onclick="changeCusFontColor();">글자색 적용</button>
-                          <button type="button" class="btn btn-round btn-warning" style="width: 100px" onclick="saveCusFontColor();">설정 저장</button>
-                          <button type="button" class="btn btn-round btn-danger" style="width: 100px" onclick="cancleCusFontColor();">설정 취소</button>
+                          <button type="button" class="btn btn-round btn-warning" style="width: 100px" id="saveCusFontColor">설정 저장</button>
+                          <button type="button" class="btn btn-round btn-danger" style="width: 100px" id="cancleCusFontColor">설정 취소</button>
                       </div>
                     </form>
                   </div>
@@ -325,9 +346,7 @@
 
         <!-- footer content -->
         <footer>
-          <div class="pull-right">
-            <a class="music" style="float: right"><i class="fa fa-headphones" style="font-size: 20pt"><audio src="" loop  preload="metadata"></audio></i></a>
-          </div>
+          
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->

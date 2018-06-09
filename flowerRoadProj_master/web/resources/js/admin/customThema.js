@@ -18,14 +18,36 @@ function changeCusBgc(){
     $('body .body.container .right_col').css('background-color',$('#mainBgc').val());
 };
 //커스텀 배경 설정 저장
-function saveCusBgc(){
-    alert("배경 설정이 저장되었습니다.\n다음 접속부터 적용됩니다.");
-};
+$('#saveCusBgc').on({
+	'click':function(){
+		$.ajax({
+			url: mainPath+"/bgcThemaUpdate.admin",
+			type: "post",
+			data: {
+				navTitleBgc: $('#navTitleBgc').val(),
+				navCenterBgc: $('#navCenterBgc').val(),
+				childMenuBgc: $('#childMenuBgc').val(),
+				navBottomBgc: $('#navBottomBgc').val(),
+				topMenuBgc: $('#topMenuBgc').val(),
+				topChildBgc: $('#topChildBgc').val(),
+				mainBgc: $('#mainBgc').val()
+			},
+			success: function(data){
+				var cusCheck = confirm("저장한 설정은 다음 접속부터 적용됩니다.\n다시 로그인 하시겠습니까?");
+				if(cusCheck) location.href=(mainPath+"/views/mainPage/login.jsp");
+			},
+			error: function(data){
+				alert("전달 실패!!");
+			}
+		});
+	}
+});
 //커스텀 배경 설정 취소
-function cancleCusBgc(){
-    var check = confirm("설정한 내용이 초기화 됩니다.\n그래도 하시겠습니까?");
-    if(check){}
-};
+$('#cancleCusBgc').on({
+	'click':function(){
+		location.reload();
+	}
+});
 
 //커스텀 글자 색상 설정 적용
 function changeCusFontColor(){
@@ -46,14 +68,268 @@ function changeCusFontColor(){
     $('body').css('color',$('#bodyColor').val());
 };
 //커스텀 글자 색상 설정 저장
-function saveCusFontColor(){
-    alert("글자 색상 설정이 저장되었습니다.\n다음 접속부터 적용됩니다.");
-};
+$('#saveCusFontColor').on({
+	'click':function(){
+		$.ajax({
+			url: mainPath+"/fontColorThemaUpdate.admin",
+			type: "post",
+			data: {
+				navTitleColor: $('#navTitleColor').val(),
+				profileInfoColor: $('#profileInfoColor').val(),
+				sidebarMenuTitle: $('#sidebarMenuTitle').val(),
+				sidebarMenuColor: $('#sidebarMenuColor').val(),
+				sidebarchildmenuColor: $('#sidebarchildmenuColor').val(),
+				topMenuColor: $('#topMenuColor').val(),
+				bodyColor: $('#bodyColor').val()
+			},
+			success: function(data){
+				var cusCheck = confirm("저장한 설정은 다음 접속부터 적용됩니다.\n다시 로그인 하시겠습니까?");
+				if(cusCheck) location.href=(mainPath+"/views/mainPage/login.jsp");
+			},
+			error: function(data){
+				alert("전달 실패!!");
+			}
+		});
+	}
+});
 //커스텀 글자 색상 설정 취소
-function cancleCusFontColor(){
-    var check = confirm("설정한 내용이 초기화 됩니다.\n그래도 하시겠습니까?");
-    if(check){}
+$('#cancleCusFontColor').on({
+	'click':function(){
+		location.reload();
+	}
+});
+// 프리셋 설정 적용
+function changePreset(){
+	var preset = $.trim($('#preset').find('.active').text());
+	switch(preset){
+	case "BLACK_ROSE": 
+		$('body').css({
+	        'font-family':"poor story",
+	        'font-size':"14pt",
+	        'font-weight':"normal"
+	    });
+		//메뉴 상단 배경
+	    $('.nav_title').css('background-color',"#191919");
+	    //메뉴 중간 배경
+	    $('.left_col').css('background-color',"#191919");
+	    //메뉴 하단 배경
+	    $('.sidebar-footer').css('background-color',"#000000");
+	    $('.sidebar-footer>a').css('background-color',"#000000");
+	    //메뉴>소메뉴 배경
+	    $('ul.nav.child_menu').css('background-color',"#1b1b1b");
+	    //상단메뉴 배경
+	    $('.nav_menu').css('background-color',"#191919");
+	    //상단메뉴>소메뉴 배경 
+	    $('.navbar-nav .dropdown-menu').css('background-color',"#1b1b1b");
+	    //메인 배경
+	    $('body .body.container .right_col').css('background-color',"#272727");
+	    
+	    //왼쪽메뉴 타이틀
+	    $('.nav-md .navbar.nav_title a>span').css('color',"#ffffff");
+	    //왼쪽메뉴 프로필
+	    $('.profile_info span').css('color',"#8ffffa");
+	    $('.profile_info h2').css('color',"#8ffffa");
+	    //왼쪽메뉴 대분류
+	    $('.menu_section h3').css('color',"#fffac4");
+	    //왼쪽메뉴 주메뉴
+	    $('.nav.side-menu>li>a').css('color',"#ffffff");
+	    //왼쪽메뉴 소메뉴
+	    $('.nav.child_menu>li>a').css('color',"#fffac4");
+	    //상단메뉴 글자색
+	    $('.topMenuFontColor').css('color',"#ffffff");
+	    //메인내용 글자색
+	    $('body').css('color',"#0098a0");
+		
+		break;
+	case "MORNING_GRORY": 
+		$('body').css({
+	        'font-family':"cute font",
+	        'font-size':"14pt",
+	        'font-weight':"normal"
+	    });
+		//메뉴 상단 배경
+	    $('.nav_title').css('background-color',"#88fffe");
+	    //메뉴 중간 배경
+	    $('.left_col').css('background-color',"#88fffe");
+	    //메뉴 하단 배경
+	    $('.sidebar-footer').css('background-color',"#00dbd9");
+	    $('.sidebar-footer>a').css('background-color',"#00dbd9");
+	    //메뉴>소메뉴 배경
+	    $('ul.nav.child_menu').css('background-color',"#00cac9");
+	    //상단메뉴 배경
+	    $('.nav_menu').css('background-color',"#88fffe");
+	    //상단메뉴>소메뉴 배경 
+	    $('.navbar-nav .dropdown-menu').css('background-color',"#00cac9");
+	    //메인 배경
+	    $('body .body.container .right_col').css('background-color',"#00cac9");
+	    
+	    //왼쪽메뉴 타이틀
+	    $('.nav-md .navbar.nav_title a>span').css('color',"#f0ff5f");
+	    //왼쪽메뉴 프로필
+	    $('.profile_info span').css('color',"#ae4848");
+	    $('.profile_info h2').css('color',"#ae4848");
+	    //왼쪽메뉴 대분류
+	    $('.menu_section h3').css('color',"#ffc4c4");
+	    //왼쪽메뉴 주메뉴
+	    $('.nav.side-menu>li>a').css('color',"#4876ae");
+	    //왼쪽메뉴 소메뉴
+	    $('.nav.child_menu>li>a').css('color',"#fffac4");
+	    //상단메뉴 글자색
+	    $('.topMenuFontColor').css('color',"#f0ff5f");
+	    //메인내용 글자색
+	    $('body').css('color',"#c1dd00");
+		break;
+	case "MUGUNGHWA": 
+		$('body').css({
+	        'font-family':"do hyeon",
+	        'font-size':"14pt",
+	        'font-weight':"normal"
+	    });
+		//메뉴 상단 배경
+	    $('.nav_title').css('background-color',"#fd92ff");
+	    //메뉴 중간 배경
+	    $('.left_col').css('background-color',"#fd92ff");
+	    //메뉴 하단 배경
+	    $('.sidebar-footer').css('background-color',"#fc74ff");
+	    $('.sidebar-footer>a').css('background-color',"#fc74ff");
+	    //메뉴>소메뉴 배경
+	    $('ul.nav.child_menu').css('background-color',"#d459d6");
+	    //상단메뉴 배경
+	    $('.nav_menu').css('background-color',"#fd92ff");
+	    //상단메뉴>소메뉴 배경 
+	    $('.navbar-nav .dropdown-menu').css('background-color',"#d459d6");
+	    //메인 배경
+	    $('body .body.container .right_col').css('background-color',"#fecbff");
+	    
+	    //왼쪽메뉴 타이틀
+	    $('.nav-md .navbar.nav_title a>span').css('color',"#7dff94");
+	    //왼쪽메뉴 프로필
+	    $('.profile_info span').css('color',"#484bae");
+	    $('.profile_info h2').css('color',"#484bae");
+	    //왼쪽메뉴 대분류
+	    $('.menu_section h3').css('color',"#cdc4ff");
+	    //왼쪽메뉴 주메뉴
+	    $('.nav.side-menu>li>a').css('color',"#92488e");
+	    //왼쪽메뉴 소메뉴
+	    $('.nav.child_menu>li>a').css('color',"#510a4d");
+	    //상단메뉴 글자색
+	    $('.topMenuFontColor').css('color',"#7dff94");
+	    //메인내용 글자색
+	    $('body').css('color',"#1c631e");
+		break;
+	default: 
+		$('body').css({
+	        'font-family':"궁서체",
+	        'font-size':"12pt",
+	        'font-weight':"400"
+	    });
+		//메뉴 상단 배경
+	    $('.nav_title').css('background-color',"#2a3f54");
+	    //메뉴 중간 배경
+	    $('.left_col').css('background-color',"#2a3f54");
+	    //메뉴 하단 배경
+	    $('.sidebar-footer').css('background-color',"#2a3f54");
+	    $('.sidebar-footer>a').css('background-color',"#2a3f54");
+	    //메뉴>소메뉴 배경
+	    $('ul.nav.child_menu').css('background-color',"#425668");
+	    //상단메뉴 배경
+	    $('.nav_menu').css('background-color',"#ededed");
+	    //상단메뉴>소메뉴 배경 
+	    $('.navbar-nav .dropdown-menu').css('background-color',"#ffffff");
+	    //메인 배경
+	    $('body .body.container .right_col').css('background-color',"#f7f7f7");
+	    
+	    //왼쪽메뉴 타이틀
+	    $('.nav-md .navbar.nav_title a>span').css('color',"#ffffff");
+	    //왼쪽메뉴 프로필
+	    $('.profile_info span').css('color',"#b9b9b9");
+	    $('.profile_info h2').css('color',"#ffffff");
+	    //왼쪽메뉴 대분류
+	    $('.menu_section h3').css('color',"#ffffff");
+	    //왼쪽메뉴 주메뉴
+	    $('.nav.side-menu>li>a').css('color',"#e7e7e7");
+	    //왼쪽메뉴 소메뉴
+	    $('.nav.child_menu>li>a').css('color',"rgba(255,255,255,0.75)");
+	    //상단메뉴 글자색
+	    $('.topMenuFontColor').css('color',"#5a738e");
+	    //메인내용 글자색
+	    $('body').css('color',"#73879c");
+		break;
+	}
+	
 };
+// 프리셋 설정 저장
+$('#savePreset').on({
+	'click':function(){
+		$.ajax({
+			url: mainPath+"/presetThemaUpdate.admin",
+			type: "post",
+			data: {
+				preset: $.trim($('#preset').find('.active').text())
+			},
+			success: function(data){
+				var cusCheck = confirm("저장한 설정은 다음 접속부터 적용됩니다.\n다시 로그인 하시겠습니까?");
+				if(cusCheck) location.href=(mainPath+"/views/mainPage/login.jsp");
+			},
+			error: function(data){
+				alert("전달 실패!!");
+			}
+		});
+	}
+});
+// 관리자 테마 불러오기
+$(document).ready(function() {
+	$('body').css({
+        'font-family':font_family,
+        'font-size':font_size,
+        'font-weight':font_weight
+    });
+	//메뉴 상단 배경
+    $('.nav_title').css('background-color',nav_title_bgc);
+    //메뉴 중간 배경
+    $('.left_col').css('background-color',nav_center_bgc);
+    //메뉴 하단 배경
+    $('.sidebar-footer').css('background-color',nav_bottom_bgc);
+    $('.sidebar-footer>a').css('background-color',nav_bottom_bgc);
+    //메뉴>소메뉴 배경
+    $('ul.nav.child_menu').css('background-color',nav_child_bgc);
+    //상단메뉴 배경
+    $('.nav_menu').css('background-color',top_menu_bgc);
+    //상단메뉴>소메뉴 배경 
+    $('.navbar-nav .dropdown-menu').css('background-color',top_child_bgc);
+    //메인 배경
+    $('body .body.container .right_col').css('background-color',main_bgc);
+    
+    //왼쪽메뉴 타이틀
+    $('.nav-md .navbar.nav_title a>span').css('color',nav_title_color);
+    //왼쪽메뉴 프로필
+    $('.profile_info span').css('color',nav_profile_color);
+    $('.profile_info h2').css('color',nav_profile_color);
+    //왼쪽메뉴 대분류
+    $('.menu_section h3').css('color',nav_side_title_color);
+    //왼쪽메뉴 주메뉴
+    $('.nav.side-menu>li>a').css('color',nav_side_color);
+    //왼쪽메뉴 소메뉴
+    $('.nav.child_menu>li>a').css('color',nav_child_color);
+    //상단메뉴 글자색
+    $('.topMenuFontColor').css('color',top_menu_color);
+    //메인내용 글자색
+    $('body').css('color',main_color);
+});
+// 프리셋 설정 취소
+$('#canclePreset').on({
+	'click':function(){
+		location.reload();
+	}
+});
+// 프리셋 투명도 조절
+$(document).on({
+	'click': function(){
+		$('#preset .active').css('opacity',1);
+		$('#preset .active').siblings().css('opacity',0.5);
+	}
+	
+});
 //왼쪽 로고 hover
 $('.nav_title img').on({
     'mouseenter':function(){$(this).attr('src',mainPath+'/resources/images/admin/admin_side_icon_hover.png');
@@ -150,17 +426,12 @@ $('#saveCusFont').on({
 			type: "post",
 			data: {
 				fontFamily: $.trim($('#fontFamily').find('.active').text()),
-				fontSize: $('#fontSize').children('.active').text(),
-				fontWeight: $('#fontWeight').children('.active').text()
+				fontSize: $.trim($('#fontSize').find('.active').text()),
+				fontWeight: $.trim($('#fontWeight').find('.active').text())
 			},
 			success: function(data){
-				if(data){
-					console.log($.trim($('#fontFamily').find('.active').text()));
-					console.log(fontSize);
-					console.log(fontWeight);
-				}else{ 
-					alert("누구냐 넌..");
-				}
+				var cusCheck = confirm("저장한 설정은 다음 접속부터 적용됩니다.\n다시 로그인 하시겠습니까?");
+				if(cusCheck) location.href=(mainPath+"/views/mainPage/login.jsp");
 			},
 			error: function(data){
 				alert("전달 실패!!");
@@ -177,4 +448,87 @@ $('#cancleCusFont').on({
 //음악 설정
 $('a.music').click(function(){
     $(this).children('audio').attr('play');
+});
+//메인 랜덤 게임
+var cnt = 0;
+$('.randomGame img').on({
+	'click':function(){
+		var widthget = $(this).parent().css('width').replace(/[^-\d\.]/g, '');
+		var heightget = $(this).parent().css('height').replace(/[^-\d\.]/g, '');
+		var top1 = (Math.trunc((Math.random()*(heightget-100))/50))*50;
+		var left1 = (Math.trunc((Math.random()*(heightget-100))/50))*50;
+		$(this).css({'top': top1, 'left':left1});
+		cnt++;
+		$('#clickCount').text(cnt);
+		
+		var goalTop = $('#goal').css('top').replace(/[^-\d\.]/g, '');
+		var goalLeft = $('#goal').css('left').replace(/[^-\d\.]/g, '');
+		var targetTop = $('#target').css('top').replace(/[^-\d\.]/g, '');
+		var targetLeft = $('#target').css('left').replace(/[^-\d\.]/g, '');
+		
+		if((Math.abs(goalTop - targetTop))<50 && (Math.abs(goalLeft - targetLeft)<50)){
+			alert(Math.abs(goalTop - targetTop)+","+Math.abs(goalLeft - targetLeft));
+			var finalCount = $('#clickCount').text();
+			var gameCheck = confirm(finalCount+"회 만에 성공하셨네요.\n등록하시겠습니까?")
+			if(gameCheck){
+				$.ajax({
+					url: mainPath+"/randomGame.admin",
+					type: "post",
+					data: {
+						
+					},
+					success: function(data){
+						
+					},error: function(data){
+						alert("전달 실패!!");
+					}
+				});
+			}else{
+				alert("그 점수론 안돼~ ㅋㅋㅋㅋㅋ");
+				location.reload();
+			}
+		}
+	}
+});
+//오늘의 명언
+$(document).ready(function(){ 
+		$("#english").slideUp();$("#korean").slideUp();
+		var i = 1;
+    $("#teachMe").on('click',function(){ 
+        if(i==1){
+        	$("#english").slideDown("slow"); i++;
+        }else $("#korean").slideToggle("slow");
+    });
+});
+// 관리자 first page
+$("#adminQuiz").keydown(function (key) {
+    if(key.keyCode == 65){
+    	var answerPw = window.prompt('기회는 한 번뿐입니다.\n신중하게 답변하세요.\n\n제일 존경하는 인물은?');
+		$.ajax({
+			url: mainPath+"/secondPwCheck.admin",
+			type: "post",
+			success: function(data){
+				if(($.trim(data.secondPw))==answerPw){
+					alert(data.memberName+" 관리자님 어서오세요.");
+					admin_Main.click();
+				}else{ 
+					alert("누구냐 넌..");
+				}
+			},
+			error: function(data){
+				alert("전달 실패!!");
+			}
+		})
+    }
+});
+var ccc =0;
+$('#adminQuiz').on({
+	'click':function(){
+		ccc++;
+		if(ccc==1) $('#two').css('display','block');
+		else if(ccc==2) $('#three').css('display','block');
+		else if(ccc==3) $('#four').css('display','block');
+		else member_Main.click();
+		
+	}
 });
