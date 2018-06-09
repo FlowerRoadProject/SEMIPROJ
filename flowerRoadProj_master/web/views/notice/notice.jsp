@@ -67,6 +67,7 @@
 	background: black;
 	color:white;
 	font-size: 3em;
+	text-align:center;
 	height: 7em;	
 }
 
@@ -79,11 +80,18 @@
 	<br />	<br />	<br />	<br />	<br />
 	<div class="col-lg-8 col-lg-offset-2 container-fluid">	
 		<div class="col-lg-10 title">공지사항</div>
-	<br />	
-	<div class="col-lg-12 location container-fluid">
-		&nbsp;공지사항&nbsp;
-		<img src="<%=request.getContextPath()%>/resources/images/footerMenu/noticeFlower.jpg" alt="" style="height: 7em; width:23.5em;"/>
+	<br />
 	</div>
+	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 location container-fluid">
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="loc">Notice</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
+		</div>			
+		<img src="<%=request.getContextPath()%>/resources/images/footerMenu/noticeFlower.jpg" 
+		alt="" class="col-xs-9 col-sm-9 col-md-9 col-lg-10" style="height: 7em;"/>
 	</div>
 	
 	
