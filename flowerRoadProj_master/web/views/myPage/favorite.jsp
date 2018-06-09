@@ -5,8 +5,6 @@
 	Member m = (Member)session.getAttribute("m");
 	ArrayList<ProductFavorite> list = (ArrayList<ProductFavorite>)request.getAttribute("pflist");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	System.out.println("스타트:"+pi.getStartPage());
-	System.out.println("엔드:"+pi.getEndPage());
 %>
 <!DOCTYPE>
 <html>
@@ -23,6 +21,16 @@
 		<script>
         	var mainPath = '<%=request.getContextPath() %>';
         </script>
+        <style>
+        .noneFavorite {
+			color: black;
+			font-size: 40px;
+			text-align: center;
+			width: 400px;
+			height: 200px;
+			margin: 100px;
+		}
+        </style>
             </head>
             
     <body>
@@ -49,7 +57,7 @@
         </div>
         <div>
                 <div class="info">
-                       
+                       <% if(list.size() != 0) { %>
                         <table class="table table-hover">
                             <tr style="background-color: lightgray;">
                                 <th>번호</th>
@@ -61,8 +69,7 @@
                                 <th></th>
                             </tr>
                             <% int i = list.size(); 
-                            for(int j = 0; j < list.size(); j++) { %>                            
-                            
+                            for(int j = 0; j < list.size(); j++) {  %>
                             <tr>
                                 <td><%= i-- %></td>
                                 <td><img src="<%=request.getContextPath()%>/resources/images/product/<%= list.get(j).getImage() %>" width="60px;" height="60px;"></td>
@@ -75,14 +82,20 @@
                             </tr>
                             <% } %>
                         </table>
-                    
+                     	<% } else { %>
+                     	<div class="container-fluid">
+                     		<div class="col-sm-1 col-md-1 col-lg-1"></div>
+                     		<div class="col-sm-8 col-md-8 col-lg-8 noneFavorite">== 현재 등록되어 있는 관심상품이 없습니다. ==</div>
+                     		<div class="col-sm-3 col-md-3 col-lg-3"></div>
+                     	</div>
+                     	<% } %>
                 </div>
         </div>
         
 
         <!-- 버튼 -->
         <div class="container-fluid">
-                
+                <% if(list.size() != 0) { %>
                 <div class="col-sm-2 col-md-2 col-lg-2">
                 <button style="width:100px; height:30px; margin-top:20px;"
                 onclick="allDel()">전체 삭제</button>
@@ -118,6 +131,7 @@
                               </nav>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                <% } %>
         </div>
         <script>
         	$('.goBasket').on('click',function(){
