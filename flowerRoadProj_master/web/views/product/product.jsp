@@ -249,7 +249,7 @@ textarea{
  	    if ($(window).scrollTop() > 600) {
  	      if (!$navbar.hasClass("navbar-fixed-top")) {
  	        $navbar.addClass("navbar-fixed-top");
- 	        $navbar.css("top","200px");
+ 	        $navbar.css("top","162px");
  	      }
  	    } else {
  	      $navbar.removeClass("navbar-fixed-top");
@@ -720,7 +720,7 @@ textarea{
 </head>
 
 <body data-spy="scroll" data-target="#mNavbar" data-offset="5">
-	<span id="page_start"> test</span>
+	<span id="page_start"></span>
 	<%@include file="../common/header.jsp"%>
 	<%@include file="../common/loginModal.jsp" %>
 	
@@ -1028,7 +1028,7 @@ textarea{
 
 	<div class="container">
 		<div>
-			<h3>이 카테고리의 다른 상품</h3>
+			<h3>이 카테고리의 다른 상품</h3><h5 style="float:right"><a href="<%=request.getContextPath()%>/productList.do?category=<%=p.getProductCategoryName()%>">더보기</a></h5>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">

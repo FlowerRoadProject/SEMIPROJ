@@ -32,14 +32,27 @@
     
 	<title>상품목록</title>
 	<style>		
-		@media (max-width: 767px){ 
-                .container{
-                    width: 760px;
-                }
-                .container-fluid{
-                	width: 760px;
-                }
-            }
+		@media(min-width:1200px){
+			.items{
+				height:540px;
+			
+			}
+		}
+
+		@media(min-width:992px) and (max-width:1199px){
+			.items{
+				height:470px;
+					
+			}
+		}
+		
+		@media(max-width:991px){
+		.items{
+				height:600px;
+				
+			}
+		}
+
         
         .hrline{
         	background: black;
@@ -103,10 +116,6 @@
         }
         
        
-        .items{
-        	width:auto;
-        	height: 540px;
-        }
         
         .test{
         	border:1px solid;
@@ -218,8 +227,8 @@
         							 	<%if(!pagedList.get(i).getProductTypeName().equals("디저트")&&
 	        									!pagedList.get(i).getProductTypeName().equals("메시지태그")&&
 	        									!pagedList.get(i).getProductTypeName().equals("카드")) {%>
-	        							 <a class="col-lg-4 btn btn-default" role="button" onclick="addToBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
-	        							<a class="col-lg-7 col-lg-offset-1 btn btn-primary" role="button" 
+	        							 <a class="col-lg-4 col-md-5 col-sm-4 col-xs-4 btn btn-default" role="button" onclick="addToBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
+	        							<a class="col-lg-7 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-7 col-xs-offset-1 btn btn-primary" role="button" 
 	        							onclick="location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+<%=pagedList.get(i).getProductNum()%>'">바로구매</a>
 	        							<%}else{ %>
 	        							 <a class="col-lg-12 btn btn-default" role="button" onclick="addToBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
