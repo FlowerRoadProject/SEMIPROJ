@@ -1,6 +1,7 @@
 package com.fr.jsp.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import com.fr.jsp.admin.model.service.AdminService;
 import com.fr.jsp.admin.model.service.AdminUserQuestionBoardService;
 import com.fr.jsp.admin.model.vo.AdminFortuen;
 import com.fr.jsp.admin.model.vo.AdminRandomGame;
+import com.fr.jsp.admin.model.vo.AdminRandomGameLeaderBoard;
 import com.fr.jsp.member.model.vo.Member;
 
 @WebServlet("/main.admin")
@@ -65,6 +67,9 @@ public class AdminMainServlet extends HttpServlet {
 		adminRandomGame.setLeftNum((int)(Math.random()*50));
 		adminRandomGame.setGoalTopNum((int)(Math.random()*80));
 		adminRandomGame.setGoalLeftNum((int)(Math.random()*80));
+		// 랜덤 게임 리스트
+		ArrayList<AdminRandomGameLeaderBoard> adminLeaderBoard = new ArrayList<AdminRandomGameLeaderBoard>();
+		adminLeaderBoard = as.admin_selectLeaderBoard("easy");
 		// Connection close
 		as.closeCon();
 		
@@ -76,6 +81,7 @@ public class AdminMainServlet extends HttpServlet {
 		
 		request.setAttribute("adminFortuen", adminFortuen);
 		request.setAttribute("adminRandomGame", adminRandomGame);
+		request.setAttribute("adminLeaderBoard", adminLeaderBoard);
 		
 		request.getRequestDispatcher("views/admin_views/admin_Main.jsp").forward(request, response);
 	}

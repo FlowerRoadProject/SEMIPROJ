@@ -449,15 +449,110 @@ $('#cancleCusFont').on({
 $('a.music').click(function(){
     $(this).children('audio').attr('play');
 });
-//메인 랜덤 게임
+// 메인 리더보드 난이도 선택
+var difficultyNum = 150;
+var difficultyRate =50;
 var cnt = 0;
+$('#selectDifficulty').on({
+	'change':function(){
+		var difficulty = $(this).val();
+		switch(difficulty){
+		case 'easy': 
+			$('.randomGame #target').css({'width':'200px','height':'200px'});
+			$('.randomGame #goal').css({'width':'200px','height':'200px'});
+			difficultyNum=150; difficultyRate=50;
+			cnt=0;
+			var widthget = $('.randomGame #target').parent().css('width').replace(/[^-\d\.]/g, '');
+			var heightget = $('.randomGame #target').parent().css('height').replace(/[^-\d\.]/g, '');
+			var top2 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
+			var left2 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
+			$('.randomGame #target').css({'top': top2, 'left':left2});
+			var top3 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
+			var left3 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
+			$('.randomGame #goal').css({'top': top3, 'left':left3});
+			$.ajax({
+				url: mainPath+"/selectLeaderBoardList.admin",
+				type: "post",
+				data: {
+					difficulty: $('#selectDifficulty').val()
+				},
+				success: function(data){
+					// 여기 해야돼 => 메인 애니메이션
+				},
+				error: function(data){
+					alert("전달 실패!!");
+				}
+			});
+			break;
+		case 'normal': 
+			$('.randomGame #target').css({'width':'160px','height':'160px'});
+			$('.randomGame #goal').css({'width':'160px','height':'160px'});
+			difficultyNum=120; difficultyRate=40;
+			cnt=0;
+			var widthget = $('.randomGame #target').parent().css('width').replace(/[^-\d\.]/g, '');
+			var heightget = $('.randomGame #target').parent().css('height').replace(/[^-\d\.]/g, '');
+			var top2 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
+			var left2 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
+			$('.randomGame #target').css({'top': top2, 'left':left2});
+			var top3 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
+			var left3 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
+			$('.randomGame #goal').css({'top': top3, 'left':left3});
+			break;
+		case 'hard': 
+			$('.randomGame #target').css({'width':'120px','height':'120px'});
+			$('.randomGame #goal').css({'width':'120px','height':'120px'});
+			difficultyNum=90; difficultyRate=30;
+			cnt=0;
+			var widthget = $('.randomGame #target').parent().css('width').replace(/[^-\d\.]/g, '');
+			var heightget = $('.randomGame #target').parent().css('height').replace(/[^-\d\.]/g, '');
+			var top2 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
+			var left2 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
+			$('.randomGame #target').css({'top': top2, 'left':left2});
+			var top3 = (Math.trunc((Math.random()*(heightget-difficultyNum))/50))*50;
+			var left3 = (Math.trunc((Math.random()*(widthget-difficultyNum))/50))*50;
+			$('.randomGame #goal').css({'top': top3, 'left':left3});
+			break;
+		case 'veryHard': 
+			$('.randomGame #target').css({'width':'80px','height':'80px'});
+			$('.randomGame #goal').css({'width':'80px','height':'80px'});
+			difficultyNum=60; difficultyRate=20;
+			cnt=0;
+			var widthget = $('.randomGame #target').parent().css('width').replace(/[^-\d\.]/g, '');
+			var heightget = $('.randomGame #target').parent().css('height').replace(/[^-\d\.]/g, '');
+			var top2 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
+			var left2 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
+			$('.randomGame #target').css({'top': top2, 'left':left2});
+			var top3 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
+			var left3 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
+			$('.randomGame #goal').css({'top': top3, 'left':left3});
+			break;
+		}
+	}
+});
+// 메인 랜덤 위치
+$('#randomPlace').on({
+	'click':function(){
+		var widthget = $('.randomGame #target').parent().css('width').replace(/[^-\d\.]/g, '');
+		var heightget = $('.randomGame #target').parent().css('height').replace(/[^-\d\.]/g, '');
+		var top2 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
+		var left2 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
+		$('.randomGame #target').css({'top': top2, 'left':left2});
+		var top3 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
+		var left3 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
+		$('.randomGame #goal').css({'top': top3, 'left':left3});
+	}
+});
+//메인 랜덤 게임
 $('.randomGame img').on({
 	'click':function(){
 		var widthget = $(this).parent().css('width').replace(/[^-\d\.]/g, '');
 		var heightget = $(this).parent().css('height').replace(/[^-\d\.]/g, '');
-		var top1 = (Math.trunc((Math.random()*(heightget-100))/50))*50;
-		var left1 = (Math.trunc((Math.random()*(heightget-100))/50))*50;
+		var top1 = (Math.trunc((Math.random()*(heightget-difficultyNum))/50))*50;
+		var left1 = (Math.trunc((Math.random()*(widthget-difficultyNum))/50))*50;
 		$(this).css({'top': top1, 'left':left1});
+		console.log(difficultyNum+"/"+difficultyRate);
+		console.log($('.randomGame #goal').css('top')+", "+$('.randomGame #goal').css('left'));
+		console.log($(this).css('top')+", "+$(this).css('left'));
 		cnt++;
 		$('#clickCount').text(cnt);
 		
@@ -466,19 +561,21 @@ $('.randomGame img').on({
 		var targetTop = $('#target').css('top').replace(/[^-\d\.]/g, '');
 		var targetLeft = $('#target').css('left').replace(/[^-\d\.]/g, '');
 		
-		if((Math.abs(goalTop - targetTop))<50 && (Math.abs(goalLeft - targetLeft)<50)){
+		if((Math.abs(goalTop - targetTop))<=difficultyNum && (Math.abs(goalLeft - targetLeft)<=difficultyNum)){
 			alert(Math.abs(goalTop - targetTop)+","+Math.abs(goalLeft - targetLeft));
 			var finalCount = $('#clickCount').text();
 			var gameCheck = confirm(finalCount+"회 만에 성공하셨네요.\n등록하시겠습니까?")
 			if(gameCheck){
 				$.ajax({
-					url: mainPath+"/randomGame.admin",
+					url: mainPath+"/insertRandomGameScore.admin",
 					type: "post",
 					data: {
-						
+						finalCount: $('#clickCount').text(),
+						difficulty: $('#selectDifficulty').val(),
 					},
 					success: function(data){
-						
+						alert("등록 완료");
+//						location.reload();
 					},error: function(data){
 						alert("전달 실패!!");
 					}
@@ -489,6 +586,19 @@ $('.randomGame img').on({
 			}
 		}
 	}
+});
+// 관리자 메인 보이기
+$(document).ready(function(){
+	$('.mainGameShow').slideUp();$('.mainFortuneShow').slideUp();$('.mainLeaderBoardShow').slideUp();
+	$('.profile_pic img').on('click',function(){
+		$('.mainGameShow').slideToggle("slow");
+	});
+	$('.profile_info span').on('click',function(){
+		$('.mainFortuneShow').slideToggle("slow");
+	});
+	$('.profile_info h2').on('click',function(){
+		$('.mainLeaderBoardShow').slideToggle("slow");
+	});
 });
 //오늘의 명언
 $(document).ready(function(){ 

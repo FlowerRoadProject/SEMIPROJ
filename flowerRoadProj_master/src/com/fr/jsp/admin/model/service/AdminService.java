@@ -6,9 +6,11 @@ import static com.fr.jdbc.common.JDBCTemplate.getConnection;
 import static com.fr.jdbc.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.fr.jsp.admin.model.dao.AdminDao;
 import com.fr.jsp.admin.model.vo.AdminFortuen;
+import com.fr.jsp.admin.model.vo.AdminRandomGameLeaderBoard;
 import com.fr.jsp.admin.model.vo.AdminTheme;
 
 public class AdminService {
@@ -67,6 +69,17 @@ public class AdminService {
 		AdminTheme adminTheme = new AdminTheme();
 		adminTheme = aDao.admin_selectTheme(con, memberNum);
 		return adminTheme;
+	}
+	// 메인 랜덤게임 점수 입력
+	public void admin_insertRandomGameScore(AdminRandomGameLeaderBoard randomGame) {
+		int insertRandomGameCount = aDao.admin_insertRandomGameScore(con, randomGame);
+		if(insertRandomGameCount>0) commit(con);
+		else rollback(con);
+	}
+	// 랜덤 게임 리스트
+	public ArrayList<AdminRandomGameLeaderBoard> admin_selectLeaderBoard(String difficulty) {
+		ArrayList<AdminRandomGameLeaderBoard> admin_LeaderBoardList = aDao.admin_selectLeaderBoard(con, difficulty);
+		return admin_LeaderBoardList;
 	}
 	
 }

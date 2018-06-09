@@ -275,7 +275,7 @@ html , body{height:100%;}
 /*프로필*/
 .profile_pic:hover{
     transform-origin: left top;
-    transform:scale(3,3);
+    transform:scale(2,2);
 }
 .img-circle.profile_img {
     width: 70%;
