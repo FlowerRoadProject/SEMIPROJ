@@ -276,5 +276,17 @@ public class MemberService {
 		close(con);
 		return result;
 	}
+	public int favoriteDel(String num, String pno) {
+		Connection con = getConnection();
+		int result = 0;
+		result= mDao.favoriteDel(con,num,pno);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 
 }
