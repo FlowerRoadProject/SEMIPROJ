@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fr.jsp.admin.model.service.AdminMemberService;
+import com.fr.jsp.admin.model.service.AdminService;
 import com.fr.jsp.admin.model.vo.AdminAdmin;
 import com.google.gson.Gson;
 
@@ -59,6 +60,12 @@ public class AdminAdminInsertServlet extends HttpServlet {
 		ams.admin_insertAdmin(admin);
 		// Connection close Method
 		ams.closeCon();
+		
+		AdminService as = new AdminService();
+		// 관리자 테마 등록
+		as.admin_insertTheme();
+		// Connection close Method
+		as.closeCon();
 		
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(admin, response.getWriter());

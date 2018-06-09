@@ -1,11 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="com.fr.jsp.member.model.vo.Member"%>
-<% Member admin = (Member) session.getAttribute("admin"); %>
-<% int admin_messageCount = (int)(session.getAttribute("admin_messageCount")); %>
-<% int admin_orderCount = (int)(session.getAttribute("admin_orderCount")); %>
-<% int admin_reviewCount = (int)(session.getAttribute("admin_reviewCount")); %>
-<% int admin_userQuestionCount = (int)(session.getAttribute("admin_userQuestionCount")); %>
+    import="com.fr.jsp.member.model.vo.Member, com.fr.jsp.admin.model.vo.AdminTheme"%>
+<% 
+	Member admin = (Member) session.getAttribute("admin");
+	int admin_messageCount = (int)(session.getAttribute("admin_messageCount"));
+	int admin_orderCount = (int)(session.getAttribute("admin_orderCount"));
+	int admin_reviewCount = (int)(session.getAttribute("admin_reviewCount"));
+	int admin_userQuestionCount = (int)(session.getAttribute("admin_userQuestionCount"));
+	AdminTheme adminTheme = (AdminTheme)(session.getAttribute("adminTheme"));
+%>
+<script>
+	var font_family = '<%=adminTheme.getFontFamily()%>';
+	var font_size = '<%=adminTheme.getFontSize()%>';
+	var font_weight = '<%=adminTheme.getFontWeight()%>';
+	var nav_title_bgc = '<%=adminTheme.getNavTitleBbc()%>';
+	var nav_center_bgc = '<%=adminTheme.getNavCenterBgc()%>';
+	var nav_child_bgc = '<%=adminTheme.getNavChildBgc()%>';
+	var nav_bottom_bgc = '<%=adminTheme.getNavBottomBgc()%>';
+	var top_menu_bgc = '<%=adminTheme.getTopMenuBgc()%>';
+	var top_child_bgc = '<%=adminTheme.getTopChildBgc()%>';
+	var main_bgc = '<%=adminTheme.getMainBgc()%>';
+	var nav_title_color = '<%=adminTheme.getNavTitleColor()%>';
+	var nav_profile_color = '<%=adminTheme.getNavProfileColor()%>';
+	var nav_side_title_color = '<%=adminTheme.getNavSideTitleColor()%>';
+	var nav_side_color = '<%=adminTheme.getNavSideColor()%>';
+	var nav_child_color = '<%=adminTheme.getNavChildColor()%>';
+	var top_menu_color = '<%=adminTheme.getTopMenuColor()%>';
+	var main_color = '<%=adminTheme.getMainColor()%>';
+	var mainPath = '<%=request.getContextPath()%>';
+</script>
 <!-- left navigation -->
 <div class="col-md-3 left_col menu_fixed">
 	<div class="left_col scroll-view">
