@@ -195,8 +195,7 @@ img {
 				
 				
 				appendItemstoContainer($parsedList,'mostViewed');
-		
-				
+	
 			},
 			error : function(data) {
 	
