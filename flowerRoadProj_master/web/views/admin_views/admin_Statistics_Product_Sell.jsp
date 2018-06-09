@@ -256,7 +256,6 @@
 		var sellP3 = '<%=sellP3.getProductName()%>';
 		var sellP4 = '<%=sellP4.getProductName()%>';
 		var sellP5 = '<%=sellP5.getProductName()%>';
-		console.log(sellP1);
 	</script>
 	<!-- admin_JS -->
     <%@ include file="common/admin_JS.jsp" %>

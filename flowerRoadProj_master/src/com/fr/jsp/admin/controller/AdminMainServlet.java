@@ -61,10 +61,10 @@ public class AdminMainServlet extends HttpServlet {
 		AdminFortuen adminFortuen = as.admin_randomFortuen();
 		// 랜덤 게임 위치
 		AdminRandomGame adminRandomGame = new AdminRandomGame();
-		adminRandomGame.setTopNum((int)(Math.random()*100)+1);
-		adminRandomGame.setLeftNum((int)(Math.random()*100)+1);
-		adminRandomGame.setGoalTopNum((int)(Math.random()*100)+1);
-		adminRandomGame.setGoalLeftNum((int)(Math.random()*100)+1);
+		adminRandomGame.setTopNum((int)(Math.random()*50));
+		adminRandomGame.setLeftNum((int)(Math.random()*50));
+		adminRandomGame.setGoalTopNum((int)(Math.random()*80));
+		adminRandomGame.setGoalLeftNum((int)(Math.random()*80));
 		// Connection close
 		as.closeCon();
 		

@@ -70,7 +70,7 @@
                                 <td><%= list.get(j).getProductPrice() %>원</td>
                                 <td><%= list.get(j).getProductQuantityState() %></td>
                                 <td><input type="button" value="장바구니" class="goBasket"><br>
-                                <input type="button" value="삭제하기"></td>
+                                <input type="button" value="삭제하기" class="delFavorite"></td>
                                 <td><input type="hidden" class="pN" name="pN" value="<%=list.get(j).getProductNum()%>"></input></td>
                             </tr>
                             <% } %>
@@ -121,7 +121,28 @@
         </div>
         <script>
         	$('.goBasket').on('click',function(){
-        		location.href="<%=request.getContextPath() %>/addBasket.do?pno="+$(this).parent().siblings().children('.pN').val();
+        		var product_num = $(this).parent().siblings().children('.pN').val();
+        		console.log("product_num");
+        		
+        		$.ajax({
+        			url: "addBasket.do",
+        			type: "GET",
+        			data: {
+        				pno: product_num				
+        			},   				
+        			success: function(){
+        				console.log('update성공');
+        			},error: function(){
+        				console.log('update실패');
+        			}
+        		});
+        		
+        		<%-- location.href="<%=request.getContextPath() %>/addBasket.do?pno="+$(this).parent().siblings().children('.pN').val(); --%>
+        	});
+        	
+        	$('.delFavorite').on('click',function(){
+        		var pno = $(this).parent().siblings().children('.pN').val();
+        		location.href="<%=request.getContextPath() %>/favoriteDel.me?pno="+pno;
         	});
         	
         	

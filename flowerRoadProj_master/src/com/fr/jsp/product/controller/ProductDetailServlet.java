@@ -44,7 +44,13 @@ public class ProductDetailServlet extends HttpServlet {
 		ArrayList<ReviewBoard> reviewList = null;
 		ArrayList<ProductSimple> relatedCategoryProduct= null;
 		ArrayList<ProductSimple> optionProduct = null;
-		String memberNum = (String)request.getSession(false).getAttribute("memberNum");
+		String memberNum = null;
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("memberNum")!=null){
+			
+			memberNum=(String)session.getAttribute("memberNum");
+		}
 		
 		ProductDetail p = null;
 	

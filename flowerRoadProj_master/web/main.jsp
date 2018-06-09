@@ -10,19 +10,27 @@
 <title>꽃길</title>
 <style>
 
+@media(min-width:1200px){
+	.items{
+		height:540px;	
+	}
+}
+
+@media(min-width:992px) and (max-width:1199px){
+	.items{
+		height:470px;		
+	}
+}
+
+@media(max-width:991px){
+.items{
+		height:600px;
+	}
+}
+
 
 img {
 	cursor: pointer;
-}
-/* carousel 크기조정 */
-/* .carousel-inner>.item>img, .carousel-inner>.item>a>img {
-	width: 40%;
-	margin: auto;
-} */
-
- .items{
-        width:auto;
-        height: 540px;
 }
 
   .thumbnail img:HOVER{
@@ -83,8 +91,10 @@ img {
 		
 		.rating_star_align{
 			text-align:right;
-			margin-top:7px;
+			margin-top:9px;
 		}
+		
+		.
         
 </style>
 <script>
@@ -185,8 +195,7 @@ img {
 				
 				
 				appendItemstoContainer($parsedList,'mostViewed');
-		
-				
+	
 			},
 			error : function(data) {
 	
@@ -355,8 +364,8 @@ img {
 	<br>
 	<br>
 	 <%@ include file="/views/common/eventMenu.jsp"%>
+	
 	<div class="container">
-		
 	
 		
 	</div>
@@ -365,30 +374,30 @@ img {
 
 	<!--clone을 위한 아이템들  -->
 	<div style="display: none;">
-		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" name="clone-item">
+		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 " name="clone-item">
 			<div class="col-lg-12 thumbnail items ">
 				<div class="">
-					<a name="detailLink" href=""><img name="imageSource" src="" alt="..."></a> 
+					<a name="detailLink" href=""><img class="" name="imageSource" src="" alt="..."></a> 
 
 					<!-- <span class="label label-primary tag">Primary</span> 
 					<span class="label label-success tag">success</span> -->
 				</div>
 				<div class="col-lg-12   ">
-					<h4 class="col-lg-12 ">
+					<h4 class="col-lg-12">
 						<br /> <b name="productName" class="font-title text-truncate"></b>
 					</h4>
-					<h4 name="productPrice" class=" col-lg-12 ">원</h4>
-					<h5 class="col-lg-4 font-gray">리뷰 <span name="reviewNum"></span></h5>
-					<div class="col-lg-8  rating_star_align">
-						
-					</div>
-					<div class="col-lg-12 " style="margin-top:15px;">
-						<a class="col-lg-4 btn btn-default" role="button"
-							 name="addBasket">장바구니</a> 
-						<a name="productDetail"
-							class="col-lg-7 col-lg-offset-1 btn btn-primary" role="button">바로구매</a>
-					</div>
+					<h4 name="productPrice" class=" col-lg-12">원</h4>
+					<h5 class="col-lg-4  font-gray">리뷰 <span name="reviewNum"></span></h5>
+					<div class="col-lg-8  rating_star_align"></div>
+					
+				<div class="col-lg-12 col-sm-12" style="margin-top:15px;">
+			
+					<a class="col-lg-4 col-md-5 col-sm-4 col-xs-4  btn btn-default" role="button" name="addBasket">장바구니</a> 
+					<a class=" col-lg-7 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-7 col-xs-offset-1 btn btn-primary " role="button" name="productDetail">바로구매</a>
+					
+				</div>	
 				</div>
+				
 			</div>
 		</div>
 		
@@ -405,7 +414,12 @@ img {
 			</div>
 		</div>
 	</div>
-	
+	<br />
+	<br />
+	<br />
+	<div class="container">
+		<hr />
+	</div>
 	<div class="container">
 		<p><b>지금 가장 많이 조회한 상품</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 조회 되는 상품입니다.</p>
 		<hr />

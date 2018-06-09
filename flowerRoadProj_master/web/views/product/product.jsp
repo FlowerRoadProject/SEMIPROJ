@@ -105,7 +105,7 @@ body{
 	padding-left:80px;
 	line-height: 2em;
 	font-family:'Nanum Gothic', sans-serif;
-	width:60%;
+	width:100%;
 	border:1px transparent;
 	background:white;
 }
@@ -144,10 +144,26 @@ textarea{
 	color:black;
 	font-weight: 400;
 }
-#mNavbar li.active a { color: grey !important; background-color: #ffbb33 !important; } 
+#mNavbar li.active a { color: grey !important; background-color: lightcoral !important; } 
 
 .star_large{
 	font-size:2em;
+}
+
+.navbar-collapse.collapse {
+  display: block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+  float: left !important;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: -15px !important;
+}
+
+.navbar-right {
+  float: right!important;
 }
 
 </style>
@@ -158,7 +174,7 @@ textarea{
 	//로드할 때 실행되야 하는 함수들 모음
 	$(function() {
 
-
+		
 		//상품 이름 가격 세팅
 		product_price = <%=p.getProductPrice()%>;
 		product_name = '<%=p.getProductName()%>';
@@ -237,26 +253,40 @@ textarea{
 	      AdjustHeader();
 	  	});
 	  	
+	  	lastWidth = $(window).width(); //윈도우의 크기
 	  	//스크롤 스파이 세팅
 	  	$('body').scrollspy({ target: '#mNavbar' })
 
+	  	
+	  	$(window).resize(function(){
+	  		lastWidth = $(window).width();
+	  		if ($(window).scrollTop() > 600) {
+	  			
+	  			$navbar.css("top",(parseInt(getHeight()))+"px");
+	  			
+	  		}
+	  		
+	  
+	  	});
 	});
 
 	
 	//스티키 NAVBAR
   	 function AdjustHeader(){
 
+  		//getHeight();
+  		
  	    if ($(window).scrollTop() > 600) {
  	      if (!$navbar.hasClass("navbar-fixed-top")) {
  	        $navbar.addClass("navbar-fixed-top");
- 	        $navbar.css("top","200px");
+ 	        $navbar.css("top",getHeight()-3);
  	      }
  	    } else {
  	      $navbar.removeClass("navbar-fixed-top");
  	     $navbar.css("top","0px");
  	    }
  	  }
-
+	
 	
 	/*옵션을 셀렉트로 선택했을때 붙이기*/
 	function onChangeOption() {
@@ -383,19 +413,19 @@ textarea{
 	function appendProductTotalPrice() {
 		$('#optionDiv')
 				.append(
-						$("<div class='offset-sm-1 col-7 col-sm-7 selected_option' name='total_product_name'>"
+						$("<div class='col-offset-sm-1 col-offset-xs-1 col-offset-md-1 col-offset-lg-1 col-xs-7 col-sm-7 col-md-7 col-lg-7 selected_option' name='total_product_name'>"
 								+ product_name + "</div>"));
 		$('#optionDiv')
 				.append(
-						$("<div class='col-4 col-sm-3 selected_option' name='total_Price'>"
+						$("<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 selected_option' name='total_Price'>"
 								+ product_price + "원" + "</div>"));
 
 		$('#optionDiv')
 				.append(
-						$("<div class='offset-sm-1 col-7 col-sm-7 selected_option' name='total_PriceName'>총 가격</div>"));
+						$("<div class='col-offset-sm-1 col-offset-xs-1 col-offset-md-1 col-offset-lg-1 col-xs-7 col-sm-7 col-md-7 col-lg-7 selected_option' name='total_PriceName'>총 가격</div>"));
 		$('#optionDiv')
 				.append(
-						$("<div class='col-4 col-sm-3 selected_option' name='total_product_price'>"
+						$("<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 selected_option' name='total_product_price'>"
 								+ calcTotalPrice() + "원" + "</div>"));
 	}
 
@@ -507,8 +537,6 @@ textarea{
 		var $number =  $('li[name=pageNumber]');
 		
 		
-		console.log($number);
-		
 		for(var i = 0 ; i<$number.length;++i){
 			
 			if(parseInt($number.eq(i).children('a').text())==pi.currPage)
@@ -569,7 +597,7 @@ textarea{
 				
 				
 				$reviewDiv.append("<h4>"+list[i].submitDate+"</h4>");
-				$reviewDiv.append("<h3>"+list[i].bTitle+"</h3>");
+				$reviewDiv.append("<h3>"+"<b>"+list[i].bTitle+"</b>"+"</h3>");
 				$reviewDiv.append("<h4>"+list[i].bContent+"</h4>");
 				$reviewDiv.append("<br />");
 				$reviewDiv.append("<hr class='review_divider' />");
@@ -671,7 +699,7 @@ textarea{
 			$('[name=sub_product_name]').attr("value",'<%=p.getProductName()%>'+',');
 			$('[name=sub_product_image]').attr("value",'<%=p.getImages().get(0)%>'+',');
 			
-			console.log($optionList.length);
+			
 			
 			
 			for(var i=0;i<$optionList.length;++i){
@@ -712,7 +740,7 @@ textarea{
 			
 			$('[name=rating]').val(idx);
 			
-			console.log($('[name=rating]').val());
+			//console.log($('[name=rating]').val());
 		}
 
 	
@@ -720,7 +748,7 @@ textarea{
 </head>
 
 <body data-spy="scroll" data-target="#mNavbar" data-offset="5">
-	<span id="page_start"> test</span>
+	<span id="page_start"></span>
 	<%@include file="../common/header.jsp"%>
 	<%@include file="../common/loginModal.jsp" %>
 	
@@ -830,22 +858,17 @@ textarea{
 	<div class="container">
 		<hr class="review_divider" id="content_start">
 	</div>
-
+	
 	
 	<div class="container">
 	  <nav class="navbar navbar-default" id="mNavbar">
 	    <div class="container">
 	      <div class="navbar-header ">
-	        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false" id="toggle">
-	          <span class="sr-only">Toggle navigation</span>
-	          <span class="icon-bar"></span>
-	          <span class="icon-bar"></span>
-	          <span class="icon-bar"></span>
-	        </button>
+	        
 	      </div>
 	
-	      <div class="collapse navbar-collapse" id="navbar-collapse-1">
-	        <ul class="nav navbar-nav navbar-right ">
+	      <div class="navbar" id="navbar-collapse-1">
+	        <ul class="nav navbar-nav navbar-right " id="stickyNavContent">
 	          <li class="active"><a href="#page_start" >상품구매</a></li>
 	          <li><a href="#content_start">상품 설명</a></li>
 	          <li><a href="#review_start">&nbsp;&nbsp;리뷰 &nbsp;&nbsp;</a></li>
@@ -878,7 +901,7 @@ textarea{
 		<%
 			if (p.getImageDesc().get(i) != null) {
 		%>
-		<pre class="product_desc"><%=p.getImageDesc().get(i)%></pre>
+		<pre  class="product_desc"><%=p.getImageDesc().get(i)%></pre>
 		<%
 			}
 		%>
@@ -1028,7 +1051,7 @@ textarea{
 
 	<div class="container">
 		<div>
-			<h3>이 카테고리의 다른 상품</h3>
+			<h3>이 카테고리의 다른 상품</h3><h5 style="float:right"><a href="<%=request.getContextPath()%>/productList.do?category=<%=p.getProductCategoryName()%>">더보기</a></h5>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
@@ -1097,10 +1120,10 @@ textarea{
 	<div class="container" style="display: none">
 		<div class="row">
 			<div name="selected_option_row">
-				<div class="offset-sm-1 col-7 col-sm-7  selected_option"
+				<div class="col-offset-xs-1  col-offset-sm-1 col-offset-md-1 col-offset-lg-1 col-xs-7 col-sm-7 col-md-7 col-lg-7  selected_option"
 					name='selected_name'></div>
-				<div class='col-4 col-sm-3 selected_option' name='selected_price'></div>
-				<div class='col-1 col-sm-1'>
+				<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 selected_option' name='selected_price'></div>
+				<div class='col-sm-1 col-xs-1 col-md-1 col-lg-1'>
 					<span class='btn btn-default btn-xs glyphicon glyphicon-remove'
 						onclick='clickOptionCancle(this);'></span>
 				</div>

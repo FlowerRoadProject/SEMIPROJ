@@ -31,11 +31,42 @@ public class AdminService {
 		adminFortuen = aDao.admin_randomFortuen(con, fortuenNum);
 		return adminFortuen;
 	}
-	// 테마 저장
-	public void admin_updateTheme(AdminTheme adminTheme) {
-		int updateThemeCount = aDao.admin_updateTheme(con, adminTheme);
+	// 폰트 테마 저장
+	public void admin_updateThemeFont(AdminTheme adminTheme) {
+		int updateThemeCount = aDao.admin_updateThemeFont(con, adminTheme);
 		if(updateThemeCount>0) commit(con);
 		else rollback(con);
+	}
+	// 배경 테마 저장
+	public void admin_updateThemeBgc(AdminTheme adminTheme) {
+		int updateThemeCount = aDao.admin_updateThemeBgc(con, adminTheme);
+		if(updateThemeCount>0) commit(con);
+		else rollback(con);
+	}
+	// 폰트 색상 테마 저장
+	public void admin_updateThemeFontColor(AdminTheme adminTheme) {
+		int updateThemeCount = aDao.admin_updateThemeFontColor(con, adminTheme);
+		if(updateThemeCount>0) commit(con);
+		else rollback(con);
+	}
+	// 관리자 테마 등록
+	public void admin_insertTheme() {
+		int insertAdminThemeCount = aDao.admin_insertTheme(con);
+		if(insertAdminThemeCount>0) commit(con);
+		else rollback(con);
+		
+	}
+	// 프리셋 테마 저장
+	public void admin_updateThemePreset(AdminTheme adminTheme) {
+		int updateThemeCount = aDao.admin_updateThemePreset(con, adminTheme);
+		if(updateThemeCount>0) commit(con);
+		else rollback(con);
+	}
+	// 관리자 테마 불러오기
+	public AdminTheme admin_selectTheme(String memberNum) {
+		AdminTheme adminTheme = new AdminTheme();
+		adminTheme = aDao.admin_selectTheme(con, memberNum);
+		return adminTheme;
 	}
 	
 }
