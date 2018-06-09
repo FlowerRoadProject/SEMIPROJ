@@ -254,8 +254,7 @@ public class BasketDao {
 		ResultSet rset = null;
 		int result =  0;
 		String query = prop.getProperty("isExistProduct");
-		
-		System.out.println(memberNum+"   "+productNum);
+			
 		try{
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, memberNum);

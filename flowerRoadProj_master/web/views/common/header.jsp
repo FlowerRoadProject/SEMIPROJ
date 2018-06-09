@@ -111,7 +111,7 @@
 <br>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
+	<div class="container-fluid" id="navContainer">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header col-xs-2 col-sm-2 col-md-2 col-lg-2">
 			<%-- <a href="#"> <img id="favorite"
@@ -214,6 +214,21 @@
 
 				});
 			})
+			
+			navContainerHeight = $('#navContainer').height();
+			
+			$(function(){
+				
+				$(window).on('resize',function(){
+					navContainerHeight=$('#navContainer').height();
+					
+				});
+				
+			});
+			
+			function getHeight(){
+				return navContainerHeight;
+			}
 		</script>
 
 

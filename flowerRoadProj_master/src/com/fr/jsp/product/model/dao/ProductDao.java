@@ -528,8 +528,7 @@ public class ProductDao {
 			String query = prop.getProperty("getMostViewedProduct");
 			stmt= con.createStatement();
 			
-			System.out.println(query);
-			
+		
 			rset = stmt.executeQuery(query);
 
 			while (rset.next()) {
