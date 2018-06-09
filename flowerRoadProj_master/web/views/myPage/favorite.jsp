@@ -122,7 +122,7 @@
         <script>
         	$('.goBasket').on('click',function(){
         		var product_num = $(this).parent().siblings().children('.pN').val();
-        		console.log("product_num");
+        		alert("장바구니에 추가되었습니다.");
         		
         		$.ajax({
         			url: "addBasket.do",
@@ -142,6 +142,7 @@
         	
         	$('.delFavorite').on('click',function(){
         		var pno = $(this).parent().siblings().children('.pN').val();
+        		alert("해당 상품이 관심상품에서 삭제 되었습니다.")
         		location.href="<%=request.getContextPath() %>/favoriteDel.me?pno="+pno;
         	});
         	
