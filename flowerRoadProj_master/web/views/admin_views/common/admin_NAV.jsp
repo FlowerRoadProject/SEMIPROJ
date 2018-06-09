@@ -40,11 +40,12 @@
 		<!-- menu profile quick info -->
 		<div class="profile clearfix">
 			<div class="profile_pic">
-				<img src="<%=request.getContextPath() %>/resources/images/admin/<%=admin.getImagePath() %>" alt="..." class="img-circle profile_img" title="멋있죠?" data-toggle="tooltip">
+				<img src="<%=request.getContextPath() %>/resources/images/admin/<%=admin.getImagePath() %>" 
+					style="cursor:pointer;" class="img-circle profile_img" title="멋있죠?" data-toggle="tooltip">
 			</div>
 			<div class="profile_info">
-				<span>어서오세요!</span>
-				<h2><%=admin.getMemberName() %> 님</h2>
+				<span style="cursor:pointer;">어서오세요!</span>
+				<h2 style="cursor:pointer;"><%=admin.getMemberName() %> 님</h2>
 			</div>
   			<div class="logout"><a data-toggle="tooltip" href="<%=request.getContextPath() %>/logout.me" title="로그아웃"><i class="glyphicon glyphicon-off"></i></a></div>
 		</div>
