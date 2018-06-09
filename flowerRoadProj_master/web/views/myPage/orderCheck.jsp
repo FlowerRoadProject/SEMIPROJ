@@ -68,7 +68,7 @@
 			 <div class="col-md-4">
 				<div class="input-group date col-md-12" data-provide="datepicker">
 					<input type="text" class="form-control" placeholder="조회 기간 시작일"
-						id="datepicker"> <span class="input-group-addon">
+						id="datepicker1"> <span class="input-group-addon">
 						<i class="glyphicon glyphicon-calendar"></i></span>
 				</div>
 
@@ -76,14 +76,14 @@
 			<div class="col-md-4">
 				<div class="input-group date col-md-12" data-provide="datepicker">
 					<input type="text" class="form-control" placeholder="조회 기간 종료일"
-						id="datepicker"><span class="input-group-addon">
+						id="datepicker2"><span class="input-group-addon">
 						<i class="glyphicon glyphicon-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="col-md-6">
 					<input class="ordchk btn-default" type="button" id="search"
-						onclick="search();" value="검색"
+						onclick="search()" value="검색"
 						style="color: white; background: midnightblue;">
 				</div>
 				<div class="col-md-6">
@@ -157,6 +157,16 @@
 		</div>
 		<div class="col-sm-5 col-md-5 col-lg-5"></div>
 	</div>
+	<script>
+		function search(){
+			var start = $('#datepicker1').val();
+			var end = $('#datepicker2').val();
+			alert(start+","+end);
+		}
+		
+		function 
+	</script>
+	
 	<%@ include file="/views/common/footer.jsp"%>
 </body>
 <!--부트스트랩 데이트피커-->

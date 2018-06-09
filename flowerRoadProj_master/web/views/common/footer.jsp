@@ -96,7 +96,7 @@
                			});
                	})
                	$('.footList li').eq(0).click(function(){
-               		/* location.href= ''; */
+               		location.href= '<%=request.getContextPath()%>/views/common/introduce.jsp';
                	});                
                 $('.footList li').eq(2).click(function(){
                		location.href= '<%=request.getContextPath()%>/views/common/comAddress.jsp';
