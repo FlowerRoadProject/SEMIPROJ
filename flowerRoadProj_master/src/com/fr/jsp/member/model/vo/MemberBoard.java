@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class MemberBoard {
 
+	private int boardNum;
 	private String boardTitle;
 	private String boardContent;
 	private String memberNum;
@@ -19,6 +20,20 @@ public class MemberBoard {
 		return boardTitle;
 	}
 	
+	
+	
+	public int getBoardNum() {
+		return boardNum;
+	}
+
+
+
+	public void setBoardNum(int boardNum) {
+		this.boardNum = boardNum;
+	}
+
+
+
 	public String getMemberSendEmail() {
 		return memberSendEmail;
 	}
