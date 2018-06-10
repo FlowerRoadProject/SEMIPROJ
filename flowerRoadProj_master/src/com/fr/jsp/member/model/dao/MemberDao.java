@@ -347,6 +347,7 @@ public class MemberDao {
 					
 					mb.setBoardTitle(rset.getString(1));
 					mb.setSubmitDate(rset.getDate(2));
+					mb.setBoardNum(rset.getInt(4));
 					if(rset.getString(3) != null){
 						status = "답변 완료";
 						mb.setReplyStatus(status);
@@ -687,6 +688,38 @@ public class MemberDao {
 		
 		System.out.println(result);
 		return result;
+	}
+	public MemberBoard oneView(Connection con, String mNum, int bNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		MemberBoard resultBoard = null;
+		try{
+			
+			String query = prop.getProperty("BoardView");
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, mNum);
+			pstmt.setInt(2, bNum);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				resultBoard = new MemberBoard();
+	            
+				resultBoard.setBoardNum(rset.getInt(1));
+				resultBoard.setBoardTitle(rset.getString(2));
+				resultBoard.setBoardContent(rset.getString(3));
+				resultBoard.setSubmitDate(rset.getDate(6));
+				resultBoard.setReplyContent(rset.getString("BOARD_REPLY_CONTENT"));
+				
+			}else{
+				System.out.println("없어!");
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return resultBoard;
 	}
 
 }
