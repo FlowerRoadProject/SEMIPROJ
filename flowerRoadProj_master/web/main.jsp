@@ -419,8 +419,9 @@ img {
 	<br />
 	<br />
 	<div class="container">
-		<a href=""><img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/mainEventCarousel/ggotgil banner1.jpg" alt="" /> </a>
-		<hr />
+		<a href="<%=request.getContextPath()%>/noticeContent.no?bNum=10"><img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/mainEventCarousel/ggotgil banner1.jpg" alt="" /> </a>
+		<br />
+		<br />
 	</div>
 	
 	<div class="container">
