@@ -50,10 +50,8 @@ public class loginServlet extends HttpServlet {
 					String toUrl=null;
 					
 					if(lastUrl!=null){
-						System.out.println("lastUrl : "+lastUrl);
 						String temp = request.getContextPath();
 						toUrl= (String)lastUrl.subSequence(temp.length(), lastUrl.length());
-						System.out.println(toUrl);
 					}
 					
 					if(toUrl!=null){

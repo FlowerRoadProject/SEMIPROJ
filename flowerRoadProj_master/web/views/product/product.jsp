@@ -32,11 +32,7 @@
 
 <style>
 /*xs 사이즈 이하면 컨테이너 사이즈 고정*/
-@media ( max-width :769px) {
-	.container {
-		width: 700px;
-	}
-}
+
 
 @
 -moz-document url-prefix () {fieldset {
@@ -664,9 +660,20 @@ textarea{
 			
 			return;
 		}
+		
+		var $optionList =  $('#optionDiv div[name*=selected_option_row_]');
+		
+		var pNums ='<%=p.getProductNum()%>'+',';
+		
+		
+		for(var i=0;i<$optionList.length;++i)
+			pNums=pNums+$('[name=sub_product_num]').attr("value")+$optionList.eq(i).attr("name").split(",")[1]+",";
+		
+		
+		
 			$.ajax({
 				url:"addBasket.do",
-				data:{pno:productNum},
+				data:{pNum:pNums},
 				success:function(data){
 					
 					if(data>0)
@@ -871,7 +878,7 @@ textarea{
 	        <ul class="nav navbar-nav navbar-right " id="stickyNavContent">
 	          <li class="active"><a href="#page_start" >상품구매</a></li>
 	          <li><a href="#content_start">상품 설명</a></li>
-	          <li><a href="#review_start">&nbsp;&nbsp;리뷰 &nbsp;&nbsp;</a></li>
+	          <li><a href="#review_start">리뷰 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 	        </ul>
 	      </div>
 	    </div>

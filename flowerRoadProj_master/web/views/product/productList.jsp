@@ -335,7 +335,7 @@ function addToBasket(productNum){
 	}
 		$.ajax({
 			url:"addBasket.do",
-			data:{pno:productNum},
+			data:{pNum:productNum},
 			success:function(data){
 				
 				if(data>0)
