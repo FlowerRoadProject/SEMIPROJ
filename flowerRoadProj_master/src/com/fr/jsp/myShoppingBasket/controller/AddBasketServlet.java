@@ -33,8 +33,8 @@ public class AddBasketServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-
+		HttpSession session = request.getSession();
+		
 		String memberNum = (String) session.getAttribute("memberNum");
 		String pNumString = (String) request.getParameter("pNum");
 		String[] productNums=null;
