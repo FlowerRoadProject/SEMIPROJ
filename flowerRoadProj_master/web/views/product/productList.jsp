@@ -301,11 +301,11 @@
 		<%} %>
 		<div class="row ">
 			<div class="col-lg-12">
-			    <form class="form-inline" action="<%=request.getContextPath()%>/searchProduct.do">
+			    <form class="form-inline" action="<%=request.getContextPath()%>/searchProduct.do" id="searchProduct">
 			    	<div class="form-group">
 			    		<label for="search" class='sr-only'>검색</label>
 			    		<input type="text" class="form-control" placeholder="내용" id="search" name="keyword"/>
-			    		<button type="submit" class="btn btn-default">검색하기</button>
+			    		<button type="button" class="btn btn-default" onclick="onSearch();">검색하기</button>
 			    	</div>
 			    </form>
 			</div><!-- /.col-lg-6 -->
@@ -356,6 +356,14 @@ function addToBasket(productNum){
 		<%}else{%>
 			return true;
 		<%}%>
+	}
+	
+	function onSearch(){
+		if($('#searchProduct input').val().length>0&&$('#searchProduct input').val()!=" ")
+			$('#searchProduct').submit();
+		else
+			alert("검색어를 입력 해 주세요");
+		
 	}
 
 		
