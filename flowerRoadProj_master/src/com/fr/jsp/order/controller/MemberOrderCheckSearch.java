@@ -1,6 +1,9 @@
-package com.fr.jsp.member.controller;
+package com.fr.jsp.order.controller;
 
 import java.io.IOException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,35 +11,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fr.jsp.member.model.service.MemberService;
-import com.fr.jsp.member.model.vo.MemberBoard;
-
-@WebServlet("/oneView.me")
-public class OnetoOneView extends HttpServlet {
+@WebServlet("/orderChkSearch.or")
+public class MemberOrderCheckSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
-    public OnetoOneView() {
+       
+ 
+    public MemberOrderCheckSearch() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
+
+		String memberNum = (String) session.getAttribute("memberNum");
+		String start = (String)request.getParameter("start");
+		String end = (String)request.getParameter("end");
+		System.out.println(start);
+		System.out.println(end);
 		
-		String mNum = (String)session.getAttribute("memberNum");
-		int bNum = Integer.parseInt(request.getParameter("bNum"));
-		System.out.println(mNum);
-		System.out.println(bNum);
+		//SimpleDateFormat transFormat = new SimpleDateFormat("MM/dd/yyyy");
 		
-		MemberBoard mb = new MemberBoard();
-		
-		mb = new MemberService().oneView(mNum, bNum);
-		
-		if(mb != null){
-			request.setAttribute("mb", mb);
-			request.getRequestDispatcher("views/myPage/1on1Page_View.jsp").forward(request, response);
-		}
-		
+		//Date to = transFormat.parse(start);
+
 		
 	}
 

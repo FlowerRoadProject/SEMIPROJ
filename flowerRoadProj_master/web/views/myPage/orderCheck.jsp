@@ -162,9 +162,22 @@
 			var start = $('#datepicker1').val();
 			var end = $('#datepicker2').val();
 			alert(start+","+end);
+			
+			$.ajax({
+    			url: "orderChkSearch.or",
+    			type: "GET",
+    			data: {
+    				start : start,
+    				end : end
+    			},   				
+    			success: function(){
+    				console.log('update성공');
+    			},error: function(){
+    				console.log('update실패');
+    			}
+    		});
 		}
 		
-		function 
 	</script>
 	
 	<%@ include file="/views/common/footer.jsp"%>
@@ -179,7 +192,6 @@
                     calendarWeeks: false,
                     todayHighlight: true,
                     autoclose: true,
-                    format: "yyyy년 mm월 dd일",
                     language: "kr",
                        
                     
