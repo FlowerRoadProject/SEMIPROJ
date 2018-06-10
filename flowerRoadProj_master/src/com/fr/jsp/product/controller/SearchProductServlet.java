@@ -38,10 +38,13 @@ public class SearchProductServlet extends HttpServlet {
 		ArrayList<ProductSimple> sessionList = (ArrayList<ProductSimple>)session.getAttribute("sessionList");
 		ArrayList<ProductSimple> pagedList = new ArrayList<ProductSimple>();
 		ArrayList<ProductSimple> currList = new ArrayList<ProductSimple>();
-		String keyword = request.getParameter("keyword");
+		String keyword = "";
 		String page ="";
 		
 		ProductService ps = new ProductService();
+		
+		if(request.getParameter("keyword")!=null)
+			keyword=request.getParameter("keyword");
 		
 		for(int i=0;i<sessionList.size();++i){
 			
@@ -51,16 +54,15 @@ public class SearchProductServlet extends HttpServlet {
 		}
 		
 		session.setAttribute("list", currList);
-		System.out.println(currList);
 		
 		int listSize = currList.size();
 		
 		
 		pi = new PageInfo(1,listSize,9);
 		
-		int loopEnd = listSize-1<pi.getEndRow()-1?listSize-1:pi.getEndRow()-1;
+		int loopEnd = listSize<pi.getEndRow()?listSize:pi.getEndRow();
 		
-		for(int i=pi.getStartRow()-1;i<loopEnd+1;++i){
+		for(int i=pi.getStartRow()-1;i<loopEnd;++i){
 			pagedList.add(currList.get(i));
 		}
 	

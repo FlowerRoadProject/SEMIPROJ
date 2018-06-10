@@ -39,7 +39,7 @@ public class SelectProductListServlet extends HttpServlet {
 		String category =null;
 		HttpSession session  = request.getSession(false);
 		ArrayList<ProductSimple> sessionList =(ArrayList<ProductSimple>)session.getAttribute("sessionList");
-		ArrayList<ProductSimple> currList = new ArrayList<ProductSimple>();
+		ArrayList<ProductSimple> currList = (ArrayList<ProductSimple>)session.getAttribute("list");
 		ArrayList<ProductSimple> pagedList = new ArrayList<ProductSimple>();
 		ProductService ps = new ProductService();
 		int currPage=1; 		//현재 페이지
@@ -68,14 +68,17 @@ public class SelectProductListServlet extends HttpServlet {
 			currPage = Integer.parseInt(request.getParameter("currPage"));
 		
 		
+		
 		int listSize = currList.size();
+		
 		
 		
 		pi = new PageInfo(currPage,listSize,limit);
 		
-		int loopEnd = listSize-1<pi.getEndRow()-1?listSize-1:pi.getEndRow()-1;
+		int loopEnd = listSize<pi.getEndRow()?listSize:pi.getEndRow();
+	
 		
-		for(int i=pi.getStartRow()-1;i<loopEnd+1;++i){
+		for(int i=pi.getStartRow()-1;i<loopEnd;++i){
 			pagedList.add(currList.get(i));
 		}
 		

@@ -359,7 +359,7 @@ function addToBasket(productNum){
 	}
 	
 	function onSearch(){
-		if($('#searchProduct input').val().length>0)
+		if($('#searchProduct input').val().length>0&&$('#searchProduct input').val()!=" ")
 			$('#searchProduct').submit();
 		else
 			alert("검색어를 입력 해 주세요");
