@@ -540,6 +540,8 @@ $('#randomPlace').on({
 		var top3 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
 		var left3 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
 		$('.randomGame #goal').css({'top': top3, 'left':left3});
+		cnt=0;
+		$('#clickCount').text(cnt);
 	}
 });
 //메인 랜덤 게임
