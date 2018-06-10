@@ -201,7 +201,7 @@
 			$('.Pmenu li a').hover(function() {
 				$(this).css({
 					background : 'lightcoral',
-					"color" : 'rgba(255, 254, 254, 0.9)',
+					"color" : 'white',
 					cursor : "pointer"
 				});
 			}, function() {
