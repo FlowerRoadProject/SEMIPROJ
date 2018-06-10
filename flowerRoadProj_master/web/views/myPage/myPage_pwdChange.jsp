@@ -72,7 +72,7 @@
         <div class="container-fluid">
                 <div class="col-sm-4 col-md-4 col-lg-4"></div>
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                    <button id="pwd" onclick="pwd();"><b>변경하기</b></button>
+                    <button class="blueBtn" id="pwd" onclick="pwd();"><b>변경하기</b></button>
                 </div>
                 <div class="col-sm-2 col-md-2 col-lg-2">
                 <button class="grayBtn" id="cancel" onclick="cancle();"><b>변경 취소</b></button>
