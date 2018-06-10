@@ -419,8 +419,10 @@ img {
 	<br />
 	<br />
 	<div class="container">
+		<a href=""><img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/mainEventCarousel/ggotgil banner1.jpg" alt="" /> </a>
 		<hr />
 	</div>
+	
 	<div class="container">
 		<p><b>지금 가장 많이 조회한 상품</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 조회 되는 상품입니다.</p>
 		<hr />

@@ -35,26 +35,25 @@ public class SearchProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		PageInfo pi = new PageInfo();
-		ArrayList<ProductSimple> sessionList = (ArrayList<ProductSimple>)session.getAttribute("list");
+		ArrayList<ProductSimple> sessionList = (ArrayList<ProductSimple>)session.getAttribute("sessionList");
 		ArrayList<ProductSimple> pagedList = new ArrayList<ProductSimple>();
-		ArrayList<ProductSimple> tempList = new ArrayList<ProductSimple>();
+		ArrayList<ProductSimple> currList = new ArrayList<ProductSimple>();
 		String keyword = request.getParameter("keyword");
 		String page ="";
 		
 		ProductService ps = new ProductService();
-	
+		
 		for(int i=0;i<sessionList.size();++i){
 			
 			if(sessionList.get(i).getProductName().contains(keyword))
-				tempList.add(sessionList.get(i));
+				currList.add(sessionList.get(i));
 			
 		}
-		sessionList=tempList;
-		session.setAttribute("list", tempList);
 		
+		session.setAttribute("list", currList);
+		System.out.println(currList);
 		
-		
-		int listSize = sessionList.size();
+		int listSize = currList.size();
 		
 		
 		pi = new PageInfo(1,listSize,9);
@@ -62,7 +61,7 @@ public class SearchProductServlet extends HttpServlet {
 		int loopEnd = listSize-1<pi.getEndRow()-1?listSize-1:pi.getEndRow()-1;
 		
 		for(int i=pi.getStartRow()-1;i<loopEnd+1;++i){
-			pagedList.add(sessionList.get(i));
+			pagedList.add(currList.get(i));
 		}
 	
 		

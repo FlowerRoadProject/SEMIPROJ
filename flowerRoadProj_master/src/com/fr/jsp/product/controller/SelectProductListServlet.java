@@ -38,7 +38,8 @@ public class SelectProductListServlet extends HttpServlet {
 		String event =null;
 		String category =null;
 		HttpSession session  = request.getSession(false);
-		ArrayList<ProductSimple> sessionList =(ArrayList<ProductSimple>)session.getAttribute("list");
+		ArrayList<ProductSimple> sessionList =(ArrayList<ProductSimple>)session.getAttribute("sessionList");
+		ArrayList<ProductSimple> currList = new ArrayList<ProductSimple>();
 		ArrayList<ProductSimple> pagedList = new ArrayList<ProductSimple>();
 		ProductService ps = new ProductService();
 		int currPage=1; 		//현재 페이지
@@ -57,14 +58,17 @@ public class SelectProductListServlet extends HttpServlet {
 		if(!event.equals("none")||!category.equals("none"))
 		{
 			sessionList = ps.getProductList(event,category);
-			session.setAttribute("list", sessionList);
+			session.setAttribute("sessionList", sessionList);
+			
+			currList = (ArrayList<ProductSimple>) sessionList.clone();
+			session.setAttribute("list", currList);
 		}
 		
 		if(request.getParameter("currPage")!=null)
 			currPage = Integer.parseInt(request.getParameter("currPage"));
 		
 		
-		int listSize = sessionList.size();
+		int listSize = currList.size();
 		
 		
 		pi = new PageInfo(currPage,listSize,limit);
@@ -72,7 +76,7 @@ public class SelectProductListServlet extends HttpServlet {
 		int loopEnd = listSize-1<pi.getEndRow()-1?listSize-1:pi.getEndRow()-1;
 		
 		for(int i=pi.getStartRow()-1;i<loopEnd+1;++i){
-			pagedList.add(sessionList.get(i));
+			pagedList.add(currList.get(i));
 		}
 		
 		
