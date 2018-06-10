@@ -5,8 +5,6 @@
 	Member m = (Member)session.getAttribute("m");
 	ArrayList<MyPage_Order> list = (ArrayList<MyPage_Order>) request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	System.out.println(pi.getStartPage());
-	System.out.println(pi.getEndPage());
 %>
 <!DOCTYPE>
 <html>
@@ -87,7 +85,7 @@
 						style="color: white; background: midnightblue;">
 				</div>
 				<div class="col-md-6">
-					<input class="grayBtn ordchk" type="button" id="reSet" value="초기화">
+					<input class="grayBtn ordchk btn btn-default" type="button" id="reSet" value="초기화">
 				</div>
 			</div> 
 			
@@ -104,15 +102,23 @@
 					<th>배송현황</th>
 				</tr>
 				<%
-					for (MyPage_Order o : list) {
+					for (int i=0; i< list.size(); i++) {
 				%>
 				<tr>
-					<td><%=o.getOrder_num()%></td>
-					<td><%=o.getOrdered_date()%></td>
-					<td><%=o.getProduct_num()%></td>
-					<td><%=o.getProduct_cost()%></td>
-					<td><%=o.getAnonymous_delivery()%></td>
-					<td><%=o.getOrder_state_code()%></td>
+					<td><%=list.get(i).getOrder_num()%>
+					<input type="hidden" class="oN" name="oN" value="<%=list.get(i).getOrder_num()%>">
+					</td>
+					<td><%=list.get(i).getOrdered_date()%></td>
+					<td><%=list.get(i).getProduct_num()%></td>
+					<td><%=list.get(i).getProduct_cost()%></td>
+					<td><%=list.get(i).getAnonymous_delivery()%></td>
+					<% if( list.get(i).getOrder_state_code().equals("결제 완료") ) { %>
+					<td><%=list.get(i).getOrder_state_code()%> &nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" value="환불하기" id="refund" class="refund btn btn-default">
+					</td>
+					<% } else { %>
+					<td><%=list.get(i).getOrder_state_code()%></td>
+					<% } %>
 				</tr>
 				<%
 					}
@@ -161,12 +167,21 @@
 		function search(){
 			var start = $('#datepicker1').val();
 			var end = $('#datepicker2').val();
-			alert("눌렀다");
 			location.href = "<%=request.getContextPath() %>/orderChkSearch.or?start="+start+"&end="+end;
 		}
 		
 		$('#reSet').on('click',function(){
 			location.reload();
+		});
+		
+		$('#refund').on('click',function(){
+			var onum = $(this).parent().siblings().children('.oN').val();
+			var cf = confirm("정말 환불 하시겠습니까??");
+			if(cf == true){
+			location.href="<%=request.getContextPath() %>/orderRefund.or?onum="+onum;
+			}
+			alert("환불이 완료되었습니다!");
+			
 		});
 		
 	</script>
