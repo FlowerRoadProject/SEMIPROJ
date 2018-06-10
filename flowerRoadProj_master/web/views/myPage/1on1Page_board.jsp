@@ -67,12 +67,12 @@
         <div class="container-fluid">
                 
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                    <button class="grayBtn" style="width:100px; height:30px; margin-top:20px;">
-                        전체 삭제</button>
+                    <button class="blueBtn" style="width:100px; height:30px; margin-top:20px;">
+                        	전체 삭제</button>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3"></div>
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                        <button id="question" onclick="question();"><b>문의하기</b></button>
+                        <button class="blueBtn" id="question" onclick="question();"><b>문의하기</b></button>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5"></div>
         </div>

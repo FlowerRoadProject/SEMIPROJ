@@ -110,5 +110,20 @@ public class OrderService {
 		
 		return result;
 	}
+
+
+	public int orderRefund(String num, String onum) {
+		Connection con = getConnection();
+		
+		int result = oDao.orderRefund(con, num, onum);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 		
 }

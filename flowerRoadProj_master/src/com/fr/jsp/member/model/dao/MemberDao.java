@@ -686,7 +686,6 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		System.out.println(result);
 		return result;
 	}
 	public MemberBoard oneView(Connection con, String mNum, int bNum) {
