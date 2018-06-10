@@ -748,7 +748,7 @@ textarea{
 </head>
 
 <body data-spy="scroll" data-target="#mNavbar" data-offset="5">
-	<span id="page_start"></span>
+	<span id="page_start">  </span>
 	<%@include file="../common/header.jsp"%>
 	<%@include file="../common/loginModal.jsp" %>
 	

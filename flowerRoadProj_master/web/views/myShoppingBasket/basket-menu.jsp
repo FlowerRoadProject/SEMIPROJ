@@ -145,18 +145,18 @@
                     <img src="<%=request.getContextPath() %>/resources/images/product/<%=list.get(i).getImage() %>" class="image img-responsive product-img" alt="">
                		<input type="hidden" class="product-image" value="<%=list.get(i).getImage() %>"/>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-0 bottom-margin"><!--정보칸-->
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-0 bottom-margin"><!--정보칸-->
                 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3 class="product-name"><%=list.get(i).getProduct_name() %></h3></div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br /></div>
                     
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 price-gray">판매가 : </div>
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-md-offset-4 col-lg-offset-4 price-gray product-price align-right"><%=list.get(i).getProduct_price() %>원</div>
-                    
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">합계 : </div>
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-sm-offset-0 col-md-offset-4 col-lg-offset-4 total-price align-right"><%=list.get(i).getProduct_price()*list.get(i).getQuantity() %>원</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 price-gray">판매가 : </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-xs-offset-5 col-sm-offset-5 col-md-offset-4 col-lg-offset-4 price-gray product-price align-right"><%=list.get(i).getProduct_price() %>원</div>
+                   	
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">합계 : </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-xs-offset-5 col-sm-offset-5 col-md-offset-4 col-lg-offset-4 total-price align-right"><%=list.get(i).getProduct_price()*list.get(i).getQuantity() %>원</div>
      
-            </div>
+            	</div>
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-2 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-0 button-group top-margin bottom-margin"><!--버튼칸-->
                     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-8">
                         <input type="number" class="form-control product-number" value="<%=list.get(i).getQuantity() %>" min=1 >

@@ -7,9 +7,13 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 
 import com.fr.jsp.admin.model.vo.AdminFortuen;
+import com.fr.jsp.admin.model.vo.AdminRandomGameLeaderBoard;
 import com.fr.jsp.admin.model.vo.AdminTheme;
 
 public class AdminDao {
@@ -209,6 +213,59 @@ public class AdminDao {
 		}
 		
 		return adminTheme;
+	}
+	// 메인 랜덤게임 점수 입력
+	public int admin_insertRandomGameScore(Connection con, AdminRandomGameLeaderBoard randomGame) {
+		PreparedStatement pstmt = null;
+		int rset = 0;
+		try { 
+			String query = prop.getProperty("admin_insertRandomGameScore");
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1,randomGame.getAdminNum());
+			pstmt.setInt(2,randomGame.getClickCount());
+			pstmt.setString(3,randomGame.getDifficulty());
+			
+			rset = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return rset;
+	}
+	// 랜덤 게임 리스트
+	public ArrayList<AdminRandomGameLeaderBoard> admin_selectLeaderBoard(Connection con, String difficulty) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<AdminRandomGameLeaderBoard> admin_LeaderBoardList = null;
+		
+		try { 
+			String query = prop.getProperty("admin_selectLeaderBoard");
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, difficulty);
+			rset = pstmt.executeQuery();
+			admin_LeaderBoardList = new ArrayList<AdminRandomGameLeaderBoard>();
+			while(rset.next()){
+				AdminRandomGameLeaderBoard adminLeaderBoard = new AdminRandomGameLeaderBoard();
+				
+				adminLeaderBoard.setAdminNum(rset.getString("MEMBER_NAME"));
+				adminLeaderBoard.setClickCount(Integer.parseInt(rset.getString("CLICK_COUNT")));
+				adminLeaderBoard.setDifficulty(rset.getString("DIFFICULTY"));				
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		        Date u_date = format.parse(rset.getString("GAME_DATE"));
+		        java.sql.Date gameDate = new java.sql.Date(u_date.getTime());
+		        adminLeaderBoard.setGameDate(gameDate);
+		        
+		        admin_LeaderBoardList.add(adminLeaderBoard);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return admin_LeaderBoardList;
 	}
 
 }

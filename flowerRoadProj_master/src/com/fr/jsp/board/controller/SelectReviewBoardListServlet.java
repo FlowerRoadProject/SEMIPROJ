@@ -55,7 +55,7 @@ public class SelectReviewBoardListServlet extends HttpServlet {
 		
 			
 		
-			System.out.println(currPage);
+			
 			//페이지 관련 변수 전달용 VO 생성
 			PageInfo pi = new PageInfo(currPage,rbs.getListCount(pno),limit);
 			

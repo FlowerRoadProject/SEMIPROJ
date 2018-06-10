@@ -36,11 +36,11 @@
 			var mainPath = '<%=request.getContextPath()%>';
 		</script>
 		<style>
-			<%-- body{
+			body{
 				width:100%;
 				font-family:Do hyeon;
 				background-image:url('<%=request.getContextPath() %>/resources/images/admin/petal2.gif');
-			} --%>
+			}
 			#one{
 			    width: 30em;
 			    height: auto;
@@ -87,15 +87,15 @@
 		</style>
 	</head>
 	<body id="adminQuiz">
-		<!-- <div id="infoDiv" style="width:100%;height:auto;top:15%;left:15%;position:absolute">
+		<div id="infoDiv" style="width:100%;height:auto;top:15%;left:15%;position:absolute">
 			<h1 id="one">안녕하세요.</h1><br />
 			<h1 id="two">이곳은 <mark>관리자</mark> 페이지입니다. </h1>
 			<h1 id="three"><mark>관리자</mark>가 아니라면 들어갈 수 없습니다. </h1>
 			<h1 id="four">나가는 방법은 화면을 아무데나 클릭하세요.</h1>
-		</div> -->
+		</div>
 		<a href="<%=request.getContextPath() %>/main.admin" id="admin_Main"></a>
 		<a href="<%=request.getContextPath() %>/views/mainPage/login.jsp" id="member_Main"></a>
-		<%-- <audio src="<%=request.getContextPath() %>/resources/music/third.wav" loop autoplay preload="metadata"></audio> --%>
+		<audio src="<%=request.getContextPath() %>/resources/music/third.wav" loop autoplay preload="metadata"></audio>
 		
 		<!-- admin_JS -->
 		<%@ include file="common/admin_JS.jsp" %>
