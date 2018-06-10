@@ -87,15 +87,15 @@
         <div class="container-fluid">
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <button id="pwd" onclick="pwd();"><b>비밀번호 변경</b></button>
+                <button class="blueBtn" id="pwd" onclick="pwd();"><b>비밀번호 변경</b></button>
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-            <button id="modify" onclick="modify();"><b>정보 수정</b></button>
+            <button class="blueBtn" id="modify" onclick="modify();"><b>정보 수정</b></button>
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-            <button id="withdrawal" onclick="withdrawal();"><b>회원 탈퇴</b></button>
+            <button class="blueBtn" id="withdrawal" onclick="withdrawal();"><b>회원 탈퇴</b></button>
             </div>
         </div>
         

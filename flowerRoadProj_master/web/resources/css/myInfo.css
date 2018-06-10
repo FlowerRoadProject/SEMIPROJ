@@ -61,7 +61,7 @@ li{
 
 
 /* 버튼 설정 */
-div>button{
+.blueBtn{
     width: 120px;
     height: 50px;
     background-color: midnightblue;
@@ -77,7 +77,12 @@ div>button{
 }
 
 #cancel{
+	width: 120px;
+    height: 50px;
     background-color: lightgray;
     color: midnightblue;
+    margin-top: 50px;
+    margin-left: 125px; 
+    margin-bottom: 50px;    
 }
 
