@@ -133,7 +133,7 @@
 				<%if(pi.getCurrPage() <=1){ %>
 					<li><span disabled>«</span></li>
 				<% } else { %>
-					<li><a href="<%=request.getContextPath() %>/orderChk.or?currentPage=<%=pi.getCurrPage()-1%>"><span aria-hidden="true">«</span><span
+					<li><a href="<%=request.getContextPath() %>/orderChkSearch.or?currentPage=<%=pi.getCurrPage()-1%>"><span aria-hidden="true">«</span><span
 							class="sr-only">Previous</span></a></li>
 				<% } %>
 				<!-- 각 페이지 별 리스트 작성 -->
@@ -141,7 +141,7 @@
 					<% if(j== pi.getCurrPage()){ %>
 					<li><span disabled><%=j%></span></li>
 					<%} else { %>
-					<li><a href="<%=request.getContextPath() %>/orderChk.or?currentPage=<%=j%>"><%=j %></a></li>
+					<li><a href="<%=request.getContextPath() %>/orderChkSearch.or?currentPage=<%=j%>"><%=j %></a></li>
 					<%} %>
 				<%} %>
 				
@@ -149,7 +149,7 @@
 				<%if(pi.getCurrPage()>=pi.getMaxPage()){ %>
 				<li><span disabled>»</span></li>
 				<% }else{ %>
-				<li><a href="<%=request.getContextPath() %>/orderChk.or?currentPage=<%=pi.getCurrPage()+1%>"><span aria-hidden="true">»</span><span
+				<li><a href="<%=request.getContextPath() %>/orderChkSearch.or?currentPage=<%=pi.getCurrPage()+1%>"><span aria-hidden="true">»</span><span
 						class="sr-only">Next</span></a></li>
 				<% } %>
 				</ul>
@@ -161,13 +161,13 @@
 		function search(){
 			var start = $('#datepicker1').val();
 			var end = $('#datepicker2').val();
-			alert("눌렀다");
 			location.href = "<%=request.getContextPath() %>/orderChkSearch.or?start="+start+"&end="+end;
 		}
 		
 		$('#reSet').on('click',function(){
-			location.reload();
+			location.href="<%=request.getContextPath() %>/orderChk.or";
 		});
+		
 		
 	</script>
 	
