@@ -170,7 +170,6 @@ public class ReviewBoardDao {
 		ArrayList<ReviewBoard> result = new ArrayList<ReviewBoard>();
 		ReviewBoard rb = null;
 
-		System.out.println("///"+pno);
 		try {
 			pstmt = con.prepareStatement(prop.getProperty("getpagedReviewList"));
 

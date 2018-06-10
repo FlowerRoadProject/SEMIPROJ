@@ -3,10 +3,9 @@
 	<% %>
 <html>
 <head>
+ <script src="<%=request.getContextPath()%>/resources/js/jquery-1.12.2.min.js"></script>
 
-	<%@include file="/views/common/header.jsp"%>
- <script
-	src="<%=request.getContextPath()%>/resources/js/jquery-1.12.2.min.js"></script>
+
 <title>꽃길</title>
 <style>
 
@@ -311,7 +310,9 @@ img {
 	}
 	
 </script>
+
 </head>
+<%@include file="/views/common/header.jsp"%>
 <body>
 	<%@include file="/views/common/loginModal.jsp" %>
 	<br />

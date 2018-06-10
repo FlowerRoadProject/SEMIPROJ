@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	
+	String url = (String)request.getAttribute("javax.servlet.forward.request_uri");
+	if(url!=null){
+		String query = (String)request.getAttribute("javax.servlet.forward.query_string");
+		if(query==null)
+			request.getSession().setAttribute("lastUrl",url);
+		else
+			request.getSession().setAttribute("lastUrl",url+"?"+query);
+	}
+
+%>
+
 <html>
 <head>
 <title>로그인 모달</title>

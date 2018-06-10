@@ -168,9 +168,6 @@
 		</ul>
 
 
-
-
-
 		<!-- </div> -->
 
 		<div class="col-xs-8 col-sm-12 col-md-12 col-lg-12"
@@ -204,7 +201,7 @@
 			$('.Pmenu li a').hover(function() {
 				$(this).css({
 					background : 'lightcoral',
-					"color" : 'white',
+					"color" : 'rgba(255, 254, 254, 0.9)',
 					cursor : "pointer"
 				});
 			}, function() {
