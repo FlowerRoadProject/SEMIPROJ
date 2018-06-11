@@ -131,46 +131,9 @@ public class NoticeBoardDao {
 		return notice;
 	}
 	
-	public int updateContent(Connection con, int bNum, String bTitle, String bContent){
-		PreparedStatement pstmt = null;
-		
-		String query = prop.getProperty("updateContent");
-		int result = 0;
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, bTitle);
-			pstmt.setString(2, bContent);
-			pstmt.setInt(3, bNum);
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			close(pstmt);
-		}
-		
-		return result;
-	}
 	
-	public int deleteNotice(Connection con, int bNum){
-		PreparedStatement pstmt = null;
-		String query = prop.getProperty("deleteNotice");
-		int result = 0;
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, bNum);			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			close(pstmt);
-		}
-		
-		return result;
-	}
+	
+	
 
 	public int updateCount(Connection con, int bNum) {
 		PreparedStatement pstmt = null;
