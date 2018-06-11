@@ -31,6 +31,11 @@
         #find {
             text-align: center;
         }
+        #Contents {
+	width: 30%;
+	margin: auto;
+	padding: auto;
+}
         </style>
 <script>
 
@@ -104,47 +109,56 @@ $("input[name=userPwd]").keydown(function (key) {
 
 
 <br /><br /><br /><br /><br /><br />
-<div style="overflow:scroll;  background-color:white;" class="form-grorp">
-        <h2 class="header" style="text-align: center">로그인</h2>
+<div id="Contents">
+		<h2 class="header" style="text-align: center">로그인</h2>
+		<form id="loginForm" class="form-Member"
+			action="<%=request.getContextPath()%>/login.me" method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" name="userId" id="userId"
+					placeholder="아이디">
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" name="userPwd"
+					id="userPwd" placeholder="비밀번호">
+			</div>
+			<div class="form-group">
+				<table class="form-group" style="width: 100%">
+					<tr style="width: 100%">
+						<td style="align: left;"><a
+							href="<%=request.getContextPath()%>/views/mainPage/findUser.jsp">아이디
+								찾기</a> <span class="txt_bar">ㅣ</span> <a
+							href="<%=request.getContextPath()%>/views/mainPage/findUser.jsp">비밀번호
+								찾기</a></td>
 
-        <form id="loginForm" class="form-Member" action="<%=request.getContextPath()%>/login.me" method="post">
-            <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
-                <input type="text" class="form-control" name="userId" id="userId" placeholder="아이디">
-            </div>
-            <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
-                <input type="password" class="form-control" name="userPwd" id="userPwd" placeholder="비밀번호">
-            </div>
-            <!-- <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
-                <input type="checkbox" id="id_hold_check" name="IdSave">
-                <label for="Id_hold_check">아이디 저장</label>
-            </div> -->
-
-            <div class="SNSbtn">
-                <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" >
-                    <button type="button" class="btn btn-lg col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 login"  onclick='login()'>회원 로그인</button>
+						<td style="float: right;"><a href="<%=request.getContextPath()%>/views/mainPage/signUp.jsp">회원가입
+						</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="form-group" style="text-align : center">
+				<button type="button" class="btn btn-warning" onclick='login();' style="font-size:30px">회원로그인</button><br><br>
+				<div class="form-group" >
+                    <a id="kakao-login-btn"></a>
                 </div>
-                <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" >
-                    <a id="kakao-login-btn" class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4"></a>
-                </div>
-                <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" >
-                    <div class="fb-login-button col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" 
+                <div class="form-group" >
+                    <div class="fb-login-button" 
                     data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true" onlogin="checkLoginState();"></div>
                 </div>
-                <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" >
-                    <div id="naverIdLogin" class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4"></div>
+                <div class="form-group">
+                    <div id="naverIdLogin"></div>
                 </div>
-                <div class="form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" >
-                    <div class="g-signin2 col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" onclick="GoogleLogin()" data-width="220" data-height="50" data-onsuccess="onSignIn" data-theme="dark"></div>
-                </div>
-            </div>
-            <div class="find_account col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" id="find">
-                <a href="<%=request.getContextPath()%>/views/mainPage/findUser.jsp">아이디 찾기</a><span class="txt_bar">ㅣ</span><a href="<%=request.getContextPath()%>/views/mainPage/findUser.jsp">비밀번호 찾기</a>
-            </div>
-
-            <div class="find_account form-group col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
-                <button type="button" class="btn col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4" id="signUp">회원가입</button>
-            </div>
-        </form>
+                <div style="text-align : center">
+				<div class="form-group">
+					<div class="g-signin2" onclick="GoogleLogin()"
+						data-width="220" data-height="50" data-onsuccess="onSignIn"
+						data-theme="dark"></div>
+				</div>
+				</div>
+			</div>
+		</form>
+          
+           
+       
     </div>
     
   

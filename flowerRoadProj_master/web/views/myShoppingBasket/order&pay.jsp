@@ -197,6 +197,9 @@ Member member = (Member)request.getAttribute("member");
     <%@include file="/views/common/header.jsp" %>
     
         <br><br><br><br><br><br>
+        <input type="hidden" value="<%=member.getMemberName()%>" id="mName">
+        <input type="hidden" value="<%=member.getMemberPhone()%>" id="mPhone">
+        
         
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin"><!--상단 진행페이지 구문-->
@@ -396,7 +399,7 @@ Member member = (Member)request.getAttribute("member");
                         <h4>이름<span class="red-star">*</span></h4>
                     </div>
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                        <input type="text" class="col-lg-12 form-control input-text-yellow input-text-height1" placeholder="이름을 입력해주세요" aria-describedby="basic-addon1" id="inputName" value="<%=member.getMemberName()%>">
+                        <input type="text" class="col-lg-12 form-control input-text-yellow input-text-height1" placeholder="이름을 입력해주세요" aria-describedby="basic-addon1" id="inputName" value="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin">
@@ -404,9 +407,18 @@ Member member = (Member)request.getAttribute("member");
                         <h4>전화번호<span class="red-star">*</span></h4>
                     </div>
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                        <input type="text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-control input-text-yellow input-text-height1" placeholder="000-0000-0000" aria-describedby="basic-addon1" id="inputPhone" value="<%=member.getMemberPhone()%>">
+                        <input type="text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-control input-text-yellow input-text-height1" placeholder="-없이 입력해주세요" aria-describedby="basic-addon1" id="inputPhone" value="">
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <button class="btn btn-primary" id="sameBtn">주문자와 동일</button>
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                         <h4 style="color:lightgray">클릭하실 경우 회원님의 정보대로 이름과 전화번호가 입력됩니다</h4>
+                    </div>
+                </div>                
+                
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                         <input type="checkbox" id="anonymity" value="Y">&nbsp;&nbsp;<label for="anonymity"><h4>익명발송</h4></label><!--익명발송 hover할경우 설명문구 뜨면 좋겠다-->
@@ -428,7 +440,13 @@ Member member = (Member)request.getAttribute("member");
     			$('#anony').val('N');
     			console.log($('#anony').val());
     		}
-    	});		
+    	});
+    	$('#sameBtn').on('click',function(){
+    		$('#inputName').val($('#mName').val());
+    		$('#inputPhone').val($('#mPhone').val());
+    	});
+    	
+    	
 		</script>
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin">
@@ -579,17 +597,10 @@ Member member = (Member)request.getAttribute("member");
             </div>    
         </div>
          
-        <script>       	
-        	$(function(){
-        		console.log("버튼색깔..: "+$('#payingMe').css('background'));
-        	})
+        <script>
         
-        
-        
-        	$('.pay-select .btn').on('click',function(){
-        		console.log($(this).val());
-        		$('#payMethod').val($(this).val());
-        		
+        	$('.pay-select .btn').on('click',function(){        		
+        		$('#payMethod').val($(this).val());        		
         		for(var i =0; i<$('.pay-select .btn').length; i++){
         			if($('.pay-select .btn').eq(i).val() == $('#payMethod').val()){
         				$('.pay-select .btn').eq(i).css({
