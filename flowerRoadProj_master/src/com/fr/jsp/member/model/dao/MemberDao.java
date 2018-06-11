@@ -759,5 +759,32 @@ public class MemberDao {
 		
 		return clist;
 	}
+	// 비밀번호 재확인
+	public int pwdRecheck(Connection con, String num, String pwd) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("pwdRecheck");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			pstmt.setString(2, pwd);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				result = rset.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(result);
+		return result;
+	}
 
 }

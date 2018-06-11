@@ -80,7 +80,7 @@
 			</div>
 			<div class="col-md-4">
 				<div class="col-md-6">
-					<input class="ordchk btn-default" type="button" id="search"
+					<input class="ordchk btn btn-primary" type="button" id="search"
 						onclick="search()" value="검색"
 						style="color: white; background: midnightblue;">
 				</div>
