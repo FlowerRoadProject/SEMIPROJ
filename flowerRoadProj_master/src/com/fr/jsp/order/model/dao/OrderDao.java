@@ -67,7 +67,7 @@ public class OrderDao {
 		
 		return result;
 	}
-	  // 주문조회
+
 	public ArrayList<MyPage_Order> orderChk(Connection con, String num, int currentPage, int limit) {
 
 		ArrayList<MyPage_Order> list = null;
@@ -288,5 +288,5 @@ public class OrderDao {
 		return result;
 	}
 	
-	
+
 }

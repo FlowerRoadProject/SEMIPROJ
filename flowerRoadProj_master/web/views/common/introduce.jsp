@@ -202,27 +202,27 @@
 				'3월 28일 - 꽃아카시아나무(Robinia Hispida)',
 				'꽃말 - 품위');
 		//김낙용
-		var arrKNY = new Array('모자로는 가려지지 않는 품위.. ','김낙용',
-				'<%=request.getContextPath()%>/resources/images/introduce/PTY.JPG',
-				'3월 28일 - 꽃아카시아나무(Robinia Hispida)',
-				'꽃말 - 품위');
+		var arrKNY = new Array('상냥한 목소리, 그의 노래까지 따뜻해..','김낙용',
+				'<%=request.getContextPath()%>/resources/images/introduce/KNY.JPG',
+				'4월 23일 - 도라지꽃(Balloom-Flower)',
+				'꽃말 - 상냥함, 따뜻함');
 		//이원제
 		var arrLWJ = new Array('온몸의 교양으로 풍겨지는 정신미.. ','이원제',
 				'<%=request.getContextPath()%>/resources/images/introduce/LWJ.jpg',
 				'4월 9일 - 벚나무(Cherry)',
 				'꽃말 - 교양, 정신미');
 		//이주형
-		var arrLJH = new Array('모자로는 가려지지 않는 품위.. ','이주형',
-				'<%=request.getContextPath()%>/resources/images/introduce/PTY.JPG',
-				'3월 28일 - 꽃아카시아나무(Robinia Hispida)',
-				'꽃말 - 품위');
+		var arrLJH = new Array('그 시절의 첫사랑, 안경선배 ..','이주형',
+				'<%=request.getContextPath()%>/resources/images/introduce/LJH.jpg',
+				'3월 26일 - 흰앵초(Primrose)',
+				'꽃말 - 첫사랑');
 		//최순홍
 		var arrCSH = new Array('거울속의 너.. 오늘도 신비로워 .. ','최순홍',
 				'<%=request.getContextPath()%>/resources/images/introduce/CHS.jpg',
 				'1월 13일 - 수선화(Narcissus)',
 				'꽃말 - 자기애, 신비');
 		//한영두
-		var arrHYD = new Array('그 아름다움.. 영원히 Foever.. ','한영두',
+		var arrHYD = new Array('그 아름다움.. 영원히 Forever.. ','한영두',
 				'<%=request.getContextPath()%>/resources/images/introduce/HYD.png',
 				'7월 16일 - 비단향꽃무(Stock)',
 				'꽃말 - 영원한 사랑, 영원한 아름다움');
@@ -243,7 +243,13 @@
 				$fName.text(arrPTY[3]);
 				$fLang.text(arrPTY[4]);
 			}
-			if($(this).text() == '김낙용'){}
+			if($(this).text() == '김낙용'){
+				$intro.text(arrKNY[0]);
+				$adName.text(arrKNY[1]);
+				$flower.attr('src',arrKNY[2]);
+				$fName.text(arrKNY[3]);
+				$fLang.text(arrKNY[4]);
+			}
 			
 			if($(this).text() == '이원제'){
 				$intro.text(arrLWJ[0]);
@@ -252,7 +258,13 @@
 				$fName.text(arrLWJ[3]);
 				$fLang.text(arrLWJ[4]);
 			}
-			if($(this).text() == '이주형'){}
+			if($(this).text() == '이주형'){
+				$intro.text(arrLJH[0]);
+				$adName.text(arrLJH[1]);
+				$flower.attr('src',arrLJH[2]);
+				$fName.text(arrLJH[3]);
+				$fLang.text(arrLJH[4]);
+			}
 			
 			if($(this).text() == '최순홍'){
 				$intro.text(arrCSH[0]);
