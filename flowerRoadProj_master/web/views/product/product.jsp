@@ -146,19 +146,19 @@ textarea{
 	font-size:2em;
 }
 
-.navbar-collapse.collapse {
+#mNavbar .navbar-collapse.collapse {
   display: block!important;
 }
 
-.navbar-nav>li, .navbar-nav {
+#mNavbar .navbar-nav>li, .navbar-nav {
   float: left !important;
 }
 
-.navbar-nav.navbar-right:last-child {
+#mNavbar .navbar-nav.navbar-right:last-child {
   margin-right: -15px !important;
 }
 
-.navbar-right {
+#mNavbar .navbar-right {
   float: right!important;
 }
 

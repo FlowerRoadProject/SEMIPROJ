@@ -4,4 +4,8 @@
   <welcome-file-list>
     <welcome-file>main.jsp</welcome-file>
   </welcome-file-list>
+  
+  <listener>
+   	 <listener-class>com.fr.jsp.common.PreventDuplicationLogin</listener-class>
+  </listener>
 </web-app>
