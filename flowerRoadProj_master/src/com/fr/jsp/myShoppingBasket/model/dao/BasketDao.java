@@ -254,8 +254,7 @@ public class BasketDao {
 		ResultSet rset = null;
 		int result =  0;
 		String query = prop.getProperty("isExistProduct");
-		
-		System.out.println(memberNum+"   "+productNum);
+			
 		try{
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, memberNum);
@@ -358,6 +357,26 @@ public class BasketDao {
 		return excess;
 		
 		
+	}
+
+
+	public int deleteOnlyOption(Connection con, String memberNum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("deleteOnlyOption");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberNum);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
 	}
 	
 }

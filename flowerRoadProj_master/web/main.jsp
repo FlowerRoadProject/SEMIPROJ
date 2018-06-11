@@ -3,26 +3,33 @@
 	<% %>
 <html>
 <head>
+ <script src="<%=request.getContextPath()%>/resources/js/jquery-1.12.2.min.js"></script>
 
-	<%@include file="/views/common/header.jsp"%>
- <script
-	src="<%=request.getContextPath()%>/resources/js/jquery-1.12.2.min.js"></script>
+
 <title>꽃길</title>
 <style>
+
+@media(min-width:1200px){
+	.items{
+		height:540px;	
+	}
+}
+
+@media(min-width:992px) and (max-width:1199px){
+	.items{
+		height:470px;		
+	}
+}
+
+@media(max-width:991px){
+.items{
+		height:600px;
+	}
+}
 
 
 img {
 	cursor: pointer;
-}
-/* carousel 크기조정 */
-/* .carousel-inner>.item>img, .carousel-inner>.item>a>img {
-	width: 40%;
-	margin: auto;
-} */
-
- .items{
-        width:auto;
-        height: 540px;
 }
 
   .thumbnail img:HOVER{
@@ -53,7 +60,7 @@ img {
      	
      	
      	width:100% !important;
-     	height:auto !important;
+     	height:100% !important;
      	background:rgb(255,255,255) !important;
      }
      
@@ -83,8 +90,10 @@ img {
 		
 		.rating_star_align{
 			text-align:right;
-			margin-top:7px;
+			margin-top:9px;
 		}
+		
+		.
         
 </style>
 <script>
@@ -171,9 +180,28 @@ img {
 		})
 		
 		setTopSelling(1);
+		setMostViewed();
 	});
 
+	function setMostViewed(){
+		
+		$.ajax({
+			url : 'selectMostViewed.do',
+			type : "get",
+			success : function(data) {
 	
+				var $parsedList = $.parseJSON(data);
+				
+				
+				appendItemstoContainer($parsedList,'mostViewed');
+	
+			},
+			error : function(data) {
+	
+			}
+			
+		});
+	}
 
 	function setTopSelling(index){
 		
@@ -191,45 +219,8 @@ img {
 				var $parsedList = $.parseJSON(data);
 				
 				
-				var $item_container = $('#item-container');
-				
-				console.log($parsedList.length);
-				for (var i = 0; i < $parsedList.length; ++i) {
-					var $item = $('[name=clone-item]').clone(true,true);
-					$item.attr("name","clone-item_"+i);
-					$item.find('[name=detailLink]').attr("href","<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum);
-					if($parsedList[i].productQuantity<=0){
-					
-					$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
-					$item.find('[name=imageSource]').addClass("thumbnail_soldOut");
-					$item.find('[name=detailLink]').append("<span class='soldOut_text'> <h4><b>곧 준비할게요 :)</b></h4></span>");
-					$item.find('[name=productDetail]').remove();
-					$item.find('[name=addBasket]').off();
-					$item.find('[name=addBasket]').removeClass("col-lg-4");
-					$item.find('[name=addBasket]').addClass("col-xs-12");
-					$item.find('[name=addBasket]').text("품절");
-					}else{
-						$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
-						$item.find('[name=productDetail]').attr("onclick","location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum+"'");
-						$item.find('[name=addBasket]').attr("onclick","addToBasket("+"'"+$parsedList[i].productNum+"'"+")");
-					}
-					$item.find('[name=productName]').text($parsedList[i].productName);
-					$item.find('[name=productPrice]').text($parsedList[i].productPrice);
-					$item.find('[name=reviewNum]').text($parsedList[i].reviewCount);
-					for(var j=0;j<$parsedList[i].reviewAvg;++j){
-						$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star'></span>");
-					}
-
-					for(var k=0;k<5-$parsedList[i].reviewAvg;++k){
-							
-						$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star_empty'></span>");
-					} 
-					
-					
-					
-					$item_container.append($item);
-					
-				}
+				appendItemstoContainer($parsedList,'topItem');
+		
 				
 			},
 			error : function(data) {
@@ -238,6 +229,49 @@ img {
 			
 	
 		});
+	}
+	
+	function appendItemstoContainer(data,containerID){
+		var $item_container = $('#'+containerID);
+		
+		var $parsedList = data;
+		
+		for (var i = 0; i < $parsedList.length; ++i) {
+			var $item = $('[name=clone-item]').clone(true,true);
+			$item.attr("name","clone-item_"+i);
+			$item.find('[name=detailLink]').attr("href","<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum);
+			if($parsedList[i].productQuantity<=0){
+			
+			$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
+			$item.find('[name=imageSource]').addClass("thumbnail_soldOut");
+			$item.find('[name=detailLink]').append("<span class='soldOut_text'> <h4><b>곧 준비할게요 :)</b></h4></span>");
+			$item.find('[name=productDetail]').remove();
+			$item.find('[name=addBasket]').off();
+			$item.find('[name=addBasket]').removeClass("col-lg-4");
+			$item.find('[name=addBasket]').addClass("col-xs-12");
+			$item.find('[name=addBasket]').text("품절");
+			}else{
+				$item.find('[name=imageSource]').attr("src","<%=request.getContextPath()%>/resources/images/product/"+$parsedList[i].image);
+				$item.find('[name=productDetail]').attr("onclick","location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+"+$parsedList[i].productNum+"'");
+				$item.find('[name=addBasket]').attr("onclick","addToBasket("+"'"+$parsedList[i].productNum+"'"+")");
+			}
+			$item.find('[name=productName]').text($parsedList[i].productName);
+			$item.find('[name=productPrice]').text($parsedList[i].productPrice);
+			$item.find('[name=reviewNum]').text($parsedList[i].reviewCount);
+			for(var j=0;j<$parsedList[i].reviewAvg;++j){
+				$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star'></span>");
+			}
+
+			for(var k=0;k<5-$parsedList[i].reviewAvg;++k){
+					
+				$item.find('.rating_star_align').append("<span class='glyphicon glyphicon-star rating_star_empty'></span>");
+			} 
+			
+			
+			
+			$item_container.append($item);
+		}
+		
 	}
 	
 	function addToBasket(productNum){
@@ -251,7 +285,7 @@ img {
 		}
 			$.ajax({
 				url:"addBasket.do",
-				data:{pno:productNum},
+				data:{pNum:productNum},
 				success:function(data){
 					
 					if(data>0)
@@ -276,7 +310,9 @@ img {
 	}
 	
 </script>
+
 </head>
+<%@include file="/views/common/header.jsp"%>
 <body>
 	<%@include file="/views/common/loginModal.jsp" %>
 	<br />
@@ -329,8 +365,8 @@ img {
 	<br>
 	<br>
 	 <%@ include file="/views/common/eventMenu.jsp"%>
+	
 	<div class="container">
-		
 	
 		
 	</div>
@@ -339,30 +375,30 @@ img {
 
 	<!--clone을 위한 아이템들  -->
 	<div style="display: none;">
-		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" name="clone-item">
+		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 " name="clone-item">
 			<div class="col-lg-12 thumbnail items ">
 				<div class="">
-					<a name="detailLink" href=""><img name="imageSource" src="" alt="..."></a> 
+					<a name="detailLink" href=""><img class="" name="imageSource" src="" alt="..."></a> 
 
 					<!-- <span class="label label-primary tag">Primary</span> 
 					<span class="label label-success tag">success</span> -->
 				</div>
 				<div class="col-lg-12   ">
-					<h4 class="col-lg-12 ">
+					<h4 class="col-lg-12">
 						<br /> <b name="productName" class="font-title text-truncate"></b>
 					</h4>
-					<h4 name="productPrice" class=" col-lg-12 ">원</h4>
-					<h5 class="col-lg-4 font-gray">리뷰 <span name="reviewNum"></span></h5>
-					<div class="col-lg-8  rating_star_align">
-						
-					</div>
-					<div class="col-lg-12 " style="margin-top:15px;">
-						<a class="col-lg-4 btn btn-default" role="button"
-							 name="addBasket">장바구니</a> 
-						<a name="productDetail"
-							class="col-lg-7 col-lg-offset-1 btn btn-primary" role="button">바로구매</a>
-					</div>
+					<h4 name="productPrice" class=" col-lg-12">원</h4>
+					<h5 class="col-lg-4  font-gray">리뷰 <span name="reviewNum"></span></h5>
+					<div class="col-lg-8  rating_star_align"></div>
+					
+				<div class="col-lg-12 col-sm-12" style="margin-top:15px;">
+			
+					<a class="col-lg-4 col-md-5 col-sm-4 col-xs-4  btn btn-default" role="button" name="addBasket">장바구니</a> 
+					<a class=" col-lg-7 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-7 col-xs-offset-1 btn btn-primary " role="button" name="productDetail">바로구매</a>
+					
+				</div>	
 				</div>
+				
 			</div>
 		</div>
 		
@@ -370,7 +406,7 @@ img {
 	<div class="container">
 		<p><b>베스트 셀러</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 팔리는 제품 입니다.</p>
 		<hr />
-		<div class="col-lg-12" id="item-container">
+		<div class="col-lg-12" id="topItem">
 			
 		</div>
 		<div class="row" style="text-align:center;">
@@ -379,6 +415,29 @@ img {
 			</div>
 		</div>
 	</div>
+	<br />
+	<br />
+	<br />
+	<div class="container">
+		<a href="<%=request.getContextPath()%>/noticeContent.no?bNum=10"><img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/mainEventCarousel/ggotgil banner1.jpg" alt="" /> </a>
+		<br />
+		<br />
+	</div>
+	
+	<div class="container">
+		<p><b>지금 가장 많이 조회한 상품</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 조회 되는 상품입니다.</p>
+		<hr />
+		<div class="col-lg-12" id="mostViewed">
+			
+		</div>
+		<div class="row" style="text-align:center;">
+			<div class="col-xs-12">
+				
+			</div>
+		</div>
+	</div>
+	
+	
 	<%@include file="/views/common/footer.jsp"%>
 </body>
 </html>

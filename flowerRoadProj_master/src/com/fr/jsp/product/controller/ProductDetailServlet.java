@@ -44,7 +44,13 @@ public class ProductDetailServlet extends HttpServlet {
 		ArrayList<ReviewBoard> reviewList = null;
 		ArrayList<ProductSimple> relatedCategoryProduct= null;
 		ArrayList<ProductSimple> optionProduct = null;
-		String memberNum = (String)request.getSession(false).getAttribute("memberNum");
+		String memberNum = null;
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("memberNum")!=null){
+			
+			memberNum=(String)session.getAttribute("memberNum");
+		}
 		
 		ProductDetail p = null;
 	
@@ -61,17 +67,26 @@ public class ProductDetailServlet extends HttpServlet {
 		
 		if(productNum!=null)
 			productNum=productNum.trim();
+		else{
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "상품 정보를 찾을 수 없습니다.");
+		}
 	
 		if (request.getParameter("currPage") != null) {				
 			currPage = Integer.parseInt(request.getParameter("currPage"));
 		}
 		
-		//접속 로그 테이블에 추가
+		/*//접속 로그 테이블에 추가
 		AccessLogService as = new AccessLogService();
 		
 		if(as.insertLog(memberNum)<0)
-			System.out.println("logInsert Error");
-			
+			System.out.println("logInsert Error");*/
+		
+		int checkResult = ps.insertProductCheck(memberNum,productNum);
+		
+		if(checkResult<0)
+			System.out.println("체크 로그에 인서트 실패");
+		
 	
 		//표시할 옵션 프로덕트 정보 가져오기
 		optionProduct = ps.getOptionProductList();

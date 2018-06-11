@@ -129,7 +129,7 @@
                           <td><%=nb.getSubmitDate() %></td>
                           <td><%=nb.getViewNum() %></td>
                           <td><%=nb.getbTitle() %></td>
-                          <td><%=nb.getbContent() %></td>
+                          <td style="text-overflow: ellipsis"><%=nb.getbContent() %></td>
                         </tr>
                         <%} %>
                       </tbody>

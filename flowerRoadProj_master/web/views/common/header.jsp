@@ -20,6 +20,28 @@
 	href="<%=request.getContextPath()%>/images/FlowerRoadLogo.png"
 	type="image/ico" />
 <script>
+
+				$(function(){
+					<%
+					if (memberNum == null || memberNum == "") {
+					%>
+					$('#menu').popover(
+							{
+								template : '<div class="popover" style="width:90px; height:60px;"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
+							});
+					<%}else{%>
+					$('#menu').popover(
+							{
+								template : '<div class="popover" style="width:115px; height:90px;"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
+							});	
+					<%}%>
+			
+					$('#menu').attr("data-content" , $('#menu_button').html());
+					$('.popover-dismiss').popover({
+						  trigger: 'focus'
+						});
+				});
+				
 				$('#favorite').on(
 						'click',
 						function(e) {
@@ -111,7 +133,7 @@
 <br>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
+	<div class="container-fluid" id="navContainer">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header col-xs-2 col-sm-2 col-md-2 col-lg-2">
 			<%-- <a href="#"> <img id="favorite"
@@ -136,11 +158,11 @@
 
 		<ul class="col-xs-4 col-sm-4 col-md-3 col-lg-3 nav navbar-nav">
 
-			<li class="dropdown" style="float: right"><a
-				class="dropdown-toggle" data-toggle="dropdown" href="#">회원목록 <span
-					class="caret"></span>
-			</a>
-				<ul class="dropdown-menu">
+			<li style="float: right">
+			 <a id="menu" class="btn btn-default btn-sm glyphicon glyphicon-align-justify" tabindex="0"
+							role="button" style="color: black" data-toggle="popover" 
+							data-html="true" data-trigger="focus" title="메뉴" data-placement="bottom"></a>
+				<%-- <ul class="dropdown-menu">
 					<%
 						if (memberNum == null || memberNum == "") {
 					%>
@@ -164,11 +186,8 @@
 					<%
 						}
 					%>
-				</ul></li>
+				</ul> --%></li>
 		</ul>
-
-
-
 
 
 		<!-- </div> -->
@@ -214,6 +233,21 @@
 
 				});
 			})
+			
+			navContainerHeight = $('#navContainer').height();
+			
+			$(function(){
+				
+				$(window).on('resize',function(){
+					navContainerHeight=$('#navContainer').height();
+					
+				});
+				
+			});
+			
+			function getHeight(){
+				return navContainerHeight;
+			}
 		</script>
 
 
@@ -224,7 +258,29 @@
 	<!-- /.container-fluid -->
 
 </nav>
-
+		<div style="display : none">
+			<div id="menu_button" class="btn-group-vertical">
+					<%
+						if (memberNum == null || memberNum == "") {
+					%>
+					<a href="<%=request.getContextPath()%>/views/mainPage/login.jsp">로그인</a><br>
+					<a href="<%=request.getContextPath()%>/views/mainPage/signUp.jsp">회원가입</a><br>
+					<%
+						} else if (memberNum.substring(0, 1).equals("A")) {
+					%>
+					<a href="<%=request.getContextPath()%>/logout.me">로그아웃</a><br>
+					<a href="<%=request.getContextPath()%>/firstMain.admin">관리자페이지</a><br>
+					<%
+						} else {
+					%>
+					<a href="<%=request.getContextPath()%>/logout.me">로그아웃</a><br>
+					<a href="<%=request.getContextPath()%>/infoMain.me">마이페이지</a><br>
+					<a href="<%=request.getContextPath()%>/select.bk">장바구니</a><br>
+					<%
+						}
+					%>
+         	</div>
+         </div>
 <br />
 <br />
 <br />

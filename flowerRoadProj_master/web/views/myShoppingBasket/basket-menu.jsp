@@ -99,7 +99,7 @@
         <%@include file="/views/common/header.jsp" %>
    		
        <br><br><br><br><br><br>
-				
+		<input type="hidden" value="<%=member_num%>" id="memberNumber"/>		
 		<input type="hidden" value="<%=excessMsg%>" id="excessMsg"/>
 		<input type="hidden" value="<%=excessName%>" id="excessName"/>
 		
@@ -145,18 +145,18 @@
                     <img src="<%=request.getContextPath() %>/resources/images/product/<%=list.get(i).getImage() %>" class="image img-responsive product-img" alt="">
                		<input type="hidden" class="product-image" value="<%=list.get(i).getImage() %>"/>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-0 bottom-margin"><!--정보칸-->
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-0 bottom-margin"><!--정보칸-->
                 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3 class="product-name"><%=list.get(i).getProduct_name() %></h3></div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br /></div>
                     
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 price-gray">판매가 : </div>
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-md-offset-4 col-lg-offset-4 price-gray product-price align-right"><%=list.get(i).getProduct_price() %>원</div>
-                    
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">합계 : </div>
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-sm-offset-0 col-md-offset-4 col-lg-offset-4 total-price align-right"><%=list.get(i).getProduct_price()*list.get(i).getQuantity() %>원</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 price-gray">판매가 : </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-xs-offset-5 col-sm-offset-5 col-md-offset-4 col-lg-offset-4 price-gray product-price align-right"><%=list.get(i).getProduct_price() %>원</div>
+                   	
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">합계 : </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-xs-offset-5 col-sm-offset-5 col-md-offset-4 col-lg-offset-4 total-price align-right"><%=list.get(i).getProduct_price()*list.get(i).getQuantity() %>원</div>
      
-            </div>
+            	</div>
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-2 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-0 button-group top-margin bottom-margin"><!--버튼칸-->
                     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-8">
                         <input type="number" class="form-control product-number" value="<%=list.get(i).getQuantity() %>" min=1 >
@@ -421,18 +421,36 @@
     $('#pay').on('click',function(){
     	var containMain = false;
     	
+    	//장바구니에 메인상품이 있는지 확인해준다
     	for(var i = 0; i< $('.product-each').length; i++){
     		if(  $('.pCategory').eq(i).val()=='FD' || $('.pCategory').eq(i).val()=='FB' || $('.pCategory').eq(i).val()=='HH'){
     			console.log("메인상품 포함!");
     			containMain = true;
     		}
     	}
+    	
+    	
+    	//장바구니에 아무것도 없을경우
     	if(parseInt($('#finalPrice').text()) == 0){
     		alert('상품을 장바구니에 담은 후 결제해 주세요');
     		location.href="<%=request.getContextPath()%>/select.bk";
+    	//장바구니에 옵션 상품만 있을 경우	
     	}else if(containMain == false){
     		alert('꽃다발, 꽃바구니, 화환등의 메인상품 없이 구매하는 것은 불가능합니다');
-    		location.href="<%=request.getContextPath()%>/select.bk";
+    		//장바구니를 비우는 것이 필요하다
+    		$.ajax({
+    			url: "deleteOnlyOption.bk",
+    			type:"GET",
+    			data:{
+    				memberNumber: $('#memberNumber').val()
+    			},success:function(number){
+					console.log(number+"개의 옵션 상품 삭제");    				
+    			},error: function(){
+    				console.log('장바구니 비우기 실패');
+    			}
+    		});
+    	    	
+    		location.href="<%=request.getContextPath()%>/select.bk";    	   		
     	}else{  
     		alert('주문페이지로 이동합니다');
     		$('#toPayPage').attr('action','<%=request.getContextPath() %>/basketPay.bk').submit();

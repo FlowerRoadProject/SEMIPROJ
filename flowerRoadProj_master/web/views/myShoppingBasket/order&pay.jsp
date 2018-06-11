@@ -113,6 +113,12 @@ Member member = (Member)request.getAttribute("member");
         
         
         <style>
+        	 @media(max-width:1200px){
+        	 	.alignTinMd{
+        	 		text-align: center;
+        	 		border-bottom: 1px gray solid;
+        	 	}
+        	 }
              @media (max-width: 767px){ 
                 .container{
                     width: 750px;
@@ -191,6 +197,9 @@ Member member = (Member)request.getAttribute("member");
     <%@include file="/views/common/header.jsp" %>
     
         <br><br><br><br><br><br>
+        <input type="hidden" value="<%=member.getMemberName()%>" id="mName">
+        <input type="hidden" value="<%=member.getMemberPhone()%>" id="mPhone">
+        
         
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin"><!--상단 진행페이지 구문-->
@@ -205,23 +214,23 @@ Member member = (Member)request.getAttribute("member");
                     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-2 top-margin bottom-margin"> <!--사진 칸-->
                         <img src="<%=request.getContextPath() %>/resources/images/product/<%=list.get(i).getImage() %>" class="image img-responsive" alt="">
                     </div>
-                    <div class="col-xs-10 col-sm-10 col-md-9 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-3 col-lg-offset-0 bottom-margin"><!--정보칸-->
-                        
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 product-name"><h3><%=list.get(i).getProduct_name()%></h3></div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-8 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 bottom-margin"><!--정보칸-->
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><!-- 정렬용 -->
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 product-name alignTinMd"><h3><%=list.get(i).getProduct_name()%></h3></div>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br /></div>
                             
                             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 grayFont">판매가 : </div>
                             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-lg-offset-3 grayFont text-right"><%=list.get(i).getProduct_price()%>원</div>
                            	<br class="col-xs-12 col-sm-12 col-md-12 col-lg-12"/>
                            
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 grayFont">수량 : </div>
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-lg-offset-3 grayFont text-right"><%=list.get(i).getQuantity()%>개</div>                           
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 grayFont">수량 : </div>
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-lg-offset-3 grayFont text-right"><%=list.get(i).getQuantity()%>개</div>                           
                             <div>
                             	<%int totalPrice = list.get(i).getQuantity() * list.get(i).getProduct_price(); %>
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4"><b>합계 : </b></div>
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-lg-offset-3 text-right"><b class="eachPrice"><%=totalPrice %>원</b></div>
                             </div>
-                                                              
+                         </div>                                     
                     </div>
                     <hr class="col-xs-12 col-sm-12 col-md-12 col-lg-12">   
                  </div>
@@ -390,7 +399,7 @@ Member member = (Member)request.getAttribute("member");
                         <h4>이름<span class="red-star">*</span></h4>
                     </div>
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                        <input type="text" class="col-lg-12 form-control input-text-yellow input-text-height1" placeholder="이름을 입력해주세요" aria-describedby="basic-addon1" id="inputName" value="<%=member.getMemberName()%>">
+                        <input type="text" class="col-lg-12 form-control input-text-yellow input-text-height1" placeholder="이름을 입력해주세요" aria-describedby="basic-addon1" id="inputName" value="">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin">
@@ -398,9 +407,18 @@ Member member = (Member)request.getAttribute("member");
                         <h4>전화번호<span class="red-star">*</span></h4>
                     </div>
                     <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                        <input type="text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-control input-text-yellow input-text-height1" placeholder="000-0000-0000" aria-describedby="basic-addon1" id="inputPhone" value="<%=member.getMemberPhone()%>">
+                        <input type="text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-control input-text-yellow input-text-height1" placeholder="-없이 입력해주세요" aria-describedby="basic-addon1" id="inputPhone" value="">
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <button class="btn btn-primary" id="sameBtn">주문자와 동일</button>
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                         <h4 style="color:lightgray">클릭하실 경우 회원님의 정보대로 이름과 전화번호가 입력됩니다</h4>
+                    </div>
+                </div>                
+                
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                         <input type="checkbox" id="anonymity" value="Y">&nbsp;&nbsp;<label for="anonymity"><h4>익명발송</h4></label><!--익명발송 hover할경우 설명문구 뜨면 좋겠다-->
@@ -422,7 +440,13 @@ Member member = (Member)request.getAttribute("member");
     			$('#anony').val('N');
     			console.log($('#anony').val());
     		}
-    	});		
+    	});
+    	$('#sameBtn').on('click',function(){
+    		$('#inputName').val($('#mName').val());
+    		$('#inputPhone').val($('#mPhone').val());
+    	});
+    	
+    	
 		</script>
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin">
@@ -566,24 +590,17 @@ Member member = (Member)request.getAttribute("member");
                 <h4><b class="col-xs-3 col-sm-3 col-md-3">결제수단</b></h4>
                 <hr class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background: black;">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pay-select">                      
-                    <button type="button" class="btn btn-default btn-lg bottom-margin col-sm-10 col-md-8 col-lg-10" value="신용카드">신용/체크카드 결제</button><br><br /><br />
-                    <button type="button" class="btn btn-default btn-lg bottom-margin col-sm-10 col-md-8 col-lg-10" value="페이팔">페이팔</button><br><br /><br />
-                    <button type="button" class="btn btn-default btn-lg bottom-margin col-sm-10 col-md-8 col-lg-10" value="카카오페이">카카오페이</button><br><br /><br />
+                    <button type="button" class="btn btn-default btn-lg bottom-margin col-xs-10 col-sm-10 col-md-8 col-lg-10" value="신용카드">신용/체크카드 결제</button><br><br /><br />
+                    <button type="button" class="btn btn-default btn-lg bottom-margin col-xs-10 col-sm-10 col-md-8 col-lg-10" value="페이팔">페이팔</button><br><br /><br />
+                    <button type="button" class="btn btn-default btn-lg bottom-margin col-xs-10 col-sm-10 col-md-8 col-lg-10" value="카카오페이">카카오페이</button><br><br /><br />
                 </div>
             </div>    
         </div>
          
-        <script>       	
-        	$(function(){
-        		console.log("버튼색깔..: "+$('#payingMe').css('background'));
-        	})
+        <script>
         
-        
-        
-        	$('.pay-select .btn').on('click',function(){
-        		console.log($(this).val());
-        		$('#payMethod').val($(this).val());
-        		
+        	$('.pay-select .btn').on('click',function(){        		
+        		$('#payMethod').val($(this).val());        		
         		for(var i =0; i<$('.pay-select .btn').length; i++){
         			if($('.pay-select .btn').eq(i).val() == $('#payMethod').val()){
         				$('.pay-select .btn').eq(i).css({
@@ -628,36 +645,36 @@ Member member = (Member)request.getAttribute("member");
                         </div>                       
                     </div>
                    <!-- 쿠폰창을 만들자 -->
-                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 coupon bottom-margin">
-                    	<div class="col-lg-12 couponInfo">
-                    		<div class="col-lg-4">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 coupon bottom-margin">
+                    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 couponInfo">
+                    		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                     			쿠폰이름
                     		</div>
-                    		<div class="col-lg-3">
+                    		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     			할인가격
                     		</div>
-                    		<div class="col-lg-3">
+                    		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                     			유효기간
                     		</div>
-                    		<div class="col-lg-2">
+                    		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                     			사용하기                    			
                     		</div>
-                    		<hr class="col-lg-12"/>
+                    		<hr class="col-xs-12 col-sm-12 col-md-12 col-lg-12"/>
                     	</div>
                     	<%if(cList.size() == 0){ %>
-                    		<div class="col-lg-12" align="center">보유중인 쿠폰이 없습니다.</div>
+                    		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" align="center">보유중인 쿠폰이 없습니다.</div>
                     	<%}else{ %>
                     	
                     	<%for(int i= 0 ;i < cList.size();i++){ %>   
-                    	<div class="col-lg-12 couponList">
+                    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 couponList">
                     		<input type="hidden" class="dNum" value="<%=cList.get(i).getDistNum() %>" />
-                    		<div class="col-lg-4 cName"><%=cList.get(i).getCouponName() %></div>
-                    		<div class="col-lg-3 cDiscount"><%=cList.get(i).getAmount() %>원</div>
-                    		<div class="col-lg-3"><%=cList.get(i).getExpiration() %>일</div> 
-                    		<div class="col-lg-2 use">
+                    		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 cName"><%=cList.get(i).getCouponName() %></div>
+                    		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 cDiscount"><%=cList.get(i).getAmount() %>원</div>
+                    		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><%=cList.get(i).getExpiration() %>일</div> 
+                    		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 use">
                     			<button class="btn btn-primary btn-xs coupon-btn">사용하기</button>
                     		</div> 
-                    		<div class="col-lg-2 cancle">
+                    		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 cancle">
                     			<button class="btn btn-danger btn-xs coupon-cancle" style="display:none">취소하기</button>
                     		</div>     
                     	</div>
@@ -730,7 +747,7 @@ Member member = (Member)request.getAttribute("member");
                             <h4 id="dvPrice">0원</h4>
                         </div>         
                     </div>
-                    <hr class="col-xs-12 col-sm-12 col-md-8 col-lg-8" style="background:black;">
+                    <hr class="col-xs-12 col-sm-12 col-md-12 col-lg-8" style="background:black;">
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bottom-margin">
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                             <h3>총금액</h3>                            
@@ -760,8 +777,8 @@ Member member = (Member)request.getAttribute("member");
                     	 <input type="hidden" name="payMethod" id="payMethod" value=""/>
                     	 <input type="hidden" name="isCouponUsed" id="isCouponUsed" value=""/>
                     		
-                    		<button type="button" class="btn btn-primary btn-lg bottom-margin col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="payingMe">결제하기</button><br><br /><br />
-                    		<button type="button" class="btn btn-primary btn-lg bottom-margin col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="canclePay">취소하기</button><br> <br /><br />
+                    		<button type="button" class="btn btn-primary btn-lg bottom-margin col-xs-8 col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="payingMe">결제하기</button><br><br /><br />
+                    		<button type="button" class="btn btn-primary btn-lg bottom-margin col-xs-8 col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-1 col-lg-offset-1" id="canclePay">취소하기</button><br> <br /><br />
                 			
                 		</form>
                 	</div>

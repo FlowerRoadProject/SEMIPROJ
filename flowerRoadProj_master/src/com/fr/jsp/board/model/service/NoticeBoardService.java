@@ -31,29 +31,18 @@ public class NoticeBoardService {
 		NoticeBoard notice = new NoticeBoardDao().showContent(con, bNum);
 		close(con);
 		return notice;
-	}
+	}	 
 
-	 public int updateContent(int bNum, String bTitle, String bContent){
-		 int result = 0;
-		 result = new NoticeBoardDao().updateContent(con, bNum, bTitle, bContent);
-		 
-		 if(result >0) commit(con);
-		 else rollback(con);
-		 
-		 close(con);
-		 return result;
-		 
-		 
-	 }
-	 
-	 public int deleteNotice(int bNum){
-		 int result = new NoticeBoardDao().deleteNotice(con, bNum);
-		 
-		 if(result >0) commit(con);
-		 else rollback(con);
-		 
-		 close(con);
-		 return result;
-	 }
+	public int updateCount(int bNum) {
+		Connection con = getConnection();
+		int result = new NoticeBoardDao().updateCount(con, bNum);
+		
+		if(result >0) commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
 
 }

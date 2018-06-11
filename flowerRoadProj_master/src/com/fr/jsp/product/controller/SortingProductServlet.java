@@ -36,30 +36,29 @@ public class SortingProductServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		PageInfo pi = new PageInfo();
-		ArrayList<ProductSimple> sessionList = (ArrayList<ProductSimple>)session.getAttribute("list");
+		ArrayList<ProductSimple> currList = (ArrayList<ProductSimple>)session.getAttribute("list");
 		ArrayList<ProductSimple> pagedList = new ArrayList<ProductSimple>();
 		String order = null;
 		String page ="";
+		int listSize =0;
 		
 		order  =request.getParameter("order");
 		if(order==null)
 			order="none";
 		ProductService ps = new ProductService();
 		
-		if(!order.equals("none")){
+		if(!order.equals("none")&&currList!=null){
 			
-			sessionList = ps.getOrderdProductList(sessionList, order);
+			currList = ps.getOrderdProductList(currList, order);
+			listSize= currList.size();
 		}
-		
-		int listSize = sessionList.size();
-		
 		
 		pi = new PageInfo(1,listSize,9);
 		
 		int loopEnd = listSize-1<pi.getEndRow()-1?listSize-1:pi.getEndRow()-1;
 		
 		for(int i=pi.getStartRow()-1;i<loopEnd+1;++i){
-			pagedList.add(sessionList.get(i));
+			pagedList.add(currList.get(i));
 		}
 	
 		

@@ -49,10 +49,7 @@ public class OrderMyProductServlet extends HttpServlet {
       
       //받는사람의 정보
       
-      String dt = request.getParameter("orderDate");   
-      
-      System.out.println(dt);
-      
+      String dt = request.getParameter("orderDate");        
       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd kk:mm");
       
       Date parsed = null;      
@@ -61,15 +58,13 @@ public class OrderMyProductServlet extends HttpServlet {
       } catch (ParseException e) {
          e.printStackTrace();
       }
-      java.sql.Timestamp orderDate = new java.sql.Timestamp(parsed.getTime());
-      
+      java.sql.Timestamp orderDate = new java.sql.Timestamp(parsed.getTime());      
                   
       String receiver = request.getParameter("receiver");
       String receiveAddress = request.getParameter("receiveAddress");
       String receivePhone = request.getParameter("receivePhone");
       String memo = request.getParameter("deliveryMemo");
-      String anony = request.getParameter("anony");
-      System.out.println("order에서 메모: "+memo);
+      String anony = request.getParameter("anony");   
          
       ArrayList<Order> list = new ArrayList<Order>();
       ArrayList<Basket> bList = new ArrayList<Basket>();      
@@ -83,10 +78,21 @@ public class OrderMyProductServlet extends HttpServlet {
          bk = new Basket(productNum[i], Integer.parseInt(quantity[i]), Integer.parseInt(price[i]), productName[i], image[i]);
          bList.add(bk);
       }         
-                        
-      request.setAttribute("list",list);
-      request.setAttribute("bList", bList);
-      request.getRequestDispatcher("views/order/confirmOrder.jsp").forward(request, response);
+      
+      String page = "";
+      if(member_num == null){
+    	  page="views/common/errorPage.jsp";
+    	  request.setAttribute("msg", "회원정보를 불러올수 없습니다");
+      }else if(list == null || bList == null){
+    	  page="views/common/errorPage.jsp";
+    	  request.setAttribute("msg", "결제정보를 불러올 수 없습니다");     
+      }else{
+    	  page = "views/order/confirmOrder.jsp";
+    	  request.setAttribute("list",list);
+          request.setAttribute("bList", bList);
+      }      
+      request.getRequestDispatcher(page).forward(request, response);
+     
       
       
    }

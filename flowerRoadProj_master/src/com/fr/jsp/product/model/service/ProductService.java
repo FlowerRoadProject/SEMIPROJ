@@ -219,7 +219,7 @@ public class ProductService {
 	
 	public ArrayList<ProductSimple> getTopSellingProduct(int index) {
 		
-		con = getConnection();
+		
 		ArrayList<ProductSimple> result =new ArrayList<ProductSimple>();
 		
 		
@@ -262,6 +262,26 @@ public class ProductService {
 	// Connection close Method
 		public void closeCon() {
 			close(con);
+		}
+
+		public ArrayList<ProductSimple> getMostViewedProduct() {
+			
+			
+			con = getConnection();
+			ArrayList<ProductSimple> result = pDao.getMostViewedProduct(con);
+			return result;
+		}
+
+		public int insertProductCheck(String memberNum,String productNum) {
+			con = getConnection();
+			
+			int result = pDao.insertProductCheck(con,memberNum,productNum);
+			
+			if(result>0) commit(con);
+			else rollback(con);
+			
+			return result;
+			
 		}
 
 		
