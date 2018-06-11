@@ -43,7 +43,7 @@
     }
     .access #accessTermsText{
 		margin: 3em;		
-		max-height: calc(70% - 100px);
+		max-height: calc(100% - 100px);
     	overflow-y: scroll;
 	}
 	.mClose{
