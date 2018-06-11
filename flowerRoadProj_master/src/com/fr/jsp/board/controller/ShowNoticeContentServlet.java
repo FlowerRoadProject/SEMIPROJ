@@ -31,20 +31,35 @@ public class ShowNoticeContentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int bNum = Integer.parseInt(request.getParameter("bNum"));		
-		
+		String page = "";
+		int bNum = 0;
+		if(request.getParameter("bNum") == null){
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시글의 정보를 읽어오지 못했습니다");
+			request.getRequestDispatcher(page).forward(request, response);	
+		}else{
+			bNum = Integer.parseInt(request.getParameter("bNum"));	
+		}
 		
 		NoticeBoardService nService = new NoticeBoardService();
-		//공지사항의 내용을 보여준다
-		NoticeBoard notice = nService.showContent(bNum);
+		
 		
 		//공지사항글의 조회수를 늘린다
 		int count = nService.updateCount(bNum);
 		if(count >0) System.out.println("조회수 1증가");
-		else System.out.println("조회수 안올라감..");
+		else System.out.println("조회수 안올라감..");	
 		
-		request.setAttribute("notice", notice);
-		request.getRequestDispatcher("/views/notice/noticeContent.jsp").forward(request, response);	
+		//공지사항의 내용을 보여준다		
+		NoticeBoard notice = nService.showContent(bNum);	
+		if(notice != null){
+			page= "/views/notice/noticeContent.jsp";
+			request.setAttribute("notice", notice);			
+		}else{
+			page = "views/common/errorPage.jsp";
+			request.setAttribute("msg", "게시글의 정보를 읽어오지 못했습니다");
+		}
+		
+		request.getRequestDispatcher(page).forward(request, response);	
 	}
 
 	/**

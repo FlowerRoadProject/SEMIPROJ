@@ -312,5 +312,15 @@ public class MemberService {
 		return clist;
 		
 	}
+	// 비밀번호 재확인
+	public int pwdRecheck(String num, String pwd) {
+		Connection con = getConnection();
+		
+		int result = mDao.pwdRecheck(con, num, pwd);
+		
+		close(con);
+		
+		return result;
+	}
 
 }

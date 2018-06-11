@@ -37,7 +37,7 @@ public class BasketSelectServlet extends HttpServlet {
 		String member_num = (String)session.getAttribute("memberNum");
 		session.setAttribute("member_num", member_num);	
 		
-		System.out.println("서블릿에서 멤버넘버 받은 것: "+member_num);
+		
 		
 		ArrayList<Basket> list = new BasketService().selectBasket(member_num);
 		ArrayList<Basket> oList = new BasketService().selectOption();				
@@ -45,13 +45,12 @@ public class BasketSelectServlet extends HttpServlet {
 		//재고보다 많이 들어온 상품은 장바구니에서 제거하기			
 		Basket excess = new BasketService().selectExcess(member_num);
 		String excessRemoveMsg = "none";
-		String excessPName = "none";
-		System.out.println("excess: "+excess);		
+		String excessPName = "none";		
+		
 		if(excess != null){
 			int remove = new BasketService().deleteBasket(excess.getProduct_num());			
 			excessRemoveMsg = remove+"개의 상품이 재고가 부족해 장바구니에서 제거되었습니다.";
-			excessPName = "재고부족 상품 : "+excess.getProduct_name();
-			System.out.println(remove+"개의 물량초과 상품이 제거됨");
+			excessPName = "재고부족 상품 : "+excess.getProduct_name();			
 		}
 		
 			
@@ -67,6 +66,9 @@ public class BasketSelectServlet extends HttpServlet {
 			request.setAttribute("oList", oList);
 			request.setAttribute("excessRemoveMsg", excessRemoveMsg);
 			request.setAttribute("excessPName", excessPName);
+		}else if(member_num == null){
+			page="/views/common/errorPage.jsp";
+			request.setAttribute("msg", "회원정보를 불러오지 못했습니다");
 		}else{
 			page="/views/common/errorPage.jsp";
 			request.setAttribute("msg", "장바구니 조회에 실패했습니다");
