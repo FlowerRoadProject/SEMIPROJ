@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.member.model.vo.MemberBoard;
+import com.fr.jsp.member.model.vo.MemberCoupon;
 import com.fr.jsp.product.model.vo.ProductFavorite;
 
 public class MemberDao {
@@ -719,6 +720,44 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return resultBoard;
+	}
+	public ArrayList<MemberCoupon> memberCoupon(Connection con, String num) {
+		PreparedStatement pstmt =null;
+		ResultSet rset = null;
+		ArrayList<MemberCoupon> clist = null;
+		
+		String query = prop.getProperty("memberCoupon");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			rset = pstmt.executeQuery();
+
+			clist = new ArrayList<MemberCoupon>();
+			
+			while(rset.next()){
+				MemberCoupon mc = new MemberCoupon();
+				
+				mc.setDistNum(rset.getInt(1));
+				mc.setCouponCode(rset.getString(2));
+				mc.setIssueDate(rset.getDate(3));
+				mc.setIsUsed(rset.getString(4));
+				
+				clist.add(mc);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return clist;
 	}
 
 }
