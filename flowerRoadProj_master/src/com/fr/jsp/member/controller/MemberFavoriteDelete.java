@@ -33,7 +33,6 @@ public class MemberFavoriteDelete extends HttpServlet {
 		if(result != 0){
 			response.sendRedirect("favorite.me");
 		}
-		System.out.println("result값:"+result);
 		//new Gson().toJson(result, response.getWriter());
 	}
 

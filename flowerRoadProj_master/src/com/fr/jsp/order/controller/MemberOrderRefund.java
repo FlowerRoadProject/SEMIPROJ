@@ -1,4 +1,4 @@
-package com.fr.jsp.member.controller;
+package com.fr.jsp.order.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,14 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fr.jsp.member.model.service.MemberService;
-import com.fr.jsp.member.model.vo.Member;
+import com.fr.jsp.order.model.service.OrderService;
 
-@WebServlet("/infoModi.me")
-public class MemberInfoUpdate extends HttpServlet {
+@WebServlet("/orderRefund.or")
+public class MemberOrderRefund extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
-    public MemberInfoUpdate() {
+   
+    public MemberOrderRefund() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -23,24 +22,17 @@ public class MemberInfoUpdate extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		String email = request.getParameter("email");
-		String addr[] = request.getParameter("addr").split("/");
-		String phone = request.getParameter("phone");
 		
-		Member m = (Member)session.getAttribute("m");
-		m.setMemberEmail(email);
-		m.setMemberAddress(addr[0]+"/"+addr[1]+"/"+addr[2]);
-		m.setMemberPhone(phone);
+		String num = (String)session.getAttribute("memberNum");
+		String onum = (String)request.getParameter("onum");
+		OrderService os = new OrderService();
 		
-		MemberService ms = new MemberService();
-		
-		if(ms.memberUpdate(m) != 0){
-			response.sendRedirect("views/myPage/myPage_main.jsp");
-		}else{
-			response.sendRedirect("views/common/errorPage.jsp");
+		if(os.orderRefund(num, onum) != 0){
+			response.sendRedirect("orderChk.or");
 		}
 		
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

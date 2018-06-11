@@ -143,6 +143,16 @@ public class BasketService {
 		close(con);
 		return excessProduct;
 	}
+
+
+
+	public int deleteOnlyOption(String memberNum) {
+		Connection con = getConnection();
+		int result = new BasketDao().deleteOnlyOption(con, memberNum);
+		close(con);
+		
+		return result;
+	}
 	
 	
 }

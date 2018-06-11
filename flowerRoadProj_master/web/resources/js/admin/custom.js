@@ -2091,12 +2091,13 @@ if (typeof NProgress != 'undefined') {
 	
 	
 //주문/배송조회
+var stateCode = null;
 $('.deliveryTable>tbody>tr').on({
     'click':function(){
         var orderNum = $(this).children().eq(0).text();
         var memberNum = $(this).children().eq(1).text();
         var productNum = $(this).children().eq(2).text();
-        var stateCode = $(this).children().eq(4).text();
+        stateCode = $(this).children().eq(4).text();
         $('.orderCheck>tbody>tr').children().eq(0).text(orderNum);
         $('.orderCheck>tbody>tr').children().eq(1).text(memberNum);
         $('.orderCheck>tbody>tr').children().eq(2).text(productNum);
@@ -4789,7 +4790,12 @@ $('#refundOrder').on({
 	'click':function(){
 		if($('.ONum').text()==""){
 			alert("주문번호가 없어~");
+		}else if(stateCode=="구매 확정"){
+			alert("구매 확정한 거 잖아~");
+		}else if(stateCode=="구매 취소"){
+			alert("이미 취소 했어~");
 		}else{
+			console.log(stateCode);
 			var refundCheck = confirm("꼭 이래야만 하니?");
 			if(refundCheck){
 				$.ajax({

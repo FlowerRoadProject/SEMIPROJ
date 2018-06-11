@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "com.fr.jsp.member.model.vo.*"%>
+    pageEncoding="UTF-8" import = "com.fr.jsp.member.model.vo.*,
+    						java.util.*"%>
 <%
 	Member m = (Member)session.getAttribute("m");
 	String addrArr[] = m.getMemberAddress().split("/");
@@ -20,6 +21,7 @@
     <body>
     
     	<%@ include file="/views/common/header.jsp" %>
+    	<%@ include file="/views/myPage/couponModal.jsp" %>
         
         <!-- 마이페이지 카테고리  -->
         <br><br><br><br><br><br><br><br><br><br>
@@ -53,7 +55,13 @@
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>이름</b></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
-					<%= m.getMemberName() %></p></div> <br><br><br>
+					<%= m.getMemberName() %></p></div>
+					<div class="col-sm-2 col-md-2 col-lg-2">
+					<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+					  쿠폰 확인하기</button>
+					</div>
+					<div class="col-sm-2 col-md-2 col-lg-2"></div> 
+					<br><br><br>
 
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>이메일</b></div>
@@ -64,9 +72,10 @@
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>주소</b></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                    <% if(addrArr != null) { %>
                     <div class="col-sm-3 col-md-3 col-lg-3"><p class="text-muted" style="font-weight:bold;">
-					<%= addrArr[0]+" "+addrArr[1]+" "+addrArr[2] %></p></div> <br><br><br>
-			
+					<%= addrArr[0]+" "+addrArr[1]+" "+addrArr[2] %></p></div><% } %> <br><br><br>
+					
 
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>전화번호</b></div>
@@ -87,20 +96,21 @@
         <div class="container-fluid">
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <button id="pwd" onclick="pwd();"><b>비밀번호 변경</b></button>
+                <button class="blueBtn btn btn-Primary" id="pwd" onclick="pwd();"><b>비밀번호 변경</b></button>
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-            <button id="modify" onclick="modify();"><b>정보 수정</b></button>
+            <button class="blueBtn btn btn-Primary" id="modify" onclick="modify();"><b>정보 수정</b></button>
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-            <button id="withdrawal" onclick="withdrawal();"><b>회원 탈퇴</b></button>
+            <button class="blueBtn btn btn-Primary" id="withdrawal" onclick="withdrawal();"><b>회원 탈퇴</b></button>
             </div>
         </div>
         
-        
-        
+       
         <%@ include file="/views/common/footer.jsp" %>
+        
+        
     </body>
 </html>

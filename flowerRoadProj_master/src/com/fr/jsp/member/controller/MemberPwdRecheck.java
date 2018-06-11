@@ -9,36 +9,35 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fr.jsp.member.model.service.MemberService;
-import com.fr.jsp.member.model.vo.Member;
 
-@WebServlet("/infoModi.me")
-public class MemberInfoUpdate extends HttpServlet {
+@WebServlet("/pwdRechk.me")
+public class MemberPwdRecheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
-    public MemberInfoUpdate() {
+
+    public MemberPwdRecheck() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		String email = request.getParameter("email");
-		String addr[] = request.getParameter("addr").split("/");
-		String phone = request.getParameter("phone");
 		
-		Member m = (Member)session.getAttribute("m");
-		m.setMemberEmail(email);
-		m.setMemberAddress(addr[0]+"/"+addr[1]+"/"+addr[2]);
-		m.setMemberPhone(phone);
+		String num = (String)session.getAttribute("memberNum");
+		String pwd = (String)request.getParameter("pwd");
+		int sel = Integer.parseInt(request.getParameter("sel"));
 		
-		MemberService ms = new MemberService();
+		int result = new MemberService().pwdRecheck(num, pwd);
 		
-		if(ms.memberUpdate(m) != 0){
-			response.sendRedirect("views/myPage/myPage_main.jsp");
-		}else{
+		if(result != 0){
+			switch(sel){
+			case 1 : response.sendRedirect("views/myPage/myPage_pwdChange.jsp"); break;
+			case 2 : response.sendRedirect("views/myPage/myPage_infoModify.jsp"); break;
+			case 3 : response.sendRedirect("views/myPage/myPage_memberWithdrawal.jsp"); break;
+			} 
+		} else {
 			response.sendRedirect("views/common/errorPage.jsp");
 		}
+		
 		
 	}
 

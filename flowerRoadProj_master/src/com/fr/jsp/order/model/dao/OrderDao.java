@@ -67,7 +67,7 @@ public class OrderDao {
 		
 		return result;
 	}
-	  
+
 	public ArrayList<MyPage_Order> orderChk(Connection con, String num, int currentPage, int limit) {
 
 		ArrayList<MyPage_Order> list = null;
@@ -187,7 +187,7 @@ public class OrderDao {
 		
 		return result;
 	}
-
+	// 주문조회 - 검색
 	public ArrayList<MyPage_Order> orderChkSearch(Connection con, String num, int currentPage, int limit,
 			String start, String end) {
 		ArrayList<MyPage_Order> list = null;
@@ -267,6 +267,26 @@ public class OrderDao {
 		}
 		return result;
 	}
+	// 환불
+	public int orderRefund(Connection con, String num, String onum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("orderRefund");
+		try{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			pstmt.setString(2, onum);
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		System.out.println(result);
+		return result;
+	}
 	
-	
+
 }

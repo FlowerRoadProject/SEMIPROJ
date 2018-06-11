@@ -1,4 +1,4 @@
-package com.fr.jsp.board.controller;
+package com.fr.jsp.myShoppingBasket.controller;
 
 import java.io.IOException;
 
@@ -7,22 +7,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.fr.jsp.board.model.service.NoticeBoardService;
-import com.fr.jsp.board.model.vo.NoticeBoard;
+import com.fr.jsp.myShoppingBasket.model.service.BasketService;
+import com.google.gson.Gson;
 
 /**
- * Servlet implementation class SendToUpdateServlet
+ * Servlet implementation class DeleteOnlyOptionServlet
  */
-@WebServlet("/sendUpdate.no")
-public class SendToUpdateServlet extends HttpServlet {
+@WebServlet("/deleteOnlyOption.bk")
+public class DeleteOnlyOptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SendToUpdateServlet() {
+    public DeleteOnlyOptionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +30,11 @@ public class SendToUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int bNum = Integer.parseInt(request.getParameter("bNum"));
-	
+		String memberNum = request.getParameter("memberNumber");
 		
-		NoticeBoard notice = new NoticeBoardService().showContent(bNum);
+		int result = new BasketService().deleteOnlyOption(memberNum);
 		
-		request.setAttribute("notice", notice);
-		request.getRequestDispatcher("/views/notice/updateNotice.jsp").forward(request, response);
+		new Gson().toJson(result, response.getWriter());
 	}
 
 	/**

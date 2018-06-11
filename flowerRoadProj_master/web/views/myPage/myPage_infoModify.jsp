@@ -109,10 +109,10 @@
         <div class="container-fluid">
             <div class="col-sm-4 col-md-4 col-lg-4"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <button id="modify" onclick="modiComplete();"><b>수정하기</b></button>
+                <button class="blueBtn btn btn-primary" id="modify" onclick="modiComplete();"><b>수정하기</b></button>
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <button class="grayBtn" id="cancel" onclick="cancle();"><b>변경 취소</b></button>
+                <button class="grayBtn btn" id="cancel" onclick="cancle();"><b>변경 취소</b></button>
            		 </div>
                 <div class="col-sm-4 col-md-4 col-lg-4"></div>
         </div>
@@ -162,6 +162,10 @@
 					}
 				}).open();
 			}
+	        
+	        function cancle(){
+	    		location.href = "<%= request.getContextPath() %>/views/myPage/myPage_main.jsp"
+	    	}
         
         	function modiComplete(){
     	    	var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);//이메일 정규식
@@ -187,7 +191,7 @@
 	            	alert("전화번호를 확인해주세요!");
 	            	$('#tel1').focus();
 	            } else {
-	            	var cf = confirm("비밀번호를 변경하시겠습니까??");
+	            	var cf = confirm("정보를 변경하시겠습니까??");
         			if(cf == true)
         			location.href = "<%= request.getContextPath()%>/infoModi.me?email="+email+"&addr="+addr+"&phone="+phone; 
 	            }
