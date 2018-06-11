@@ -61,7 +61,7 @@
 	</div>
 	<div>
 		<div class="info">
-
+			<% if(list.size() != 0) { %>
 			<br>
 			 <div class="col-md-4">
 				<div class="input-group date col-md-12" data-provide="datepicker">
@@ -124,7 +124,13 @@
 					}
 				%>
 			</table>
-
+						<% } else { %>
+                     	<div class="container-fluid">
+                     		<div class="col-sm-1 col-md-1 col-lg-1"></div>
+                     		<div class="col-sm-8 col-md-8 col-lg-8 noneFavorite">== 현재 주문하신 상품이 없습니다. ==</div>
+                     		<div class="col-sm-3 col-md-3 col-lg-3"></div>
+                     	</div>
+                     	<% } %>
 		</div>
 	</div>
 

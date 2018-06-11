@@ -36,7 +36,8 @@ public class OnetoOneBoard extends HttpServlet {
 			page = "/views/myPage/1on1Page_board.jsp";
 			request.setAttribute("mblist", list);
 		} else {
-			System.out.println("실패");
+			page = "/views/myPage/1on1Page_board.jsp";
+			request.setAttribute("mblist", list);
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 		
