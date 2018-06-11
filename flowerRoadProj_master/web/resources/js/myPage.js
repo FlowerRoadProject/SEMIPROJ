@@ -2,30 +2,32 @@
 function pwd(){
 	var sel = 1;
 	var pwd = prompt("비밀번호를 입력해주세요");
-	if(pwd == null || pwd != true) {
+	alert(pwd);
+	if(pwd == null || pwd == "") {
 		location.reload();
 	} else {
-    location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
+		location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
 	}
+    
 }
 // 정보 수정
 function modify(){
 	var sel = 2;
 	var pwd = prompt("비밀번호를 입력해주세요");
-	if(pwd == null || pwd != true) {
+	if(pwd == null || pwd == "") {
 		location.reload();
 	} else {
-    location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
+		location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
 	}
 }
 // 탈퇴 하기
 function withdrawal(){
 	var sel = 3;
 	var pwd = prompt("비밀번호를 입력해주세요");
-	if(pwd == null || pwd != true) {
+	if(pwd == null || pwd == "") {
 		location.reload();
 	} else {
-    location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
+		location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
 	}
 }
 // 카테고리-내 정보
