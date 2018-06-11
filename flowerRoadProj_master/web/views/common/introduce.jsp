@@ -272,7 +272,7 @@
 				$flower.attr('src',arrCSH[2]);
 				$fName.text(arrCSH[3]);
 				$fLang.text(arrCSH[4]);
-			}
+			}  
 			if($(this).text() == '한영두'){
 				$intro.text(arrHYD[0]);
 				$adName.text(arrHYD[1]);
