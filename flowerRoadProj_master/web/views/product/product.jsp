@@ -146,19 +146,19 @@ textarea{
 	font-size:2em;
 }
 
-.navbar-collapse.collapse {
+#mNavbar .navbar-collapse.collapse {
   display: block!important;
 }
 
-.navbar-nav>li, .navbar-nav {
+#mNavbar .navbar-nav>li, .navbar-nav {
   float: left !important;
 }
 
-.navbar-nav.navbar-right:last-child {
+#mNavbar .navbar-nav.navbar-right:last-child {
   margin-right: -15px !important;
 }
 
-.navbar-right {
+#mNavbar .navbar-right {
   float: right!important;
 }
 
@@ -782,7 +782,7 @@ textarea{
 							id="addFavBtn" onclick="addToFavorite('<%=p.getProductNum()%>');"></button>
 						
 						<a id="share" class="btn btn-default btn-sm glyphicon glyphicon-share" tabindex="0"
-							role="button" style="color: black"  data-toggle="popover" data-html="true" data-trigger="click"title="공유" data-placement="top"></a>
+							role="button" style="color: black" data-toggle="popover" data-html="true" data-trigger="click"title="공유" data-placement="top"></a>
 						
 						<a id="product_info"  tabindex="0"
 							class="btn btn-sm btn-default glyphicon glyphicon-question-sign"
