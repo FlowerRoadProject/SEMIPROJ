@@ -358,5 +358,25 @@ public class BasketDao {
 		
 		
 	}
+
+
+	public int deleteOnlyOption(Connection con, String memberNum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("deleteOnlyOption");
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberNum);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 }

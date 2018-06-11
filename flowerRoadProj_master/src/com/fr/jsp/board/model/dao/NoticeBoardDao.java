@@ -171,5 +171,23 @@ public class NoticeBoardDao {
 		
 		return result;
 	}
+
+	public int updateCount(Connection con, int bNum) {
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updateCount");
+		int result = 0;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, bNum);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		}finally{
+			close(pstmt);			
+		}
+		
+		return result;
+	}
 	
 }

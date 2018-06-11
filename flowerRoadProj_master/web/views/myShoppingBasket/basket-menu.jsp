@@ -99,7 +99,7 @@
         <%@include file="/views/common/header.jsp" %>
    		
        <br><br><br><br><br><br>
-				
+		<input type="hidden" value="<%=member_num%>" id="memberNumber"/>		
 		<input type="hidden" value="<%=excessMsg%>" id="excessMsg"/>
 		<input type="hidden" value="<%=excessName%>" id="excessName"/>
 		
@@ -421,18 +421,36 @@
     $('#pay').on('click',function(){
     	var containMain = false;
     	
+    	//장바구니에 메인상품이 있는지 확인해준다
     	for(var i = 0; i< $('.product-each').length; i++){
     		if(  $('.pCategory').eq(i).val()=='FD' || $('.pCategory').eq(i).val()=='FB' || $('.pCategory').eq(i).val()=='HH'){
     			console.log("메인상품 포함!");
     			containMain = true;
     		}
     	}
+    	
+    	
+    	//장바구니에 아무것도 없을경우
     	if(parseInt($('#finalPrice').text()) == 0){
     		alert('상품을 장바구니에 담은 후 결제해 주세요');
     		location.href="<%=request.getContextPath()%>/select.bk";
+    	//장바구니에 옵션 상품만 있을 경우	
     	}else if(containMain == false){
     		alert('꽃다발, 꽃바구니, 화환등의 메인상품 없이 구매하는 것은 불가능합니다');
-    		location.href="<%=request.getContextPath()%>/select.bk";
+    		//장바구니를 비우는 것이 필요하다
+    		$.ajax({
+    			url: "deleteOnlyOption.bk",
+    			type:"GET",
+    			data:{
+    				memberNumber: $('#memberNumber').val()
+    			},success:function(number){
+					console.log(number+"개의 옵션 상품 삭제");    				
+    			},error: function(){
+    				console.log('장바구니 비우기 실패');
+    			}
+    		});
+    	    	
+    		location.href="<%=request.getContextPath()%>/select.bk";    	   		
     	}else{  
     		alert('주문페이지로 이동합니다');
     		$('#toPayPage').attr('action','<%=request.getContextPath() %>/basketPay.bk').submit();

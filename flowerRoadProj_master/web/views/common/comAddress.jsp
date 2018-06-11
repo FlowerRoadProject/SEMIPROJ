@@ -91,7 +91,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="loc">location</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="loc">Location</div>
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
 		</div>			
 		<img src="<%=request.getContextPath()%>/resources/images/footerMenu/roadSign2.jpg" 
