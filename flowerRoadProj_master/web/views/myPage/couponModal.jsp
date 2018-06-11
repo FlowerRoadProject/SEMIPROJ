@@ -28,6 +28,7 @@
         						$('#modalT').append("<td>"+ couponJson[o].couponCode+"</td>");
         						$('#modalT').append("<td> ~ "+ couponJson[o].issueDate+"</td>");
         						$('#modalT').append("</tr>");
+        						
         					}
         				}
         			 });
@@ -52,15 +53,7 @@
 		                                <th>사용기간</th>
 		                                <th></th>
 		                            </tr> 
-		                            <%--  <% int i = clist.size(); 
-		                            for(int j = 0; j < clist.size(); j++) {  
-		                            	if(!clist.get(j).getIsUsed().equals("N")) { %>
-		                            <tr>
-		                                <td><%= i-- %></td>
-		                                <td><%=clist.get(j).getCouponCode() %></td>
-		                                <td><%=clist.get(j).getIssueDate() %></td>
-		                            </tr>
-		                            <% } } %>  --%>
+		                           
 		                        </table>
 			      </div>
 			      <div class="modal-footer">

@@ -85,7 +85,7 @@
 						style="color: white; background: midnightblue;">
 				</div>
 				<div class="col-md-6">
-					<input class="grayBtn ordchk btn btn-default" type="button" id="reSet" value="초기화">
+					<input class="btn btn-default" type="button" id="reSet" value="초기화">
 				</div>
 			</div> 
 			
