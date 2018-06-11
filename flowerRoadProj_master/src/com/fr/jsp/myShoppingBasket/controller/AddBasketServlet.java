@@ -33,31 +33,32 @@ public class AddBasketServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(false);
 
-	      String memberNum = (String) session.getAttribute("memberNum");
-	      String productNum = (String) request.getParameter("pno");
+      String memberNum = (String) session.getAttribute("memberNum");
+      String productNum = (String) request.getParameter("pno");
 
-	      int result = 0;
+      int result = 0;
 
-	      if (memberNum != null) {
-	         
-	         if ((new BasketService().isExistProduct(memberNum, productNum)) > 0) {
+      if (memberNum != null) {
+         
+         if ((new BasketService().isExistProduct(memberNum, productNum)) > 0) {
 
-	            result = new BasketService().increseQuantityByOne(memberNum, productNum);
+            result = new BasketService().increseQuantityByOne(memberNum, productNum);
 
-	         } else {
+         } else {
 
-	            result = new BasketService().insertToBasket(memberNum, productNum);
-	         }
-	         
-	         new Gson().toJson(result, response.getWriter());
+            result = new BasketService().insertToBasket(memberNum, productNum);
+         }
+         
+         new Gson().toJson(result, response.getWriter());
 
-	      }else{
-	         
-	         new Gson().toJson(-1,response.getWriter());
-	         
-	      }
+      }else{
+         
+         new Gson().toJson(-1,response.getWriter());
+         
+      }
 		
 
 	}

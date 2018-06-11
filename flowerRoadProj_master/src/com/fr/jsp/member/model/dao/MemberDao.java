@@ -302,7 +302,6 @@ public class MemberDao {
 				
 				while(rset.next()){
 					ProductFavorite pf = new ProductFavorite();
-					System.out.println("여긴 들어왔다");
 					pf.setImage(rset.getString(2));
 					pf.setProductName(rset.getString(3));
 					pf.setProductPrice(rset.getInt(4));
@@ -318,7 +317,6 @@ public class MemberDao {
 					
 					list.add(pf);
 				} 
-				System.out.println("여기 넘었다.");
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
