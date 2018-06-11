@@ -41,23 +41,13 @@ public class OptionInsertServlet extends HttpServlet {
 		String product_num[] = request.getParameterValues("productNum");
 		String quantity[] = request.getParameterValues("quantity");
 		
-		BasketService bService = new BasketService();
+		BasketService bService = new BasketService();		
+		
+		//jsp에서 모셔온 기존 상품 갯수(옵션제외)
+		int length = Integer.parseInt(request.getParameter("length"));
 		
 		
-		
-		int length = Integer.parseInt(request.getParameter("length"));//jsp에서 모셔온 기존 상품 갯수(옵션제외)
-		
-		
-		int result = 0;
-		/*System.out.println("length : "+length);
-		System.out.println("멤버 : "+member_num);
-		System.out.println("product_num.length: "+product_num.length);		
-		
-		System.out.print("상품코드 : ");
-		for(int i = length; i < product_num.length; i++){
-			System.out.print(product_num[i]+", ");		
-		}
-		System.out.println();*/
+		int result = 0;		
 		
 		for(int i = length; i< product_num.length; i++){			
 			bk = new Basket(member_num, product_num[i], Integer.parseInt(quantity[i]));

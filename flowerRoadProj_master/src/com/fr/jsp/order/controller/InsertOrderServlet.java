@@ -46,8 +46,8 @@ public class InsertOrderServlet extends HttpServlet {
 		
 		//받는사람의 정보
 		
-		String dt = request.getParameter("reservationDate");			
-		System.out.println(dt);
+		String dt = request.getParameter("reservationDate");
+		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd kk:mm");
 		Date parsed = null;		
 		try {
@@ -82,49 +82,35 @@ public class InsertOrderServlet extends HttpServlet {
 		String message = null;
 		String tag = null;
 		if(request.getParameter("cardMsg") !=""){
-			message = request.getParameter("cardMsg");
-			
+			message = request.getParameter("cardMsg");			
 		}
 		
 		if(request.getParameter("tagMsg") != ""){
-			tag = request.getParameter("tagMsg");
-			
-		}
-		System.out.println("productNum[0]: "+productNum[0].substring(2, 4));
-		
+			tag = request.getParameter("tagMsg");			
+		}		
 		//이후 셀렉트를 통해 orderNum을 가져와야한다..
 		String orderNum = oService.selectOrderNum(member_num);
-		System.out.println("주문번호는? : "+orderNum);
-		System.out.println("메세지카드: "+message);
-		System.out.println("메세지태그: "+tag);
-		//orderProList에 insert
 		
-		
-		
+		//orderProList에 insert		
 		int insertProList = 0;
 		for(int i = 0; i< productNum.length; i++){
 			
 			if(Integer.parseInt(productNum[i].substring(2, 4)) >=37 && Integer.parseInt(productNum[i].substring(2, 4)) <=39){
 				//메세지카드일때 메세지를 삽입
 				insertProList += oService.insertOrderProList(orderNum, productNum[i], Integer.parseInt(quantity[i]), message);
-				System.out.println("메세지카드있어서 실행");
+				
 			}else if(Integer.parseInt(productNum[i].substring(2, 4)) >=40 && Integer.parseInt(productNum[i].substring(2, 4)) <=43){
 				//메세지태그일때 메세지를 삽입
 				insertProList += oService.insertOrderProList(orderNum, productNum[i], Integer.parseInt(quantity[i]), tag);
-				System.out.println("메세지태그있어서 실행");
+				
 			}else{
 				insertProList += oService.insertOrderProList(orderNum, productNum[i], Integer.parseInt(quantity[i]), null);
-				System.out.println("일반 상품 인서트 실행");
+				
 			}
 			
 		}
 		
-		System.out.println("insertProList(구입한 물품종류): "+insertProList);
-		
-		
-		
-		
-		
+		System.out.println("insertProList(구입한 물품종류): "+insertProList);		
 		new Gson().toJson(result, response.getWriter());
 		
 		

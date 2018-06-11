@@ -44,12 +44,25 @@ public class BasketToPayServlet extends HttpServlet {
 		ArrayList<Basket> list = bService.sendPayPage(member_num);
 				
 		Member m = bService.sendInfoToPayPage(member_num);
+		
 		ArrayList<Coupon> cList = new BasketService().selectCoupon(member_num);		
 		
-		request.setAttribute("cList", cList);
-		request.setAttribute("pList", list);
-		request.setAttribute("member",m);
-		request.getRequestDispatcher("/views/myShoppingBasket/order&pay.jsp").forward(request, response);
+		
+		if(list.size() >0){
+			request.setAttribute("cList", cList);
+			request.setAttribute("pList", list);
+			request.setAttribute("member",m);
+			request.getRequestDispatcher("/views/myShoppingBasket/order&pay.jsp").forward(request, response);			
+		}else if(member_num == null){
+			String msg = "회원정보를 읽어올 수 없습니다";
+			request.setAttribute("msg", msg);
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);		
+		}else{
+			String msg = "결제정보를 읽어올 수 없습니다";
+			request.setAttribute("msg", msg);
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+		}
+		
 		
 		
 	}

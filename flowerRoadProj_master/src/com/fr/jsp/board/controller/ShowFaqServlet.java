@@ -34,10 +34,15 @@ public class ShowFaqServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ArrayList<FaqBoard> list = new FaqBoardService().showFaq();
-		
-		
-		request.setAttribute("list",list);
-		request.getRequestDispatcher("/views/faq/faqBoard.jsp").forward(request, response);
+		String page ="";
+		if(list == null){
+			request.setAttribute("msg", "FAQ정보를 읽어오지 못했습니다");
+			page = "views/common/errorPage.jsp";
+		}else{
+			page = "/views/faq/faqBoard.jsp";
+			request.setAttribute("list",list);
+		}	
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

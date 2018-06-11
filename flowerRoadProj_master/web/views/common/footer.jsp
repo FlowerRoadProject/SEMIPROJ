@@ -41,10 +41,10 @@
     .highlight{
     	font-weight:700;
     }
-    #accessTermsText{
+    .access #accessTermsText{
 		margin: 3em;		
-		max-height: calc(80% - 100px);
-    	overflow-y: scroll;		
+		max-height: calc(70% - 100px);
+    	overflow-y: scroll;
 	}
 	.mClose{
 		align: center;
@@ -107,15 +107,13 @@
                 $('.footList li').eq(4).click(function(){
                		location.href= '<%=request.getContextPath()%>/showNotice.no';
                	});
-               		
-                
                 </script>
                 
                
 
 <div class="modal fade aTerm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="margin : 2em;">
+    <div class="modal-content access" style="margin : 2em;">
      	<div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">이용약관</h4>
@@ -127,7 +125,7 @@
 <br /><br />
 
 제 2 조 (정의)<br />
-1. ‘사이트’ 란 ‘회사’가 상품을 회원에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이등’을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 사이버몰을 운영하는 사업사용합니다. 현재 ‘회사’가 운영하는 ‘사이트’는 https://www.1moment.co.kr 서비스 하는 안드로이드, iOS 환경의 서비스를 포함한 모바일웹과 앱을 포함 합니다.<br />
+1. ‘사이트’ 란 ‘회사’가 상품을 회원에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이등’을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 사이버몰을 운영하는 사업사용합니다. 현재 ‘회사’가 운영하는 ‘사이트’는  안드로이드, iOS 환경의 서비스를 포함한 모바일웹과 앱을 포함 합니다.<br />
 2. ‘회원’이라 함은 ‘사이트’에 개인정보를 제공하여 회원등록을 한 자로서, ‘사이트’에 가입 방침에 따라 ‘사이트’의 정보를 지속적으로 제공받으며, ‘사이트’가 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.<br />
 3. ‘비회원’이라 함은 회원에 가입하지 않고 “몰”이 제공하는 서비스를 이용하는 자를 말합니다.<br />
 4. ‘비밀번호’라 함은 회원의 동일성 확인과 회원의 권익 및 비밀보호를 위하여 회원 스스로 ‘사이트’에 등록한 영문과 숫자의 조합을 말합니다.<br />

@@ -597,17 +597,10 @@ Member member = (Member)request.getAttribute("member");
             </div>    
         </div>
          
-        <script>       	
-        	$(function(){
-        		console.log("버튼색깔..: "+$('#payingMe').css('background'));
-        	})
+        <script>
         
-        
-        
-        	$('.pay-select .btn').on('click',function(){
-        		console.log($(this).val());
-        		$('#payMethod').val($(this).val());
-        		
+        	$('.pay-select .btn').on('click',function(){        		
+        		$('#payMethod').val($(this).val());        		
         		for(var i =0; i<$('.pay-select .btn').length; i++){
         			if($('.pay-select .btn').eq(i).val() == $('#payMethod').val()){
         				$('.pay-select .btn').eq(i).css({

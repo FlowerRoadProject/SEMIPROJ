@@ -46,7 +46,7 @@ public class ShowNoticeServlet extends HttpServlet {
 		currentPage = 1;
 		
 		//한 페이지에 보여질 게시글 수
-		limit = 10;
+		limit = 7;
 		
 		//만약에 전달받는 페이지가 있을 경우  즉, 현재페이지 정보를 받을 경우
 		//currentPage의 값을 수정한다
@@ -80,9 +80,11 @@ public class ShowNoticeServlet extends HttpServlet {
 		//페이지 관련 변수 전달용 VO 생성
 		PagingTool page = new PagingTool(currentPage, listCount, limit, maxPage, startPage, endPage);
 		
-		ArrayList<NoticeBoard> list = new NoticeBoardService().showNotice(currentPage, limit);
-		
-		
+		ArrayList<NoticeBoard> list = new NoticeBoardService().showNotice(currentPage, limit);		
+		if(list == null){			
+			request.setAttribute("msg", "게시글의 정보를 불러오지 못했습니다");
+			request.getRequestDispatcher("/views/common/errorPage.jsp").forward(request, response);
+		}
 		request.setAttribute("list", list);
 		request.setAttribute("page", page);
 		request.getRequestDispatcher("/views/notice/notice.jsp").forward(request, response);

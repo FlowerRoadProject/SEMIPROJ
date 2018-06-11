@@ -46,6 +46,7 @@ public class BasketSelectServlet extends HttpServlet {
 		Basket excess = new BasketService().selectExcess(member_num);
 		String excessRemoveMsg = "none";
 		String excessPName = "none";		
+		
 		if(excess != null){
 			int remove = new BasketService().deleteBasket(excess.getProduct_num());			
 			excessRemoveMsg = remove+"개의 상품이 재고가 부족해 장바구니에서 제거되었습니다.";
@@ -65,6 +66,9 @@ public class BasketSelectServlet extends HttpServlet {
 			request.setAttribute("oList", oList);
 			request.setAttribute("excessRemoveMsg", excessRemoveMsg);
 			request.setAttribute("excessPName", excessPName);
+		}else if(member_num == null){
+			page="/views/common/errorPage.jsp";
+			request.setAttribute("msg", "회원정보를 불러오지 못했습니다");
 		}else{
 			page="/views/common/errorPage.jsp";
 			request.setAttribute("msg", "장바구니 조회에 실패했습니다");
