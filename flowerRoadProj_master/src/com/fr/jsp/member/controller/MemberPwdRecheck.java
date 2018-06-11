@@ -34,6 +34,8 @@ public class MemberPwdRecheck extends HttpServlet {
 			case 2 : response.sendRedirect("views/myPage/myPage_infoModify.jsp"); break;
 			case 3 : response.sendRedirect("views/myPage/myPage_memberWithdrawal.jsp"); break;
 			} 
+		} else {
+			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		
 		
