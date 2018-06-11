@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <package id="1" language="java" name="com.fr.jsp.board.model" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1566" width="1338" x="28" y="-111"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="2" language="java" name="com.fr.jsp.board.model.dao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="755" width="663" x="692" y="-49"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="3" language="java" name="com.fr.jsp.board.model.dao.NoticeBoardDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/dao/NoticeBoardDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1012" y="397"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.fr.jsp.board.model.dao.UserQuestionBoardDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/dao/UserQuestionBoardDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1016" y="90"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="5" language="java" name="com.fr.jsp.board.model.service" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="754" width="628" x="44" y="-47"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="6" language="java" name="com.fr.jsp.board.model.service.NoticeBoardService" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/service/NoticeBoardService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="513" y="157"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.fr.jsp.board.model.service.ReviewBoardService" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/service/ReviewBoardService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="226" y="427"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.fr.jsp.board.model.service.UserQuestionBoardService" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/service/UserQuestionBoardService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="204" y="149"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="9" language="java" name="com.fr.jsp.board.model.vo" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/vo" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="721" width="1321" x="35" y="718"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="10" language="java" name="com.fr.jsp.board.model.vo.Board" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/vo/Board.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="895" y="973"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.fr.jsp.board.model.vo.ReviewBoard" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/vo/ReviewBoard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1181" y="919"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.fr.jsp.board.model.vo.FaqBoard" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/vo/FaqBoard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="635" y="1285"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.fr.jsp.board.model.vo.NoticeBoard" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/vo/NoticeBoard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1185" y="1268"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.fr.jsp.board.model.dao.ReviewBoardDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/dao/ReviewBoardDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1017" y="583"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="15" language="java" name="com.fr.jsp.board.controller" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1570" width="651" x="1394" y="-117"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="16" language="java" name="com.fr.jsp.product.controller.SelectProductListServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/controller/SelectProductListServlet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1723" y="239"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="17" language="java" name="com.fr.jsp.member.model" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/model" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1002" width="1813" x="2075" y="-118"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="18" language="java" name="com.fr.jsp.member.controller" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="545" width="1809" x="2082" y="902"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="19" language="java" name="com.fr.jsp.member.model.dao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/model/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="860" width="452" x="3327" y="-22"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="20" language="java" name="com.fr.jsp.member.model.service" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/model/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="879" width="361" x="2793" y="-38"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="21" language="java" name="com.fr.jsp.member.model.vo" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/model/vo" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="890" width="638" x="2099" y="-46"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="22" language="java" name="com.fr.jsp.member.model.vo.Member" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/model/vo/Member.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2420" y="410"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="23" language="java" name="com.fr.jsp.product.model" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/model" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1568" width="1242" x="6300" y="-121"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="24" language="java" name="com.fr.jsp.product.model.dao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/model/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="508" width="624" x="6881" y="868"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="25" language="java" name="com.fr.jsp.product.model.service" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/model/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="508" width="564" x="6312" y="869"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="26" language="java" name="com.fr.jsp.product.model.vo" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/model/vo" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="836" width="1184" x="6327" y="-4"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="27" language="java" name="com.fr.jsp.product.model.dao.ProductDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/model/dao/ProductDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7192" y="1143"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="com.fr.jsp.product.model.service.ProductService" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/model/service/ProductService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6591" y="1139"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="com.fr.jsp.product.model.vo.ProductSimple" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/model/vo/ProductSimple.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7207" y="439"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="30" language="java" name="com.fr.jsp.order.model" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/model" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="999" width="1343" x="3928" y="-118"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="31" language="java" name="com.fr.jsp.product.controller" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1570" width="412" x="7556" y="-120"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="32" language="java" name="com.fr.jsp.product.controller.ProductDetailServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/controller/ProductDetailServlet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7757" y="126"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="com.fr.jsp.product.controller.SelectEventTypeProductListServlet" 
+    project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/controller/SelectEventTypeProductListServlet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7765" y="485"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="34" language="java" name="com.fr.jsp.common" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/common" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1100" width="414" x="7979" y="-123"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="35" language="java" name="com.fr.jsp.common.filter" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/common/filter" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="231" width="373" x="7999" y="-37"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="36" language="java" name="com.fr.jsp.common.filter.EncodingFilter" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/common/filter/EncodingFilter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8186" y="99"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="com.fr.jsp.common.PageInfo" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/common/PageInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8190" y="597"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="38" language="java" name="com.fr.jsp.order.controller" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="542" width="1346" x="3929" y="904"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="39" language="java" name="com.fr.jdbc.common" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jdbc/common" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="460" width="419" x="7976" y="987"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="40" language="java" name="com.fr.jdbc.common.JDBCTemplate" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jdbc/common/JDBCTemplate.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="8187" y="1238"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="com.fr.jsp.board.model.dao.FaqBoardDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/dao/FaqBoardDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1014" y="247"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="com.fr.jsp.board.model.service.FaqBoardService" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/service/FaqBoardService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="520" y="468"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="com.fr.jsp.board.controller.ShowFaqServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/controller/ShowFaqServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1718" y="551"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="44" language="java" name="com.fr.jsp.order.model.dao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/model/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="459" width="356" x="4673" y="-42"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="45" language="java" name="com.fr.jsp.order.model.service" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/model/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="377" width="408" x="4659" y="448"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="46" language="java" name="com.fr.jsp.order.model.vo" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/model/vo" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="746" width="521" x="4021" y="16"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="47" language="java" name="com.fr.jsp.order.model.service.OrderService" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/model/service/OrderService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4873" y="661"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="com.fr.jsp.order.model.dao.OrderDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/model/dao/OrderDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4854" y="201"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="com.fr.jsp.order.model.vo.Order" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/model/vo/Order.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4278" y="386"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <package id="50" language="java" name="com.fr.jsp.myShoppingBasket" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1567" width="529" x="5304" y="-121"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="51" language="java" name="com.fr.jsp.myShoppingBasket.controller" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/controller" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1574" width="420" x="5854" y="-123"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="52" language="java" name="com.fr.jsp.myShoppingBasket.model.dao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/model/dao" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="348" width="429" x="5353" y="1061"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="53" language="java" name="com.fr.jsp.myShoppingBasket.model.service" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/model/service" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="348" width="429" x="5354" y="701"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <package id="54" language="java" name="com.fr.jsp.myShoppingBasket.model.vo" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/model/vo" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="710" width="380" x="5364" y="-36"/>    
+    <display autosize="false" stereotype="true" sort-features="false" accessors="true"/>  
+  </package>  
+  <class id="55" language="java" name="com.fr.jsp.myShoppingBasket.model.vo.Basket" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/model/vo/Basket.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5548" y="349"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="56" language="java" name="com.fr.jsp.myShoppingBasket.model.service.BasketService" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/model/service/BasketService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5563" y="898"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="57" language="java" name="com.fr.jsp.myShoppingBasket.model.dao.BasketDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/model/dao/BasketDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="5544" y="1260"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="58" language="java" name="com.fr.jsp.myShoppingBasket.controller.BasketDeleteServlet" 
+    project="flowerRoadProj" file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/controller/BasketDeleteServlet.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6067" y="329"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="59" language="java" name="com.fr.jsp.myShoppingBasket.controller.BasketSelectServlet" 
+    project="flowerRoadProj" file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/controller/BasketSelectServlet.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6066" y="558"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="com.fr.jsp.myShoppingBasket.controller.BasketToPayServlet" 
+    project="flowerRoadProj" file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/controller/BasketToPayServlet.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6065" y="807"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="com.fr.jsp.myShoppingBasket.controller.BasketUpdateServlet" 
+    project="flowerRoadProj" file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/controller/BasketUpdateServlet.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6064" y="1052"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="com.fr.jsp.myShoppingBasket.controller.OptionInsertServlet" 
+    project="flowerRoadProj" file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/controller/OptionInsertServlet.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6064" y="1314"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="63" language="java" name="com.fr.jsp.board.controller.AdminBoardServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/controller/AdminBoardServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1716" y="887"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="64" language="java" name="com.fr.jsp.board.controller.InsertReviewBoardServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/controller/InsertReviewBoardServlet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1722" y="1191"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="com.fr.jsp.member.model.service.AdminService" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/model/service/AdminService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2976" y="245"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="66" language="java" name="com.fr.jsp.member.model.service.MemberService" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/model/service/MemberService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2957" y="549"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="67" language="java" name="com.fr.jsp.member.model.dao.AdminDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/model/dao/AdminDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3549" y="266"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="68" language="java" name="com.fr.jsp.member.model.dao.MemberDao" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/model/dao/MemberDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3545" y="561"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="69" language="java" name="com.fr.jsp.member.controller.AdminCalendarServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/AdminCalendarServlet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2232" y="1021"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="70" language="java" name="com.fr.jsp.member.controller.AdminMainServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/AdminMainServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2831" y="1193"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="71" language="java" name="com.fr.jsp.member.controller.AdminMemberServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/AdminMemberServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3129" y="1191"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="72" language="java" name="com.fr.jsp.member.controller.AdminMemberStatisticsServlet" 
+    project="flowerRoadProj" file="/flowerRoadProj/src/com/fr/jsp/member/controller/AdminMemberStatisticsServlet.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2531" y="1024"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="73" language="java" name="com.fr.jsp.member.controller.AdminMessageServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/AdminMessageServlet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2830" y="1354"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="74" language="java" name="com.fr.jsp.member.controller.AdminOtherStatisticsServlet" 
+    project="flowerRoadProj" file="/flowerRoadProj/src/com/fr/jsp/member/controller/AdminOtherStatisticsServlet.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3125" y="1354"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="75" language="java" name="com.fr.jsp.member.controller.AdminSecondPwCheckServlert" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/AdminSecondPwCheckServlert.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3424" y="1024"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="76" language="java" name="com.fr.jsp.member.controller.AdminThemaServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/AdminThemaServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2830" y="1024"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="77" language="java" name="com.fr.jsp.member.controller.snsLoginServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/snsLoginServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2234" y="1196"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="78" language="java" name="com.fr.jsp.product.controller.AdminProductServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/controller/AdminProductServlet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7762" y="830"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="79" language="java" name="com.fr.jsp.product.controller.AdminProductStatisticsServlet" 
+    project="flowerRoadProj" file="/flowerRoadProj/src/com/fr/jsp/product/controller/AdminProductStatisticsServlet.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="7769" y="1175"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="80" language="java" name="com.fr.jsp.order.controller.AdminDeliveryServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/controller/AdminDeliveryServlet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4531" y="1086"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="81" language="java" name="com.fr.jsp.order.controller.AdminDIYServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/controller/AdminDIYServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4135" y="1093"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="82" language="java" name="com.fr.jsp.order.controller.AdminSettlementServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/controller/AdminSettlementServlet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4765" y="1312"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="83" language="java" name="com.fr.jsp.order.controller.OrderMyProduct" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/controller/OrderMyProduct.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4320" y="1316"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="84" language="java" name="com.fr.jsp.myShoppingBasket.controller.AddBasketServlet" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/myShoppingBasket/controller/AddBasketServlet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6064" y="108"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="85" language="java" name="com.fr.jsp.board.model.vo.UserQuestionBoard" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/board/model/vo/UserQuestionBoard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="270" y="969"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="86" language="java" name="com.fr.jsp.member.controller.MemberDelete" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/MemberDelete.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2236" y="1356"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="87" language="java" name="com.fr.jsp.member.controller.MemberFavorite" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/MemberFavorite.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2532" y="1193"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="88" language="java" name="com.fr.jsp.member.controller.MemberInfoMain" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/MemberInfoMain.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2532" y="1355"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="89" language="java" name="com.fr.jsp.member.controller.MemberInfoUpdate" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/MemberInfoUpdate.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3127" y="1023"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="90" language="java" name="com.fr.jsp.member.controller.MemberPwdChange" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/MemberPwdChange.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3429" y="1193"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="91" language="java" name="com.fr.jsp.member.controller.MemberPwdChangeView" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/MemberPwdChangeView.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3426" y="1354"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="92" language="java" name="com.fr.jsp.member.controller.OnetoOneBoard" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/OnetoOneBoard.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3728" y="1029"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="93" language="java" name="com.fr.jsp.member.controller.OnetoOneSend" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/OnetoOneSend.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3726" y="1193"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="94" language="java" name="com.fr.jsp.member.controller.OnetoOneView" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/member/controller/OnetoOneView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3726" y="1350"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="95" language="java" name="com.fr.jsp.product.model.vo.ProductDetail" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/product/model/vo/ProductDetail.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="6666" y="428"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="96" language="java" name="com.fr.jsp.order.controller.MemberOrderCheck" project="flowerRoadProj" 
+    file="/flowerRoadProj/src/com/fr/jsp/order/controller/MemberOrderCheck.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="4930" y="1083"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="97">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="98" name="aDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="99" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="67" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="100">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="101">    
+    <end type="SOURCE" refId="85"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="102">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <association id="103">    
+    <end type="SOURCE" refId="66" navigable="false">      
+      <attribute id="104" name="mDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="105" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="68" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="106">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="false" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
