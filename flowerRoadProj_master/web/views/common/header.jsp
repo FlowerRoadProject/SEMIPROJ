@@ -20,6 +20,8 @@
 	href="<%=request.getContextPath()%>/images/FlowerRoadLogo.png"
 	type="image/ico" />
 <script>
+
+
 				$(function(){
 					<%
 					if (memberNum == null || memberNum == "") {
