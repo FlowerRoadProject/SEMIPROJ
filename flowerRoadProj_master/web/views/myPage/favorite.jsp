@@ -142,7 +142,7 @@
         			url: "addBasket.do",
         			type: "GET",
         			data: {
-        				pno: product_num				
+        				pNum: product_num				
         			},   				
         			success: function(){
         				console.log('update성공');
