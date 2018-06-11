@@ -39,25 +39,26 @@
         </div>
         <div>
                 <div class="info">
-                       
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="listArea">
                             <tr style="background-color: lightgray;">
                                 <th>번호</th>
                                 <th>제목</th>
                                 <th>날짜</th>
                                 <th>답변상황</th>
+                                <th></th>
                             </tr>
                             <% int i = list.size(); 
-                            for(MemberBoard mb : list) { %>
+                            for(int j = 0; j < list.size(); j++) { %>
                             <tr>
                                 <td><%= i-- %></td>
-                                <td><%= mb.getBoardTitle() %></td>
-                                <td><%= mb.getSubmitDate() %></td>
-                                <td><%= mb.getReplyStatus() %></td>
+                                <td><%= list.get(j).getBoardTitle() %></td>
+                                <td><%= list.get(j).getSubmitDate() %></td>
+                                <td><%= list.get(j).getReplyStatus() %></td>
+                                <td><input type="hidden" class="bN" name="bN" value="<%=list.get(j).getBoardNum()%>">
+                                </input></td>
                             </tr>
                             <% } %>
                         </table>
-                    
                 </div>
         </div>
         
@@ -66,15 +67,29 @@
         <div class="container-fluid">
                 
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                    <button class="grayBtn" style="width:100px; height:30px; margin-top:20px;">
-                        전체 삭제</button>
+                    <button class="blueBtn" style="width:100px; height:30px; margin-top:20px;">
+                        	전체 삭제</button>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3"></div>
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                        <button id="question" onclick="question();"><b>문의하기</b></button>
+                        <button class="blueBtn" id="question" onclick="question();"><b>문의하기</b></button>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5"></div>
         </div>
+        
+        <script>
+	        $(function(){
+	    		$('#listArea td').mouseenter(function(){
+	    			$(this).parent().css({
+	    				"cursor" : "pointer"
+	    			});
+	    		}).click(function(){
+	    			var bNum = $(this).siblings().children('.bN').val();
+	    			location.href="<%=request.getContextPath()%>/oneView.me?bNum="+bNum;
+	    			
+	    		});
+	    	});
+        </script>
 	<%@ include file="/views/common/footer.jsp" %>
     </body>
 </html>

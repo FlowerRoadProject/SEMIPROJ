@@ -96,7 +96,7 @@
                			});
                	})
                	$('.footList li').eq(0).click(function(){
-               		/* location.href= ''; */
+               		location.href= '<%=request.getContextPath()%>/views/common/introduce.jsp';
                	});                
                 $('.footList li').eq(2).click(function(){
                		location.href= '<%=request.getContextPath()%>/views/common/comAddress.jsp';
@@ -373,7 +373,9 @@
               <div class="footInfo">
                
                 <div class="col-sm-12 col-md-12 col-lg-12">
+
                    	<p class="col-lg-12 fP">법인명 : (주)원제플라워  | 대표이사 :  이원제  | 사업장 소재지 :  서울시 강남구 역삼동 KH정보교육원  | 사업자등록번호 : 132-78-56215 | 사업자정보확인 </p>
+
          			<p class="col-lg-12 fP">통신판매업신고 : 제2013-서울서초-0521호  | 개인정보보호책임자 :  이원제 | 고객센터 :  02-2222-2222
                     | 팩스 : 02-2222-2222| E-mail :  help@cultwo-flower.com</p>
                     <p class="col-lg-12 fP">Hosting by (주)코리아센터닷컴</p>

@@ -5,8 +5,6 @@
 	Member m = (Member)session.getAttribute("m");
 	ArrayList<ProductFavorite> list = (ArrayList<ProductFavorite>)request.getAttribute("pflist");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	System.out.println("스타트:"+pi.getStartPage());
-	System.out.println("엔드:"+pi.getEndPage());
 %>
 <!DOCTYPE>
 <html>
@@ -23,6 +21,16 @@
 		<script>
         	var mainPath = '<%=request.getContextPath() %>';
         </script>
+        <style>
+        .noneFavorite {
+			color: black;
+			font-size: 40px;
+			text-align: center;
+			width: 400px;
+			height: 200px;
+			margin: 100px;
+		}
+        </style>
             </head>
             
     <body>
@@ -49,7 +57,7 @@
         </div>
         <div>
                 <div class="info">
-                       
+                       <% if(list.size() != 0) { %>
                         <table class="table table-hover">
                             <tr style="background-color: lightgray;">
                                 <th>번호</th>
@@ -58,30 +66,39 @@
                                 <th>가격</th>
                                 <th>재고상황</th>
                                 <th>장바구니</th>
+                                <th></th>
                             </tr>
                             <% int i = list.size(); 
-                            for(ProductFavorite pf : list) { %>
+                            for(int j = 0; j < list.size(); j++) {  %>
                             <tr>
                                 <td><%= i-- %></td>
-                                <td><img src="<%=request.getContextPath()%>/resources/images/product/<%= pf.getImage() %>" width="60px;" height="60px;"></td>
-                                <td><%=pf.getProductName() %></td>
-                                <td><%=pf.getProductPrice() %>원</td>
-                                <td><%=pf.getProductQuantityState() %></td>
-                                <td><input type="submit" value="장바구니"><br><input type="button" value="삭제하기"></td>
+                                <td><img src="<%=request.getContextPath()%>/resources/images/product/<%= list.get(j).getImage() %>" width="60px;" height="60px;"></td>
+                                <td><%= list.get(j).getProductName() %></td>
+                                <td><%= list.get(j).getProductPrice() %>원</td>
+                                <td><%= list.get(j).getProductQuantityState() %></td>
+                                <td><input type="button" value="장바구니" class="goBasket"><br>
+                                <input type="button" value="삭제하기" class="delFavorite"></td>
+                                <td><input type="hidden" class="pN" name="pN" value="<%=list.get(j).getProductNum()%>"></input></td>
                             </tr>
                             <% } %>
                         </table>
-                    
+                     	<% } else { %>
+                     	<div class="container-fluid">
+                     		<div class="col-sm-1 col-md-1 col-lg-1"></div>
+                     		<div class="col-sm-8 col-md-8 col-lg-8 noneFavorite">== 현재 등록되어 있는 관심상품이 없습니다. ==</div>
+                     		<div class="col-sm-3 col-md-3 col-lg-3"></div>
+                     	</div>
+                     	<% } %>
                 </div>
         </div>
         
 
         <!-- 버튼 -->
         <div class="container-fluid">
-                
+                <% if(list.size() != 0) { %>
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                <button style="width:100px; height:30px; margin-top:20px;">
-                        전체 삭제</button>
+                <button style="width:100px; height:30px; margin-top:20px;"
+                class="blueBtn" onclick="allDel()">전체 삭제</button>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3"></div>
                 <div class="col-sm-2 col-md-2 col-lg-2">
@@ -114,7 +131,40 @@
                               </nav>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5"></div>
+                <% } %>
         </div>
+        <script>
+        	$('.goBasket').on('click',function(){
+        		var product_num = $(this).parent().siblings().children('.pN').val();
+        		alert("장바구니에 추가되었습니다.");
+        		
+        		$.ajax({
+        			url: "addBasket.do",
+        			type: "GET",
+        			data: {
+        				pno: product_num				
+        			},   				
+        			success: function(){
+        				console.log('update성공');
+        			},error: function(){
+        				console.log('update실패');
+        			}
+        		});
+        		
+        		<%-- location.href="<%=request.getContextPath() %>/addBasket.do?pno="+$(this).parent().siblings().children('.pN').val(); --%>
+        	});
+        	
+        	$('.delFavorite').on('click',function(){
+        		var pno = $(this).parent().siblings().children('.pN').val();
+        		alert("해당 상품이 관심상품에서 삭제 되었습니다.")
+        		location.href="<%=request.getContextPath() %>/favoriteDel.me?pno="+pno;
+        	});
+        	
+        	
+        	function allDel(){
+        		location.href="<%=request.getContextPath() %>/favoriteAllDel.me";
+        	}
+        </script>
 	<%@ include file="/views/common/footer.jsp" %>
     </body>
 </html>

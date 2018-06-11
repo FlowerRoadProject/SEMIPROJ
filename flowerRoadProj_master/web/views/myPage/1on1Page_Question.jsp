@@ -78,7 +78,7 @@
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <button onclick="send()">문의하기</button>
+                <button class="blueBtn" onclick="send()">문의하기</button>
             </div>
             
             <div class="col-sm-2 col-md-2 col-lg-2">

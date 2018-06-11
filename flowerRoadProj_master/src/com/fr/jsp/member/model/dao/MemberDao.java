@@ -301,10 +301,12 @@ public class MemberDao {
 				
 				while(rset.next()){
 					ProductFavorite pf = new ProductFavorite();
-					
+					System.out.println("여긴 들어왔다");
 					pf.setImage(rset.getString(2));
 					pf.setProductName(rset.getString(3));
 					pf.setProductPrice(rset.getInt(4));
+					pf.setProductNum(rset.getString(5));
+					
 					if(rset.getInt(4) > 0){
 						quantity = "재고있음";
 						pf.setProductQuantityState(quantity);
@@ -314,7 +316,8 @@ public class MemberDao {
 					}
 					
 					list.add(pf);
-				}
+				} 
+				System.out.println("여기 넘었다.");
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -344,6 +347,7 @@ public class MemberDao {
 					
 					mb.setBoardTitle(rset.getString(1));
 					mb.setSubmitDate(rset.getDate(2));
+					mb.setBoardNum(rset.getInt(4));
 					if(rset.getString(3) != null){
 						status = "답변 완료";
 						mb.setReplyStatus(status);
@@ -644,6 +648,77 @@ public class MemberDao {
 		
 		
 		return result;
+	}
+	public int favoriteAllDel(Connection con, String num) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("AlldeleteFavorite");
+		try{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			System.out.println(num);
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		System.out.println(result);
+		return result;
+	}
+	public int favoriteDel(Connection con, String num, String pno) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = prop.getProperty("deleteFavorite");
+		try{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			pstmt.setString(2, pno);
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public MemberBoard oneView(Connection con, String mNum, int bNum) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		MemberBoard resultBoard = null;
+		try{
+			
+			String query = prop.getProperty("BoardView");
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, mNum);
+			pstmt.setInt(2, bNum);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				resultBoard = new MemberBoard();
+	            
+				resultBoard.setBoardNum(rset.getInt(1));
+				resultBoard.setBoardTitle(rset.getString(2));
+				resultBoard.setBoardContent(rset.getString(3));
+				resultBoard.setSubmitDate(rset.getDate(6));
+				resultBoard.setReplyContent(rset.getString("BOARD_REPLY_CONTENT"));
+				
+			}else{
+				System.out.println("없어!");
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return resultBoard;
 	}
 
 }

@@ -67,7 +67,6 @@ public class OrderDao {
 		
 		return result;
 	}
-	  
 
 	public ArrayList<MyPage_Order> orderChk(Connection con, String num, int currentPage, int limit) {
 
@@ -186,6 +185,106 @@ public class OrderDao {
 			close(pstmt);
 		}
 		
+		return result;
+	}
+	// 주문조회 - 검색
+	public ArrayList<MyPage_Order> orderChkSearch(Connection con, String num, int currentPage, int limit,
+			String start, String end) {
+		ArrayList<MyPage_Order> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("orderChkSearch");
+		
+		try {
+			System.out.println(start);
+			System.out.println(end);
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			int startRow = (currentPage - 1)* limit +1;
+		    int endRow = startRow + (limit - 1);
+		    pstmt.setInt(2, startRow);
+		    pstmt.setInt(3, endRow);
+		    pstmt.setString(4, start);
+		    pstmt.setString(5, end);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<MyPage_Order>();
+			
+			while(rset.next()){
+				MyPage_Order o = new MyPage_Order();
+				o.setOrder_num(rset.getString(2));
+				o.setOrdered_date(rset.getDate(3));
+				o.setProduct_num(rset.getString(4));
+				o.setProduct_cost(rset.getInt(5));
+				o.setAnonymous_delivery(rset.getString(6));
+				o.setOrder_state_code(rset.getString(7));
+				
+				list.add(o);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	public int chkListCount(Connection con, String num, int currentPage, int limit, String start, String end) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("SearchListCount");
+		
+		try {
+			System.out.println(start);
+			System.out.println(end);
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			int startRow = (currentPage - 1)* limit +1;
+		    int endRow = startRow + (limit - 1);
+		    pstmt.setInt(2, startRow);
+		    pstmt.setInt(3, endRow);
+		    pstmt.setString(4, start);
+		    pstmt.setString(5, end);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				result=rset.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	// 환불
+	public int orderRefund(Connection con, String num, String onum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("orderRefund");
+		try{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			pstmt.setString(2, onum);
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		System.out.println(result);
 		return result;
 	}
 	

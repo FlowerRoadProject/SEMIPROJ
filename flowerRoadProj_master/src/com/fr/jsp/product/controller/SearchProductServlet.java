@@ -35,34 +35,35 @@ public class SearchProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		PageInfo pi = new PageInfo();
-		ArrayList<ProductSimple> sessionList = (ArrayList<ProductSimple>)session.getAttribute("list");
+		ArrayList<ProductSimple> sessionList = (ArrayList<ProductSimple>)session.getAttribute("sessionList");
 		ArrayList<ProductSimple> pagedList = new ArrayList<ProductSimple>();
-		ArrayList<ProductSimple> tempList = new ArrayList<ProductSimple>();
-		String keyword = request.getParameter("keyword");
+		ArrayList<ProductSimple> currList = new ArrayList<ProductSimple>();
+		String keyword = "";
 		String page ="";
 		
 		ProductService ps = new ProductService();
-	
+		
+		if(request.getParameter("keyword")!=null)
+			keyword=request.getParameter("keyword");
+		
 		for(int i=0;i<sessionList.size();++i){
 			
 			if(sessionList.get(i).getProductName().contains(keyword))
-				tempList.add(sessionList.get(i));
+				currList.add(sessionList.get(i));
 			
 		}
-		sessionList=tempList;
-		session.setAttribute("list", tempList);
 		
+		session.setAttribute("list", currList);
 		
-		
-		int listSize = sessionList.size();
+		int listSize = currList.size();
 		
 		
 		pi = new PageInfo(1,listSize,9);
 		
-		int loopEnd = listSize-1<pi.getEndRow()-1?listSize-1:pi.getEndRow()-1;
+		int loopEnd = listSize<pi.getEndRow()?listSize:pi.getEndRow();
 		
-		for(int i=pi.getStartRow()-1;i<loopEnd+1;++i){
-			pagedList.add(sessionList.get(i));
+		for(int i=pi.getStartRow()-1;i<loopEnd;++i){
+			pagedList.add(currList.get(i));
 		}
 	
 		

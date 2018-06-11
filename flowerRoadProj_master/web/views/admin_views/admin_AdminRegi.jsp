@@ -256,9 +256,6 @@
         <!-- /footer content -->
       </div>
     </div>
-	<script>
-		var mainPath = '<%=request.getContextPath() %>';
-	</script>
 	<!-- admin_JS -->
     <%@ include file="common/admin_JS.jsp" %>
   </body>

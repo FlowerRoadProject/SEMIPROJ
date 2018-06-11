@@ -32,14 +32,27 @@
     
 	<title>상품목록</title>
 	<style>		
-		@media (max-width: 767px){ 
-                .container{
-                    width: 760px;
-                }
-                .container-fluid{
-                	width: 760px;
-                }
-            }
+		@media(min-width:1200px){
+			.items{
+				height:540px;
+			
+			}
+		}
+
+		@media(min-width:992px) and (max-width:1199px){
+			.items{
+				height:470px;
+					
+			}
+		}
+		
+		@media(max-width:991px){
+		.items{
+				height:600px;
+				
+			}
+		}
+
         
         .hrline{
         	background: black;
@@ -103,10 +116,6 @@
         }
         
        
-        .items{
-        	width:auto;
-        	height: 540px;
-        }
         
         .test{
         	border:1px solid;
@@ -218,8 +227,8 @@
         							 	<%if(!pagedList.get(i).getProductTypeName().equals("디저트")&&
 	        									!pagedList.get(i).getProductTypeName().equals("메시지태그")&&
 	        									!pagedList.get(i).getProductTypeName().equals("카드")) {%>
-	        							 <a class="col-lg-4 btn btn-default" role="button" onclick="addToBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
-	        							<a class="col-lg-7 col-lg-offset-1 btn btn-primary" role="button" 
+	        							 <a class="col-lg-4 col-md-5 col-sm-4 col-xs-4 btn btn-default" role="button" onclick="addToBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
+	        							<a class="col-lg-7 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-7 col-xs-offset-1 btn btn-primary" role="button" 
 	        							onclick="location.href='<%=request.getContextPath()%>/productDetail.do?productNum=+<%=pagedList.get(i).getProductNum()%>'">바로구매</a>
 	        							<%}else{ %>
 	        							 <a class="col-lg-12 btn btn-default" role="button" onclick="addToBasket('<%=pagedList.get(i).getProductNum()%>');">장바구니</a> 
@@ -292,11 +301,11 @@
 		<%} %>
 		<div class="row ">
 			<div class="col-lg-12">
-			    <form class="form-inline" action="<%=request.getContextPath()%>/searchProduct.do">
+			    <form class="form-inline" action="<%=request.getContextPath()%>/searchProduct.do" id="searchProduct">
 			    	<div class="form-group">
 			    		<label for="search" class='sr-only'>검색</label>
 			    		<input type="text" class="form-control" placeholder="내용" id="search" name="keyword"/>
-			    		<button type="submit" class="btn btn-default">검색하기</button>
+			    		<button type="button" class="btn btn-default" onclick="onSearch();">검색하기</button>
 			    	</div>
 			    </form>
 			</div><!-- /.col-lg-6 -->
@@ -326,7 +335,7 @@ function addToBasket(productNum){
 	}
 		$.ajax({
 			url:"addBasket.do",
-			data:{pno:productNum},
+			data:{pNum:productNum},
 			success:function(data){
 				
 				if(data>0)
@@ -347,6 +356,14 @@ function addToBasket(productNum){
 		<%}else{%>
 			return true;
 		<%}%>
+	}
+	
+	function onSearch(){
+		if($('#searchProduct input').val().length>0&&$('#searchProduct input').val()!=" ")
+			$('#searchProduct').submit();
+		else
+			alert("검색어를 입력 해 주세요");
+		
 	}
 
 		

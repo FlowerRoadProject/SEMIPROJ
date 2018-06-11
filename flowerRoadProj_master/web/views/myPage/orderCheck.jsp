@@ -5,8 +5,6 @@
 	Member m = (Member)session.getAttribute("m");
 	ArrayList<MyPage_Order> list = (ArrayList<MyPage_Order>) request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	System.out.println(pi.getStartPage());
-	System.out.println(pi.getEndPage());
 %>
 <!DOCTYPE>
 <html>
@@ -68,7 +66,7 @@
 			 <div class="col-md-4">
 				<div class="input-group date col-md-12" data-provide="datepicker">
 					<input type="text" class="form-control" placeholder="조회 기간 시작일"
-						id="datepicker"> <span class="input-group-addon">
+						id="datepicker1"> <span class="input-group-addon">
 						<i class="glyphicon glyphicon-calendar"></i></span>
 				</div>
 
@@ -76,18 +74,18 @@
 			<div class="col-md-4">
 				<div class="input-group date col-md-12" data-provide="datepicker">
 					<input type="text" class="form-control" placeholder="조회 기간 종료일"
-						id="datepicker"><span class="input-group-addon">
+						id="datepicker2"><span class="input-group-addon">
 						<i class="glyphicon glyphicon-calendar"></i></span>
 				</div>
 			</div>
 			<div class="col-md-4">
 				<div class="col-md-6">
 					<input class="ordchk btn-default" type="button" id="search"
-						onclick="search();" value="검색"
+						onclick="search()" value="검색"
 						style="color: white; background: midnightblue;">
 				</div>
 				<div class="col-md-6">
-					<input class="grayBtn ordchk" type="reset" value="초기화">
+					<input class="grayBtn ordchk btn btn-default" type="button" id="reSet" value="초기화">
 				</div>
 			</div> 
 			
@@ -104,15 +102,23 @@
 					<th>배송현황</th>
 				</tr>
 				<%
-					for (MyPage_Order o : list) {
+					for (int i=0; i< list.size(); i++) {
 				%>
 				<tr>
-					<td><%=o.getOrder_num()%></td>
-					<td><%=o.getOrdered_date()%></td>
-					<td><%=o.getProduct_num()%></td>
-					<td><%=o.getProduct_cost()%></td>
-					<td><%=o.getAnonymous_delivery()%></td>
-					<td><%=o.getOrder_state_code()%></td>
+					<td><%=list.get(i).getOrder_num()%>
+					<input type="hidden" class="oN" name="oN" value="<%=list.get(i).getOrder_num()%>">
+					</td>
+					<td><%=list.get(i).getOrdered_date()%></td>
+					<td><%=list.get(i).getProduct_num()%></td>
+					<td><%=list.get(i).getProduct_cost()%></td>
+					<td><%=list.get(i).getAnonymous_delivery()%></td>
+					<% if( list.get(i).getOrder_state_code().equals("결제 완료") ) { %>
+					<td><%=list.get(i).getOrder_state_code()%> &nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" value="환불하기" id="refund" class="refund btn btn-default">
+					</td>
+					<% } else { %>
+					<td><%=list.get(i).getOrder_state_code()%></td>
+					<% } %>
 				</tr>
 				<%
 					}
@@ -157,6 +163,29 @@
 		</div>
 		<div class="col-sm-5 col-md-5 col-lg-5"></div>
 	</div>
+	<script>
+		function search(){
+			var start = $('#datepicker1').val();
+			var end = $('#datepicker2').val();
+			location.href = "<%=request.getContextPath() %>/orderChkSearch.or?start="+start+"&end="+end;
+		}
+		
+		$('#reSet').on('click',function(){
+			location.reload();
+		});
+		
+		$('#refund').on('click',function(){
+			var onum = $(this).parent().siblings().children('.oN').val();
+			var cf = confirm("정말 환불 하시겠습니까??");
+			if(cf == true){
+			location.href="<%=request.getContextPath() %>/orderRefund.or?onum="+onum;
+			}
+			alert("환불이 완료되었습니다!");
+			
+		});
+		
+	</script>
+	
 	<%@ include file="/views/common/footer.jsp"%>
 </body>
 <!--부트스트랩 데이트피커-->
@@ -169,7 +198,7 @@
                     calendarWeeks: false,
                     todayHighlight: true,
                     autoclose: true,
-                    format: "yyyy년 mm월 dd일",
+                    format: "yy/mm/dd",
                     language: "kr",
                        
                     

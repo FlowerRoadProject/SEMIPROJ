@@ -257,6 +257,7 @@ public class MemberService {
 		
 		return Num;
 	}
+	// 리스트 페이지
 	public int getListCount(String num) {
 			Connection con = getConnection();
 			int result= mDao.getListCount(con, num);
@@ -264,5 +265,40 @@ public class MemberService {
 			close(con);
 			return result;
 		}
+	// 관심상품 전체 삭제
+	public int favoriteAllDel(String num) {
+		Connection con = getConnection();
+		int result = 0;
+		result= mDao.favoriteAllDel(con,num);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+	// 관심상품 삭제
+	public int favoriteDel(String num, String pno) {
+		Connection con = getConnection();
+		int result = 0;
+		result= mDao.favoriteDel(con,num,pno);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+	// 1대1 게시판 상세보기
+	public MemberBoard oneView(String mNum, int bNum) {
+		Connection con = getConnection();
+		MemberBoard resultB = mDao.oneView(con,mNum,bNum);
+		
+		close(con);
+		
+		return resultB;
+	}
 
 }

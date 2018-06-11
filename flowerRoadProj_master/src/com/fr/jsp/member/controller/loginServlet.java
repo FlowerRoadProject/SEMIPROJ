@@ -25,7 +25,6 @@ public class loginServlet extends HttpServlet {
 		
 		String id = request.getParameter("userId");
 		String pwd = request.getParameter("userPwd");
-		
 		Member m = new Member(id,pwd);
 		
 		MemberService ms = new MemberService();
@@ -46,8 +45,23 @@ public class loginServlet extends HttpServlet {
 					System.out.println("액세스 로그 삽입 성공");
 					session.setAttribute("memberNum", m.getMemberNum());
 					System.out.println("로그인성공");
-					RequestDispatcher view = request.getRequestDispatcher("main.jsp");
-					view.forward(request, response);	
+				
+					String lastUrl = (String)session.getAttribute("lastUrl");
+					String toUrl=null;
+					
+					if(lastUrl!=null){
+						String temp = request.getContextPath();
+						toUrl= (String)lastUrl.subSequence(temp.length(), lastUrl.length());
+					}
+					
+					if(toUrl!=null){
+						RequestDispatcher view = request.getRequestDispatcher(toUrl);
+						view.forward(request, response);	
+					}else{
+						RequestDispatcher view = request.getRequestDispatcher("main.jsp");
+						view.forward(request, response);	
+					}
+					
 				}else{
 					request.setAttribute("msg", "액세스로그 접속 실패");
 					RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");

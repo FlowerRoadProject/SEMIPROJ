@@ -3,6 +3,7 @@ package com.fr.jsp.member.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -82,7 +83,9 @@ public class MemberFavorite extends HttpServlet {
 			request.setAttribute("pflist", list);
 			request.setAttribute("pi", pi);
 		} else {
-			System.out.println("실패");
+			page = "views/myPage/favorite.jsp";
+			request.setAttribute("pflist", list);
+			request.setAttribute("pi", pi);
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 		

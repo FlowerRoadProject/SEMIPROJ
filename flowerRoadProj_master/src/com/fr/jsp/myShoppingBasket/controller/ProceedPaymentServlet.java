@@ -62,7 +62,7 @@ public class ProceedPaymentServlet extends HttpServlet {
 
 			}
 
-			System.out.println((String) session.getAttribute("memberNum"));
+			
 
 			Member m = new BasketService().sendInfoToPayPage((String) session.getAttribute("memberNum"));
 			request.setAttribute("member", m);

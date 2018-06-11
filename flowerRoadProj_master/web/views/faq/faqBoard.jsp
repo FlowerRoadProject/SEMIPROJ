@@ -21,13 +21,19 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
+@media (max-width: 1200px){ 
+       .container{
+          width: 767px;
+       }
+       .container-fluid{
+          width: 767px;
+       }
+} 
 @media ( max-width : 992px) {
 	.container-fluid {
 		width: 969px;
 	}	
-	
 }
-
 
 .test-border {
 	border: 1px solid black;
@@ -40,8 +46,6 @@
 .bottom-margin {
 	margin-bottom: 1.5em;
 }
-
-
 
 #boardTop {
 	text-align: center;
@@ -89,9 +93,8 @@
 	background: black;
 	color:white;
 	font-size: 3em;
-	height: 7em;
-	
-	
+	text-align: center;
+	height: 7em;	
 }
 </style>
 
@@ -102,51 +105,55 @@
 <body>
 	<%@include file="/views/common/header.jsp"%>
 	<!-- 1:1 게시판 창 -->	
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	
+	<br />	<br />	<br />	<br />	<br />
 	<div class="col-lg-8 col-lg-offset-2 container-fluid">	
 		<div class="col-lg-10 title">FAQ</div>
-	<br />	
-	<div class="col-lg-12 location container-fluid">
-		&nbsp;&nbsp;&nbsp;&nbsp;FAQ&nbsp;&nbsp;&nbsp;&nbsp;
-		<img src="<%=request.getContextPath()%>/resources/images/footerMenu/fullFlower.jpg" alt="" style="height: 7em; width:23.5em;"/>
+	<br />
 	</div>
+	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 location container-fluid">
+		<div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="loc">FAQ</div>
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">&nbsp;</div>
+		</div>			
+		<img src="<%=request.getContextPath()%>/resources/images/footerMenu/fullFlower.jpg" 
+		alt="" class="col-xs-9 col-sm-9 col-md-9 col-lg-10" style="height: 7em;"/>
 	</div>
 	
-	<div class="container-fluid">
 	
-		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-6 col-sm-offset-1 col-md-offset-1 col-lg-offset-3 buttons bottom-margin">
-			<div class="col-xs-1 col-sm-1 col-lg-2 col-md-1">&nbsp</div>
+	
+		<div class="col-xs-10 col-sm-10 col-md-10 col-lg-8 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 buttons bottom-margin container-fluid">
+			<div class="col-xs-1 col-sm-1 col-lg-2 col-md-1">&nbsp;</div>
 			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-primary">전체보기</button>
 			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">주문</button>
 			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">결제</button>
 			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">배송</button>
 			<br><br>
-			<div class="col-xs-1 col-sm-1 col-lg-2 col-md-1">&nbsp</div>
+			<div class="col-xs-1 col-sm-1 col-lg-2 col-md-1">&nbsp;</div>
 			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">쿠폰</button>
 			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">교환/환불</button>
 			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">회원</button>
 			<button class="col-xs-2 col-sm-2 col-md-2 col-lg-2 btn btn-success">상품</button>
 		</div>
+		
 
 		<!-- 여기는 게시판이 들어갈 곳이다 -->
 
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-lg-offset-2" id="boardTop">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1 container-fluid" id="boardTop">
 			<span class="col-xs-1 col-sm-1 col-md-1 col-lg-1">번호</span>
 			<span class="col-xs-2 col-sm-2 col-md-2 col-lg-1">분류</span>
 			<span class="col-xs-9 col-sm-9 col-md-9 col-lg-10">제목</span>
 		</div>
 		<%for (int i = 0; i < list.size(); i++) {%>
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-lg-offset-2 boardList">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1 boardList container-fluid">
 			<span class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><%=list.get(i).getbNum()%></span>
 			<span class="category col-xs-2 col-sm-2 col-md-2 col-lg-1">[<%=list.get(i).getContentCategory()%>]</span>
 			<span class="col-xs-9 col-sm-9 col-md-9 col-lg-10"><%=list.get(i).getbTitle()%></span>
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-lg-offset-2 boardContent">
+		
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1 boardContent container-fluid">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<i class="fa fa-question-circle" style="font-size: 20px; color: red"></i>&nbsp;<%=list.get(i).getbTitle()%>
@@ -164,7 +171,7 @@
 		<%}%>
 	
 	
-	</div>
+	
 
 	<script>
 		// 목록에 마우스 올려놓으면 색깔 바뀌게 하는 함수
@@ -201,75 +208,24 @@
 				}						
 			}
 			}
-		});
-
-		/* //전체보기 버튼
-		$('.buttons .btn:first-child').click(function(){
-			$('.boardList').css('display','inline-block');
-		});
-		
-		//주문버튼
-		$('.buttons .btn:nth-child(2)').click(function(){
-			for(var i = 0; i<$('.boardList').length; i++){
-				console.log($('.boardList').eq(i).children('.category').text());
-				if($('.boardList').eq(i).children('.category').text()=='[주문]'){
-					console.log('난 주문이다');
-				}else{
-					$('.boardList').eq(i).css('display','none');
-				}
-			}
+			$('.buttons .btn').removeClass('btn-primary').addClass('btn-success');			
+			$(this).addClass('btn-primary');
+			$(this).removeClass('btn-success');
+			
 			
 		});
-		
-		//결제버튼
-		$('.buttons .btn:nth-child(3)').click(function(){
-			for(var i = 0; i<$('.boardList').length; i++){
-				console.log($('.boardList').eq(i).children('.category').text());
-				if($('.boardList').eq(i).children('.category').text()=='[결제]'){
-					console.log('난 결제다');
-				}else{
-					$('.boardList').eq(i).css('display','none');
-				}
-			}
-			
-		});
-		
-		//배송버튼
-		$('.buttons .btn:nth-child(4)').click(function(){
-			for(var i = 0; i<$('.boardList').length; i++){
-				console.log($('.boardList').eq(i).children('.category').text());
-				if($('.boardList').eq(i).children('.category').text()=='[배송]'){
-					console.log('난 배송이다');
-				}else{
-					$('.boardList').eq(i).css('display','none');
-				}
-			}
-		});
-		
-		//쿠폰버튼
-		$('.buttons .btn:nth-child(5)').click(function(){
-			
-		});
-		
-		//교환/환불버튼
-		$('.buttons .btn:nth-child(6)').click(function(){
-			
-		});
-		
-		//회원버튼
-		$('.buttons .btn:nth-child(7)').click(function(){
-			
-		});
-		
-		//상품버튼
-		$('.buttons .btn:nth-child(8)').click(function(){
-			
-		}); */
+	
 	</script>
 
+<div class="col-xs-12 col-sm-12 col-lg-12 col-lg-12">
+<br />
+</div>
 
+<hr class="col-xs-12 col-sm-12 col-lg-12 col-lg-12"/>
 
-
+<div class="col-xs-12 col-sm-12 col-lg-12 col-lg-12">
+<br />
+</div>
 
 
 	<%@include file="/views/common/footer.jsp"%>

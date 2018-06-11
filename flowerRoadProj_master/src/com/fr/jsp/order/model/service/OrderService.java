@@ -7,6 +7,8 @@ import static com.fr.jdbc.common.JDBCTemplate.rollback;
 
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.fr.jsp.member.model.vo.Member;
@@ -81,6 +83,45 @@ public class OrderService {
 		if(result >0) commit(con);
 		else rollback(con);	
 		
+		close(con);
+		return result;
+	}
+
+
+	public ArrayList<MyPage_Order> orderChkSearch(String num, int currentPage, int limit, String start,
+			String end) {
+		Connection con = getConnection();
+		
+		ArrayList<MyPage_Order> list = oDao.orderChkSearch(con, num, currentPage,limit, start, end);
+		
+		close(con);
+		
+		return list;
+	}
+
+
+	public int getChkListCount(String num, int currentPage, int limit, String start, String end) {
+		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		
+		int result = oDao.chkListCount(con, num, currentPage,limit, start, end);
+		
+		close(con);
+		
+		return result;
+	}
+
+
+	public int orderRefund(String num, String onum) {
+		Connection con = getConnection();
+		
+		int result = oDao.orderRefund(con, num, onum);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
 		close(con);
 		return result;
 	}
