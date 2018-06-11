@@ -41,10 +41,10 @@
     .highlight{
     	font-weight:700;
     }
-    #accessTermsText{
+    .access #accessTermsText{
 		margin: 3em;		
-		max-height: calc(80% - 100px);
-    	overflow-y: scroll;		
+		max-height: calc(70% - 100px);
+    	overflow-y: scroll;
 	}
 	.mClose{
 		align: center;
@@ -54,7 +54,7 @@
     </style>  
         <footer>
             <div class="footprint footText">
-              <hr>
+              <!-- <hr> -->
               <div class="footALink">
                 
                 <div class="container col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2">
@@ -107,15 +107,13 @@
                 $('.footList li').eq(4).click(function(){
                		location.href= '<%=request.getContextPath()%>/showNotice.no';
                	});
-               		
-                
                 </script>
                 
                
 
 <div class="modal fade aTerm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="margin : 2em;">
+    <div class="modal-content access" style="margin : 2em;">
      	<div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">이용약관</h4>
@@ -123,11 +121,11 @@
      	<div id="accessTermsText">
 		
 제 1 조 (목적)<br />
-본 약관은 쇼핑몰을 운영하는 주식회사 원모먼트 (이하 ‘회사’라 한다)에서 관련 서비스(이하 ‘서비스’라 하며, 접속 가능한 유,무선 단말기의 종류와 상관없이사이트가 제공하는 모든 서비스를 의미합니다.)를 이용함에 있어 회원의 권리•의무 규정함을 목적으로 합니다. <br />
+본 약관은 쇼핑몰을 운영하는 주식회사 꽃길 (이하 ‘회사’라 한다)에서 관련 서비스(이하 ‘서비스’라 하며, 접속 가능한 유,무선 단말기의 종류와 상관없이사이트가 제공하는 모든 서비스를 의미합니다.)를 이용함에 있어 회원의 권리•의무 규정함을 목적으로 합니다. <br />
 <br /><br />
 
 제 2 조 (정의)<br />
-1. ‘사이트’ 란 ‘회사’가 상품을 회원에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이등’을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 사이버몰을 운영하는 사업사용합니다. 현재 ‘회사’가 운영하는 ‘사이트’는 https://www.1moment.co.kr 서비스 하는 안드로이드, iOS 환경의 서비스를 포함한 모바일웹과 앱을 포함 합니다.<br />
+1. ‘사이트’ 란 ‘회사’가 상품을 회원에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이등’을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 사이버몰을 운영하는 사업사용합니다. 현재 ‘회사’가 운영하는 ‘사이트’는  안드로이드, iOS 환경의 서비스를 포함한 모바일웹과 앱을 포함 합니다.<br />
 2. ‘회원’이라 함은 ‘사이트’에 개인정보를 제공하여 회원등록을 한 자로서, ‘사이트’에 가입 방침에 따라 ‘사이트’의 정보를 지속적으로 제공받으며, ‘사이트’가 제공하는 서비스를 계속적으로 이용할 수 있는 자를 말합니다.<br />
 3. ‘비회원’이라 함은 회원에 가입하지 않고 “몰”이 제공하는 서비스를 이용하는 자를 말합니다.<br />
 4. ‘비밀번호’라 함은 회원의 동일성 확인과 회원의 권익 및 비밀보호를 위하여 회원 스스로 ‘사이트’에 등록한 영문과 숫자의 조합을 말합니다.<br />
@@ -351,7 +349,7 @@
 <br /><br />
 
 부칙<br />
-1. 이 약관은 2018년 1월 1일부터 시행합니다.<br />
+1. 이 약관은 2018년 1월 12일부터 시행합니다.<br />
 2. 이 개정약관은 시행일 이후에 체결되는 계약에만 적용되고 그 이전에 체결된 계약은 개정전의 약관조항을 그대로 적용합니다.<br />
 		
 	</div>
@@ -366,7 +364,7 @@
                 
               </div>
               
-              <hr>
+             <!--  <hr> -->
               
               <br>
               <br>
@@ -374,10 +372,10 @@
                
                 <div class="col-sm-12 col-md-12 col-lg-12">
 
-                   	<p class="col-lg-12 fP">법인명 : (주)원제플라워  | 대표이사 :  이원제  | 사업장 소재지 :  서울시 강남구 역삼동 KH정보교육원  | 사업자등록번호 : 132-78-56215 | 사업자정보확인 </p>
+                   	<p class="col-lg-12 fP">법인명 : (주)꽃길  | 대표이사 :  박태영  | 사업장 소재지 :  서울시 강남구 역삼동 KH정보교육원  | 사업자등록번호 : 132-78-56215 | 사업자정보확인 </p>
 
-         			<p class="col-lg-12 fP">통신판매업신고 : 제2013-서울서초-0521호  | 개인정보보호책임자 :  이원제 | 고객센터 :  02-2222-2222
-                    | 팩스 : 02-2222-2222| E-mail :  help@cultwo-flower.com</p>
+         			<p class="col-lg-12 fP">통신판매업신고 : 제2013-서울강남-0521호  | 개인정보보호책임자 :  이원제 | 고객센터 :  02-2222-2222
+                    | 팩스 : 02-2222-2222| E-mail :  help@flowerRoad.com</p>
                     <p class="col-lg-12 fP">Hosting by (주)코리아센터닷컴</p>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-2"></div>

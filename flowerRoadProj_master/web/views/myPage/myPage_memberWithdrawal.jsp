@@ -56,11 +56,11 @@
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <button class="redBtn" id="finalWithdraw" onclick="finalWithdraw()"><b>탈퇴 하기</b></button>
+                <button class="blueBtn btn btn-danger" id="finalWithdraw" onclick="finalWithdraw()"><b>탈퇴 하기</b></button>
             </div>
             
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <button class="grayBtn" id="cancel" onclick="cancle();"><b>탈퇴 취소</b></button>
+                <button class="grayBtn btn" id="cancel" onclick="cancle();"><b>탈퇴 취소</b></button>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4"></div>
         </div>

@@ -60,14 +60,7 @@
 		</div>
 		<hr class="col-lg-12"/>
 		<div class="col-lg-10">&nbsp;</div>
-		<%-- <%if(memberNum.substring(0, 1).equals("A")){ %> --%>
-		<div class="col-lg-1">
-			<form action="<%=request.getContextPath()%>/sendUpdate.no" method="get">
-				<button class="btn btn-primary" type="submit">수정하기</button>
-				<input type="hidden" name="bNum" id ="bNum" value="<%=notice.getbNum() %>" />		
-			</form>
-		</div>
-		<%-- <%} %> --%>
+		
 		<div class="col-lg-1">
 			<form action="<%=request.getContextPath()%>/showNotice.no" method="get">
 			<button class="btn btn-default" id="toList">목록으로</button>
@@ -76,15 +69,7 @@
 		</div>
 	</div>
 	
-	<script>
-		
-		$(function(){
-			<%-- console.log("멤버는? : "+"<%=memberNum%>");
-			console.log("서브스트링은? : "+"<%=memberNum.substring(0, 1)%>"); --%>
-			console.log("bNum은..?: "+ $('#bNum').val());
-		})
-		
-	</script>
+	
 	
 
 

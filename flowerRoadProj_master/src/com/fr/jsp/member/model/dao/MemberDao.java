@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.member.model.vo.MemberBoard;
+import com.fr.jsp.member.model.vo.MemberCoupon;
 import com.fr.jsp.product.model.vo.ProductFavorite;
 
 public class MemberDao {
@@ -301,7 +302,6 @@ public class MemberDao {
 				
 				while(rset.next()){
 					ProductFavorite pf = new ProductFavorite();
-					System.out.println("여긴 들어왔다");
 					pf.setImage(rset.getString(2));
 					pf.setProductName(rset.getString(3));
 					pf.setProductPrice(rset.getInt(4));
@@ -317,7 +317,6 @@ public class MemberDao {
 					
 					list.add(pf);
 				} 
-				System.out.println("여기 넘었다.");
 				
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -719,6 +718,71 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return resultBoard;
+	}
+	public ArrayList<MemberCoupon> memberCoupon(Connection con, String num) {
+		PreparedStatement pstmt =null;
+		ResultSet rset = null;
+		ArrayList<MemberCoupon> clist = null;
+		
+		String query = prop.getProperty("memberCoupon");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			rset = pstmt.executeQuery();
+
+			clist = new ArrayList<MemberCoupon>();
+			
+			while(rset.next()){
+				MemberCoupon mc = new MemberCoupon();
+				
+				mc.setDistNum(rset.getInt(1));
+				mc.setCouponCode(rset.getString(2));
+				mc.setIssueDate(rset.getDate(3));
+				mc.setIsUsed(rset.getString(4));
+				
+				clist.add(mc);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		
+		return clist;
+	}
+	// 비밀번호 재확인
+	public int pwdRecheck(Connection con, String num, String pwd) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = prop.getProperty("pwdRecheck");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			pstmt.setString(2, pwd);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				result = rset.getInt(1);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(result);
+		return result;
 	}
 
 }

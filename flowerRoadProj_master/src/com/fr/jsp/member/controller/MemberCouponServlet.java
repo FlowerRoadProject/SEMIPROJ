@@ -1,6 +1,8 @@
 package com.fr.jsp.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,37 +11,28 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fr.jsp.member.model.service.MemberService;
-import com.fr.jsp.member.model.vo.Member;
+import com.fr.jsp.member.model.vo.MemberCoupon;
+import com.google.gson.Gson;
 
-@WebServlet("/infoModi.me")
-public class MemberInfoUpdate extends HttpServlet {
+@WebServlet("/mCoupon.me")
+public class MemberCouponServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
-    public MemberInfoUpdate() {
+    public MemberCouponServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		String email = request.getParameter("email");
-		String addr[] = request.getParameter("addr").split("/");
-		String phone = request.getParameter("phone");
 		
-		Member m = (Member)session.getAttribute("m");
-		m.setMemberEmail(email);
-		m.setMemberAddress(addr[0]+"/"+addr[1]+"/"+addr[2]);
-		m.setMemberPhone(phone);
+		String num = (String)session.getAttribute("memberNum");
 		
-		MemberService ms = new MemberService();
+		ArrayList<MemberCoupon> clist = new ArrayList<MemberCoupon>();
 		
-		if(ms.memberUpdate(m) != 0){
-			response.sendRedirect("views/myPage/myPage_main.jsp");
-		}else{
-			response.sendRedirect("views/common/errorPage.jsp");
-		}
+		clist = new MemberService().memberCoupon(num);
 		
+		new Gson().toJson(clist,response.getWriter());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

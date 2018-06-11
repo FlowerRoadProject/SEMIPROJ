@@ -36,12 +36,11 @@ public class MemberInfoMain extends HttpServlet {
 		System.out.println(m);
 		
 		if(m != null){
+			System.out.println("들어오니?");
 			session.setAttribute("m", m);
 			request.getRequestDispatcher("views/myPage/myPage_main.jsp").forward(request, response);
-			
-			
 		}else{
-			System.out.println("존재하지 않는 ID 입니다.");
+			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		
 		

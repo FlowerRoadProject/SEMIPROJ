@@ -90,7 +90,9 @@ public class MemberOrderCheck extends HttpServlet {
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
 		} else {
-			System.out.println("실패");
+			page = "/views/myPage/orderCheck.jsp";
+			request.setAttribute("list", list);
+			request.setAttribute("pi", pi);
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 		

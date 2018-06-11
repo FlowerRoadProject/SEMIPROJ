@@ -188,14 +188,16 @@
 
 		//목록을 클릭하면 내용이 보이게 하는 함수
 		$('.boardList').click(function() {
-			$(this).next('.boardContent').slideToggle(600, function() {
+			$(this).next('.boardContent').slideToggle(600, function(){
 			});
-
+			
 			$(this).toggleClass('highlight');
 		});
 
 		$('.buttons .btn').click(function() {
-			console.log($(this).text());	
+			console.log($(this).text());
+			$('.boardContent').css('display','none');
+			$('.boardList').removeClass('highlight');
 			if($(this).text() == '전체보기'){
 				$('.boardList').css('display', 'inline-block');
 			}else{		

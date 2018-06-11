@@ -39,6 +39,7 @@
         </div>
         <div>
                 <div class="info">
+                <% if(list.size() != 0) { %>
                         <table class="table table-hover" id="listArea">
                             <tr style="background-color: lightgray;">
                                 <th>번호</th>
@@ -59,6 +60,13 @@
                             </tr>
                             <% } %>
                         </table>
+                   <% } else { %>
+                   		<div class="container-fluid">
+                     		<div class="col-sm-1 col-md-1 col-lg-1"></div>
+                     		<div class="col-sm-8 col-md-8 col-lg-8 noneFavorite">== 문의하신 내용이 없습니다. ==</div>
+                     		<div class="col-sm-3 col-md-3 col-lg-3"></div>
+                     	</div>
+                   <% } %>
                 </div>
         </div>
         
@@ -67,12 +75,10 @@
         <div class="container-fluid">
                 
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                    <button class="blueBtn" style="width:100px; height:30px; margin-top:20px;">
-                        	전체 삭제</button>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3"></div>
                 <div class="col-sm-2 col-md-2 col-lg-2">
-                        <button class="blueBtn" id="question" onclick="question();"><b>문의하기</b></button>
+                        <button class="blueBtn btn btn-primary" id="question" onclick="question();"><b>문의하기</b></button>
                 </div>
                 <div class="col-sm-5 col-md-5 col-lg-5"></div>
         </div>
