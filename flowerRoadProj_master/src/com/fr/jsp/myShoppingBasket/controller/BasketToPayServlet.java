@@ -34,24 +34,7 @@ public class BasketToPayServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-	/*	String []name = request.getParameterValues("name");
-		String []quantity = request.getParameterValues("quantity");
-		String []price = request.getParameterValues("price");
-		String []image = request.getParameterValues("img");
-		
-		System.out.println("이곳으로 들어오는 자료의 갯수 : "+name.length);
-		
-		//pList에 상품들 정보 넣기
-		ArrayList<PayProduct> pList = new ArrayList<PayProduct>();
-		for(int i =0 ; i< name.length;i++){
-			if(name[i] != "" && quantity[i] != "" && price[i] != "" && image[i] != ""){
-				System.out.println("자료들 넘어와요? : "+name[i]+", "+quantity[i]+", "+price[i]+", "+image[i]);
-				pList.add(new PayProduct(name[i],quantity[i],price[i],image[i]));
-			}
-		}*/
-		
+				
 		HttpSession session = request.getSession(false);
 		
 		String member_num = (String)session.getAttribute("member_num");
@@ -61,9 +44,8 @@ public class BasketToPayServlet extends HttpServlet {
 		ArrayList<Basket> list = bService.sendPayPage(member_num);
 				
 		Member m = bService.sendInfoToPayPage(member_num);
-		ArrayList<Coupon> cList = new BasketService().selectCoupon(member_num);
+		ArrayList<Coupon> cList = new BasketService().selectCoupon(member_num);		
 		
-		System.out.println("cList.size(): "+cList.size());
 		request.setAttribute("cList", cList);
 		request.setAttribute("pList", list);
 		request.setAttribute("member",m);

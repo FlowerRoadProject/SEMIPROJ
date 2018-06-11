@@ -55,10 +55,8 @@ public class ShowNoticeServlet extends HttpServlet {
 		}
 		
 		//전체 게시글의 수
-		int listCount = new NoticeBoardService().getListCount(); 
+		int listCount = new NoticeBoardService().getListCount(); 		
 		
-		System.out.println("총 게시글의 수 : "+listCount);
-		System.out.println("current: "+currentPage);
 		//총 게시글 수에 대한 페이지 계산
 		//ex) 목록의 수가 123개 라면 페이지수는 13페이지!
 		// 짜투리 게시글도 하나의 페이지로 취급해야 한다

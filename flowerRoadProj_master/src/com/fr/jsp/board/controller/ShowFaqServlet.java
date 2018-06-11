@@ -32,7 +32,7 @@ public class ShowFaqServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("서블릿입장");
+		
 		ArrayList<FaqBoard> list = new FaqBoardService().showFaq();
 		
 		

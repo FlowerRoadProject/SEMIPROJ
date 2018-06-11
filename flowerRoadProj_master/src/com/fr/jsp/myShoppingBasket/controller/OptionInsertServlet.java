@@ -49,7 +49,7 @@ public class OptionInsertServlet extends HttpServlet {
 		
 		
 		int result = 0;
-		System.out.println("length : "+length);
+		/*System.out.println("length : "+length);
 		System.out.println("멤버 : "+member_num);
 		System.out.println("product_num.length: "+product_num.length);		
 		
@@ -57,10 +57,9 @@ public class OptionInsertServlet extends HttpServlet {
 		for(int i = length; i < product_num.length; i++){
 			System.out.print(product_num[i]+", ");		
 		}
-		System.out.println();
+		System.out.println();*/
 		
 		for(int i = length; i< product_num.length; i++){			
-			System.out.println("product_num들은? : "+product_num[i]+",");			
 			bk = new Basket(member_num, product_num[i], Integer.parseInt(quantity[i]));
 			result = bService.insertOption(bk);
 			
