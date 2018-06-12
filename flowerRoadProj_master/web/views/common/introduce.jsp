@@ -48,7 +48,7 @@
 	background: white;
 	text-align: center;
 	font-size: 1.4em;
-	height: 2em;
+	height: auto;
 	padding-top: 0.4em;
 }
 .subList>div>span{
@@ -104,12 +104,12 @@
 		<img src="<%=request.getContextPath()%>/resources/images/footerMenu/intro.jpg" 
 		alt="" class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="height: 7em;"/>
 	</div>
-	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 introTitle">
+	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 introTitle container-fluid">
 		회사소개
 	</div>	
 	
-	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 subList">		
-		<div class="col-lg-6">
+	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 subList container-fluid">		
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
 			우리는 사랑하는 사람과의 <span style="color: coral">기념일, 생일, 승진, 아기의 탄생</span>처럼 축하할 일들이 가득한 일상을 살고 있습니다.
 			하지만 아직 우리에겐 꽃을 선물하는 문화가 적습니다. <br />
 			<span style="color:orange; font-size: 1.2em;">왜 그럴까요?</span><br />
@@ -120,65 +120,63 @@
 			<br />우리는 꽃을 잘 이해하는 플로리스트들이 제철의 신선한 꽃으로 당일 직접 꽃다발을 제작해서 배송합니다.
 			<br /><span style="color: coral;">고객들의 하루에 행복한 놀라움을 선사하길 <br />기대하면서요.</span>		
 		</div>	
-		<div class="col-lg-6" style="background: black;">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" style="background: black;">
 			<img src="<%=request.getContextPath()%>/resources/images/footerMenu/introduce.jpg" alt="" class="col-lg-12"/>
 		</div>
 	</div>
 	
 	
 	
-	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 introTitle">
+	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 introTitle container-fluid">
 		관리자 소개
 	</div>
-	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 subList">		
-		<div class="col-lg-2 admin">
-			<button class="col-lg-12 btn btn-primary">박태영</button>			
+	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 subList container-fluid">		
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
+			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">박태영</button>			
+		</div>		
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
+			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">김낙용</button>
+		</div>		
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
+			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">이원제</button>
 		</div>
 		
-		<div class="col-lg-2 admin">
-			<button class="col-lg-12 btn btn-primary">김낙용</button>
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
+			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">이주형</button>
 		</div>
 		
-		<div class="col-lg-2 admin">
-			<button class="col-lg-12 btn btn-primary">이원제</button>
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
+			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">최순홍</button>
 		</div>
 		
-		<div class="col-lg-2 admin">
-			<button class="col-lg-12 btn btn-primary">이주형</button>
-		</div>
-		
-		<div class="col-lg-2 admin">
-			<button class="col-lg-12 btn btn-primary">최순홍</button>
-		</div>
-		
-		<div class="col-lg-2 admin">
-			<button class="col-lg-12 btn btn-primary">한영두</button>
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
+			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">한영두</button>
 		</div>		
 		<br /><br /><br />
 		
 		<br /><br />
 		
 		
-		<div class="col-lg-12 beforeClick">
-			<div class="col-lg-12" style="font-size:5em;">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 beforeClick container-fluid">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="font-size:5em;">
 				<span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
 			</div>
-			<div class="col-lg-12">			
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">			
 				위의 이름 버튼을 클릭해 보세요
 			</div>
 		</div>
 		
 		
-		<div class="col-lg-12" id="adminInfo">
-			<div class="col-lg-12 adTitle">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 container-fluid" id="adminInfo">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 adTitle">
 				<span class="adminIntro"></span><span class="adminName">박태영</span>
 			</div>
 			
-			<div class="col-lg-12">
-				<div class="col-lg-4">
-					<img src="" class="col-lg-12 adminFlower" />
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<img src="" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 adminFlower" />
 				</div>
-				<div class="col-lg-8">
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 					<h2><b class="flowerName"></b></h2><br>	
 					<h3 class="flowerLang"></h3>
 				</div>
@@ -188,14 +186,6 @@
 	</div>
 	
 	<script type="text/javascript">
-		/*
-			최순홍: 수선화(Narcissus) : 신비 
-			이원제: 벚나무(Cherry) : 정신미 
-			한영두: 비단향꽃무(Stock) : 영원한 아름다움
-			박태영: 꽃아카시아나무(Robinia Hispida) : 품위 
-			김낙용:
-			이주형:
-		*/
 		//박태영
 		var arrPTY = new Array('모자로는 가려지지 않는 품위.. ','박태영',
 				'<%=request.getContextPath()%>/resources/images/introduce/PTY.JPG',
@@ -293,18 +283,6 @@
 		
 		
 	</script>
-		
-	
-	
-	
-	<div class="col-lg-8 col-lg-offset-2 container-fluid test intro">
-		
-		
-	</div>
-	
-	
-	
-
 
 
 <%@include file="/views/common/footer.jsp" %>

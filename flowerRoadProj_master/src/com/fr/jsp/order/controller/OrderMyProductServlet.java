@@ -45,7 +45,7 @@ public class OrderMyProductServlet extends HttpServlet {
       String[] image = request.getParameterValues("image");
       
       //주문자의 정보
-      String member_num = (String) session.getAttribute("member_num");
+      String member_num = (String) session.getAttribute("memberNum");
       
       //받는사람의 정보
       

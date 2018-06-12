@@ -37,7 +37,6 @@ public class AddBasketServlet extends HttpServlet {
 		
 		String memberNum = (String) session.getAttribute("memberNum");
 		String pNumString = (String) request.getParameter("pNum");
-		String pno = (String) request.getParameter("pno");
 		String[] productNums=null;
 		
 		if(pNumString!=null)
