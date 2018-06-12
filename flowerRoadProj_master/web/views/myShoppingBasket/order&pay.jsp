@@ -199,7 +199,7 @@ Member member = (Member)request.getAttribute("member");
         <br><br><br><br><br><br>
         <input type="hidden" value="<%=member.getMemberName()%>" id="mName">
         <input type="hidden" value="<%=member.getMemberPhone()%>" id="mPhone">
-        
+        <input type="hidden" value="<%=member.getMemberAddress()%>" id="mAddress"/>
         
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin"><!--상단 진행페이지 구문-->
