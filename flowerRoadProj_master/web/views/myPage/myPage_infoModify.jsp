@@ -19,7 +19,19 @@
             </head>
     <body>
     <%@ include file="/views/common/header.jsp" %>
-        
+        <%
+        String sns="";
+        for(int i=0; i<memberNum.length(); i++){
+          
+                 
+           if(memberNum.charAt(i)>= '0' && memberNum.charAt(i)<='9'){
+              
+           }else{
+              sns+=memberNum.charAt(i);
+           }
+              
+        }
+        %>
         <!-- 마이페이지 카테고리  -->
         <br><br><br><br><br><br><br><br><br><br>
         <div class="container-fluid">
@@ -41,8 +53,9 @@
 
         <div>
                 <div class="info">
-                    
-                        <br>
+                <br>
+                    	<% if(memberNum.substring(0,1).equals("A")||memberNum.substring(0,1).equals("M")){%>
+                        
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"><b>아이디</b></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"></div>
@@ -55,7 +68,24 @@
                         <div class="col-sm-2 col-md-2 col-lg-2">
                         <p class="text-muted" style="font-weight:bold;">
                         <%=m.getMemberName() %></p></div><br><br><br>
+    					
+    					<% } else { %>
+    					
+    					<div class="col-sm-1 col-md-1 col-lg-1"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"><b>아이디</b></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
+                        <%= sns %>로 로그인 한 아이디</p></div>  <br><br><br>
     
+                        <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"><b>이름</b></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                        <p class="text-muted" style="font-weight:bold;">
+                        <%= sns %>로 로그인 한 회원</p></div><br><br><br>
+    					
+    					<% } %>
+    					
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"><b>이메일</b></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"></div>
@@ -173,6 +203,7 @@
 	        function cancle(){
 	    		location.href = "<%= request.getContextPath() %>/views/myPage/myPage_main.jsp"
 	    	}
+	        
         
         	function modiComplete(){
     	    	var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);//이메일 정규식
@@ -203,6 +234,8 @@
         			if(cf == true)
         			location.href = "<%= request.getContextPath()%>/infoModi.me?email="+email+"&addr="+addr+"&phone="+phone; 
 	            }
+        		
+        		
         		
         	}
         	
