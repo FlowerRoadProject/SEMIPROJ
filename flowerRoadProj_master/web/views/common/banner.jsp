@@ -38,6 +38,14 @@
 	text-shadow: -10px 5px 30px black;
 	
 }
+.banner-content{
+	font-family: flower;
+	color: white;
+	background: black;
+	text-align: center;
+	margin-top: 115%;
+	font-size: 1.5em; 
+}
 
 }
 
@@ -48,8 +56,11 @@
 </head>
 <div class="banner img-responsive">
 	<div class="banner-title">
-		꽃길
-	
+		꽃길	
+	</div>
+	<div class="banner-content">
+		<div>사랑하는사람과</div>
+		<div>함께하세요</div>
 	</div>
 </div>
 </html>
