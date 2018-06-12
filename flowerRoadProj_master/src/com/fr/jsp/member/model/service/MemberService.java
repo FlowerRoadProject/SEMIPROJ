@@ -142,7 +142,6 @@ public class MemberService {
 			rollback(con);
 		}
 		close(con);
-		System.out.println("여기 오니? ="+result);
 		return result;
 	}
 	
@@ -217,7 +216,6 @@ public class MemberService {
 		for(int i=0; i<6; i++) 
 		pwd += (int) (Math.random()*10);
 		//임시비밀번호
-		System.out.println(pwd);
 		result= mDao.pwSearch(con,m,pwd);
 		if(result > 0){
 			commit(con);

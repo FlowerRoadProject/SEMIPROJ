@@ -37,6 +37,7 @@ public class MemberInfoUpdate extends HttpServlet {
 		if(ms.memberUpdate(m) != 0){
 			response.sendRedirect("views/myPage/myPage_main.jsp");
 		}else{
+			request.setAttribute("msg", "회원 정보 변경에 실패하였습니다.");
 			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		
