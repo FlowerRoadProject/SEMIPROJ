@@ -36,6 +36,7 @@ public class MemberPwdRecheck extends HttpServlet {
 			case 3 : response.sendRedirect("views/myPage/myPage_memberWithdrawal.jsp"); break;
 			} 
 		} else {
+			request.setAttribute("msg", "비밀번호를 틀리셨습니다.");
 			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		

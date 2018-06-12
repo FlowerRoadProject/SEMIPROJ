@@ -5,6 +5,7 @@
 	Member m = (Member)session.getAttribute("m");
 	ArrayList<MyPage_Order> list = (ArrayList<MyPage_Order>) request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Integer> cols = (ArrayList<Integer>)request.getAttribute("cols");
 %>
 <!DOCTYPE>
 <html>
@@ -85,7 +86,7 @@
 						style="color: white; background: midnightblue;">
 				</div>
 				<div class="col-md-6">
-					<input class="grayBtn ordchk btn btn-default" type="button" id="reSet" value="초기화">
+					<input class="btn btn-default" type="button" id="reSet" value="초기화">
 				</div>
 			</div> 
 			
@@ -102,23 +103,28 @@
 					<th>배송현황</th>
 				</tr>
 				<%
-					for (int i=0; i< list.size(); i++) {
-				%>
+					int q = 0;
+					for (int i=0; i < cols.size(); i++) {
+						for(int j=q; j<cols.get(i)+q; j++) { %>
 				<tr>
-					<td><%=list.get(i).getOrder_num()%>
-					<input type="hidden" class="oN" name="oN" value="<%=list.get(i).getOrder_num()%>">
-					</td>
-					<td><%=list.get(i).getOrdered_date()%></td>
-					<td><%=list.get(i).getProduct_num()%></td>
-					<td><%=list.get(i).getProduct_cost()%></td>
-					<td><%=list.get(i).getAnonymous_delivery()%></td>
-					<% if( list.get(i).getOrder_state_code().equals("결제 완료") ) { %>
-					<td><%=list.get(i).getOrder_state_code()%> &nbsp;&nbsp;&nbsp;&nbsp;
+						<% if(j == q) { %>
+					<td rowspan="<%= cols.get(i) %>" style="vertical-align: middle;"><%=list.get(q).getOrder_num()%>
+						<input type="hidden" class="oN" name="oN"
+						value="<%=list.get(q).getOrder_num()%>"></td>
+					<% } %>
+					<td><%=list.get(j).getOrdered_date()%></td>
+					<td><a href="<%=request.getContextPath()%>/productDetail.do?productNum=+<%= list.get(j).getProduct_num()%>">
+					<%=list.get(j).getProduct_name()%></a></td>
+					<td><%=list.get(j).getProduct_cost()%></td>
+					<td><%=list.get(j).getAnonymous_delivery()%></td>
+					<% if( list.get(j).getOrder_state_code().equals("결제 완료") ) { %>
+					<td><%=list.get(j).getOrder_state_code()%> &nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="button" value="환불하기" id="refund" class="refund btn btn-default">
 					</td>
 					<% } else { %>
-					<td><%=list.get(i).getOrder_state_code()%></td>
-					<% } %>
+					<td><%=list.get(j).getOrder_state_code()%></td>
+					<% }
+					} q += cols.get(i); %>
 				</tr>
 				<%
 					}
@@ -184,7 +190,7 @@
 			var onum = $(this).parent().siblings().children('.oN').val();
 			var cf = confirm("정말 환불 하시겠습니까??");
 			if(cf == true){
-			location.href="<%=request.getContextPath() %>/orderRefund.or?onum="+onum;
+			location.href=" <%=request.getContextPath() %>/orderRefund.or?onum="+onum;
 			}
 			alert("환불이 완료되었습니다!");
 			
