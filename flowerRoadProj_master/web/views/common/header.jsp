@@ -123,6 +123,20 @@
 	height: 2.5em;
 	font-size: 1.2em;
 }
+
+@keyframes trans3{
+    from{transform: translateY(7px)},
+    to{transform: translateY(-11px)};
+}
+
+
+.a:hover{
+animation-iteration-count: infinite; 
+animation-name: trans3; 
+animation-duration: 0.4s; 
+animation-direction: alternate;
+}
+
 </style>
 
 
@@ -214,8 +228,17 @@
 				
 			});
 			
+			var basket_num=0;
+			
 			function getHeight(){
 				return navContainerHeight;
+			}
+			
+			function setBadgeNumber(){
+				
+				basket_num++;
+				$('#basketBadge').text(basket_num);
+				
 			}
 		</script>
 
@@ -244,7 +267,7 @@
 					%>
 					<a href="<%=request.getContextPath()%>/logout.me">로그아웃</a><br>
 					<a href="<%=request.getContextPath()%>/infoMain.me">마이페이지</a><br>
-					<a href="<%=request.getContextPath()%>/select.bk">장바구니</a><br>
+					<a href="<%=request.getContextPath()%>/select.bk"><span id="basketBadge" class="badge">1</span>장바구니</a><br>
 					<%
 						}
 					%>
