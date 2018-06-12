@@ -7,6 +7,7 @@ public class MyPage_Order {
 	   private String order_num;
 	   private String member_num;
 	   private String product_num;
+	   private String product_name;
 	   private int product_cost;
 	   private Date ordered_date;
 	   private Date reservation_date;
@@ -21,6 +22,8 @@ public class MyPage_Order {
 
 	
 	 // 메소드
+	   
+	   
 	   public String getOrder_num() {
 			return order_num;
 		}
@@ -110,5 +113,17 @@ public class MyPage_Order {
 		public void setAnonymous_delivery(String anonymous_delivery) {
 			this.anonymous_delivery = anonymous_delivery;
 		}
-		   
+
+
+		public String getProduct_name() {
+			return product_name;
+		}
+
+
+		public void setProduct_name(String product_name) {
+			this.product_name = product_name;
+		}
+
+		
+		
 }

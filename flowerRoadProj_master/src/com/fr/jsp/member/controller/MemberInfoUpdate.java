@@ -29,7 +29,7 @@ public class MemberInfoUpdate extends HttpServlet {
 		
 		Member m = (Member)session.getAttribute("m");
 		m.setMemberEmail(email);
-		m.setMemberAddress(addr[0]+addr[1]+addr[2]);
+		m.setMemberAddress(addr[0]+"/"+addr[1]+"/"+addr[2]);
 		m.setMemberPhone(phone);
 		
 		MemberService ms = new MemberService();
@@ -37,7 +37,7 @@ public class MemberInfoUpdate extends HttpServlet {
 		if(ms.memberUpdate(m) != 0){
 			response.sendRedirect("views/myPage/myPage_main.jsp");
 		}else{
-			System.out.println("실패!!");
+			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		
 	}

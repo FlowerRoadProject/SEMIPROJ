@@ -73,7 +73,8 @@
                             <tr>
                                 <td><%= i-- %></td>
                                 <td><img src="<%=request.getContextPath()%>/resources/images/product/<%= list.get(j).getImage() %>" width="60px;" height="60px;"></td>
-                                <td><%= list.get(j).getProductName() %></td>
+                                <td><a href="<%=request.getContextPath()%>/productDetail.do?productNum=+<%=list.get(j).getProductNum()%>">
+                                <%= list.get(j).getProductName() %></a></td>
                                 <td><%= list.get(j).getProductPrice() %>원</td>
                                 <td><%= list.get(j).getProductQuantityState() %></td>
                                 <td><input type="button" value="장바구니" class="goBasket"><br>

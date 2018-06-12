@@ -202,7 +202,7 @@ public class BasketDao {
 	public Member sendInfoToPayPage(Connection con, String member_num){
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		Member m = new Member();
+		Member m = new Member();  
 		
 		String query = prop.getProperty("selectInfoOfMember");
 		
@@ -214,6 +214,7 @@ public class BasketDao {
 			if(rset.next()){
 				m.setMemberName(rset.getString("MEMBER_NAME"));
 				m.setMemberPhone(rset.getString("MEMBER_PHONE"));
+				m.setMemberAddress(rset.getString("MEMBER_ADDRESS"));
 			}
 			
 			

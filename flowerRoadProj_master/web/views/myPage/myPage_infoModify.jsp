@@ -19,7 +19,19 @@
             </head>
     <body>
     <%@ include file="/views/common/header.jsp" %>
-        
+        <%
+        String sns="";
+        for(int i=0; i<memberNum.length(); i++){
+          
+                 
+           if(memberNum.charAt(i)>= '0' && memberNum.charAt(i)<='9'){
+              
+           }else{
+              sns+=memberNum.charAt(i);
+           }
+              
+        }
+        %>
         <!-- 마이페이지 카테고리  -->
         <br><br><br><br><br><br><br><br><br><br>
         <div class="container-fluid">
@@ -41,8 +53,9 @@
 
         <div>
                 <div class="info">
-                    
-                        <br>
+                <br>
+                    	<% if(memberNum.substring(0,1).equals("A")||memberNum.substring(0,1).equals("M")){%>
+                        
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"><b>아이디</b></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"></div>
@@ -55,7 +68,24 @@
                         <div class="col-sm-2 col-md-2 col-lg-2">
                         <p class="text-muted" style="font-weight:bold;">
                         <%=m.getMemberName() %></p></div><br><br><br>
+    					
+    					<% } else { %>
+    					
+    					<div class="col-sm-1 col-md-1 col-lg-1"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"><b>아이디</b></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
+                        <%= sns %>로 로그인 한 아이디</p></div>  <br><br><br>
     
+                        <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"><b>이름</b></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                        <p class="text-muted" style="font-weight:bold;">
+                        <%= sns %>로 로그인 한 회원</p></div><br><br><br>
+    					
+    					<% } %>
+    					
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"><b>이메일</b></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"></div>
@@ -90,9 +120,16 @@
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"><b>전화번호</b></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"></div>
-                        <div class="col-sm-2 col-md-2 col-lg-2"><input type="text" name="tel1" id="tel1" maxlength="3" size="3"/> -
-                                                                <input type="text" name="tel2" id="tel2" maxlength="4" size="4"/> -
-                                                                <input type="text" name="tel3" id="tel3" maxlength="4" size="4"/>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                        <select name="tel1" id="tel1">
+                        	<option value="010">010</option>
+                        	<option value="011">011</option>
+                        	<option value="016">016</option>
+                        	<option value="017">017</option>
+                        	<option value="019">019</option>
+                        </select>
+                         - <input type="text" name="tel2" id="tel2" maxlength="4" size="4"/> 
+                         - <input type="text" name="tel3" id="tel3" maxlength="4" size="4"/>
                         </div> <br><br><br>
     
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
@@ -166,6 +203,7 @@
 	        function cancle(){
 	    		location.href = "<%= request.getContextPath() %>/views/myPage/myPage_main.jsp"
 	    	}
+	        
         
         	function modiComplete(){
     	    	var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);//이메일 정규식
@@ -174,6 +212,7 @@
         		var email = $('#email').val();
         		var addr = $('#zipCode').val()+"/"+$('#address1').val()+"/"+$('#address2').val();
         		var phone = $('#tel1').val()+$('#tel2').val()+$('#tel3').val();
+        		alert(phone);
         		if(!getMail.test($("#email").val())){
 		            alert("이메일형식에 맞게 입력해주세요")
 		            $("#my_email").val("");
@@ -191,10 +230,12 @@
 	            	alert("전화번호를 확인해주세요!");
 	            	$('#tel1').focus();
 	            } else {
-	            	var cf = confirm("비밀번호를 변경하시겠습니까??");
+	            	var cf = confirm("정보를 변경하시겠습니까??");
         			if(cf == true)
         			location.href = "<%= request.getContextPath()%>/infoModi.me?email="+email+"&addr="+addr+"&phone="+phone; 
 	            }
+        		
+        		
         		
         	}
         	

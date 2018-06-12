@@ -40,16 +40,16 @@ public class loginServlet extends HttpServlet {
 			
 			if(m.getMemberNum().charAt(0)=='A'){
 					session.setAttribute("memberNum", m.getMemberNum());
-					System.out.println("관리자 로그인성공");
+//					System.out.println("관리자 로그인성공");
 					page = "/firstMain.admin";
 					
 			}else{
 				
 				if(ms.accessMember(m) !=0){
 					//액세스 로그 가 성공햇을때
-					System.out.println("액세스 로그 삽입 성공");
+//					System.out.println("액세스 로그 삽입 성공");
 				}else{
-					System.out.println("액세스 로그 삽입 실패");
+//					System.out.println("액세스 로그 삽입 실패");
 				}
 					
 				if(PreventDuplicationLogin.getInstance().isUsing(m.getMemberNum())){
@@ -74,10 +74,10 @@ public class loginServlet extends HttpServlet {
 				}
 			}
 		}else{//로그인 실패
-			System.out.println("아이디비번틀림");
+			//System.out.println("아이디비번틀림");
+			page="views/mainPage/login.jsp";
 			request.setAttribute("msg", "로그인 실패 아이디나 비밀번호를 다시 확인하세요");
 		}
-		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	}
