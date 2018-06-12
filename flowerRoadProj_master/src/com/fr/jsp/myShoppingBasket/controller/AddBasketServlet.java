@@ -33,32 +33,45 @@ public class AddBasketServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+		String memberNum = (String) session.getAttribute("memberNum");
+		String pNumString = (String) request.getParameter("pNum");
+		String[] productNums=null;
+		
+		if(pNumString!=null)
+			productNums = pNumString.split(",");
+		
+		for(int i=0;i<productNums.length;++i){
+			System.out.println(productNums[i]);
+		}
 
-		HttpSession session = request.getSession(false);
+		int result = 0;
 
-      String memberNum = (String) session.getAttribute("memberNum");
-      String productNum = (String) request.getParameter("pno");
+		if (memberNum != null) {
+			
+			for(int i=0;i<productNums.length;++i){
+			
+				if ((new BasketService().isExistProduct(memberNum, productNums[i])) > 0) {
+	
+					result = new BasketService().increseQuantityByOne(memberNum, productNums[i]);
+	
+				} else {
+	
+					result = new BasketService().insertToBasket(memberNum, productNums[i]);
+				}
+				
+				if(result<0)
+					new Gson().toJson(-1,response.getWriter());
+				
+			}
+			new Gson().toJson(result, response.getWriter());
 
-      int result = 0;
-
-      if (memberNum != null) {
-         
-         if ((new BasketService().isExistProduct(memberNum, productNum)) > 0) {
-
-            result = new BasketService().increseQuantityByOne(memberNum, productNum);
-
-         } else {
-
-            result = new BasketService().insertToBasket(memberNum, productNum);
-         }
-         
-         new Gson().toJson(result, response.getWriter());
-
-      }else{
-         
-         new Gson().toJson(-1,response.getWriter());
-         
-      }
+		}else{
+			
+			new Gson().toJson(-1,response.getWriter());
+			
+		}
 		
 
 	}

@@ -43,7 +43,7 @@
     }
     .access #accessTermsText{
 		margin: 3em;		
-		max-height: calc(70% - 100px);
+		max-height: calc(100% - 100px);
     	overflow-y: scroll;
 	}
 	.mClose{
@@ -55,6 +55,7 @@
         <footer>
             <div class="footprint footText">
                <hr> 
+
               <div class="footALink">
                 
                 <div class="container col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2">
