@@ -466,6 +466,9 @@ Member member = (Member)request.getAttribute("member");
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin">
                 <h4><b class="col-xs-3 col-sm-3 col-md-3">받는 분</b></h4>
+                 <div class="col-lg-2 col-lg-offset-7">
+               		<input type="checkbox" id="sameBtn" name ="sameBtn" value="주문자와 동일"/><label for="sameBtn">주문자와 동일</label>
+                </div>
                 <hr class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background: black;">
                 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin"><!--우편번호 찾기-->
