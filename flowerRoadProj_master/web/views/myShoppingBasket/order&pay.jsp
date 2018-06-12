@@ -410,14 +410,7 @@ Member member = (Member)request.getAttribute("member");
                         <input type="text" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-control input-text-yellow input-text-height1" placeholder="-없이 입력해주세요" aria-describedby="basic-addon1" id="inputPhone" value="">
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin">
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <button class="btn btn-primary" id="sameBtn">주문자와 동일</button>
-                    </div>
-                    <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                         <h4 style="color:lightgray">클릭하실 경우 회원님의 정보대로 이름과 전화번호가 입력됩니다</h4>
-                    </div>
-                </div>                
+                          
                 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom-margin">
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
