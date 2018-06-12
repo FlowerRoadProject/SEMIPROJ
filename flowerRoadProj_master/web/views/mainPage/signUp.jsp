@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String msg = (String)request.getAttribute("msg");
+   String msg = (String)request.getAttribute("msg");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,11 +40,11 @@
     <%@include file="/views/common/header.jsp" %>
      <script>
      $(document).ready(function() {
-    	 var msg = "<%=msg%>";
-    	 if(msg != "null"){
-    	 	alert(msg);	
-    	 }
-    	 });
+        var msg = "<%=msg%>";
+        if(msg != "null"){
+           alert(msg);   
+        }
+        });
     </script>    
 </head>
 
@@ -62,17 +62,17 @@
         <table>
             <tr>
                 <td class="td1"><label for="inputId" class="control-label">아이디</label></td>
-                <td class="td2"><input type="text" class="form-control" name="my_id" id="my_id" placeholder="아이디"></td>
+                <td class="td2"><input type="text" class="form-control" name="my_id" id="my_id" placeholder="4~12자로 입력해주세요."></td>
                 <td class="td3">
                     <a class="btn btn-default" role="button" id="idCheck">아이디 중복</a></td>
             </tr>
             <tr>
                 <td class="td1"><label for="inputPassword" class="control-label">비밀번호</label></td>
-                <td class="td2" colspan="2"><input type="password" class="form-control" name="my_pwd" id="my_pwd" placeholder="비밀번호"></td>
+                <td class="td2" colspan="2"><input type="password" class="form-control" name="my_pwd" id="my_pwd" placeholder="영어소문자,숫자로 4~12자 입력해주세요."></td>
             </tr>
             <tr>
                 <td class="td1"><label for="inputPasswordCheck" class="control-label">비밀번호 확인</label></td>
-                <td class="td2" colspan="2"><input type="password" class="form-control" name="my_pwd1" id="my_pwd1" placeholder="비밀번호 확인"></td>
+                <td class="td2" colspan="2"><input type="password" class="form-control" name="my_pwd1" id="my_pwd1" placeholder="한번 더 입력해주세요."></td>
             </tr>
             <tr>
                 <td class="td1"><label for="inputName" class="control-label">이름</label></td>
@@ -82,10 +82,10 @@
                 <td class="td1"><label for="gender" class="control-label">성별</label></td>
                 <td class="td2" colspan="2">
                     <div class="col-lg-6 col-mg-6 col-sm-6"><input type="radio" id="man" name="my_gender" value="M">
-                        <lable for="male">남성</lable>
+                        <label for="male">남성</label>
                     </div>
                     <div class="col-lg-6 col-mg-6 col-sm-6"><input type="radio" id="woman" name="my_gender" value="F">
-                        <lable for="female">여성</lable>
+                        <label for="female">여성</label>
                     </div>
                 </td>
             </tr>
@@ -94,16 +94,16 @@
                 <td class="td2" colspan="2"><input type="date" class="form-control" name="my_birth" id="my_birth" placeholder="생일" required="required"></td>
             </tr>
            
-			<tr>
+         <tr>
                 <td class="td1"><label for="inputEmail" class="control-label">이메일</label></td>
                 <td class="td2"><input type="email" class="form-control" name="my_email" id="my_email" placeholder="이메일"></td>
-                <td class="td3"><a class="btn btn-default" role="button" id="emailbtn">이메일인증번호 전송</a></td>
+                <td class="td3"><a class="btn btn-default" role="button" id="emailbtn">인증번호 전송</a></td>
             </tr>
             <tr>
-                <td class="td1"><label for="inputEmailCheck" class="control-label">이메일 인증번호 확인</label></td>
+                <td class="td1"><label for="inputEmailCheck" class="control-label">인증번호 확인</label></td>
                 <td class="td2"><input type="text" class="form-control" id="emailCheck" placeholder="인증번호 6자리"></td>
                 <td class="td3"><a class="btn btn-default" role="button" id="confirmEmail">인증번호
-				확인</a></td>
+            확인</a></td>
             </tr>
             <tr>
                 <td class="td1"><label for="address" class="control-label">우편번호</label></td>
@@ -116,22 +116,20 @@
             </tr>
             <tr>
                 <td class="td1"><label for="address1" class="control-label">상세주소</label></td>
-                <td class="td2" colspan="2"><input type="text" id="address2" class="form-control" name="address2"></td>
+                <td class="td2" colspan="2"><input type="text" id="address2" class="form-control" name="address2"  placeholder="상세주소"></td>
             </tr>
 
             <tr>
                 <td class="td1"><label for="inputNumber" class="control-label">휴대폰번호</label></td>
-                <td class="td2" colspan="2"><input type="text" class="form-control" name="my_phone" id="my_phone" placeholder="휴대폰번호"></td>
+                <td class="td2" colspan="2"><input type="text" class="form-control" name="my_phone" id="my_phone" placeholder="-제외 숫자로만 11자"></td>
                
             </tr>
-            <tr colspan="3">
-                <td class="td1"></td>
-                <td class="td3"><label for="inputAgree" class="control-label">약관 동의</label>
+            <tr>
+                <td colspan="3" style="text-align:center"><label for="inputAgree" class="control-label">약관 동의</label>
                     <input id="agree" type="checkbox" name="my_agree">
-                    <td  data-toggle="modal" data-target=".aTerm" style="color:blue; cursor:pointer;">
-                      	이용 약관
+                    <a  data-toggle="modal" data-target=".bTerm" style="color:blue; cursor:pointer;">
+                         이용 약관</a>
                     </td>
-                <td></td>
             </tr>
             
             <tr>
@@ -144,209 +142,210 @@
     </div>
     <%@include file = "/views/common/footer.jsp" %>
    
-    <script>		
+    <script>      
     $(document).ready(function() {
-		 
-    	var idCheck=false;
-    	var emailNum="";
-    	var emailCheck=false;
-    	
-    	$('#my_id').on('input',function(e){
-    		if(idCheck)
-    			alert('아이디 중복확인후 아이디를 바꾸시면 안됩니다.. 다시 중복확인해주세요');
-    		 idCheck=false;
-     		//console.log(idCheck);
-    		});
-    	
-    	$('#emailbtn').click(function(){
-    		var email=$('#my_email').val();
-    		if($('#my_email').val()==""){
-    			alert('이메일값을 입력해주세요');
-    		}else{
-    		$.ajax({
-				url : "<%=request.getContextPath()%>/emailSend.me?email="+email,
-				data : { email : $('#my_email').val()},
-				type : "GET",
-				success : function(data){
-						alert("이메일로 인증번호를 보냈습니다.");
-						emailNum=($.trim(data));
-						console.log($.trim(data));
-				},error : function(){
-					alert("데이터 전달 실패");
-				}
-			});
-    		}
-    	});
-    	$("#confirmEmail").click(function(){
-    		console.log($('#emailCheck').val());
-    		if($('#emailCheck').val()==""){
-    			alert('인증번호 값을 입력해주세요');
-    		}else if($('#emailCheck').val()==emailNum){
-    			alert('인증성공!');
-    			emailCheck=true;
-    		}else{
-    			alert('인증 실패!');
-    			emailCheck=false;
-    		}
-    	});
-    		
-	    $("#btn_join").click(function() {
-	    	var getName= RegExp(/^[가-힣]+$/);//이름 정규식
-	    	var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);//이메일 정규식
-	    	var getPhone = RegExp(/\d{11}/);
-	      
-	            if ($("#my_id").val() == "") {
-	                alert("아이디를 꼭 입력하세요!");
-	                $("#my_id").focus();
-	            }else if ($("#my_id").val().length<4 || $("#my_id").val().length>12) {
-	                alert("아이디를 4~12자까지 입력해주세요.")
-	                $("#my_id").focus();
-	                $("#my_id").select();
-	           }else if ($("#my_pwd").val() == "") {
-	                alert("비밀번호를 꼭 입력하세요!");
-	                $("#my_pwd").focus();
-	            }else if ($("#my_pwd").val().length<4 || $("#my_pwd").val().length>12) {
-	            	alert("비밀번호를 4~12자로 입력해주세요!");
-	                $("#my_pwd").focus();
-	            }else if ($("#my_pwd1").val() == "") {
-	                alert("비밀번호확인 을 꼭 입력하세요!");
-	                $("#my_pwd1").focus();
-	            } else if ($("#my_pwd").val() != $("#my_pwd1").val()) {
-	                alert("비밀번호와 비밀번호 확인이 일치하지않습니다.");
-	                $("#my_pwd").val("");
-	                $("#my_pwd1").val("");
-	                $("#my_pwd").focus();
-	            } else if ($("#my_name").val() == "") {
-	                alert("이름을 꼭 입력하세요!");
-	                $("#my_name").focus();
-	            }else if(!getName.test($("#my_name").val())){
-		               alert("이름형식에 맞게 입력해주세요");
-		               $("#my_name").val("");
-		               $("#my_name").focus();
-		        }else if(!getMail.test($("#my_email").val())){
-		            alert("이메일형식에 맞게 입력해주세요")
-		            $("#my_email").val("");
-		            $("#my_email").focus();
-		        }else if ($("#address1").val() == "") {
-	                alert("주소를 꼭 입력하세요!");
-	                $("#address1").focus();
-	            } else if ($("#address2").val() == "") {
-	                alert("주소를 꼭 입력하세요!");
-	                $("#address2").focus();
-	            } else if ($("#address3").val() == "") {
-	                alert("주소를 꼭 입력하세요!");
-	                $("#address3").focus();
-	            } else if ($("#man").is(':checked') == false && $("#woman").is(':checked') == false) {
-	                alert("성별을 선택해주세요");
-	            } else if ($("#my_add").val() == "") {
-	                alert("이메일을 꼭 입력하세요!");
-	                $("#my_add").focus();
-	            }else if (!getPhone.test($("#my_phone").val())){
-	            	alert("-가 없는 11자리 핸드폰 번호를 입력해주세요");
-	            }else if(!idCheck){
-	            	alert('아이디 중복확인을 해주세요');
-	            	$("#my_id").val("");
-		            $("#my_id").focus();
-	            }else if(!emailCheck){
-	            	alert('이메일 인증확인을 해주세요');
-		            $("#inputNumberCheck").focus();
-	            }else if(!($('#agree').is(":checked"))){
-	            	alert('이용약관 동의 확인을 해주세요');
-	            	$('#agree').focus();
-	            }else if ($('#my_birth').val()==""||$('#my_birth').val()==null){
-	            	alert('생일을 확인 해주세요');
-	            	$('#my_birth').focus();
-	            }
-	            else {
-	                $('#f').submit();
-	            }
-	            event.preventDefault();
-	        });
-	 
-	 
-			    
-	    
-	    $('#idCheck').on('click',function(){
-			$.ajax({
-				url : "<%=request.getContextPath()%>/checkId.me",
-				data : { my_id : $('#my_id').val()},
-				type : "GET",
-				success : function(data){
-					if(data=="아이디가 중복되었습니다."){
-						alert(data);
-						idCheck=false;
-					}else if(data=="아이디가 중복되지 않았습니다."){
-						alert(data);
-						idCheck=true;
-					}else if(data=="아이디를 입력해주세요"){
-						alert(data);
-						idCheck=false;
-					}else{
-						alert('뭔가 잘못됨');
-					}
-				},error : function(){
-					alert("데이터 전달 실패");
-				}
-			});
-		});
+       
+       var idCheck=false;
+       var emailNum="";
+       var emailCheck=false;
+       
+       $('#my_id').on('input',function(e){
+          if(idCheck)
+             alert('아이디 중복확인후 아이디를 바꾸시면 안됩니다.. 다시 중복확인해주세요');
+           idCheck=false;
+           //console.log(idCheck);
+          });
+       
+       $('#emailbtn').click(function(){
+          var email=$('#my_email').val();
+          if($('#my_email').val()==""){
+             alert('이메일값을 입력해주세요');
+          }else{
+          $.ajax({
+            url : "<%=request.getContextPath()%>/emailSend.me?email="+email,
+            data : { email : $('#my_email').val()},
+            type : "GET",
+            success : function(data){
+                  alert("이메일로 인증번호를 보냈습니다.");
+                  emailNum=($.trim(data));
+                  console.log($.trim(data));
+            },error : function(){
+               alert("데이터 전달 실패");   
+            }
+         });
+          }
+       });
+       $("#confirmEmail").click(function(){
+          console.log($('#emailCheck').val());
+          if($('#emailCheck').val()==""){
+             alert('인증번호 값을 입력해주세요');
+          }else if($('#emailCheck').val()==emailNum){
+             alert('인증성공!');
+             emailCheck=true;
+          }else{
+             alert('인증 실패!');
+             emailCheck=false;
+          }
+       });
+          
+       $("#btn_join").click(function() {
+          var getName= RegExp(/^[가-힣]+$/);//이름 정규식
+             var getPwd = RegExp(/^[a-z0-9_-]{4,12}$/); // 비밀번호 정규식
+             var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);//이메일 정규식
+             var getPhone = RegExp(/\d{11}/);
+         
+               if ($("#my_id").val() == "") {
+                   alert("아이디를 꼭 입력하세요!");
+                   $("#my_id").focus();
+               }else if ($("#my_id").val().length<4 || $("#my_id").val().length>12) {
+                   alert("아이디를 4~12자까지 입력해주세요.")
+                   $("#my_id").focus();
+                   $("#my_id").select();
+              }else if ($("#my_pwd").val() == "") {
+                   alert("비밀번호를 꼭 입력하세요!");
+                   $("#my_pwd").focus();
+               }else if (!getPwd.test($("#my_pwd").val())) {
+                  alert("비밀번호를 영어소문자,숫자로 4~12자 입력해주세요!");
+                   $("#my_pwd").focus();
+               }else if ($("#my_pwd1").val() == "") {
+                   alert("비밀번호확인 을 꼭 입력하세요!");
+                   $("#my_pwd1").focus();
+               } else if ($("#my_pwd").val() != $("#my_pwd1").val()) {
+                   alert("비밀번호와 비밀번호 확인이 일치하지않습니다.");
+                   $("#my_pwd").val("");
+                   $("#my_pwd1").val("");
+                   $("#my_pwd").focus();
+               } else if ($("#my_name").val() == "") {
+                   alert("이름을 꼭 입력하세요!");
+                   $("#my_name").focus();
+               }else if(!getName.test($("#my_name").val())){
+                     alert("이름형식에 맞게 입력해주세요");
+                     $("#my_name").val("");
+                     $("#my_name").focus();
+              }else if(!getMail.test($("#my_email").val())){
+                  alert("이메일형식에 맞게 입력해주세요")
+                  $("#my_email").val("");
+                  $("#my_email").focus();
+              }else if ($("#address1").val() == "") {
+                   alert("주소를 꼭 입력하세요!");
+                   $("#address1").focus();
+               } else if ($("#address2").val() == "") {
+                   alert("주소를 꼭 입력하세요!");
+                   $("#address2").focus();
+               } else if ($("#address3").val() == "") {
+                   alert("주소를 꼭 입력하세요!");
+                   $("#address3").focus();
+               } else if ($("#man").is(':checked') == false && $("#woman").is(':checked') == false) {
+                   alert("성별을 선택해주세요");
+               } else if ($("#my_add").val() == "") {
+                   alert("이메일을 꼭 입력하세요!");
+                   $("#my_add").focus();
+               }else if (!getPhone.test($("#my_phone").val())){
+                  alert("-가 없는 11자리 핸드폰 번호를 입력해주세요");
+               }else if(!idCheck){
+                  alert('아이디 중복확인을 해주세요');
+                  $("#my_id").val("");
+                  $("#my_id").focus();
+               }else if(!emailCheck){
+                  alert('이메일 인증확인을 해주세요');
+                  $("#inputNumberCheck").focus();
+               }else if(!($('#agree').is(":checked"))){
+                  alert('이용약관 동의 확인을 해주세요');
+                  $('#agree').focus();
+               }else if ($('#my_birth').val()==""||$('#my_birth').val()==null){
+                  alert('생일을 확인 해주세요');
+                  $('#my_birth').focus();
+               }
+               else {
+                   $('#f').submit();
+               }
+               event.preventDefault();
+           });
+    
+    
+             
+       
+       $('#idCheck').on('click',function(){
+         $.ajax({
+            url : "<%=request.getContextPath()%>/checkId.me",
+            data : { my_id : $('#my_id').val()},
+            type : "GET",
+            success : function(data){
+               if(data=="아이디가 중복되었습니다."){
+                  alert(data);
+                  idCheck=false;
+               }else if(data=="아이디가 중복되지 않았습니다."){
+                  alert(data);
+                  idCheck=true;
+               }else if(data=="아이디를 입력해주세요"){
+                  alert(data);
+                  idCheck=false;
+               }else{
+                  alert('뭔가 잘못됨');
+               }
+            },error : function(){
+               alert("데이터 전달 실패");
+            }
+         });
+      });
 
     });
-			    function addrSearch() {
-					new daum.Postcode({
-						oncomplete : function(data) {
-							// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+             function addrSearch() {
+               new daum.Postcode({
+                  oncomplete : function(data) {
+                     // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-							// 각 주소의 노출 규칙에 따라 주소를 조합한다.
-							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-							var fullAddr = ''; // 최종 주소 변수
-							var extraAddr = ''; // 조합형 주소 변수
+                     // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                     // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                     var fullAddr = ''; // 최종 주소 변수
+                     var extraAddr = ''; // 조합형 주소 변수
 
-							// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-							if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-								fullAddr = data.roadAddress;
+                     // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                     if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                        fullAddr = data.roadAddress;
 
-							} else { // 사용자가 지번 주소를 선택했을 경우(J)
-								fullAddr = data.jibunAddress;
-							}
+                     } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                        fullAddr = data.jibunAddress;
+                     }
 
-							// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
-							if (data.userSelectedType === 'R') {
-								//법정동명이 있을 경우 추가한다.
-								if (data.bname !== '') {
-									extraAddr += data.bname;
-								}
-								// 건물명이 있을 경우 추가한다.
-								if (data.buildingName !== '') {
-									extraAddr += (extraAddr !== '' ? ', '
-											+ data.buildingName : data.buildingName);
-								}
-								// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-								fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')'
-										: '');
-							}
+                     // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                     if (data.userSelectedType === 'R') {
+                        //법정동명이 있을 경우 추가한다.
+                        if (data.bname !== '') {
+                           extraAddr += data.bname;
+                        }
+                        // 건물명이 있을 경우 추가한다.
+                        if (data.buildingName !== '') {
+                           extraAddr += (extraAddr !== '' ? ', '
+                                 + data.buildingName : data.buildingName);
+                        }
+                        // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                        fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')'
+                              : '');
+                     }
 
-							// 우편번호와 주소 정보를 해당 필드에 넣는다.
-							$('#zipCode').val(data.zonecode); //5자리 새우편번호 사용
+                     // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                     $('#zipCode').val(data.zonecode); //5자리 새우편번호 사용
 
-							$('#address1').val(fullAddr);
+                     $('#address1').val(fullAddr);
 
-							// 커서를 상세주소 필드로 이동한다.
-							$('#address2').focus();
-						}
-					}).open();
-				};
-				
-				
-	</script>
-	 <div class="modal fade aTerm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                     // 커서를 상세주소 필드로 이동한다.
+                     $('#address2').focus();
+                  }
+               }).open();
+            };
+            
+            
+   </script>
+    <div class="modal fade bTerm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content access" style="margin : 2em;">
-     	<div class="modal-header">
+        <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="myModalLabel">이용약관</h4>
       </div>
-     	<div id="accessTermsText">
-		
+        <div id="accessTermsText">
+      
 제 1 조 (목적)<br />
 본 약관은 쇼핑몰을 운영하는 주식회사 꽃길 (이하 ‘회사’라 한다)에서 관련 서비스(이하 ‘서비스’라 하며, 접속 가능한 유,무선 단말기의 종류와 상관없이사이트가 제공하는 모든 서비스를 의미합니다.)를 이용함에 있어 회원의 권리•의무 규정함을 목적으로 합니다. <br />
 <br /><br />
@@ -576,11 +575,11 @@
 <br /><br />
 
 부칙<br />
-1. 이 약관은 2018년 1월 12일부터 시행합니다.<br />
+1. 이 약관은 2018년 1월 12일부터 시행합니다.<br/>
 2. 이 개정약관은 시행일 이후에 체결되는 계약에만 적용되고 그 이전에 체결된 계약은 개정전의 약관조항을 그대로 적용합니다.<br />
-		
-	</div>
-	<div class="modal-footer">
+      
+   </div>
+   <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">창닫기</button>        
       </div>
     </div>

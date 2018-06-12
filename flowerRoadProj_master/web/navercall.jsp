@@ -7,7 +7,7 @@
 
 </head>
 <body>
-<button onclick="back();">뒤로가기</button>
+
 
 	<!-- (1) LoginWithNaverId Javscript SDK -->
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
@@ -21,7 +21,7 @@
 		var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "ctuF5pktgpuwbay7zj12",
-				callbackUrl: "http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/flowerRoadProj/navercall.jsp",
+				callbackUrl: "<%=request.getContextPath()%>/navercall.jsp",
 				isPopup: false,
 				callbackHandle: true
 				/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
