@@ -189,6 +189,7 @@
     		
 	    $("#btn_join").click(function() {
 	    	var getName= RegExp(/^[가-힣]+$/);//이름 정규식
+    		var getPwd = RegExp(/^[a-z0-9_-]{4,12}$/); // 비밀번호 정규식
 	    	var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);//이메일 정규식
 	    	var getPhone = RegExp(/\d{11}/);
 	      
@@ -202,7 +203,7 @@
 	           }else if ($("#my_pwd").val() == "") {
 	                alert("비밀번호를 꼭 입력하세요!");
 	                $("#my_pwd").focus();
-	            }else if ($("#my_pwd").val().length<4 || $("#my_pwd").val().length>12) {
+	            }else if (!getPwd.test($("#my_pwd").val())) {
 	            	alert("비밀번호를 4~12자로 입력해주세요!");
 	                $("#my_pwd").focus();
 	            }else if ($("#my_pwd1").val() == "") {

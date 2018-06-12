@@ -90,9 +90,16 @@
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"><b>전화번호</b></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"></div>
-                        <div class="col-sm-2 col-md-2 col-lg-2"><input type="text" name="tel1" id="tel1" maxlength="3" size="3"/> -
-                                                                <input type="text" name="tel2" id="tel2" maxlength="4" size="4"/> -
-                                                                <input type="text" name="tel3" id="tel3" maxlength="4" size="4"/>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                        <select name="tel1" id="tel1">
+                        	<option value="010">010</option>
+                        	<option value="011">011</option>
+                        	<option value="016">016</option>
+                        	<option value="017">017</option>
+                        	<option value="019">019</option>
+                        </select>
+                         - <input type="text" name="tel2" id="tel2" maxlength="4" size="4"/> 
+                         - <input type="text" name="tel3" id="tel3" maxlength="4" size="4"/>
                         </div> <br><br><br>
     
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
@@ -174,6 +181,7 @@
         		var email = $('#email').val();
         		var addr = $('#zipCode').val()+"/"+$('#address1').val()+"/"+$('#address2').val();
         		var phone = $('#tel1').val()+$('#tel2').val()+$('#tel3').val();
+        		alert(phone);
         		if(!getMail.test($("#email").val())){
 		            alert("이메일형식에 맞게 입력해주세요")
 		            $("#my_email").val("");
