@@ -246,7 +246,7 @@ public class MemberDao {
 				pstmt.setString(1, m.getMemberEmail());
 				pstmt.setString(2, m.getMemberAddress());
 				pstmt.setString(3, m.getMemberPhone());
-				pstmt.setString(4, m.getMemberId());
+				pstmt.setString(4, m.getMemberNum());
 				
 				result = pstmt.executeUpdate();
 				
