@@ -108,7 +108,7 @@ $("input[name=userPwd]").keydown(function (key) {
 <body>
 
 
-<br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br />
 <div id="Contents">
 		<h2 class="header" style="text-align: center">로그인</h2>
 		<form id="loginForm" class="form-Member"
@@ -148,7 +148,7 @@ $("input[name=userPwd]").keydown(function (key) {
                     <div id="naverIdLogin"></div>
                 </div>
                 <div style="text-align : center">
-				<div class="form-group">
+				<div class="form-group col-sm-3 col-md-3 col-lg-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3" >
 					<div class="g-signin2" onclick="GoogleLogin()"
 						data-width="220" data-height="50" data-onsuccess="onSignIn"
 						data-theme="dark"></div>
@@ -161,7 +161,7 @@ $("input[name=userPwd]").keydown(function (key) {
        
     </div>
     
-  
+  <br><br><br>
 <%@include file = "/views/common/footer.jsp" %>
 <script type='text/javascript'>
 function login(){

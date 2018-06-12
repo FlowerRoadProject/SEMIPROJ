@@ -80,10 +80,6 @@
                 
                 <script>
                 	
-                $(function(){
-                	console.log( $('.footList li:first-child').text());
-                	
-                })
                $('.footList li').hover(function(){
                		$(this).css({
                			'background':'lightcoral',
