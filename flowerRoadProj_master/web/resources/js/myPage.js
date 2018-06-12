@@ -2,7 +2,6 @@
 function pwd(){
 	var sel = 1;
 	var pwd = prompt("비밀번호를 입력해주세요");
-	alert(pwd);
 	if(pwd == null || pwd == "") {
 		location.reload();
 	} else {

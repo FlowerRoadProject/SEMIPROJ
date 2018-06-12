@@ -214,7 +214,7 @@ $('#signUp').click(function(){
   var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "ctuF5pktgpuwbay7zj12",
-				callbackUrl: "http://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "/flowerRoadProj/navercall.jsp",
+				callbackUrl: "http://" + window.location.hostname + ((location.port==""||location.port==undefined)?"":":" + location.port) + "<%=request.getContextPath()%>/navercall.jsp",
 				isPopup: false,
 				loginButton: {color: "green", type: 3, height: 50}
 			}

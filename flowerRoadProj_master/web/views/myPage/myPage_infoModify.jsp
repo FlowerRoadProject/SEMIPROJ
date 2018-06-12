@@ -191,7 +191,7 @@
 	            	alert("전화번호를 확인해주세요!");
 	            	$('#tel1').focus();
 	            } else {
-	            	var cf = confirm("비밀번호를 변경하시겠습니까??");
+	            	var cf = confirm("정보를 변경하시겠습니까??");
         			if(cf == true)
         			location.href = "<%= request.getContextPath()%>/infoModi.me?email="+email+"&addr="+addr+"&phone="+phone; 
 	            }
