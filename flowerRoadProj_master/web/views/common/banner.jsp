@@ -10,22 +10,25 @@
 	src: url('<%=request.getContextPath()%>/resources/fonts/admin/SangSangFlowerRoad.otf') format('opentype');
 }
 
-
+.ban{
+	display: none;
+}
 
 
 @media (min-width: 1650px){
 
 .banner{
-		border: 1px solid black;
-		position:absolute;
-		right: 10em;
-		top: 72em;
-		background: #f7a8c7;	
-		background-image: url('<%=request.getContextPath()%>/resources/images/background1.jpg');
-		background-size: cover;
-		width: 10em;
-		height: 30em;		
-	}
+	display: inline-block;
+	border: 1px solid black;
+	position:absolute;
+	right: 10em;
+	top: 72em;
+	background: #f7a8c7;	
+	background-image: url('<%=request.getContextPath()%>/resources/images/background1.jpg');
+	background-size: cover;
+	width: 10em;
+	height: 30em;		
+}
 .banner-title{	
 	font-size: 3.7em;
 	margin-left: 31%; 
@@ -54,7 +57,7 @@
 	
 </style>
 </head>
-<div class="banner img-responsive">
+<div class="ban banner img-responsive">
 	<div class="banner-title">
 		꽃길	
 	</div>
