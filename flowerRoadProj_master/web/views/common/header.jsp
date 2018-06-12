@@ -22,60 +22,25 @@
 <script>
 
 
-				$(function(){
-					<%
-					if (memberNum == null || memberNum == "") {
-					%>
-					$('#menu').popover(
-							{
-								template : '<div class="popover" style="width:90px; height:60px;"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
-							});
-					<%}else{%>
-					$('#menu').popover(
-							{
-								template : '<div class="popover" style="width:115px; height:90px;"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
-							});	
-					<%}%>
-			
-					$('#menu').attr("data-content" , $('#menu_button').html());
-					$('.popover-dismiss').popover({
-						  trigger: 'focus'
-						});
+	$(function(){
+		<%
+		if (memberNum == null || memberNum == "") {
+		%>
+		$('#menu').popover(
+				{
+				template : '<div class="popover" style="width:90px; height:60px;"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
 				});
-				
-				$('#favorite').on(
-						'click',
-						function(e) {
-							var bookmarkURL = window.location.href;
-							var bookmarkTitle = document.title;
-							var triggerDefault = false;
-							if (window.sidebar && window.sidebar.addPanel) {
-								// Firefox version < 23 
-								window.sidebar.addPanel(bookmarkTitle,
-										bookmarkURL, '');
-							} else if ((window.sidebar && (navigator.userAgent
-									.toLowerCase().indexOf('firefox') > -1))
-									|| (window.opera && window.print)) {
-								// Firefox version >= 23 and Opera Hotlist 
-								var $this = $(this);
-								$this.attr('href', bookmarkURL);
-								$this.attr('title', bookmarkTitle);
-								$this.attr('rel', 'sidebar');
-								$this.off(e);
-								triggerDefault = true;
-							} else if (window.external
-									&& ('AddFavorite' in window.external)) {
-								// IE Favorite 
-								window.external.AddFavorite(bookmarkURL,
-										bookmarkTitle);
-							} else {
-								// WebKit - Safari/Chrome 
-								alert((navigator.userAgent.toLowerCase()
-										.indexOf('mac') != -1 ? 'Cmd' : 'Ctrl')
-										+ '+D 키를 눌러 즐겨찾기에 등록하실 수 있습니다.');
-							}
-							return triggerDefault;
-						});
+		<%}else{%>
+		$('#menu').popover(
+				{
+				template : '<div class="popover" style="width:115px; height:90px;"><div class="arrow"></div><div class="popover-inner"><div class="popover-content"><p></p></div></div></div>'
+				});	
+		<%}%>
+		$('#menu').attr("data-content" , $('#menu_button').html());
+		$('.popover-dismiss').popover({
+			  trigger: 'focus'
+			});
+		});				
 
 	$('#favorite').on('click',function(e) {
 		var bookmarkURL = window.location.href;
@@ -108,7 +73,7 @@
 			}
 			return triggerDefault;
 		});
-	$('#favorite').hover(function(){},function(){})
+	
 
 </script>
 
@@ -181,7 +146,7 @@
 				width="75px" height="75px">
 			</a> --%>			
 			 <span class="glyphicon glyphicon-star" id="favorite" style="cursor: pointer" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="즐겨찾기"></span> 
-			 
+			 <span class="label label-primary" id="favoriteLabel" style="display:none">즐겨찾기</span>
 			
 		</div>
 		<!-- style="width:200px; height:80px" -->
@@ -259,6 +224,12 @@
 			</div>
 		</div>
 		<script>
+			$('#favorite').hover(function(){
+				$('#favoriteLabel').css('display','inline-block');
+			},function(){
+				$('#favoriteLabel').css('display','none');
+			})
+		
 			$('.Pmenu li a').hover(function() {
 				$(this).css({
 					background : 'lightcoral',

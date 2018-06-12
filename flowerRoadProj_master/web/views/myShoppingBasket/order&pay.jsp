@@ -491,6 +491,36 @@ Member member = (Member)request.getAttribute("member");
         			$('#rInputName').val($('#mName').val());
         			//전화번호 출력되는 곳
         			$('#rPhone').val($('#mPhone').val());
+        			
+        			var addr = $('#sample6_address').val().substring(3,6)
+                    
+                    if($('#sample6_address').val().substring(0,2) == "서울"){
+                    	$('#dvPrice').text("0원");                        	
+                    }else if($('#sample6_address').val().substring(0,2) == "인천"){
+                    	$('#dvPrice').text("20000원"); 
+                    }else if($('#sample6_address').val().substring(0,2) == "경기"){
+                    	if(addr == "구리시" || addr == "하남시" || addr == "성남시" || addr == "과천시" || addr == "의왕시" || addr == "군포시" || 
+                    			addr == "안양시" || addr == "광명시" || addr == "부천시"){
+                    		$('#dvPrice').text("10000원"); 
+                    	}else if(addr == "김포시" || addr == "고양시" || addr == "파주시" || addr == "양주시" || addr == "광주시" ||
+                    			addr == "용인시" || addr == "수원시" || addr == "오산시" || addr == "화성시" || addr == "안산시" ||
+                    			addr == "시흥시" || addr == "남양주" || addr == "의정부"){
+                    		$('#dvPrice').text("20000원"); 
+                    	}else{
+                    		$('#dvPrice').text("25000원"); 
+                    	}
+                	}else{                        	
+                		$('#dvPrice').text("30000원"); 
+                    }                      
+                    
+                    $('#finalPay').text( parseInt($('#totalPrice').text()) + parseInt($('#dvPrice').text()) +"원");
+                    //쿠폰금액 0원으로 바꾸기
+                    $('#couponInput').text( 0 +"원" );
+                    $('#finalPay').text( parseInt($('#finalPay').text()) + "원" );
+                    //사용하기 버튼 활성화, 취소하기 버튼 안보이게
+                    $('.coupon-btn').css('display','inline-block');
+                    $('.coupon-cancle').css('display','none');
+        			
         		}else{    			
         			$('#sample6_postcode').val("");    			
         			$('#sample6_address').val("");   			
@@ -905,12 +935,12 @@ Member member = (Member)request.getAttribute("member");
 		}
 		else if($('#payMethod').val() != "신용카드"){
 			alert('아직은 신용카드결제만 가능합니다..');
-		}else{
-			
+		}else{			
 		
-		/*
+		console.log("실제결제 시작지점");
+		///////////////////////////////////////////////////////
 		var IMP = window.IMP; // 생략가능
-       	IMP.init('iamport'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+       	IMP.init('imp81291748'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
        	
        	IMP.request_pay({
        	    pg : 'inicis', // version 1.1.0부터 지원.
@@ -934,76 +964,139 @@ Member member = (Member)request.getAttribute("member");
        	        
        	       	console.log('완료되었니?');
        	       	$('#buy').submit();
+       	       	
+       	     pNumArr = new Array();
+             quanArr = new Array();
+             var priceArr = new Array();
+             var pNameArr = new Array();
+             var imageArr = new Array();
+             category = new Array();
+            	console.log("orderDate: "+$('#orderDate').val())
+             
+             for(var i = 0; i<$('.productNum').length;i++){
+             	pNumArr.push($('.productNum').eq(i).val()); 
+             	quanArr.push($('.quantity').eq(i).val());
+             	category.push($('.category').eq(i).val());
+             	console.log(pNumArr[i]);
+             	
+             }
+             
+            jQuery.ajaxSettings.traditional = true;//ajax로 배열을 넘기려면 이게 필요하다.. 하..ㅠㅠ
+            
+            $.ajax({
+             	url: "insertOrder.bk",
+             	type:"POST",
+             	data:{
+             		productNum: pNumArr,
+             		reservationDate: $("#orderDate").val(),
+             		receiver: $("#receiver").val(),
+             		receiveAddress: $("#receiveAddress").val(),
+             		receivePhone: $("#receivePhone").val(),
+             		sendMemo: $("#sMemo").val(),
+             		anony: $('#anony').val(),
+             		quantity: quanArr,
+             		cardMsg: $('#message').val(),
+             		tagMsg: $('#tag').text()
+             	},
+             	success: function(data){
+             		alert('주문에 성공하였습니다!');
+             		$('#buy').submit();
+             	},error: function(data){
+             		alert('주문에 실패하였습니다');
+             	}
+             });
+            
+             //주문한 상품은 장바구니에서 사라지게 하는 ajax 필요  	
+             $.ajax({
+             	url: "removeFrom.bk",
+             	type:"GET",
+             	data:{
+             		productNum: pNumArr,
+             		quantity: quanArr
+             	},
+             	success: function(){
+             		console.log("장바구니에서 차감성공");
+             	},error: function(){
+             		console.log("장바구니에서 차감실패..");
+             	}
+             });
+       	       	
+       	       	
        	        
        	    } else {
        	        var msg = '결제에 실패하였습니다.';
        	        msg += '에러내용 : ' + rsp.error_msg;
        	       
-       	    }alert(msg);
-       	    
+       	    }alert(msg);       	    
        	});
-       
-        */
+       ////////////////////////////////////////////////////////////
+        // gogo();
         
-        pNumArr = new Array();
-        quanArr = new Array();
-        var priceArr = new Array();
-        var pNameArr = new Array();
-        var imageArr = new Array();
-        category = new Array();
-       	console.log("orderDate: "+$('#orderDate').val())
-        
-        for(var i = 0; i<$('.productNum').length;i++){
-        	pNumArr.push($('.productNum').eq(i).val()); 
-        	quanArr.push($('.quantity').eq(i).val());
-        	category.push($('.category').eq(i).val());
-        	console.log(pNumArr[i]);
-        	
-        }
-        
-       jQuery.ajaxSettings.traditional = true;//ajax로 배열을 넘기려면 이게 필요하다.. 하..ㅠㅠ
        
-       $.ajax({
-        	url: "insertOrder.bk",
-        	type:"POST",
-        	data:{
-        		productNum: pNumArr,
-        		reservationDate: $("#orderDate").val(),
-        		receiver: $("#receiver").val(),
-        		receiveAddress: $("#receiveAddress").val(),
-        		receivePhone: $("#receivePhone").val(),
-        		sendMemo: $("#sMemo").val(),
-        		anony: $('#anony').val(),
-        		quantity: quanArr,
-        		cardMsg: $('#message').val(),
-        		tagMsg: $('#tag').text()
-        	},
-        	success: function(data){
-        		alert('주문에 성공하였습니다!');
-        		$('#buy').submit();
-        	},error: function(data){
-        		alert('주문에 실패하였습니다');
-        	}
-        });
-       
-        //주문한 상품은 장바구니에서 사라지게 하는 ajax 필요  	
-        $.ajax({
-        	url: "removeFrom.bk",
-        	type:"GET",
-        	data:{
-        		productNum: pNumArr,
-        		quantity: quanArr
-        	},
-        	success: function(){
-        		console.log("장바구니에서 차감성공");
-        	},error: function(){
-        		console.log("장바구니에서 차감실패..");
-        	}
-        })
 		
 		
 		}//else의 마지막부분
-       });//click의 마지막부분
+       });//click의 마지막부분      
+       
+      /*  function gogo(){
+      	 pNumArr = new Array();
+           quanArr = new Array();
+           var priceArr = new Array();
+           var pNameArr = new Array();
+           var imageArr = new Array();
+           category = new Array();
+          	console.log("orderDate: "+$('#orderDate').val())
+           
+           for(var i = 0; i<$('.productNum').length;i++){
+           	pNumArr.push($('.productNum').eq(i).val()); 
+           	quanArr.push($('.quantity').eq(i).val());
+           	category.push($('.category').eq(i).val());
+           	console.log(pNumArr[i]);
+           	
+           }
+           
+          jQuery.ajaxSettings.traditional = true;//ajax로 배열을 넘기려면 이게 필요하다.. 하..ㅠㅠ
+          
+          $.ajax({
+           	url: "insertOrder.bk",
+           	type:"POST",
+           	data:{
+           		productNum: pNumArr,
+           		reservationDate: $("#orderDate").val(),
+           		receiver: $("#receiver").val(),
+           		receiveAddress: $("#receiveAddress").val(),
+           		receivePhone: $("#receivePhone").val(),
+           		sendMemo: $("#sMemo").val(),
+           		anony: $('#anony').val(),
+           		quantity: quanArr,
+           		cardMsg: $('#message').val(),
+           		tagMsg: $('#tag').text()
+           	},
+           	success: function(data){
+           		alert('주문에 성공하였습니다!');
+           		$('#buy').submit();
+           	},error: function(data){
+           		alert('주문에 실패하였습니다');
+           	}
+           });
+          
+           //주문한 상품은 장바구니에서 사라지게 하는 ajax 필요  	
+           $.ajax({
+           	url: "removeFrom.bk",
+           	type:"GET",
+           	data:{
+           		productNum: pNumArr,
+           		quantity: quanArr
+           	},
+           	success: function(){
+           		console.log("장바구니에서 차감성공");
+           	},error: function(){
+           		console.log("장바구니에서 차감실패..");
+           	}
+           }); */
+      
+       
+       
        
        </script>
         
