@@ -5,7 +5,7 @@
 	String memberPwd = (String) request.getAttribute("memberPwd");
 %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
 <meta charset="UTF-8">
@@ -59,7 +59,7 @@
 .id_pw_srh li .or {
 	border-width: 1px 0 1px 1px;
 	border-color: #d8d8d8;
-	background: #fbfbfb url("../../common/img/img_arrow01.gif") no-repeat
+	background: #fbfbfb no-repeat
 		left top
 }
 
@@ -80,7 +80,7 @@
 .id_pw_srh li .br {
 	border-width: 1px;
 	border-color: #d8d8d8;
-	background: #fbfbfb url("../../common/img/img_arrow02.gif") no-repeat
+	background: #fbfbfb no-repeat
 		left top
 }
 
@@ -143,12 +143,15 @@
 	height: 50px;
 	font-size: 36px;
 	font-family: 'Malgun Gothic', '맑은 고딕';
-	background: #fbfbfb url("../../common/img/img_arrow01.gif") no-repeat
+	background: #fbfbfb no-repeat
 		left top;
 }
 </style>
 
 <script>
+	window.onload = function () {
+	 $('#pwSearch').hide();
+	}
 	function idFind() {
 		$('#pwSearch').hide();
 		$('#idSearch').show();
@@ -178,6 +181,7 @@
 			return true;
 
 	}
+	
 </script>
 </head>
 
@@ -279,15 +283,24 @@
 								<label> 
  	  <%if(memberId != null){
                         	if(memberId.equals("해당 정보가 틀렸습니다")){%>
-                        		<%=memberId %>
+                        		<%-- <%=memberId %> --%>
+                        		<script>
+                        	alert('해당 정보가 틀렸습니다.');
+                        	</script>
                         	<% }else{%>
-                        	회원 아이디는 <%=memberId %>입니다.
+                        	<script>
+                        	alert('회원 아이디는 <%=memberId %>입니다.');
+                        	</script>
+                        	
                         	<%}
                         }%>
                         
                         <%if(memberPwd != null){
                         if(memberPwd.equals("비밀번호찾기 정보가 틀렸습니다")){ %>
-                   	 <%=memberPwd %>.
+                   	 <%-- <%=memberPwd %>. --%>
+                   	 <script>
+                        	alert('비밀번호찾기 정보가 틀렸습니다.');
+                        	</script>
                    	<%} }%>
                    
 
@@ -301,11 +314,7 @@
 	</div>
 
 	<%@include file="/views/common/footer.jsp"%>
-	<script>
-		$(function() {
-			$('#pwSearch').hide();
-		});
-	</script>
+
 </body>
 
 </html>

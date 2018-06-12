@@ -6,6 +6,6 @@
   </welcome-file-list>
   
   <listener>
-   	 <listener-class>com.fr.jsp.common.PreventDuplicationLogin</listener-class>
+       <listener-class>com.fr.jsp.common.PreventDuplicationLogin</listener-class>
   </listener>
 </web-app>

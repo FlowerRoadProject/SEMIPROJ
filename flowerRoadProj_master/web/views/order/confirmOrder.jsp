@@ -55,7 +55,7 @@
         <hr class="col-xs-12 col-sm-12 col-md-12 col-lg-10 col-lg-offset-1" id="inputing" style="background:black;">
       <%for(int i = 0;i <bList.size(); i++){ %>      
       <div class="col-lg-10 col-lg-offset-1">
-         <img src="<%=request.getContextPath()%>/resources/images/product/<%=bList.get(i).getImage()%>" class="col-lg-2" />
+         <img src="<%=request.getContextPath()%>/resources/images/product/<%=bList.get(i).getImage()%>" class="col-lg-3" />
                         
          <div class="col-lg-9">
             <div class="col-lg-12">

@@ -1,3 +1,4 @@
+
 // 카테고리-내 정보
 function info(){
     location.href = mainPath+"/views/myPage/myPage_main.jsp"

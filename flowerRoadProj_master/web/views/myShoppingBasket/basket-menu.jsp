@@ -587,6 +587,7 @@
     </script>
        
     
-    <%@include file="/views/common/footer.jsp" %>    
+    <%@include file="/views/common/footer.jsp" %>  
     </body>
+    
 </html>

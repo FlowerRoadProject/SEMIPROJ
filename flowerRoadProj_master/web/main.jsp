@@ -97,88 +97,9 @@ img {
         
 </style>
 <script>
-	//즐겨찾기
-	$(document).ready(
-	function() {
-		$('#favorite').on(
-			'click',
-			function(e) {
-				var bookmarkURL = window.location.href;
-				var bookmarkTitle = document.title;
-				var triggerDefault = false;
-				if (window.sidebar && window.sidebar.addPanel) {
-					// Firefox version < 23 
-					window.sidebar.addPanel(bookmarkTitle,
-							bookmarkURL, '');
-				} else if ((window.sidebar && (navigator.userAgent
-						.toLowerCase().indexOf('firefox') > -1))
-						|| (window.opera && window.print)) {
-					// Firefox version >= 23 and Opera Hotlist 
-					var $this = $(this);
-					$this.attr('href', bookmarkURL);
-					$this.attr('title', bookmarkTitle);
-					$this.attr('rel', 'sidebar');
-					$this.off(e);
-					triggerDefault = true;
-				} else if (window.external
-						&& ('AddFavorite' in window.external)) {
-					// IE Favorite 
-					window.external.AddFavorite(bookmarkURL,
-							bookmarkTitle);
-				} else {
-					// WebKit - Safari/Chrome 
-					alert((navigator.userAgent.toLowerCase()
-							.indexOf('mac') != -1 ? 'Cmd' : 'Ctrl')
-							+ '+D 키를 눌러 즐겨찾기에 등록하실 수 있습니다.');
-				}
-				return triggerDefault;
-		});
-	});
 
-	// jQuery(document).ready(function () {
-	//   var wrap = jQuery(window);
-	//   // 페이지로딩, 새로고침
-	//   var sct = jQuery(this).scrollTop();
-	//   console.log("scroll = " + sct);
-	//   if (sct > 140) {
-	//     jQuery("#contents_left").addClass("remoteOrigin");
-	//     jQuery("#contents_left").addClass("fixed");
-	//   } else {
-	//     jQuery("#contents_left").removeClass("fixed");
-	//     jQuery("#contents_left").addClass("remoteOrigin");
-	//   }
-	//   // scroll 반응
-	//   wrap.on("scroll", function (e) {
-	//     var sct = jQuery(this).scrollTop();
-	//     console.log("scroll = " + sct);
-	//     if (sct > 140) {
-	//       jQuery("#contents_left").addClass("fixed");
-	//       jQuery("#contents_left").addClass("remoteOrigin");
-	//     } else {
-	//       jQuery("#contents_left").removeClass("fixed");
-	//       jQuery("#contents_left").addClass("remoteOrigin");
-	//     }
-	//   });
-	// });
-	// $(document).scroll(function () {
-	//   var con = $("#remoCon");
-	//   var position = $(window).scrollTop();
-	//   if (position > 250) { con.fadeIn(500); }
-	//   else if (position < 250) { con.fadeOut(500); }
-	// });
-	// $("#remoCon").click(function () {
-	//   $("html, body").animate({ scrollTop: 0 }, 1000);
-	// });
 
 	$(function() {
-		$('.image_Carousel').click(function() {//carousel이미지 이벤트
-			alert($(this).attr('src'));//이미지값 src 받아와서 이미지에 따라 해당 링크를 달아줌
-		});
-
-		$('.anniversary_Img').click(function() {//기념일 이미지 클릭에대한 이벤트
-			alert($(this).attr('src'));
-		})
-		
 		setTopSelling(1);
 		setMostViewed();
 	});
@@ -380,8 +301,6 @@ img {
 				<div class="">
 					<a name="detailLink" href=""><img class="" name="imageSource" src="" alt="..."></a> 
 
-					<!-- <span class="label label-primary tag">Primary</span> 
-					<span class="label label-success tag">success</span> -->
 				</div>
 				<div class="col-lg-12   ">
 					<h4 class="col-lg-12">
@@ -432,7 +351,6 @@ img {
 		</div>
 		<div class="row" style="text-align:center;">
 			<div class="col-xs-12">
-				
 			</div>
 		</div>
 	</div>
