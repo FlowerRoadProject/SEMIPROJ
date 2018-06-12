@@ -83,16 +83,19 @@ public class MemberOrderCheck extends HttpServlet {
 		
 		
 		list = new OrderService().orderChk(num, currentPage, limit);
+		ArrayList<Integer> cols = new OrderService().orderCols(num, currentPage, limit);
 		
 		String page ="";
 		if(list != null && !list.isEmpty()){
 			page = "/views/myPage/orderCheck.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
+			request.setAttribute("cols", cols);
 		} else {
 			page = "/views/myPage/orderCheck.jsp";
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
+			request.setAttribute("cols", cols);
 		}
 		request.getRequestDispatcher(page).forward(request, response);
 		

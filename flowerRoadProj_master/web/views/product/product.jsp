@@ -357,6 +357,7 @@ textarea{
 		$temp.children("[name=selected_name]").text($temp.attr("name").split(",")[2]);//안에 상품이름 세팅
 			
 		$temp.children("[name=selected_price]").text($temp.attr("name").split(",")[3]+"원");//안에 가격 세팅
+		$temp.children("[name=selected_price]").attr("pValue",$temp.attr("name").split(",")[3]);
 		
 		return $temp;
 	}
@@ -384,11 +385,15 @@ textarea{
 	/*총 가격 계산*/
 	function calcTotalPrice() {
 
-		var totalPrice = 0;
-		$("#optionDiv div[name=selected_price]").each(function(i, element) {
-			totalPrice += parseInt($(element).text());
-		});
-		return product_price + totalPrice;
+		var optionsPrice = getOptionsPrice();
+
+		var productQuantity = parseInt($("#optionDiv input[name='total_selected_quantity']").val());
+		
+		var productTotalPrice = product_price * productQuantity;
+	
+		
+		
+		return productTotalPrice + optionsPrice;
 	}
 
 	/*상품가격과 총 가격을 표시*/
@@ -400,7 +405,7 @@ textarea{
 		} else {
 
 			$("#optionDiv [name*=total]").remove();
-
+			$("#optionDiv [name='total_selected_quantity']").remove();
 			appendProductTotalPrice();
 		}
 	}
@@ -409,22 +414,73 @@ textarea{
 	function appendProductTotalPrice() {
 		$('#optionDiv')
 				.append(
-						$("<div class='col-offset-sm-1 col-offset-xs-1 col-offset-md-1 col-offset-lg-1 col-xs-7 col-sm-7 col-md-7 col-lg-7 selected_option' name='total_product_name'>"
+						$("<div class='col-offset-sm-1 col-offset-xs-1 col-offset-md-1 col-offset-lg-1 col-xs-6 col-sm-6 col-md-6 col-lg-6 selected_option' name='total_product_name'>"
 								+ product_name + "</div>"));
 		$('#optionDiv')
 				.append(
-						$("<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 selected_option' name='total_Price'>"
+						$("<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3 selected_option' name='total_Price'>"
 								+ product_price + "원" + "</div>"));
-
+		
+		 $('#optionDiv')
+		.append($("<input class='input-sm col-xs-2 col-sm-2 col-md-2 col-lg-2' name='total_selected_quantity' value='1' type='number' min='1' max='99' onchange='setQuantityByPrice();'>")); 
+		
+	
 		$('#optionDiv')
 				.append(
-						$("<div class='col-offset-sm-1 col-offset-xs-1 col-offset-md-1 col-offset-lg-1 col-xs-7 col-sm-7 col-md-7 col-lg-7 selected_option' name='total_PriceName'>총 가격</div>"));
+						$("<div class='col-offset-sm-1 col-offset-xs-1 col-offset-md-1 col-offset-lg-1 col-xs-6 col-sm-6 col-md-6 col-lg-6 selected_option' name='total_PriceName'>총 가격</div>"));
 		$('#optionDiv')
 				.append(
-						$("<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 selected_option' name='total_product_price'>"
+						$("<div class='col-xs-5 col-sm-5 col-md-5 col-lg-5 selected_option' name='total_product_price'>"
 								+ calcTotalPrice() + "원" + "</div>"));
 	}
 
+	
+	//옵션 상품의 총 가격
+	function getOptionsPrice(){
+		
+		var totalPrice = 0;
+		
+		var $options  = $("#optionDiv div[name*=selected_option_row]");
+		
+		for(var i = 0;i<$options.length;++i){
+			
+			var quantity = parseInt($options.eq(i).children('input[name*=selected_quantity]').val())
+		
+			var price = parseInt($options.eq(i).children('div[name*=selected_price]').attr('pvalue'));
+			
+			totalPrice += quantity*price;
+		}
+		
+		return totalPrice;
+	}
+	
+	
+	//가격을 계산한뒤 세팅
+	function setQuantityByPrice(){
+		
+		var $options  = $("#optionDiv div[name*=selected_option_row]");
+		
+		for(var i = 0;i<$options.length;++i){
+			
+			var quantity = parseInt($options.eq(i).children('input[name*=selected_quantity]').val());
+		
+			var price = parseInt($options.eq(i).children('div[name*=selected_price]').attr('pvalue'));
+			$options.eq(i).children('[name*=selected_price]').text((quantity*price)+"원");
+		}
+		
+
+		var optionPrices = getOptionsPrice();
+		
+		var productQuantity = parseInt($("#optionDiv input[name='total_selected_quantity']").val());
+		
+		var productTotalPrice = product_price * productQuantity;
+		
+		$("#optionDiv div[name='total_Price']").text(productTotalPrice+"원");
+		
+		$("#optionDiv div[name='total_product_price']").text((product_price * productQuantity+optionPrices)+"원");		
+		
+	}
+	
 	/*옵션 상품 취소*/
 	function clickOptionCancle(obj) {
 		$(obj).parents("[name*=selected_option_row]").remove();
@@ -433,9 +489,11 @@ textarea{
 		setTotalPrice();
 
 		if ($('#optionDiv').children("[name*=selected_option_row]").length == 0) {
+			
 			$("#optionDiv [name*=total]").each(function() {
 				$(this).remove();
 			});
+			
 			showNoOptionProductInfo();
 		}
 	}
@@ -705,7 +763,7 @@ textarea{
 			$('[name=sub_product_price]').attr("value",'<%=p.getProductPrice() %>'+',');
 			$('[name=sub_product_name]').attr("value",'<%=p.getProductName()%>'+',');
 			$('[name=sub_product_image]').attr("value",'<%=p.getImages().get(0)%>'+',');
-			
+			$('[name=sub_product_quantity]').attr("value",$('#optionDiv input[name=total_selected_quantity]').val()+',');
 			
 			
 			
@@ -715,7 +773,7 @@ textarea{
 				$('[name=sub_product_price]').attr("value",$('[name=sub_product_price]').attr("value")+$optionList.eq(i).attr("name").split(",")[3]+",");
 				$('[name=sub_product_name]').attr("value",$('[name=sub_product_name]').attr("value")+$optionList.eq(i).attr("name").split(",")[2]+",");
 				$('[name=sub_product_image]').attr("value",$('[name=sub_product_image]').attr("value")+$optionList.eq(i).attr("name").split(",")[5]+",");
-				
+				$('[name=sub_product_quantity]').attr("value",$('[name=sub_product_quantity]').attr("value")+$optionList.eq(i).children('[name*=selected_quantity]').val()+",");
 			}
 			
 			$('#purchase').submit();
@@ -842,6 +900,7 @@ textarea{
 								<input type="hidden" value="" name="sub_product_price"/>
 								<input type="hidden" value="" name="sub_product_name"/>
 								<input type="hidden" value="" name="sub_product_image"/>
+								<input type="hidden" value="" name="sub_product_quantity"/>
 								<button class="btn btn-primary btn-lg col-xs-offset-1 col-xs-6"
 								 type="button" id="to_purchase" onclick="purchase();">구매하기</button>
 							</form>
@@ -1123,13 +1182,17 @@ textarea{
 </div>
 
 
+
+
 	<!--clone용 html 태그들 (보이지는 않음)-->
 	<div class="container" style="display: none">
 		<div class="row">
 			<div name="selected_option_row">
-				<div class="col-offset-xs-1  col-offset-sm-1 col-offset-md-1 col-offset-lg-1 col-xs-7 col-sm-7 col-md-7 col-lg-7  selected_option"
+				<div class="col-offset-xs-1  col-offset-sm-1 col-offset-md-1 col-offset-lg-1 col-xs-6 col-sm-6 col-md-6 col-lg-6  selected_option"
 					name='selected_name'></div>
-				<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 selected_option' name='selected_price'></div>
+				<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3 selected_option' name='selected_price'></div>
+				<!-- <input class="col-xs-1 col-sm-1 col-md-1 col-lg-1" type="number" name="selected_quantity" value="1" /> -->
+    			<input class="input-sm col-xs-2 col-sm-2 col-md-2 col-lg-2" name="selected_quantity" min="1" max="99" type="number" value="1" onchange="setQuantityByPrice(); "style="visibility:hidden" >
 				<div class='col-sm-1 col-xs-1 col-md-1 col-lg-1'>
 					<span class='btn btn-default btn-xs glyphicon glyphicon-remove'
 						onclick='clickOptionCancle(this);'></span>

@@ -50,7 +50,8 @@ public class PreventDuplicationLogin implements HttpSessionBindingListener, Http
 	
 	@Override
 	public void attributeAdded(HttpSessionBindingEvent event) {
-		memberNums.put(event.getSession(), (String)event.getSession().getAttribute("memberNum"));
+		if(event.getSession().getAttribute("memberNum")!=null)
+			memberNums.put(event.getSession(), (String)event.getSession().getAttribute("memberNum"));
 	}
 
 	@Override

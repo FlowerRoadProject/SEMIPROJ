@@ -45,7 +45,7 @@
                                 <th>번호</th>
                                 <th>제목</th>
                                 <th>날짜</th>
-                                <th>답변상황</th>
+                                <th>답변유무</th>
                                 <th></th>
                             </tr>
                             <% int i = list.size(); 

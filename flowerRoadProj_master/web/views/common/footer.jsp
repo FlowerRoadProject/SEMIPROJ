@@ -43,8 +43,8 @@
     }
     .access #accessTermsText{
 		margin: 3em;		
-		max-height: calc(70% - 100px);
-    	overflow-y: scroll;
+		
+    	
 	}
 	.mClose{
 		align: center;
@@ -54,7 +54,8 @@
     </style>  
         <footer>
             <div class="footprint footText">
-              <!-- <hr> -->
+               <hr> 
+
               <div class="footALink">
                 
                 <div class="container col-xs-10 col-sm-10 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2">
@@ -79,10 +80,6 @@
                 
                 <script>
                 	
-                $(function(){
-                	console.log( $('.footList li:first-child').text());
-                	
-                })
                $('.footList li').hover(function(){
                		$(this).css({
                			'background':'lightcoral',
@@ -109,7 +106,7 @@
                	});
                 </script>
                 
-               
+              
 
 <div class="modal fade aTerm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -359,7 +356,7 @@
     </div>
   </div>
 </div>
-                
+          
                 
                 
               </div>

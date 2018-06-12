@@ -125,5 +125,27 @@ public class OrderService {
 		close(con);
 		return result;
 	}
+
+
+	public ArrayList<Integer> orderCols(String num, int currentPage, int limit) {
+		Connection con = getConnection();
+		
+		ArrayList<Integer> result = oDao.orderCols(con, num, currentPage,limit);
+		
+		close(con);
+		
+		return result;
+	}
+
+
+	public ArrayList<Integer> orderChkCols(String num, int currentPage, int limit, String start, String end) {
+		Connection con = getConnection();
+		
+		ArrayList<Integer> result = oDao.orderChkCols(con, num, currentPage, limit, start, end);
+		
+		close(con);
+		
+		return result;
+	}
 		
 }

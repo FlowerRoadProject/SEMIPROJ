@@ -52,14 +52,20 @@ public class ProceedPaymentServlet extends HttpServlet {
 			String[] prices = request.getParameter("sub_product_price").split(",");
 			String[] pNames = request.getParameter("sub_product_name").split(",");
 			String[] pImages = request.getParameter("sub_product_image").split(",");
+			String[] pQuanties = request.getParameter("sub_product_quantity").split(",");
+			
+			
 			ArrayList<Coupon> cList = new BasketService().selectCoupon(memberNum);
 			ArrayList<Basket> pList = new ArrayList<Basket>();
 			Basket b = null;
 
+			for(int i=0;i<pQuanties.length;++i){
+				System.out.println(pQuanties[i]);
+			}
+			
 			for (int i = 0; i < pNums.length; ++i) {
-				b = new Basket(pNums[i], 1, Integer.parseInt(prices[i]), pNames[i], pImages[i]);
+				b = new Basket(pNums[i], Integer.parseInt(pQuanties[i]), Integer.parseInt(prices[i]), pNames[i], pImages[i]);
 				pList.add(b);
-
 			}
 
 			
