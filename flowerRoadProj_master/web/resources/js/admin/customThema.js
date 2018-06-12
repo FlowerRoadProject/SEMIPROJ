@@ -618,17 +618,37 @@ $('#randomPlace').on({
 		$('#clickCount').text(cnt);
 	}
 });
+// 메인 랜덤 점수 초기화
+$('#resetScore').on({
+	'click':function(){
+		var resetCheck = confirm("기록 초기화?");
+		if(resetCheck){
+			$.ajax({
+				url: mainPath+"/deleteLeaderBoardList.admin",
+				type: "post",
+				success: function(data){
+					if(data==true){
+						alert("초기화 완료");
+						$('.leaderBoardTbody').children().remove();
+					}else{
+						alert("넌 안돼~!");
+					}
+					
+				},error: function(data){
+					alert("전달 실패!!");
+				}
+			});
+		}else alert("나중에 해~");
+	}
+});
 //메인 랜덤 게임
-$('.randomGame img').on({
+$('.randomGame #target').on({
 	'click':function(){
 		var widthget = $(this).parent().css('width').replace(/[^-\d\.]/g, '');
 		var heightget = $(this).parent().css('height').replace(/[^-\d\.]/g, '');
-		var top1 = (Math.trunc((Math.random()*(heightget-difficultyNum))/50))*50;
-		var left1 = (Math.trunc((Math.random()*(widthget-difficultyNum))/50))*50;
+		var top1 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
+		var left1 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
 		$(this).css({'top': top1, 'left':left1});
-		console.log(difficultyNum+"/"+difficultyRate);
-		console.log($('.randomGame #goal').css('top')+", "+$('.randomGame #goal').css('left'));
-		console.log($(this).css('top')+", "+$(this).css('left'));
 		cnt++;
 		$('#clickCount').text(cnt);
 		
@@ -640,7 +660,9 @@ $('.randomGame img').on({
 		if((Math.abs(goalTop - targetTop))<=difficultyNum && (Math.abs(goalLeft - targetLeft)<=difficultyNum)){
 			alert(Math.abs(goalTop - targetTop)+","+Math.abs(goalLeft - targetLeft));
 			var finalCount = $('#clickCount').text();
-			var gameCheck = confirm(finalCount+"회 만에 성공하셨네요.\n등록하시겠습니까?")
+			var gameCheck = confirm(finalCount+"회 만에 성공하셨네요.\n등록하시겠습니까?");
+			var $page = $('.page');
+			  $page.addClass('color-bg-start').addClass('bg-animate-color');
 			if(gameCheck){
 				$.ajax({
 					url: mainPath+"/insertRandomGameScore.admin",
@@ -651,14 +673,26 @@ $('.randomGame img').on({
 					},
 					success: function(data){
 						alert("등록 완료");
-//						location.reload();
+						$('#randomPlace').click();
+						$page.removeClass('color-bg-start').removeClass('bg-animate-color');
+						$('.leaderBoardTbody').children().remove();
+						if(data.length!=0){
+							for(var a=0; a<data.length; a++){
+								var b=a+1;
+								$('.leaderBoardTbody').append("<tr><th scope='row'>"+b+"</th><td>"+data[a].adminNum+"</td><td>"+data[a].clickCount+
+										"</td><td>"+data[a].gameDate+"</td></tr>");
+
+							}
+						}
 					},error: function(data){
 						alert("전달 실패!!");
 					}
 				});
 			}else{
 				alert("그 점수론 안돼~ ㅋㅋㅋㅋㅋ");
-				location.reload();
+				$('#randomPlace').click();
+				$page.removeClass('color-bg-start')
+			    .removeClass('bg-animate-color');
 			}
 		}
 	}
