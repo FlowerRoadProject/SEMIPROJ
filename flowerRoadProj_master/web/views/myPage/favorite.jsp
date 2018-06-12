@@ -98,7 +98,7 @@
                 <% if(list.size() != 0) { %>
                 <div class="col-sm-2 col-md-2 col-lg-2">
                 <button style="width:100px; height:30px; margin-top:20px;"
-                class="blueBtn" onclick="allDel()">전체 삭제</button>
+                class="blueBtn btn btn-primary" onclick="allDel()">전체 삭제</button>
                 </div>
                 <div class="col-sm-3 col-md-3 col-lg-3"></div>
                 <div class="col-sm-2 col-md-2 col-lg-2">
@@ -142,7 +142,7 @@
         			url: "addBasket.do",
         			type: "GET",
         			data: {
-        				pno: product_num				
+        				pNum: product_num				
         			},   				
         			success: function(){
         				console.log('update성공');

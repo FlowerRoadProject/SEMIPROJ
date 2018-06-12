@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.fr.jsp.member.model.dao.MemberDao;
 import com.fr.jsp.member.model.vo.Member;
 import com.fr.jsp.member.model.vo.MemberBoard;
+import com.fr.jsp.member.model.vo.MemberCoupon;
 import com.fr.jsp.product.model.vo.ProductFavorite;
 
 public class MemberService {
@@ -299,6 +300,27 @@ public class MemberService {
 		close(con);
 		
 		return resultB;
+	}
+	// 맴버 쿠폰
+	public ArrayList<MemberCoupon> memberCoupon(String num) {
+		Connection con = getConnection();
+		
+		ArrayList<MemberCoupon> clist = mDao.memberCoupon(con, num);
+		
+		close(con);
+		
+		return clist;
+		
+	}
+	// 비밀번호 재확인
+	public int pwdRecheck(String num, String pwd) {
+		Connection con = getConnection();
+		
+		int result = mDao.pwdRecheck(con, num, pwd);
+		
+		close(con);
+		
+		return result;
 	}
 
 }

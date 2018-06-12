@@ -78,11 +78,11 @@
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
             <div class="col-sm-2 col-md-2 col-lg-2"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <button class="blueBtn" onclick="send()">문의하기</button>
+                <button class="blueBtn btn btn-primary" onclick="send()">문의하기</button>
             </div>
             
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <button class="grayBtn" onclick="viewBoard();"><b>목록 보기</b></button>
+                <button class="grayBtn btn" onclick="viewBoard();"><b>목록 보기</b></button>
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4"></div>
         </div>
