@@ -215,7 +215,7 @@
 	        						<%} %>
         						</div>
         						
-        						
+        						  
         						<div class="col-lg-12 " style="margin-top:15px;">  
         							
         							<%if(pagedList.get(i).getProductQuantity()<=0){ %>
