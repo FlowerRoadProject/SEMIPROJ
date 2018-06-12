@@ -131,25 +131,25 @@
 		관리자 소개
 	</div>
 	<div class="col-xs-8 col-sm-8 col-md-10 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 subList container-fluid">		
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin test">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
 			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">박태영</button>			
 		</div>		
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin test">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
 			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">김낙용</button>
 		</div>		
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin test">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
 			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">이원제</button>
 		</div>
 		
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin test">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
 			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">이주형</button>
 		</div>
 		
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin test">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
 			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">최순홍</button>
 		</div>
 		
-		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin test">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-2 admin">
 			<button class="col-xs-12 col-sm-12 col-md-12 col-lg-12 btn btn-primary">한영두</button>
 		</div>		
 		<br /><br /><br />
@@ -186,14 +186,6 @@
 	</div>
 	
 	<script type="text/javascript">
-		/*
-			최순홍: 수선화(Narcissus) : 신비 
-			이원제: 벚나무(Cherry) : 정신미 
-			한영두: 비단향꽃무(Stock) : 영원한 아름다움
-			박태영: 꽃아카시아나무(Robinia Hispida) : 품위 
-			김낙용:
-			이주형:
-		*/
 		//박태영
 		var arrPTY = new Array('모자로는 가려지지 않는 품위.. ','박태영',
 				'<%=request.getContextPath()%>/resources/images/introduce/PTY.JPG',

@@ -43,8 +43,8 @@
     }
     .access #accessTermsText{
 		margin: 3em;		
-		max-height: calc(100% - 100px);
-    	overflow-y: scroll;
+		
+    	
 	}
 	.mClose{
 		align: center;
@@ -110,7 +110,7 @@
                	});
                 </script>
                 
-               
+              
 
 <div class="modal fade aTerm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -360,7 +360,7 @@
     </div>
   </div>
 </div>
-                
+          
                 
                 
               </div>
