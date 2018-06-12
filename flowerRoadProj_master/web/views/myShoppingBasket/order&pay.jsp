@@ -200,10 +200,7 @@ Member member = (Member)request.getAttribute("member");
         <input type="hidden" value="<%=member.getMemberName()%>" id="mName">
         <input type="hidden" value="<%=member.getMemberPhone()%>" id="mPhone">
         <input type="hidden" value="<%=member.getMemberAddress()%>" id="mAddress"/>
-<<<<<<< HEAD
-        
-=======
->>>>>>> branch 'master' of https://github.com/FlowerRoadProject/SEMIPROJ.git
+
         
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin"><!--상단 진행페이지 구문-->
@@ -461,13 +458,13 @@ Member member = (Member)request.getAttribute("member");
 		</script>
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin">
-<<<<<<< HEAD
+
                 <h4><b class="col-xs-3 col-sm-3 col-md-3 col-lg-3">받는 분</b></h4>
                 <div class="col-lg-2 col-lg-offset-7">
-=======
+
                 <h4><b class="col-xs-3 col-sm-3 col-md-3">받는 분</b></h4>
                  <div class="col-lg-2 col-lg-offset-7">
->>>>>>> branch 'master' of https://github.com/FlowerRoadProject/SEMIPROJ.git
+
                		<input type="checkbox" id="sameBtn" name ="sameBtn" value="주문자와 동일"/><label for="sameBtn">주문자와 동일</label>
                 </div>
                 <hr class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="background: black;">
@@ -513,7 +510,7 @@ Member member = (Member)request.getAttribute("member");
       
       
       
-=======
+
       			<script>
       			$('#sameBtn').change(function(){
     		
@@ -544,7 +541,7 @@ Member member = (Member)request.getAttribute("member");
     			});
       			</script>
       		
->>>>>>> branch 'master' of https://github.com/FlowerRoadProject/SEMIPROJ.git
+
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div><!--빈공간 채우기용-->
                     
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
