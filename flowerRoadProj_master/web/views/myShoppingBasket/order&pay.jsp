@@ -427,6 +427,21 @@ Member member = (Member)request.getAttribute("member");
             </div>
         </div>
 		<script>
+		$(function(){
+			if($('#mName').val() != null && $('#mPhone').val() != null){
+				$('#inputName').val($('#mName').val());
+				$('#inputPhone').val($('#mPhone').val());
+				$('#inputName').prop('disabled',true);
+				$('#inputPhone').prop('disabled',true);
+			}			
+		});
+		$('#alterInfo').click(function(){
+			$('#inputName').prop('disabled',false);
+			$('#inputPhone').prop('disabled',false);
+		});
+		
+		
+		
     	$('#anonymity').change(function(){        		
     		if($('#anonymity').prop('checked')==true){
     			console.log('체크됨');
