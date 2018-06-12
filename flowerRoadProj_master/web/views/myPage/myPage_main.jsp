@@ -109,6 +109,8 @@
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
                     <%= m.getEnrollDate() %></p></div> <br><br><br>
+					
+					<!-- sns 유저 -->
 					<% } else { %>
 					<div class="col-sm-1 col-md-1 col-lg-1"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"><b>아이디</b></div>
@@ -126,8 +128,12 @@
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>이메일</b></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                    <% if(m.getMemberEmail() != null) { %>
                     <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
-					정보없음</p></div> <br><br><br>
+					<%=m.getMemberEmail() %></p></div>
+                    <% } else { %>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
+					정보없음</p></div><% } %> <br><br><br>
 
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>주소</b></div>
@@ -143,8 +149,12 @@
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>전화번호</b></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                    <% if(m.getMemberPhone() != null) { %>
                     <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
-					정보없음</p></div> <br><br><br>
+					<%=m.getMemberPhone() %></p></div>
+                    <% } else { %>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
+					정보없음</p></div><% } %> <br><br><br>
 
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>가입날짜</b></div>
