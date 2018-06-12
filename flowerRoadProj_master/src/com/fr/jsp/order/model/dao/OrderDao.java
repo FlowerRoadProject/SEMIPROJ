@@ -170,7 +170,6 @@ public class OrderDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = prop.getProperty("insertProList");
-		System.out.println("잘들어오니?");
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, orderNum);
@@ -197,8 +196,6 @@ public class OrderDao {
 		String query = prop.getProperty("orderChkSearch");
 		
 		try {
-			System.out.println(start);
-			System.out.println(end);
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, num);
 			
@@ -286,6 +283,75 @@ public class OrderDao {
 		
 		System.out.println(result);
 		return result;
+	}
+
+	public ArrayList<Integer> orderCols(Connection con, String num, int currentPage, int limit) {
+		ArrayList<Integer> cols = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("colsChk");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			int startRow = (currentPage - 1)* limit +1;
+		    int endRow = startRow + (limit - 1);
+		    pstmt.setInt(2, startRow);
+		    pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			cols = new ArrayList<Integer>();
+			
+			while(rset.next()){
+				cols.add(rset.getInt(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return cols;
+	}
+
+
+	public ArrayList<Integer> orderChkCols(Connection con, String num, int currentPage, int limit, String start, String end) {
+		ArrayList<Integer> cols = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("colsChkSearch");
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			
+			int startRow = (currentPage - 1)* limit +1;
+		    int endRow = startRow + (limit - 1);
+		    pstmt.setInt(2, startRow);
+		    pstmt.setInt(3, endRow);
+		    pstmt.setString(4, start);
+		    pstmt.setString(5, end);
+			
+			rset = pstmt.executeQuery();
+			
+			cols = new ArrayList<Integer>();
+			
+			while(rset.next()){
+				cols.add(rset.getInt(1));
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return cols;
 	}
 	
 

@@ -24,11 +24,13 @@
         					for(var o in couponJson){
         						console.log(couponJson[o].couponCode);
         						$('#modalT').append("<tr>");
-        						$('#modalT').append("<td>"+ (parseInt(o)+1) +"</td>");
-        						$('#modalT').append("<td>"+ couponJson[o].couponCode+"</td>");
-        						$('#modalT').append("<td> ~ "+ couponJson[o].issueDate+"</td>");
-        						$('#modalT').append("</tr>");
         						
+        						var $tr= $('<tr>');
+        						$tr.append("<td>"+ (parseInt(o)+1) +"</td>");
+        						$tr.append("<td>"+ couponJson[o].couponCode+"</td>");
+        						$tr.append("<td> ~ "+ couponJson[o].issueDate+"</td>");
+        						
+        						$('#modalT').append($tr);
         					}
         				}
         			 });
@@ -53,7 +55,6 @@
 		                                <th>사용기간</th>
 		                                <th></th>
 		                            </tr> 
-		                           
 		                        </table>
 			      </div>
 			      <div class="modal-footer">
