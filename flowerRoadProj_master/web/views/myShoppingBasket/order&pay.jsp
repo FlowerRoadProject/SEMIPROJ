@@ -476,7 +476,36 @@ Member member = (Member)request.getAttribute("member");
                         <input type="text" class="form-control" id="sample6_postcode" disabled="true" placeholder="우편번호 출력되는 곳">
                     </div>
                 </div>
-      
+      			<script>
+      			$('#sameBtn').change(function(){
+    		
+    		  		if($('#mName').val() != null && $('#mPhone').val() != null){
+      					if($('#sameBtn').prop('checked') == true){
+        					var addrArr = $('#mAddress').val().split("/");    			
+        					//우편번호 출력되는 곳
+        					$('#sample6_postcode').val(addrArr[0]);
+        					//기본주소 출력되는 곳
+        					$('#sample6_address').val(addrArr[1]);
+        					//나머지 주소 출력되는 곳
+        					$('#sample6_address2').val(addrArr[2]);
+        					//이름 출력되는 곳
+        					$('#rInputName').val($('#mName').val());
+        					//전화번호 출력되는 곳
+        					$('#rPhone').val($('#mPhone').val());
+        				}else{    			
+        					$('#sample6_postcode').val("");    			
+        					$('#sample6_address').val("");   			
+        					$('#sample6_address2').val("");    			
+        					$('#rInputName').val("");    		
+        					$('#rPhone').val("");
+        				}
+      				}else{
+      					alert('SNS로그인을 했을 경우 이 버튼을 사용할 수 없습니다');
+      				}
+      		
+    			});
+      			</script>
+      		
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div><!--빈공간 채우기용-->
                     
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
