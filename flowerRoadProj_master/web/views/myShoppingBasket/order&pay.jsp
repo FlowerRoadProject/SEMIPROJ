@@ -458,10 +458,7 @@ Member member = (Member)request.getAttribute("member");
 		</script>
         <div class="container">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1 bottom-margin">
-
-                <h4><b class="col-xs-3 col-sm-3 col-md-3 col-lg-3">받는 분</b></h4>
-                <div class="col-lg-2 col-lg-offset-7">
-
+               
                 <h4><b class="col-xs-3 col-sm-3 col-md-3">받는 분</b></h4>
                  <div class="col-lg-2 col-lg-offset-7">
 
@@ -477,7 +474,7 @@ Member member = (Member)request.getAttribute("member");
                         <input type="text" class="form-control" id="sample6_postcode" disabled="true" placeholder="우편번호 출력되는 곳">
                     </div>
                 </div>
-<<<<<<< HEAD
+
       	<script>
       	$('#sameBtn').change(function(){
     		
