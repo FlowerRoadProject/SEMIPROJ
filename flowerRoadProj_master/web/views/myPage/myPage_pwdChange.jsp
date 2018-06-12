@@ -53,13 +53,13 @@
 						<%= m.getMemberId() %></p></div> <br><br><br>
     
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
-                        <div class="col-sm-2 col-md-2 col-lg-2"><b>비밀번호</b></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"><b>새 비밀번호</b></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"><input type="password" id="userPwd" name="userPwd" onchange="isSame()" placeholder="내용을 입력해주세요"></div> <br><br><br>
                      
     
                         <div class="col-sm-1 col-md-1 col-lg-1"></div>
-                        <div class="col-sm-2 col-md-2 col-lg-2"><b>비밀번호 확인</b></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"><b>새 비밀번호 확인</b></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"></div>
                         <div class="col-sm-2 col-md-2 col-lg-2"><input type="password" id="userPwd2" name="userPwd2" onchange="isSame()" placeholder="내용을 입력해주세요"></div>
                         <div class="col-sm-3 col-md-3 col-lg-3"><span id="msg"></span></div>  <br><br><br>
@@ -98,17 +98,20 @@
         	}
         	
         	function pwd(){
+        		var getPwd = RegExp(/^[a-z0-9_-]{4,12}$/); // 비밀번호 정규식
         		var pwd = $('#userPwd').val();
         		var pwdChk = $('#userPwd2').val();
-        		
-        		if(pwd == pwdChk && pwd != "" && pwdChk != ""){
+
+        		if(pwd == pwdChk && getPwd.test(pwd)){
         			var cf = confirm("비밀번호를 변경하시겠습니까??");
         			if(cf == true)
         			location.href = "<%=request.getContextPath()%>/pwdChange.me?pwd="+pwd;
         			else 
         			location.reload();
-        		} else if(pwd != pwdChk || pwd == null || pwdChk == null) {
+        		} else if(pwd != pwdChk) {
         			alert("비밀번호를 다시 확인해주세요.");
+        		} else if(!getPwd.test(pwd)){
+        			alert("비밀번호는 4~12자리를 입력하셔야 합니다.")
         		}
         		
         		

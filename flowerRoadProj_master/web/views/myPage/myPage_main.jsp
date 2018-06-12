@@ -3,7 +3,12 @@
     						java.util.*"%>
 <%
 	Member m = (Member)session.getAttribute("m");
-	String addrArr[] = m.getMemberAddress().split("/");
+	String addrArr[] = {"","",""};
+	if(m.getMemberAddress() != null){
+	addrArr = m.getMemberAddress().split("/");
+	} else {
+	addrArr = null;	
+	}
 %>
 
 <!DOCTYPE>
@@ -43,7 +48,7 @@
         </div>
         <div>
             <div class="info">
-                
+                	<% if(m != null) { %>
                     <br>
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>아이디</b></div>
@@ -74,8 +79,11 @@
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
                     <% if(addrArr != null) { %>
                     <div class="col-sm-3 col-md-3 col-lg-3"><p class="text-muted" style="font-weight:bold;">
-					<%= addrArr[0]+" "+addrArr[1]+" "+addrArr[2] %></p></div><% } %> <br><br><br>
-					
+					<%= addrArr[0]+" "+addrArr[1]+" "+addrArr[2] %></p></div><br><br><br>
+					<% } else { %>
+					 <div class="col-sm-3 col-md-3 col-lg-3"><p class="text-muted" style="font-weight:bold;">
+					null</p></div><br><br><br>
+					<% } %>
 
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>전화번호</b></div>
@@ -88,7 +96,8 @@
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
                     <%= m.getEnrollDate() %></p></div> <br><br><br>
-                
+                	
+                	<% } %>
             </div>
         </div>
 

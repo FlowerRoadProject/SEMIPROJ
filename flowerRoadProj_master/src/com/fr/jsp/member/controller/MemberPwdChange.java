@@ -32,7 +32,8 @@ public class MemberPwdChange extends HttpServlet {
 		if(ms.pwdChange(m) != 0){
 			response.sendRedirect("views/myPage/myPage_main.jsp");
 		}else{
-			System.out.println("실패!!");
+			request.setAttribute("msg", "비밀번호 변경에 실패하였습니다.");
+			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		
 		

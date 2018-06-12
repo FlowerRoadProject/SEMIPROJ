@@ -25,9 +25,10 @@ public class MemberPwdRecheck extends HttpServlet {
 		String num = (String)session.getAttribute("memberNum");
 		String pwd = (String)request.getParameter("pwd");
 		int sel = Integer.parseInt(request.getParameter("sel"));
-		
+		System.out.println(pwd);
+		System.out.println("sel"+sel);
 		int result = new MemberService().pwdRecheck(num, pwd);
-		
+		System.out.println("last"+result);
 		if(result != 0){
 			switch(sel){
 			case 1 : response.sendRedirect("views/myPage/myPage_pwdChange.jsp"); break;
@@ -35,6 +36,7 @@ public class MemberPwdRecheck extends HttpServlet {
 			case 3 : response.sendRedirect("views/myPage/myPage_memberWithdrawal.jsp"); break;
 			} 
 		} else {
+			request.setAttribute("msg", "비밀번호를 틀리셨습니다.");
 			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		

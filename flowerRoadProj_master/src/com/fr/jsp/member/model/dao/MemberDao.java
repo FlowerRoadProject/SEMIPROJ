@@ -781,7 +781,7 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 		
-		System.out.println(result);
+		System.out.println("dao:"+result);
 		return result;
 	}
 

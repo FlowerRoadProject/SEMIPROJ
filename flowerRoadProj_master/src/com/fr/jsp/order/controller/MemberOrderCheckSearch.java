@@ -36,8 +36,7 @@ public class MemberOrderCheckSearch extends HttpServlet {
 		String num = (String) session.getAttribute("memberNum");
 		String start = (String)request.getParameter("start");
 		String end = (String)request.getParameter("end");
-		System.out.println(start);
-		System.out.println(end);
+		
 		
 		/*SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 		Date parseStart = null;
@@ -101,16 +100,18 @@ public class MemberOrderCheckSearch extends HttpServlet {
 				
 				
 				list = new OrderService().orderChkSearch(num, currentPage, limit, start, end);
-				
+				ArrayList<Integer> cols = new OrderService().orderChkCols(num, currentPage, limit, start, end);
 				String page ="";
 				if(list != null && !list.isEmpty()){
 					page = "/views/myPage/orderChkSearch.jsp";
 					request.setAttribute("list", list);
 					request.setAttribute("pi", pi);
+					request.setAttribute("cols", cols);
 				} else {
 					page = "/views/myPage/orderCheck.jsp";
 					request.setAttribute("list", list);
 					request.setAttribute("pi", pi);
+					request.setAttribute("cols", cols);
 				}
 				request.getRequestDispatcher(page).forward(request, response); 
 		
