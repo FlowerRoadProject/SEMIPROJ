@@ -212,7 +212,6 @@
         		var email = $('#email').val();
         		var addr = $('#zipCode').val()+"/"+$('#address1').val()+"/"+$('#address2').val();
         		var phone = $('#tel1').val()+$('#tel2').val()+$('#tel3').val();
-        		alert(phone);
         		if(!getMail.test($("#email").val())){
 		            alert("이메일형식에 맞게 입력해주세요")
 		            $("#my_email").val("");
