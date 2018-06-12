@@ -1,6 +1,7 @@
 package com.fr.jsp.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,8 +39,12 @@ public class AdminRandomGameInsertServlet extends HttpServlet {
 		// 메인 랜덤게임 점수 입력
 		as.admin_insertRandomGameScore(randomGameLeaderBoard);
 		
+		// 랜덤 게임 리스트
+		ArrayList<AdminRandomGameLeaderBoard> adminLeaderBoard = new ArrayList<AdminRandomGameLeaderBoard>();
+		adminLeaderBoard = as.admin_selectLeaderBoard(difficulty);
+		
 		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(randomGameLeaderBoard, response.getWriter());
+		new Gson().toJson(adminLeaderBoard, response.getWriter());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

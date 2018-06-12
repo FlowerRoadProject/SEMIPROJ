@@ -81,5 +81,11 @@ public class AdminService {
 		ArrayList<AdminRandomGameLeaderBoard> admin_LeaderBoardList = aDao.admin_selectLeaderBoard(con, difficulty);
 		return admin_LeaderBoardList;
 	}
+	// 랜덤 게임 점수 초기화
+	public void admin_deleteLeaderBoard() {
+		int deleteLeaderBoardCount = aDao.admin_deleteLeaderBoard(con);
+		if(deleteLeaderBoardCount>0) commit(con);
+		else rollback(con);
+	}
 	
 }
