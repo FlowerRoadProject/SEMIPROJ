@@ -214,6 +214,7 @@ public class BasketDao {
 			if(rset.next()){
 				m.setMemberName(rset.getString("MEMBER_NAME"));
 				m.setMemberPhone(rset.getString("MEMBER_PHONE"));
+				m.setMemberAddress(rset.getString("MEMBER_ADDRESS"));
 			}
 			
 			
