@@ -27,19 +27,17 @@ public class MemberInfoMain extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 		String num = (String)session.getAttribute("memberNum");
-		System.out.println(num);
 		Member m = new Member(num);
 		
 		MemberService ms = new MemberService();
 		
 		m = ms.insertInfo(num);
-		System.out.println(m);
 		
 		if(m != null){
-			System.out.println("들어오니?");
 			session.setAttribute("m", m);
 			request.getRequestDispatcher("views/myPage/myPage_main.jsp").forward(request, response);
 		}else{
+			request.setAttribute("msg", "마이페이지에 접속할수 없습니다!");
 			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		

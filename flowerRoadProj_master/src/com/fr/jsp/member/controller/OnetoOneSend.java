@@ -33,11 +33,9 @@ public class OnetoOneSend extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		MemberBoard mb = new MemberBoard();
 		mb.setMemberNum((String)session.getAttribute("memberNum"));
-		System.out.println((String)session.getAttribute("memberNum"));
 		mb.setMemberSendPhone(request.getParameter("email"));
 		mb.setMemberSendPhone(request.getParameter("phone"));
 		mb.setBoardTitle(request.getParameter("title"));
-		System.out.println(request.getParameter("title"));
 		mb.setBoardContent(request.getParameter("content"));
 		
 		MemberService ms = new MemberService();
@@ -45,7 +43,8 @@ public class OnetoOneSend extends HttpServlet {
 		if(ms.sendBoard(mb) != 0){
 			response.sendRedirect("oneBoard.me");
 		} else {
-			System.out.println("실패!!");
+			request.setAttribute("msg", "메세지를 보낼수 없습니다!");
+			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		
 		

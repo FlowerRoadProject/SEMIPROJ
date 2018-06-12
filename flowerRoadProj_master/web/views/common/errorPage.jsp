@@ -103,7 +103,7 @@ height: 55em;
 		location.href="<%=request.getContextPath()%>/main.jsp";
 	});
 	$('#toQuest').on('click',function(){
-		//1:1문의 게시판 주소를 물어보자
+		location.href="<%=request.getContextPath()%>/oneBoard.me";
 	});
 		<%-- location.href="<%=request.getContextPath()%>/" --%>
 	

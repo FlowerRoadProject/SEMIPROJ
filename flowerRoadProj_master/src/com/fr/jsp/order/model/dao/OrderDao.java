@@ -58,7 +58,6 @@ public class OrderDao {
 				pstmt.setString(7, list.get(i).getAnonymous_delivery());
 				result += pstmt.executeUpdate();			
 			}
-			System.out.println("Dao에서의 date: "+list.get(0).getReservation_date());
 		} catch (SQLException e) {			
 			e.printStackTrace();
 		}finally{
@@ -241,8 +240,6 @@ public class OrderDao {
 		String query = prop.getProperty("SearchListCount");
 		
 		try {
-			System.out.println(start);
-			System.out.println(end);
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, num);
 			
@@ -283,7 +280,6 @@ public class OrderDao {
 			close(pstmt);
 		}
 		
-		System.out.println(result);
 		return result;
 	}
 

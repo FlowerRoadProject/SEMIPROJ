@@ -261,7 +261,7 @@ Member member = (Member)request.getAttribute("member");
         			sum += parseInt($('.eachPrice').eq(i).text());        			
         		}
         		$('#payPrice').text(sum+"원");
-        		/* $('#lastPrice').text( ((100- parseInt($('#discount').text()))/100)*sum +"원"  );         		
+        		$('#lastPrice').text( ((100- parseInt($('#discount').text()))/100)*sum +"원"  );         		
 				$('#lastPrice').text($('#payPrice').text());
         		$('#totalPrice').text($('#lastPrice').text());
         	});  
@@ -430,7 +430,8 @@ Member member = (Member)request.getAttribute("member");
 
     	$('#anonymity').change(function(){        		
     		if($('#anonymity').prop('checked')==true){    			
-    			$('#anony').val('Y');    			
+    			$('#anony').val('Y');  
+    		}
     		if($('#anonymity').prop('checked')==false){    			
     			$('#anony').val('N');    			
     		}

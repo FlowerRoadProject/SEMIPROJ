@@ -25,8 +25,6 @@ public class OnetoOneView extends HttpServlet {
 		
 		String mNum = (String)session.getAttribute("memberNum");
 		int bNum = Integer.parseInt(request.getParameter("bNum"));
-		System.out.println(mNum);
-		System.out.println(bNum);
 		
 		MemberBoard mb = new MemberBoard();
 		
@@ -35,6 +33,9 @@ public class OnetoOneView extends HttpServlet {
 		if(mb != null){
 			request.setAttribute("mb", mb);
 			request.getRequestDispatcher("views/myPage/1on1Page_View.jsp").forward(request, response);
+		} else {
+			request.setAttribute("msg", "1:1 게시판에 접속할수 없습니다!");
+			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		
 		

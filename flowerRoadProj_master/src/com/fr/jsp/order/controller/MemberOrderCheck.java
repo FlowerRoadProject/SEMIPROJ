@@ -56,7 +56,6 @@ public class MemberOrderCheck extends HttpServlet {
 				
 		//전체 게시글의 수
 		int listCount = oService.getListCount(num);
-		System.out.println("총 게시글 수 : "+listCount);
 				
 		//총 게시글 수에 대한 페이지 계산
 		//ex) 목록의 수가 123개라면 페이지수는 13개페이지
