@@ -107,13 +107,14 @@
 					for (int i=0; i < cols.size(); i++) {
 						for(int j=q; j<cols.get(i)+q; j++) { %>
 				<tr>
-						<% if(j == q) { %> 
-					<td rowspan="<%= cols.get(i) %>" style="margin:'auto;'"><%=list.get(q).getOrder_num()%>
-					<input type="hidden" class="oN" name="oN" value="<%=list.get(q).getOrder_num()%>">
-					</td>
-						<% } %>
+						<% if(j == q) { %>
+					<td rowspan="<%= cols.get(i) %>" style="vertical-align: middle;"><%=list.get(q).getOrder_num()%>
+						<input type="hidden" class="oN" name="oN"
+						value="<%=list.get(q).getOrder_num()%>"></td>
+					<% } %>
 					<td><%=list.get(j).getOrdered_date()%></td>
-					<td><%=list.get(j).getProduct_num()%></td>
+					<td><a href="<%=request.getContextPath()%>/productDetail.do?productNum=+<%= list.get(j).getProduct_num()%>">
+					<%=list.get(j).getProduct_name()%></a></td>
 					<td><%=list.get(j).getProduct_cost()%></td>
 					<td><%=list.get(j).getAnonymous_delivery()%></td>
 					<% if( list.get(j).getOrder_state_code().equals("결제 완료") ) { %>

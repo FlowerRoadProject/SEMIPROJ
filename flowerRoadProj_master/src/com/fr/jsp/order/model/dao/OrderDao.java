@@ -93,10 +93,11 @@ public class OrderDao {
 				MyPage_Order o = new MyPage_Order();
 				o.setOrder_num(rset.getString(2));
 				o.setOrdered_date(rset.getDate(3));
-				o.setProduct_num(rset.getString(4));
+				o.setProduct_name(rset.getString(4));
 				o.setProduct_cost(rset.getInt(5));
 				o.setAnonymous_delivery(rset.getString(6));
 				o.setOrder_state_code(rset.getString(7));
+				o.setProduct_num(rset.getString(8));
 				
 				list.add(o);
 			}
@@ -214,10 +215,11 @@ public class OrderDao {
 				MyPage_Order o = new MyPage_Order();
 				o.setOrder_num(rset.getString(2));
 				o.setOrdered_date(rset.getDate(3));
-				o.setProduct_num(rset.getString(4));
+				o.setProduct_name(rset.getString(4));
 				o.setProduct_cost(rset.getInt(5));
 				o.setAnonymous_delivery(rset.getString(6));
 				o.setOrder_state_code(rset.getString(7));
+				o.setProduct_num(rset.getString(8));
 				
 				list.add(o);
 			}
