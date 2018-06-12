@@ -77,8 +77,8 @@
                                 <%= list.get(j).getProductName() %></a></td>
                                 <td><%= list.get(j).getProductPrice() %>원</td>
                                 <td><%= list.get(j).getProductQuantityState() %></td>
-                                <td><input type="button" value="장바구니" class="goBasket"><br>
-                                <input type="button" value="삭제하기" class="delFavorite"></td>
+                                <td><input type="button" value="장바구니" class="btn btn-default"><br>
+                                <input type="button" value="삭제하기" class="btn btn-default"></td>
                                 <td><input type="hidden" class="pN" name="pN" value="<%=list.get(j).getProductNum()%>"></input></td>
                             </tr>
                             <% } %>
