@@ -106,7 +106,7 @@
 			                                  <th>날짜</th>
 			                                </tr>
 			                              </thead>
-			                              <tbody>
+			                              <tbody  class="leaderBoardTbody">
 			                              <%for(int i=0; i<adminLeaderBoard.size(); i++){ %>
 			                                <tr>
 			                                  <th scope="row"><%=i+1 %></th>

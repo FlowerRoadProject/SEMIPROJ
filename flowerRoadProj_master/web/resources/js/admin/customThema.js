@@ -477,7 +477,15 @@ $('#selectDifficulty').on({
 					difficulty: $('#selectDifficulty').val()
 				},
 				success: function(data){
-					// 여기 해야돼 => 메인 애니메이션
+					$('.leaderBoardTbody').children().remove();
+					if(data.length!=0){
+						for(var a=0; a<data.length; a++){
+							var b=a+1;
+							$('.leaderBoardTbody').append("<tr><th scope='row'>"+b+"</th><td>"+data[a].adminNum+"</td><td>"+data[a].clickCount+
+									"</td><td>"+data[a].gameDate+"</td></tr>");
+
+						}
+					}
 				},
 				error: function(data){
 					alert("전달 실패!!");
@@ -497,6 +505,28 @@ $('#selectDifficulty').on({
 			var top3 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
 			var left3 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
 			$('.randomGame #goal').css({'top': top3, 'left':left3});
+			$.ajax({
+				url: mainPath+"/selectLeaderBoardList.admin",
+				type: "post",
+				data: {
+					difficulty: $('#selectDifficulty').val()
+				},
+				success: function(data){
+					$('.leaderBoardTbody').children().remove();
+					if(data.length!=0){
+						for(var a=0; a<data.length; a++){
+							var b=a+1;
+							$('.leaderBoardTbody').append("<tr><th scope='row'>"+b+"</th><td>"+data[a].adminNum+"</td><td>"+data[a].clickCount+
+									"</td><td>"+data[a].gameDate+"</td></tr>");
+
+						}
+					}
+
+				},
+				error: function(data){
+					alert("전달 실패!!");
+				}
+			});
 			break;
 		case 'hard': 
 			$('.randomGame #target').css({'width':'120px','height':'120px'});
@@ -511,6 +541,28 @@ $('#selectDifficulty').on({
 			var top3 = (Math.trunc((Math.random()*(heightget-difficultyNum))/50))*50;
 			var left3 = (Math.trunc((Math.random()*(widthget-difficultyNum))/50))*50;
 			$('.randomGame #goal').css({'top': top3, 'left':left3});
+			$.ajax({
+				url: mainPath+"/selectLeaderBoardList.admin",
+				type: "post",
+				data: {
+					difficulty: $('#selectDifficulty').val()
+				},
+				success: function(data){
+					$('.leaderBoardTbody').children().remove();
+					if(data.length!=0){
+						for(var a=0; a<data.length; a++){
+							var b=a+1;
+							$('.leaderBoardTbody').append("<tr><th scope='row'>"+b+"</th><td>"+data[a].adminNum+"</td><td>"+data[a].clickCount+
+									"</td><td>"+data[a].gameDate+"</td></tr>");
+
+						}
+					}
+
+				},
+				error: function(data){
+					alert("전달 실패!!");
+				}
+			});
 			break;
 		case 'veryHard': 
 			$('.randomGame #target').css({'width':'80px','height':'80px'});
@@ -525,6 +577,28 @@ $('#selectDifficulty').on({
 			var top3 = (Math.trunc((Math.random()*(heightget-difficultyNum))/difficultyRate))*difficultyRate;
 			var left3 = (Math.trunc((Math.random()*(widthget-difficultyNum))/difficultyRate))*difficultyRate;
 			$('.randomGame #goal').css({'top': top3, 'left':left3});
+			$.ajax({
+				url: mainPath+"/selectLeaderBoardList.admin",
+				type: "post",
+				data: {
+					difficulty: $('#selectDifficulty').val()
+				},
+				success: function(data){
+					$('.leaderBoardTbody').children().remove();
+					if(data.length!=0){
+						for(var a=0; a<data.length; a++){
+							var b=a+1;
+							$('.leaderBoardTbody').append("<tr><th scope='row'>"+b+"</th><td>"+data[a].adminNum+"</td><td>"+data[a].clickCount+
+									"</td><td>"+data[a].gameDate+"</td></tr>");
+
+						}
+					}
+
+				},
+				error: function(data){
+					alert("전달 실패!!");
+				}
+			});
 			break;
 		}
 	}
