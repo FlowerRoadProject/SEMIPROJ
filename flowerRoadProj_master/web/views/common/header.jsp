@@ -267,7 +267,7 @@ animation-direction: alternate;
 					%>
 					<a href="<%=request.getContextPath()%>/logout.me">로그아웃</a><br>
 					<a href="<%=request.getContextPath()%>/infoMain.me">마이페이지</a><br>
-					<a href="<%=request.getContextPath()%>/select.bk"><span id="basketBadge" class="badge">1</span>장바구니</a><br>
+					<a href="<%=request.getContextPath()%>/select.bk">장바구니</a><br>
 					<%
 						}
 					%>
