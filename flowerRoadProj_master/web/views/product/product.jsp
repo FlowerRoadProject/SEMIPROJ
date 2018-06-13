@@ -162,6 +162,14 @@ textarea{
   float: right!important;
 }
 
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 670px;
+    overflow-y: auto;
+}
+
 </style>
 
 <script>
@@ -774,9 +782,18 @@ textarea{
 			$('[name=sub_product_price]').attr("value",'<%=p.getProductPrice() %>'+',');
 			$('[name=sub_product_name]').attr("value",'<%=p.getProductName()%>'+',');
 			$('[name=sub_product_image]').attr("value",'<%=p.getImages().get(0)%>'+',');
-			$('[name=sub_product_quantity]').attr("value",$('#optionDiv input[name=total_selected_quantity]').val()+',');
 			
+			if(typeof $('#optionDiv input[name=total_selected_quantity]').val()!=="undefined"){
+				
+				
+				$('[name=sub_product_quantity]').attr("value",$('#optionDiv input[name=total_selected_quantity]').val()+',');
 			
+			}
+			else{
+				$('[name=sub_product_quantity]').attr("value",1+',');
+			
+			}
+				
 			
 			for(var i=0;i<$optionList.length;++i){
 				
@@ -865,6 +882,9 @@ textarea{
 							class="btn btn-sm btn-default glyphicon glyphicon-question-sign"
 							role="button" data-toggle="popover" data-trigger="hover"
 							title="상세 정보" data-html="true"></a>
+							
+							<button class="btn btn-default btn-sm glyphicon glyphicon-info-sign"
+							id="addFavBtn" data-toggle="modal" data-target=".manageModal" ></button>
 					</div>
 
 				</div>
@@ -1238,7 +1258,113 @@ textarea{
          </div>
 		
 	</div>
-
+	
+	
+	<div class="modal fade manageModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  	<div class="modal-dialog modal-lg">
+		   	 <div class="modal-content">
+		     	 <div class="modal-header">
+		     	 	<h3>꽃을 오랫동안 보관하는 법</h3>
+		     	 </div>
+		     	 
+		     	 <div class="modal-body">
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage1.jpg" alt="" />
+		     				<div class="caption">
+						        <h3><b>1.</b>물 속에 잠긴 잎들을 제거한다.</h3>
+						        <p>물 속에 있는 잎들은 부패되어 박테리아에게 영양분을 공급할 수 있고, 그렇게 되면 식물의 나머지 부분이 감염되고 해를 입는다.발견될 때마다 물에 닿은 모든 잎들을 잘라내도록 한다</p>
+						       
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage2.jpg" alt="" />
+		     				<div class="caption">
+						        <h3><b>2.</b>물을 교체한다</h3>
+						        <p>꽃이 신선하게 유지되도록 매일 물을 갈아줘야 한다. 새로운 물을 담기 전에 감염의 위험을 줄이기 위해서, 꽃병의 모든 잔여물들을 확실히 제거하자.</p>
+						       	<ul>
+									<li>
+										플로랄폼(floral foam)에 함께 꽂는 꽃들도 물을 필요로 한다. 플로랄폼(floral foam)이 자연스럽게 물 속에 가라앉을 때까지 기다린다. 힘을 가하면, 기포가 생겨서 꽃줄기를 막을 수 있기 때문이다.
+									</li>			       	
+						       	</ul>
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage3.jpg" alt="" />
+		     				<div class="caption">
+						       <h3><b>3.</b>정기적으로 꽃줄기를 손질한다</h3>
+						        <p>매번 물을 교체할 때마다 손질하거나, 적어도 며칠마다 한 번씩 한다. 날카로운 가위, 전단기(shears), 또는 칼을 사용하여 45도 기울어진 각도로 줄기를 자른다. 비스듬히 자르면 꽃이 물을 흡수 할 수 있는 표면적이 넓어진다</p>
+						       <ul>
+						       		<li>가게에서 사온 꽃은 물에 담그기 직전에 줄기를 다듬어야 한다.</li>
+						       		<li>장미꽃 줄기는 특히 물 흡수를 막는 기포에 민감하다. 물 속에서 장미꽃을 잘라서 이것을 방지하자.</li>
+						       </ul>
+						
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage4.jpg" alt="" />
+		     				<div class="caption">
+						        <h3><b>4.</b>꽃 보존제를 사용한다.</h3>
+						        <p>꽃 보존제나 꽃 영양제는 꽃가게, 화훼용품점, 슈퍼마켓 등에서 구할 수 있다. 이 두 가지는 에너지를 위한 설탕, 꽃 색깔과 물 농도를 일정하게 해주는 산, 그리고 박테리아와 곰팡이 균을 죽이는 살생물제 등을 포함하여, 꽃을 피우는데 필요한 모든 영양분을 공급할 수 있어야 한다.포장지의 설명서를 읽고 사용한다.</p>
+						        <ul>
+						       		<li>시중에 판매하는 꽃 보존제를 구입하기 원하지 않거나, 제품이 효과가 없다면, 대신 집에서 직접 쉽게 만들 수 있는 꽃 보존제를 알아본다.</li>
+						       		
+						       </ul>
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage5.jpg" alt="" />
+		     				<div class="caption">
+						        <h3><b>5.</b>위험한 환경들로부터 화초를 멀리 떨어뜨려 놓는다.</h3>
+						        <p>직사광선, 난방기, 텔레비전 위, 또는 다른 열기가 있는 것으로부터 먼 곳에 꽃을 둔다. 과일은 꽃을 시들게 하는 에틸렌 가스를 방출하므로, 같은 공간에 두어서는 안 된다.외풍과 가벼운 바람이 시원할지라도, 꽃이 흔들리면 수분을 잃게 되므로, 수명이 줄어든다.</p>
+						       
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage6.jpg" alt="" />
+		     				<div class="caption">
+						        <h3><b>6.</b>시든 꽃들은 제거한다.</h3>
+						        <p>시든 꽃을 볼 때마다 모두 잘라내야 한다. 그렇지 않으면, 에틸렌 가스가 방출되어, 다른 꽃들에게 연쇄반응을 일으킬지도 모른다. 퇴비로 사용하고 장식을 위해 말리거나, 분리된 공간에 버리도록 한다.</p>
+						       
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	</div>
+		     	
+		     	<div class="modal-footer">
+          			<button type="button" class="btn btn-default" data-dismiss="modal">창닫기</button>
+          		</div>
+		   	 </div>
+	  	</div>
+	</div>
 
 	<%@include file="../common/footer.jsp"%>
 
