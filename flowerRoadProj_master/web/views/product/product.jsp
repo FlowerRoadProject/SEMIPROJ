@@ -162,10 +162,10 @@ textarea{
   float: right!important;
 }
 
-.modal-dialog{
+.manage-modal-dialog{
     overflow-y: initial !important
 }
-.modal-body{
+.manage-modal-body{
     height: 670px;
     overflow-y: auto;
 }
@@ -1261,13 +1261,13 @@ textarea{
 	
 	
 	<div class="modal fade manageModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-	  	<div class="modal-dialog modal-lg">
+	  	<div class="modal-dialog modal-lg manage-modal-dialog">
 		   	 <div class="modal-content">
 		     	 <div class="modal-header">
 		     	 	<h3>꽃을 오랫동안 보관하는 법</h3>
 		     	 </div>
 		     	 
-		     	 <div class="modal-body">
+		     	 <div class="modal-body manage-modal-body">
 		     	<div class="row">
 		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
 		     			<div class="thumbnail">
