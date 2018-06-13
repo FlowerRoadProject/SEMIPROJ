@@ -47,8 +47,8 @@ public class NoticeBoardDao {
 						
 			int startRow = (currentPage - 1) * limit + 1;
 			int endRow = startRow + (limit - 1);
-			System.out.println("startRow: "+startRow);
-			System.out.println("endRow: "+endRow);
+			//System.out.println("startRow: "+startRow);
+			//System.out.println("endRow: "+endRow);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
@@ -89,7 +89,7 @@ public class NoticeBoardDao {
 			if(rset.next()){
 				result = rset.getInt("COUNT(*)");
 			}
-			System.out.println("RESULT: "+result);
+			//System.out.println("RESULT: "+result);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

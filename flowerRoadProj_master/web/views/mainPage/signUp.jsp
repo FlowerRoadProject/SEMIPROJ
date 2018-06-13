@@ -168,7 +168,7 @@
             success : function(data){
                   alert("이메일로 인증번호를 보냈습니다.");
                   emailNum=($.trim(data));
-                  console.log($.trim(data));
+                  //console.log($.trim(data));
             },error : function(){
                alert("데이터 전달 실패");   
             }
@@ -176,7 +176,7 @@
           }
        });
        $("#confirmEmail").click(function(){
-          console.log($('#emailCheck').val());
+          //console.log($('#emailCheck').val());
           if($('#emailCheck').val()==""){
              alert('인증번호 값을 입력해주세요');
           }else if($('#emailCheck').val()==emailNum){

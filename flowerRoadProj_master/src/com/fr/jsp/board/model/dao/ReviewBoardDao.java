@@ -28,7 +28,7 @@ public class ReviewBoardDao {
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (IOException e) {
-			System.out.println("ReviewBoard-query.properties 파일 읽기 실패");
+			//System.out.println("ReviewBoard-query.properties 파일 읽기 실패");
 			e.printStackTrace();
 		}
 

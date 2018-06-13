@@ -701,7 +701,7 @@ textarea{
 				checkInFavList(productNum);
 				
 			},error:function(data){
-				console.log("에러네 띠용....");
+				//console.log("에러네 띠용....");
 			}
 			
 		});
@@ -720,7 +720,7 @@ textarea{
 					$('#addFavBtn').css("color","black");
 				
 			},error:function(data){
-				console.log("에러네 띠용....");
+				//console.log("에러네 띠용....");
 			}
 			
 		});

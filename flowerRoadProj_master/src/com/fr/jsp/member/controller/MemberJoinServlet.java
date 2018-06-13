@@ -46,17 +46,17 @@ public class MemberJoinServlet extends HttpServlet {
 		
 		
 		if(ms.checkId(m.getMemberId())==1){
-			System.out.println("이미 회원이 존재하는 경우");
+			//System.out.println("이미 회원이 존재하는 경우");
 			request.setAttribute("msg", "이미 회원이 존재합니다.");
 			RequestDispatcher view = request.getRequestDispatcher("views/mainPage/signUp.jsp");
 			view.forward(request, response);
 		}
 		if(ms.InsertMember(m) !=0){
-			System.out.println("정상적으로 회원 가입 성공!!");
+			//System.out.println("정상적으로 회원 가입 성공!!");
 			RequestDispatcher view = request.getRequestDispatcher("views/mainPage/login.jsp");
 			view.forward(request, response);
 		}else{
-			System.out.println("회원 가입 실패!!");
+			//System.out.println("회원 가입 실패!!");
 			request.setAttribute("msg", "회원 가입 실패!!");
 			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);

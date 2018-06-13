@@ -146,9 +146,9 @@
     				pNum: product_num				
     			},   				
     			success: function(){
-    				console.log('update성공');
+    				//console.log('update성공');
     			},error: function(){
-    				console.log('update실패');
+    				//console.log('update실패');
     			}
     		});
     		
