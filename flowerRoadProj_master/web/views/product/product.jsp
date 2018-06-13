@@ -473,6 +473,17 @@ textarea{
 		
 		var productQuantity = parseInt($("#optionDiv input[name='total_selected_quantity']").val());
 		
+		if(productQuantity<0){
+			alert("1 이상을 입력 해 주세요");
+			$("#optionDiv input[name='total_selected_quantity']").val(1);
+			return;
+		}else if(isNaN(productQuantity)){
+			alert("숫자를 입력해 주세요");
+			$("#optionDiv input[name='total_selected_quantity']").val(1);
+			return;
+		}
+		
+		
 		var productTotalPrice = product_price * productQuantity;
 		
 		$("#optionDiv div[name='total_Price']").text(productTotalPrice+"원");
@@ -807,8 +818,16 @@ textarea{
 			
 			//console.log($('[name=rating]').val());
 		}
-
-	
+	/* 
+		$("#mNavbar li").click(function() {
+			  var scrollPosition = $($(this).children('a').attr("href")).offset().top;
+				console.log("들어옴?");
+			  $("body").animate({
+			        scrollTop: scrollPosition
+			  }, 500);
+		}); */
+		
+		
 </script>
 </head>
 
