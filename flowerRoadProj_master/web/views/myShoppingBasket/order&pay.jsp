@@ -725,6 +725,15 @@ Member member = (Member)request.getAttribute("member");
                     
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bottom-margin">
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <h4>배송비</h4>                            
+                        </div> 
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 align-right">
+                            <h4 id="dvPrice">0원</h4>
+                        </div>         
+                    </div>
+                    
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bottom-margin">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                             <h4>쿠폰</h4>
                             <button class="btn btn-success" id="selectCoupon">쿠폰선택하기</button>
                         </div> 
@@ -797,8 +806,6 @@ Member member = (Member)request.getAttribute("member");
 							} 
                     		$('#isCouponUsed').val($(this).parents().siblings('.dNum').val());
                     		
-
-                    		
                     	});
                     	//쿠폰 취소 버튼
                     	$('.coupon-cancle').on('click',function(){                    		
@@ -815,20 +822,10 @@ Member member = (Member)request.getAttribute("member");
 								$('.coupon-btn').eq(i).prop('disabled',false);
 							} 
                     		$('#isCouponUsed').val("");
-                    	});
+                    	});  
                     	
-                    	
-                    	
-                    </script>
+                    </script>                    
                     
-                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bottom-margin">
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                            <h4>배송비</h4>                            
-                        </div> 
-                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 align-right">
-                            <h4 id="dvPrice">0원</h4>
-                        </div>         
-                    </div>
                     <hr class="col-xs-12 col-sm-12 col-md-12 col-lg-8" style="background:black;">
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bottom-margin">
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
