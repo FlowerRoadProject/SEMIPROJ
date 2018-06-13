@@ -351,6 +351,25 @@ public class OrderDao {
 		
 		return cols;
 	}
+
+	public int buyComplete(Connection con, String num, String onum) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = prop.getProperty("buyCompelte");
+		try{
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, num);
+			pstmt.setString(2, onum);
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 
 }

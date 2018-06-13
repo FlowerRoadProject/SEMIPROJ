@@ -73,7 +73,7 @@
                                   </div>
                                 </div>
                                 <% if(mb.getReplyContent() != null) { %>
-                                >>>>
+                                <hr />
                                 <div class="form-group form-group-sm">
                                   <label class="col-sm-2 control-label" for="formGroupInputSmall">답변내용</label>
                                   <div class="col-sm-10">
