@@ -35,7 +35,8 @@ public class MemberDelete extends HttpServlet {
 			}
 			response.sendRedirect("main.jsp");
 		}else{
-			System.out.println("실패!!");
+			request.setAttribute("msg", "회원 정보 탈퇴에 실패하였습니다.");
+			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		
 	}

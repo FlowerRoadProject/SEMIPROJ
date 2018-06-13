@@ -48,11 +48,9 @@
 	                    </ul>
 	                    <div class="clearfix"></div>
 	                  </div>
-	                  <div class="randomGame"  style="height:500px">
-	                  
-	                    	<img id="target" src="<%=request.getContextPath() %>/resources/images/admin/blue_flower_background.jpg" alt="" 
-	                    		style="width:200px;height:200px;position:absolute;top:<%=adminRandomGame.getTopNum()%>%;left:<%=adminRandomGame.getLeftNum()%>%;"/>
-	                    	<div id="goal" style="border:2px solid pink;width:200px;height:200px;position:absolute;top:<%=adminRandomGame.getGoalTopNum()%>%;left:<%=adminRandomGame.getGoalLeftNum()%>%;"></div>
+	                  <div class="randomGame page"  style=" width: auto;height:500px">
+							  <button id="target" class="fun-btn" style="width:200px;height:200px;position:absolute;top:<%=adminRandomGame.getTopNum()%>%;left:<%=adminRandomGame.getLeftNum()%>%;">press</button>
+	                    	  <div id="goal" style="border-radius: 100px;border:2px solid pink;width:200px;height:200px;position:absolute;top:<%=adminRandomGame.getGoalTopNum()%>%;left:<%=adminRandomGame.getGoalLeftNum()%>%;"></div>
 	                    	
 	                  </div>
 	                </div>
@@ -94,6 +92,8 @@
                               <div class="col-lg-12 col-md-5 col-sm-5 col-xs-12" style="padding: 0px;">
 		                         <button type="button" class="btn btn-round btn-success col-lg-10 col-md-10 col-sm-10 col-xs-10" 
 		                         		style="margin-left:10%;margin-right:10%;"id="randomPlace">랜덤 위치</button>
+		                         <button type="button" class="btn btn-round btn-warning col-lg-10 col-md-10 col-sm-10 col-xs-10" 
+		                         		style="margin-left:10%;margin-right:10%;"id="resetScore">초기화</button>
 	                          </div>
 	                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	                          		<div class="panel-body">
@@ -106,7 +106,7 @@
 			                                  <th>날짜</th>
 			                                </tr>
 			                              </thead>
-			                              <tbody>
+			                              <tbody  class="leaderBoardTbody">
 			                              <%for(int i=0; i<adminLeaderBoard.size(); i++){ %>
 			                                <tr>
 			                                  <th scope="row"><%=i+1 %></th>

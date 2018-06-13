@@ -147,9 +147,9 @@ animation-direction: alternate;
 	<div class="container-fluid" id="navContainer">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header col-xs-2 col-sm-2 col-md-2 col-lg-2">
-			<button type="button" class="btn btn-default btn-lg" onclick="fav()">
-			 <span class="glyphicon glyphicon-star" style="cursor: pointer" aria-hidden="true"></span> 
-			 </button>
+			
+			 <span class="glyphicon glyphicon-star" style="cursor: pointer; color:gold; font-size: 3em; margin: 0.5em;" aria-hidden="true" onclick="fav()"></span> 
+			 
 			
 		</div>
 		<!-- style="width:200px; height:80px" -->

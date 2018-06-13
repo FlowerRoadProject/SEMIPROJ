@@ -30,7 +30,8 @@ public class MemberFavoriteAllDelete extends HttpServlet {
 		if(ms.favoriteAllDel(num) != 0){
 			response.sendRedirect("views/myPage/myPage_main.jsp");
 		} else {
-			System.out.println("실패");
+			request.setAttribute("msg", "전체 삭제에 실패하였습니다.");
+			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		
 		
