@@ -147,5 +147,20 @@ public class OrderService {
 		
 		return result;
 	}
+
+
+	public int buyComplete(String num, String onum) {
+Connection con = getConnection();
+		
+		int result = oDao.buyComplete(con, num, onum);
+		
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 		
 }

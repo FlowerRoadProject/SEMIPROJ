@@ -121,6 +121,10 @@
 					<td><%=list.get(j).getOrder_state_code()%> &nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="button" value="환불하기" id="refund" class="refund btn btn-default">
 					</td>
+					<% } else if(list.get(j).getOrder_state_code().equals("배송 완료")) { %>
+					<td><%=list.get(j).getOrder_state_code()%> &nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" value="구매확정" id="buyComplete" class="buyComplete btn btn-default">
+					</td>
 					<% } else { %>
 					<td><%=list.get(j).getOrder_state_code()%></td>
 					<% }
@@ -193,6 +197,14 @@
 			location.href=" <%=request.getContextPath() %>/orderRefund.or?onum="+onum;
 			}
 			alert("환불이 완료되었습니다!");
+			
+		});
+		
+		$('#buyComplete').on('click',function(){
+			var onum = $(this).parent().siblings().children('.oN').val();
+			location.href=" <%=request.getContextPath() %>/buyComplete.or?onum="+onum;
+			
+			alert("구매확정 되었습니다!");
 			
 		});
 		
