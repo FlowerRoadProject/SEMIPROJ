@@ -245,9 +245,9 @@
     				pQuantity: quantity    					
     			},   				
     			success: function(){
-    				
+    				alert('상품갯수가 수정되었습니다');
     			},error: function(){
-    				
+    				alert('상품갯수 수정에 실패하였습니다');
     			}
     		});
     			 

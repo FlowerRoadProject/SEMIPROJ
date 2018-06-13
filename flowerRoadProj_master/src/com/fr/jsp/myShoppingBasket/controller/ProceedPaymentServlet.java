@@ -59,9 +59,6 @@ public class ProceedPaymentServlet extends HttpServlet {
 			ArrayList<Basket> pList = new ArrayList<Basket>();
 			Basket b = null;
 
-			for(int i=0;i<pQuanties.length;++i){
-				System.out.println(pQuanties[i]);
-			}
 			
 			for (int i = 0; i < pNums.length; ++i) {
 				b = new Basket(pNums[i], Integer.parseInt(pQuanties[i]), Integer.parseInt(prices[i]), pNames[i], pImages[i]);

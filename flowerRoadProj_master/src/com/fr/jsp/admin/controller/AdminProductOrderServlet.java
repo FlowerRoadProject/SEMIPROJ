@@ -31,7 +31,7 @@ public class AdminProductOrderServlet extends HttpServlet {
 		// 오늘 발주한 상품 수
 		int admin_todayProductOrderCount = aps.admin_todayProductOrderList().size();
 		// 등록된 모든 상품 리스트
-		ArrayList<AdminProduct> admin_allProductList = aps.admin_allProductList();
+		ArrayList<AdminProduct> admin_stockLackProductList = aps.admin_stockLackProductList();
 		
 		// connection close
 		aps.closeCon();
@@ -41,7 +41,7 @@ public class AdminProductOrderServlet extends HttpServlet {
 		request.setAttribute("admin_stockLackProductCount", admin_stockLackProductCount);
 		request.setAttribute("admin_todayProductOrderCount", admin_todayProductOrderCount);
 		
-		request.setAttribute("admin_productList", admin_allProductList);
+		request.setAttribute("admin_productList", admin_stockLackProductList);
 		
 		request.getRequestDispatcher("views/admin_views/admin_ProductOrder.jsp").forward(request, response);
 	}
