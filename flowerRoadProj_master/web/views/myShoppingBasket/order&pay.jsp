@@ -354,7 +354,7 @@ Member member = (Member)request.getAttribute("member");
                         <li>
                             <b>날짜선택</b>
                             <br>
-                            내일 - 일주일 이내
+                            내일 - 한달 이내
                         </li>
                         <br><br>
                         <li>
@@ -784,7 +784,7 @@ Member member = (Member)request.getAttribute("member");
                     	$('.coupon-btn').on('click',function(){                    		
                     		//합계에서 차감하기
                     		var discount = parseInt($(this).parents().siblings('.cDiscount').text());
-                    		$('#couponInput').text( discount +"원" );
+                    		$('#couponInput').text( "-"+discount +"원" );
                     		$('#finalPay').text( (parseInt($('#finalPay').text()) - parseInt(discount)) +"원" );
                     		//사용버튼 사라지게하기
                     		$(this).css('display',"none");
@@ -1114,7 +1114,7 @@ Member member = (Member)request.getAttribute("member");
                     
                     */
                     startDate: '0m', // 현재달만 선택가능
-                    endDate: '+10d'  //10일 이후 까지만 선택가능                    
+                    endDate: '+30d'  //10일 이후 까지만 선택가능                    
                 });
             });     
         </script>
