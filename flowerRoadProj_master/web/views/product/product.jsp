@@ -818,8 +818,16 @@ textarea{
 			
 			//console.log($('[name=rating]').val());
 		}
-
-	
+	/* 
+		$("#mNavbar li").click(function() {
+			  var scrollPosition = $($(this).children('a').attr("href")).offset().top;
+				console.log("들어옴?");
+			  $("body").animate({
+			        scrollTop: scrollPosition
+			  }, 500);
+		}); */
+		
+		
 </script>
 </head>
 
