@@ -121,7 +121,7 @@ public class AdminUserQuestionBoardDao {
 		try { 
 			String query = prop.getProperty("admin_updateUserQuestionBoard");
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1,userQuestionBoard.getMemberNum());
+			pstmt.setString(1,userQuestionBoard.getManagerNum());
 			pstmt.setString(2,userQuestionBoard.getReplyContent());
 			pstmt.setInt(3,userQuestionBoard.getbNum());
 			rset = pstmt.executeUpdate();

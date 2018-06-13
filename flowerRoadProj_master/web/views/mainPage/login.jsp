@@ -60,9 +60,9 @@ $("input[name=userPwd]").keydown(function (key) {
     
     if(facebookClicked){
 	    if (response.status === 'connected') {
-	      console.log('statusChangeCallback');
-	    console.log(response);
-	    console.log(response.authResponse.userID);//id 찾음!
+	      //console.log('statusChangeCallback');
+	    //console.log(response);
+	    //console.log(response.authResponse.userID);//id 찾음!
 	    location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=facebook"+response.authResponse.userID;
 	   
 	    } else {
@@ -187,15 +187,15 @@ $('#signUp').click(function(){
       container: '#kakao-login-btn',
       success: function(authObj) {
         var auth = JSON.stringify(authObj);
-        console.log(auth);
+        //console.log(auth);
         Kakao.API.request({
             url: '/v1/user/me',
             success: function(res) {
-            	console.log(JSON.stringify(res));
-              console.log(JSON.stringify(res.kaccount_email));
-              console.log(JSON.stringify(res.id));
-              console.log(JSON.stringify(res.properties.profile_image));
-              console.log(JSON.stringify(res.properties.nickname));
+            	//console.log(JSON.stringify(res));
+              //console.log(JSON.stringify(res.kaccount_email));
+              //console.log(JSON.stringify(res.id));
+              //console.log(JSON.stringify(res.properties.profile_image));
+              //console.log(JSON.stringify(res.properties.nickname));
               location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=kakao"+JSON.stringify(res.id);
             },
             fail: function(error) {
@@ -235,9 +235,9 @@ function onSignIn(googleUser) {
     	// Useful data for your client-side scripts:
         var profile = googleUser.getBasicProfile();
     	
-        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        //console.log("ID: " + profile.getId()); // Don't send this directly to your server!
    
-        console.log("Email: " + profile.getEmail());
+        //console.log("Email: " + profile.getEmail());
 
         location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=google"+profile.getId();
       };

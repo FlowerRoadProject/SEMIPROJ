@@ -288,8 +288,12 @@
                		url: "delete.bk",
                		type: "GET",
                		data:{pNum: product_num},
-               		success: function(){console.log("delete성공");},
-               		error: function(){console.log("delete실패");}
+               		success: function(){
+               			//console.log("delete성공");
+               			},
+               		error: function(){
+               			//console.log("delete실패");
+               		}
                		});
                	
                	if($('.product-each').length == 0){
@@ -297,7 +301,7 @@
                	}
                
            	}else{
-           		console.log("노삭제!");
+           		//console.log("노삭제!");
            	}
         	
         	
@@ -435,9 +439,9 @@
     			data:{
     				memberNumber: $('#memberNumber').val()
     			},success:function(number){
-					console.log(number+"개의 옵션 상품 삭제");    				
+					//console.log(number+"개의 옵션 상품 삭제");    				
     			},error: function(){
-    				console.log('장바구니 비우기 실패');
+    				//console.log('장바구니 비우기 실패');
     			}
     		});
     	    	
@@ -483,9 +487,9 @@
         				pQuantity: quantity    					
         			},   				
         			success: function(){
-        				console.log('update성공');
+        				//console.log('update성공');
         			},error: function(){
-        				console.log('update실패');
+        				//console.log('update실패');
         			}
         		});
     		}

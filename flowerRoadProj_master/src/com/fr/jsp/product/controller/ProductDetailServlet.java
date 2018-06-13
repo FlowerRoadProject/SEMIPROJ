@@ -85,7 +85,7 @@ public class ProductDetailServlet extends HttpServlet {
 		int checkResult = ps.insertProductCheck(memberNum,productNum);
 		
 		if(checkResult<0)
-			System.out.println("체크 로그에 인서트 실패");
+			//System.out.println("체크 로그에 인서트 실패");
 		
 	
 		//표시할 옵션 프로덕트 정보 가져오기

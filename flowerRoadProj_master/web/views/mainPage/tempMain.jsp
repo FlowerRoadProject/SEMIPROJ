@@ -34,9 +34,9 @@ $(document).ready(function() {
 	    if(facebookClicked){
 		    if (response.status === 'connected') {
 		      // Logged into your app and Facebook.
-		      console.log('statusChangeCallback');
-		    console.log(response);
-		    console.log(response.authResponse.userID);//id 찾음!
+		      //console.log('statusChangeCallback');
+		    //console.log(response);
+		    //console.log(response.authResponse.userID);//id 찾음!
 		    location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=facebook"+response.authResponse.userID;
 		      //testAPI();
 		    } else {
@@ -189,9 +189,9 @@ $(document).ready(function() {
 		    	// Useful data for your client-side scripts:
 		        var profile = googleUser.getBasicProfile();
 		    	
-		        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+		        //console.log("ID: " + profile.getId()); // Don't send this directly to your server!
 		      
-		        console.log("Email: " + profile.getEmail());
+		        //console.log("Email: " + profile.getEmail());
 		        location.href="<%=request.getContextPath()%>/snsLoginservlet.me?memberNum=google"+profile.getId();
 		      };
 		    }		

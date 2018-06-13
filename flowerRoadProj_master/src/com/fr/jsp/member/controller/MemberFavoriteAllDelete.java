@@ -24,7 +24,7 @@ public class MemberFavoriteAllDelete extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 		String num = (String)session.getAttribute("memberNum");
-		System.out.println(num);
+		//System.out.println(num);
 		MemberService ms = new MemberService();
 		
 		if(ms.favoriteAllDel(num) != 0){
