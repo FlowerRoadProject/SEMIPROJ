@@ -35,6 +35,19 @@
             
     <body>
         <%@ include file="/views/common/header.jsp" %>
+          <%
+        String sns="";
+        for(int i=0; i<memberNum.length(); i++){
+          
+                 
+           if(memberNum.charAt(i)>= '0' && memberNum.charAt(i)<='9'){
+              
+           }else{
+              sns+=memberNum.charAt(i);
+           }
+              
+        }
+        %>
         <!-- 마이페이지 카테고리  -->
         <br><br><br><br><br><br><br><br><br><br>
         <div class="container-fluid">
@@ -51,9 +64,14 @@
 
         <!-- 관심 상품 창 -->
         <div class="container-fluid">
-                <div class="col-sm-4 col-md-4 col-lg-4"><h4><i>관심 상품</i> 
-                    <small>: [<%= m.getMemberName() %>]님의 관심상품 보관함 내역입니다.</small></h4></div>
-                <div class="col-sm-8 col-md-8 col-lg-8"></div>
+                <div class="col-sm-6 col-md-6 col-lg-6"><h4><i>관심 상품</i> 
+                	<% if(m.getMemberName() != null) { %>
+                     <small>: [<%= m.getMemberName() %>]님의 관심상품 보관함 내역입니다.</small>
+        <% } else { %>
+        			<small>: [<%= sns %>로 로그인한 회원]님의 관심상품 보관함 내역입니다.</small>
+        <% } %>
+                    </h4></div>
+                <div class="col-sm-6 col-md-6 col-lg-6"></div>
         </div>
         <div>
                 <div class="info">
