@@ -51,7 +51,7 @@
 		<% if(m.getMemberName() != null) { %>
                     <small>: [<%= m.getMemberName() %>]님이 쇼핑몰에 문의하신 1:1 고객상담 내역입니다.</small>
         <% } else { %>
-        			<small>: [<%= sns %>로 로그인한 회원]님이 쇼핑몰에 문의하신 1:1 고객상담 내역입니다.</small>
+        		 	<small>: [<%= sns %>로 로그인한 회원]님이 쇼핑몰에 문의하신 1:1 고객상담 내역입니다.</small>
         <% } %>
         </h4></div>
                 <div class="col-sm-6 col-md-6 col-lg-6"></div>
