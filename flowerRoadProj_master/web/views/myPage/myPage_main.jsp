@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import = "com.fr.jsp.member.model.vo.*,
     						java.util.*"%>
@@ -258,7 +259,7 @@
                alert('<%=sns%>로 로그인한 계정입니다.'); 
             <%}%>
         });
-        
+
         // 정보 수정
         $('#confirm2').on('click',function(){
         	var sel = 2;

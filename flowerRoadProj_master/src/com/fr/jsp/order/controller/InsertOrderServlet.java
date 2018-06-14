@@ -110,7 +110,7 @@ public class InsertOrderServlet extends HttpServlet {
 			
 		}
 		
-		System.out.println("insertProList(구입한 물품종류): "+insertProList);		
+		//System.out.println("insertProList(구입한 물품종류): "+insertProList);		
 		new Gson().toJson(result, response.getWriter());
 		
 		

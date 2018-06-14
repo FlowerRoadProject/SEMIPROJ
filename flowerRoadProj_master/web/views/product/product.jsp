@@ -162,6 +162,14 @@ textarea{
   float: right!important;
 }
 
+.manage-modal-dialog{
+    overflow-y: initial !important
+}
+.manage-modal-body{
+    height: 670px;
+    overflow-y: auto;
+}
+
 </style>
 
 <script>
@@ -357,6 +365,7 @@ textarea{
 		$temp.children("[name=selected_name]").text($temp.attr("name").split(",")[2]);//안에 상품이름 세팅
 			
 		$temp.children("[name=selected_price]").text($temp.attr("name").split(",")[3]+"원");//안에 가격 세팅
+		$temp.children("[name=selected_price]").attr("pValue",$temp.attr("name").split(",")[3]);
 		
 		return $temp;
 	}
@@ -384,11 +393,15 @@ textarea{
 	/*총 가격 계산*/
 	function calcTotalPrice() {
 
-		var totalPrice = 0;
-		$("#optionDiv div[name=selected_price]").each(function(i, element) {
-			totalPrice += parseInt($(element).text());
-		});
-		return product_price + totalPrice;
+		var optionsPrice = getOptionsPrice();
+
+		var productQuantity = parseInt($("#optionDiv input[name='total_selected_quantity']").val());
+		
+		var productTotalPrice = product_price * productQuantity;
+	
+		
+		
+		return productTotalPrice + optionsPrice;
 	}
 
 	/*상품가격과 총 가격을 표시*/
@@ -400,7 +413,7 @@ textarea{
 		} else {
 
 			$("#optionDiv [name*=total]").remove();
-
+			$("#optionDiv [name='total_selected_quantity']").remove();
 			appendProductTotalPrice();
 		}
 	}
@@ -409,22 +422,84 @@ textarea{
 	function appendProductTotalPrice() {
 		$('#optionDiv')
 				.append(
-						$("<div class='col-offset-sm-1 col-offset-xs-1 col-offset-md-1 col-offset-lg-1 col-xs-7 col-sm-7 col-md-7 col-lg-7 selected_option' name='total_product_name'>"
+						$("<div class='col-offset-sm-1 col-offset-xs-1 col-offset-md-1 col-offset-lg-1 col-xs-6 col-sm-6 col-md-6 col-lg-6 selected_option' name='total_product_name'>"
 								+ product_name + "</div>"));
 		$('#optionDiv')
 				.append(
-						$("<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 selected_option' name='total_Price'>"
+						$("<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3 selected_option' name='total_Price'>"
 								+ product_price + "원" + "</div>"));
-
+		
+		 $('#optionDiv')
+		.append($("<input class='input-sm col-xs-2 col-sm-2 col-md-2 col-lg-2' name='total_selected_quantity' value='1' type='number' min='1' max='99' onchange='setQuantityByPrice();'>")); 
+		
+	
 		$('#optionDiv')
 				.append(
-						$("<div class='col-offset-sm-1 col-offset-xs-1 col-offset-md-1 col-offset-lg-1 col-xs-7 col-sm-7 col-md-7 col-lg-7 selected_option' name='total_PriceName'>총 가격</div>"));
+						$("<div class='col-offset-sm-1 col-offset-xs-1 col-offset-md-1 col-offset-lg-1 col-xs-6 col-sm-6 col-md-6 col-lg-6 selected_option' name='total_PriceName'>총 가격</div>"));
 		$('#optionDiv')
 				.append(
-						$("<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 selected_option' name='total_product_price'>"
+						$("<div class='col-xs-5 col-sm-5 col-md-5 col-lg-5 selected_option' name='total_product_price'>"
 								+ calcTotalPrice() + "원" + "</div>"));
 	}
 
+	
+	//옵션 상품의 총 가격
+	function getOptionsPrice(){
+		
+		var totalPrice = 0;
+		
+		var $options  = $("#optionDiv div[name*=selected_option_row]");
+		
+		for(var i = 0;i<$options.length;++i){
+			
+			var quantity = parseInt($options.eq(i).children('input[name*=selected_quantity]').val())
+		
+			var price = parseInt($options.eq(i).children('div[name*=selected_price]').attr('pvalue'));
+			
+			totalPrice += quantity*price;
+		}
+		
+		return totalPrice;
+	}
+	
+	
+	//가격을 계산한뒤 세팅
+	function setQuantityByPrice(){
+		
+		var $options  = $("#optionDiv div[name*=selected_option_row]");
+		
+		for(var i = 0;i<$options.length;++i){
+			
+			var quantity = parseInt($options.eq(i).children('input[name*=selected_quantity]').val());
+		
+			var price = parseInt($options.eq(i).children('div[name*=selected_price]').attr('pvalue'));
+			$options.eq(i).children('[name*=selected_price]').text((quantity*price)+"원");
+		}
+		
+
+		var optionPrices = getOptionsPrice();
+		
+		var productQuantity = parseInt($("#optionDiv input[name='total_selected_quantity']").val());
+		
+		if(productQuantity<0){
+			alert("1 이상을 입력 해 주세요");
+			$("#optionDiv input[name='total_selected_quantity']").val(1);
+			return;
+		}else if(isNaN(productQuantity)){
+			alert("숫자를 입력해 주세요");
+			$("#optionDiv input[name='total_selected_quantity']").val(1);
+			return;
+		}
+		
+		
+		var productTotalPrice = product_price * productQuantity;
+		
+		$("#optionDiv div[name='total_Price']").text(productTotalPrice+"원");
+		
+		$("#optionDiv div[name='total_product_price']").text((product_price * productQuantity+optionPrices)+"원");		
+		
+	}
+	
 	/*옵션 상품 취소*/
 	function clickOptionCancle(obj) {
 		$(obj).parents("[name*=selected_option_row]").remove();
@@ -433,9 +508,11 @@ textarea{
 		setTotalPrice();
 
 		if ($('#optionDiv').children("[name*=selected_option_row]").length == 0) {
+			
 			$("#optionDiv [name*=total]").each(function() {
 				$(this).remove();
 			});
+			
 			showNoOptionProductInfo();
 		}
 	}
@@ -614,6 +691,13 @@ textarea{
 	//찜 목록에 추가 / 삭제
 	function addToFavorite(productNum){
 		
+		if(!checkLogin())
+		{
+			$('#myModal').modal({"show":true});
+			
+			return;
+		}
+		
 		$.ajax({
 			url:"addFavorite.do",
 			data:{pno:productNum},
@@ -624,7 +708,7 @@ textarea{
 				checkInFavList(productNum);
 				
 			},error:function(data){
-				console.log("에러네 띠용....");
+				//console.log("에러네 띠용....");
 			}
 			
 		});
@@ -643,7 +727,7 @@ textarea{
 					$('#addFavBtn').css("color","black");
 				
 			},error:function(data){
-				console.log("에러네 띠용....");
+				//console.log("에러네 띠용....");
 			}
 			
 		});
@@ -706,8 +790,17 @@ textarea{
 			$('[name=sub_product_name]').attr("value",'<%=p.getProductName()%>'+',');
 			$('[name=sub_product_image]').attr("value",'<%=p.getImages().get(0)%>'+',');
 			
+			if(typeof $('#optionDiv input[name=total_selected_quantity]').val()!=="undefined"){
+				
+				
+				$('[name=sub_product_quantity]').attr("value",$('#optionDiv input[name=total_selected_quantity]').val()+',');
 			
+			}
+			else{
+				$('[name=sub_product_quantity]').attr("value",1+',');
 			
+			}
+				
 			
 			for(var i=0;i<$optionList.length;++i){
 				
@@ -715,7 +808,7 @@ textarea{
 				$('[name=sub_product_price]').attr("value",$('[name=sub_product_price]').attr("value")+$optionList.eq(i).attr("name").split(",")[3]+",");
 				$('[name=sub_product_name]').attr("value",$('[name=sub_product_name]').attr("value")+$optionList.eq(i).attr("name").split(",")[2]+",");
 				$('[name=sub_product_image]').attr("value",$('[name=sub_product_image]').attr("value")+$optionList.eq(i).attr("name").split(",")[5]+",");
-				
+				$('[name=sub_product_quantity]').attr("value",$('[name=sub_product_quantity]').attr("value")+$optionList.eq(i).children('[name*=selected_quantity]').val()+",");
 			}
 			
 			$('#purchase').submit();
@@ -749,8 +842,16 @@ textarea{
 			
 			//console.log($('[name=rating]').val());
 		}
-
-	
+	/* 
+		$("#mNavbar li").click(function() {
+			  var scrollPosition = $($(this).children('a').attr("href")).offset().top;
+				console.log("들어옴?");
+			  $("body").animate({
+			        scrollTop: scrollPosition
+			  }, 500);
+		}); */
+		
+		
 </script>
 </head>
 
@@ -758,7 +859,7 @@ textarea{
 	<span id="page_start">  </span>
 	<%@include file="../common/header.jsp"%>
 	<%@include file="../common/loginModal.jsp" %>
-	
+	<%@include file="../common/banner.jsp" %>
 	<br />
 	<br />
 	<br />
@@ -788,6 +889,9 @@ textarea{
 							class="btn btn-sm btn-default glyphicon glyphicon-question-sign"
 							role="button" data-toggle="popover" data-trigger="hover"
 							title="상세 정보" data-html="true"></a>
+							
+							<button class="btn btn-default btn-sm glyphicon glyphicon-info-sign"
+							id="addFavBtn" data-toggle="modal" data-target=".manageModal" ></button>
 					</div>
 
 				</div>
@@ -842,6 +946,7 @@ textarea{
 								<input type="hidden" value="" name="sub_product_price"/>
 								<input type="hidden" value="" name="sub_product_name"/>
 								<input type="hidden" value="" name="sub_product_image"/>
+								<input type="hidden" value="" name="sub_product_quantity"/>
 								<button class="btn btn-primary btn-lg col-xs-offset-1 col-xs-6"
 								 type="button" id="to_purchase" onclick="purchase();">구매하기</button>
 							</form>
@@ -1123,13 +1228,17 @@ textarea{
 </div>
 
 
+
+
 	<!--clone용 html 태그들 (보이지는 않음)-->
 	<div class="container" style="display: none">
 		<div class="row">
 			<div name="selected_option_row">
-				<div class="col-offset-xs-1  col-offset-sm-1 col-offset-md-1 col-offset-lg-1 col-xs-7 col-sm-7 col-md-7 col-lg-7  selected_option"
+				<div class="col-offset-xs-1  col-offset-sm-1 col-offset-md-1 col-offset-lg-1 col-xs-6 col-sm-6 col-md-6 col-lg-6  selected_option"
 					name='selected_name'></div>
-				<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4 selected_option' name='selected_price'></div>
+				<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3 selected_option' name='selected_price'></div>
+				<!-- <input class="col-xs-1 col-sm-1 col-md-1 col-lg-1" type="number" name="selected_quantity" value="1" /> -->
+    			<input class="input-sm col-xs-2 col-sm-2 col-md-2 col-lg-2" name="selected_quantity" min="1" max="99" type="number" value="1" onchange="setQuantityByPrice(); "style="visibility:hidden" >
 				<div class='col-sm-1 col-xs-1 col-md-1 col-lg-1'>
 					<span class='btn btn-default btn-xs glyphicon glyphicon-remove'
 						onclick='clickOptionCancle(this);'></span>
@@ -1156,7 +1265,113 @@ textarea{
          </div>
 		
 	</div>
-
+	
+	
+	<div class="modal fade manageModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	  	<div class="modal-dialog modal-lg manage-modal-dialog">
+		   	 <div class="modal-content">
+		     	 <div class="modal-header">
+		     	 	<h3>꽃을 오랫동안 보관하는 법</h3>
+		     	 </div>
+		     	 
+		     	 <div class="modal-body manage-modal-body">
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage1.jpg" alt="" />
+		     				<div class="caption">
+						        <h3><b>1.</b>물 속에 잠긴 잎들을 제거한다.</h3>
+						        <p>물 속에 있는 잎들은 부패되어 박테리아에게 영양분을 공급할 수 있고, 그렇게 되면 식물의 나머지 부분이 감염되고 해를 입는다.발견될 때마다 물에 닿은 모든 잎들을 잘라내도록 한다</p>
+						       
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage2.jpg" alt="" />
+		     				<div class="caption">
+						        <h3><b>2.</b>물을 교체한다</h3>
+						        <p>꽃이 신선하게 유지되도록 매일 물을 갈아줘야 한다. 새로운 물을 담기 전에 감염의 위험을 줄이기 위해서, 꽃병의 모든 잔여물들을 확실히 제거하자.</p>
+						       	<ul>
+									<li>
+										플로랄폼(floral foam)에 함께 꽂는 꽃들도 물을 필요로 한다. 플로랄폼(floral foam)이 자연스럽게 물 속에 가라앉을 때까지 기다린다. 힘을 가하면, 기포가 생겨서 꽃줄기를 막을 수 있기 때문이다.
+									</li>			       	
+						       	</ul>
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage3.jpg" alt="" />
+		     				<div class="caption">
+						       <h3><b>3.</b>정기적으로 꽃줄기를 손질한다</h3>
+						        <p>매번 물을 교체할 때마다 손질하거나, 적어도 며칠마다 한 번씩 한다. 날카로운 가위, 전단기(shears), 또는 칼을 사용하여 45도 기울어진 각도로 줄기를 자른다. 비스듬히 자르면 꽃이 물을 흡수 할 수 있는 표면적이 넓어진다</p>
+						       <ul>
+						       		<li>가게에서 사온 꽃은 물에 담그기 직전에 줄기를 다듬어야 한다.</li>
+						       		<li>장미꽃 줄기는 특히 물 흡수를 막는 기포에 민감하다. 물 속에서 장미꽃을 잘라서 이것을 방지하자.</li>
+						       </ul>
+						
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage4.jpg" alt="" />
+		     				<div class="caption">
+						        <h3><b>4.</b>꽃 보존제를 사용한다.</h3>
+						        <p>꽃 보존제나 꽃 영양제는 꽃가게, 화훼용품점, 슈퍼마켓 등에서 구할 수 있다. 이 두 가지는 에너지를 위한 설탕, 꽃 색깔과 물 농도를 일정하게 해주는 산, 그리고 박테리아와 곰팡이 균을 죽이는 살생물제 등을 포함하여, 꽃을 피우는데 필요한 모든 영양분을 공급할 수 있어야 한다.포장지의 설명서를 읽고 사용한다.</p>
+						        <ul>
+						       		<li>시중에 판매하는 꽃 보존제를 구입하기 원하지 않거나, 제품이 효과가 없다면, 대신 집에서 직접 쉽게 만들 수 있는 꽃 보존제를 알아본다.</li>
+						       		
+						       </ul>
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage5.jpg" alt="" />
+		     				<div class="caption">
+						        <h3><b>5.</b>위험한 환경들로부터 화초를 멀리 떨어뜨려 놓는다.</h3>
+						        <p>직사광선, 난방기, 텔레비전 위, 또는 다른 열기가 있는 것으로부터 먼 곳에 꽃을 둔다. 과일은 꽃을 시들게 하는 에틸렌 가스를 방출하므로, 같은 공간에 두어서는 안 된다.외풍과 가벼운 바람이 시원할지라도, 꽃이 흔들리면 수분을 잃게 되므로, 수명이 줄어든다.</p>
+						       
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	<div class="row">
+		     		<div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10">
+		     			<div class="thumbnail">
+		     				<img class="img-responsive" src="<%=request.getContextPath() %>/resources/images/manageFlowerModal/manage6.jpg" alt="" />
+		     				<div class="caption">
+						        <h3><b>6.</b>시든 꽃들은 제거한다.</h3>
+						        <p>시든 꽃을 볼 때마다 모두 잘라내야 한다. 그렇지 않으면, 에틸렌 가스가 방출되어, 다른 꽃들에게 연쇄반응을 일으킬지도 모른다. 퇴비로 사용하고 장식을 위해 말리거나, 분리된 공간에 버리도록 한다.</p>
+						       
+						     </div>
+		     			</div>
+		     		</div>
+		     	</div>
+		     	
+		     	</div>
+		     	
+		     	<div class="modal-footer">
+          			<button type="button" class="btn btn-default" data-dismiss="modal">창닫기</button>
+          		</div>
+		   	 </div>
+	  	</div>
+	</div>
 
 	<%@include file="../common/footer.jsp"%>
 

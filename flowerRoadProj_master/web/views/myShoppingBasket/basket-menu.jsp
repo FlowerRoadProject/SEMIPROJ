@@ -131,7 +131,7 @@
            			alert($('#excessMsg').val()+"\n"+$('#excessName').val());
            			
            		}
-           		console.log($('#excessName').val()); 
+           		
            		
            	});
            </script> 
@@ -235,7 +235,7 @@
     	$('.update-btn').click(function(){
     		var product_num= $(this).parent().parent().parent().find('.productNum').val();
     		var quantity = $(this).parent().siblings().find('.product-number').val();
-    		console.log('업데이트 버튼을 눌렀다');
+    		
     		
     		$.ajax({
     			url: "update.bk",
@@ -245,9 +245,9 @@
     				pQuantity: quantity    					
     			},   				
     			success: function(){
-    				console.log('update성공');
+    				alert('상품갯수가 수정되었습니다');
     			},error: function(){
-    				console.log('update실패');
+    				alert('상품갯수 수정에 실패하였습니다');
     			}
     		});
     			 
@@ -257,18 +257,10 @@
         $('.delete-btn').click(function(){
         	
         	if(confirm('선택한 물품을 장바구니에서 삭제하시겠습니까?')){
-           		console.log("삭제해!");
-           		//var thisPrice = $(this).parents('.product-each').children().children().children().children().children('.total-price');
-               	//console.log(thisPrice.text());            	
+           		      	
                	
                	var $oName = $(this).parent().parent().siblings().find('.product-name').text();
-               	console.log("상품이름 : "+$oName);   
-               	
-               	//티라미슈, 휘낭시에, 당근케이크, 초콜릿 케이크
-               	//바로지우지 않고 willRemove라는 성질을 준것은
-               	//버튼이 속한 칸을 지우는것 뿐만 아니라 아래쪽의 가격표시줄의 정보도 함께 지우기 위해서다
-               
-               	
+               	               	
                	$(this).parents('.product-each').attr("willRemove","y");            	
                	var productEach = $('.product-each');
                	var productEach1 = $('.product-each1');            	            	
@@ -286,7 +278,7 @@
                		sum += parseInt(outputPrice.eq(i).text());
                	}         	
                	
-               	console.log(sum);            
+               	   
                	$('#finalPrice').text(sum+"원");   
                	
                	var product_num= $(this).parent().parent().parent().find('.productNum').val();
@@ -296,8 +288,12 @@
                		url: "delete.bk",
                		type: "GET",
                		data:{pNum: product_num},
-               		success: function(){console.log("delete성공");},
-               		error: function(){console.log("delete실패");}
+               		success: function(){
+               			//console.log("delete성공");
+               			},
+               		error: function(){
+               			//console.log("delete실패");
+               		}
                		});
                	
                	if($('.product-each').length == 0){
@@ -305,7 +301,7 @@
                	}
                
            	}else{
-           		console.log("노삭제!");
+           		//console.log("노삭제!");
            	}
         	
         	
@@ -424,7 +420,6 @@
     	//장바구니에 메인상품이 있는지 확인해준다
     	for(var i = 0; i< $('.product-each').length; i++){
     		if(  $('.pCategory').eq(i).val()=='FD' || $('.pCategory').eq(i).val()=='FB' || $('.pCategory').eq(i).val()=='HH'){
-    			console.log("메인상품 포함!");
     			containMain = true;
     		}
     	}
@@ -444,9 +439,9 @@
     			data:{
     				memberNumber: $('#memberNumber').val()
     			},success:function(number){
-					console.log(number+"개의 옵션 상품 삭제");    				
+					//console.log(number+"개의 옵션 상품 삭제");    				
     			},error: function(){
-    				console.log('장바구니 비우기 실패');
+    				//console.log('장바구니 비우기 실패');
     			}
     		});
     	    	
@@ -478,10 +473,7 @@
     	//중복된 이름이 있는지 확인한다
     	for(var i = 0 ;i <$('.product-each').length;i++){
     		if(productName == $('.product-each .product-name').eq(i).text()){
-    			duplication = false; 			
-    			
-    			console.log('중복되었다');
-    			console.log('갯수는?: '+$('.product-each .product-number').eq(i).val());
+    			duplication = false;    			
     			$('.product-each .product-number').eq(i).val( parseInt($('.product-each .product-number').eq(i).val()) + 1);    			   			
     			
     			var product_num= $('.product-each .productNum').eq(i).val();
@@ -495,9 +487,9 @@
         				pQuantity: quantity    					
         			},   				
         			success: function(){
-        				console.log('update성공');
+        				//console.log('update성공');
         			},error: function(){
-        				console.log('update실패');
+        				//console.log('update실패');
         			}
         		});
     		}
@@ -525,11 +517,7 @@
     				$price.text($('.option-product .option-price').eq(i).text());
     				$quantity.val(1);
     				$productNum.val($('.option-product .option-productNum').eq(i).val());
-    				
-    				console.log('상품코드 : '+$('.option-product .option-productNum').eq(i).val());
-    			
-    				
-    				
+    				    				
     				var $newDownProduct = $downProduct.clone(true, true);
     				$newDownProduct.attr('name', productName);
     				$newDownProduct.addClass('product-each1');
@@ -555,8 +543,7 @@
 	    			productQuantityArr.push( $('.product-each .product-number').eq(i).val()  );
 	    		}
 				
-				console.log(productNumArr);
-    			console.log(productQuantityArr);
+				
     
 				//여기에 ajax로 insert를 구현하자!+
 				jQuery.ajaxSettings.traditional = true;
@@ -569,7 +556,7 @@
         				quantity :productQuantityArr
         				},
         			success: function(data){	
-        				console.log('INSERT에 성공하였다!'+data);
+        				
         			
        				 },error: function(data){
        				 

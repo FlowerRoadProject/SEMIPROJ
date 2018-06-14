@@ -765,5 +765,40 @@ public class MemberDao {
 		
 		return result;
 	}
+	public int insertCoupon(Connection con, String memberNum) {
+		PreparedStatement pstmt= null;
+		int result=0;
+		try {
+			String sql = prop.getProperty("couponInsert");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberNum);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public String findMemberNum(Connection con, String memberId) {
+		PreparedStatement pstmt= null;
+		ResultSet rset= null;
+		String result="";
+		try {
+			String sql = prop.getProperty("findMemberNum");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				result=rset.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 
 }

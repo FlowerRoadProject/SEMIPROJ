@@ -194,8 +194,7 @@
 			$(this).toggleClass('highlight');
 		});
 
-		$('.buttons .btn').click(function() {
-			console.log($(this).text());
+		$('.buttons .btn').click(function() {			
 			$('.boardContent').css('display','none');
 			$('.boardList').removeClass('highlight');
 			if($(this).text() == '전체보기'){

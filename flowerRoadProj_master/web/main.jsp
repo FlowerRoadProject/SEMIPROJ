@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<% %>
+<%
+	String id = (String)request.getAttribute("id");
+//System.out.println("id : "+id);
+%>
 <html>
 <head>
  <script src="<%=request.getContextPath()%>/resources/js/jquery-1.12.2.min.js"></script>
@@ -98,7 +101,13 @@ img {
 </style>
 <script>
 
-
+$(document).ready(function() {
+	var msg = "<%=id%>";
+	if(msg != "null"){
+		alert(msg);	
+	}
+	});
+	
 	$(function() {
 		setTopSelling(1);
 		setMostViewed();
@@ -242,6 +251,8 @@ img {
 	<br />
 	<br />
 	<br />
+	<%@include file="/views/common/banner.jsp" %>
+	
 	<div class="container-fluid">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin:0px;height:420;mheight:190">
 			<!-- Indicators -->
@@ -323,7 +334,7 @@ img {
 		
 	</div>
 	<div class="container">
-		<p><b>베스트 셀러</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 팔리는 제품 입니다.</p>
+		<p><span class="glyphicon glyphicon-grain"></span><b>베스트 셀러</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 팔리는 제품 입니다.</p>
 		<hr />
 		<div class="col-lg-12" id="topItem">
 			
@@ -344,7 +355,7 @@ img {
 	</div>
 	
 	<div class="container">
-		<p><b>지금 가장 많이 조회한 상품</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 조회 되는 상품입니다.</p>
+		<p><span class="glyphicon glyphicon-eye-open"></span><b>지금 가장 많이 조회한 상품</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 조회 되는 상품입니다.</p>
 		<hr />
 		<div class="col-lg-12" id="mostViewed">
 			

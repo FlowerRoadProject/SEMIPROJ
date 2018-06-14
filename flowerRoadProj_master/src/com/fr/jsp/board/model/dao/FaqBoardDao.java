@@ -36,7 +36,7 @@ public class FaqBoardDao implements Serializable {
 	}
 	
 	public ArrayList<FaqBoard> showFaq(Connection con){
-		System.out.println("Dao 입장");
+		//System.out.println("Dao 입장");
 		Statement stmt= null;
 		ResultSet rset = null;
 		FaqBoard faq;
@@ -59,7 +59,7 @@ public class FaqBoardDao implements Serializable {
 			close(stmt);
 		}
 		
-		System.out.println("Dao 완료");
+		//System.out.println("Dao 완료");
 		
 		return list;	
 		

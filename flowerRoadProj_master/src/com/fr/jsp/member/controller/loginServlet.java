@@ -70,6 +70,7 @@ public class loginServlet extends HttpServlet {
 						page = toUrl;
 					}else{
 						page = "main.jsp";	
+						request.setAttribute("id", id+"님 환영합니다!!");
 					}
 				}
 			}
@@ -78,6 +79,7 @@ public class loginServlet extends HttpServlet {
 			page="views/mainPage/login.jsp";
 			request.setAttribute("msg", "로그인 실패 아이디나 비밀번호를 다시 확인하세요");
 		}
+		
 		RequestDispatcher view = request.getRequestDispatcher(page);
 		view.forward(request, response);
 	}

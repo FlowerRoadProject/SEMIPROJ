@@ -35,6 +35,19 @@
             
     <body>
         <%@ include file="/views/common/header.jsp" %>
+          <%
+        String sns="";
+        for(int i=0; i<memberNum.length(); i++){
+          
+                 
+           if(memberNum.charAt(i)>= '0' && memberNum.charAt(i)<='9'){
+              
+           }else{
+              sns+=memberNum.charAt(i);
+           }
+              
+        }
+        %>
         <!-- 마이페이지 카테고리  -->
         <br><br><br><br><br><br><br><br><br><br>
         <div class="container-fluid">
@@ -51,9 +64,14 @@
 
         <!-- 관심 상품 창 -->
         <div class="container-fluid">
-                <div class="col-sm-4 col-md-4 col-lg-4"><h4><i>관심 상품</i> 
-                    <small>: [<%= m.getMemberName() %>]님의 관심상품 보관함 내역입니다.</small></h4></div>
-                <div class="col-sm-8 col-md-8 col-lg-8"></div>
+                <div class="col-sm-6 col-md-6 col-lg-6"><h4><i>관심 상품</i> 
+                	<% if(m.getMemberName() != null) { %>
+                     <small>: [<%= m.getMemberName() %>]님의 관심상품 보관함 내역입니다.</small>
+        <% } else { %>
+        			<small>: [<%= sns %>로 로그인한 회원]님의 관심상품 보관함 내역입니다.</small>
+        <% } %>
+                    </h4></div>
+                <div class="col-sm-6 col-md-6 col-lg-6"></div>
         </div>
         <div>
                 <div class="info">
@@ -77,8 +95,8 @@
                                 <%= list.get(j).getProductName() %></a></td>
                                 <td><%= list.get(j).getProductPrice() %>원</td>
                                 <td><%= list.get(j).getProductQuantityState() %></td>
-                                <td><input type="button" value="장바구니" class="btn btn-default"><br>
-                                <input type="button" value="삭제하기" class="btn btn-default"></td>
+                                <td><input type="button" value="장바구니" class="goBasket btn btn-default"><br>
+                                <input type="button" value="삭제하기" class="delFavorite btn btn-default"></td>
                                 <td><input type="hidden" class="pN" name="pN" value="<%=list.get(j).getProductNum()%>"></input></td>
                             </tr>
                             <% } %>
@@ -135,31 +153,31 @@
                 <% } %>
         </div>
         <script>
-        	$('.goBasket').on('click',function(){
-        		var product_num = $(this).parent().siblings().children('.pN').val();
-        		alert("장바구니에 추가되었습니다.");
-        		
-        		$.ajax({
-        			url: "addBasket.do",
-        			type: "GET",
-        			data: {
-        				pNum: product_num				
-        			},   				
-        			success: function(){
-        				console.log('update성공');
-        			},error: function(){
-        				console.log('update실패');
-        			}
-        		});
-        		
-        		<%-- location.href="<%=request.getContextPath() %>/addBasket.do?pno="+$(this).parent().siblings().children('.pN').val(); --%>
-        	});
-        	
-        	$('.delFavorite').on('click',function(){
-        		var pno = $(this).parent().siblings().children('.pN').val();
-        		alert("해당 상품이 관심상품에서 삭제 되었습니다.")
-        		location.href="<%=request.getContextPath() %>/favoriteDel.me?pno="+pno;
-        	});
+        $('.goBasket').on('click',function(){
+    		var product_num = $(this).parent().siblings().children('.pN').val();
+    		alert("장바구니에 추가되었습니다.");
+    		
+    		$.ajax({
+    			url: "addBasket.do",
+    			type: "GET",
+    			data: {
+    				pNum: product_num				
+    			},   				
+    			success: function(){
+    				//console.log('update성공');
+    			},error: function(){
+    				//console.log('update실패');
+    			}
+    		});
+    		
+    		<%-- location.href="<%=request.getContextPath() %>/addBasket.do?pno="+$(this).parent().siblings().children('.pN').val(); --%>
+    	});
+    	
+    	$('.delFavorite').on('click',function(){
+    		var pno = $(this).parent().siblings().children('.pN').val();
+    		alert("해당 상품이 관심상품에서 삭제 되었습니다.")
+    		location.href="<%=request.getContextPath() %>/favoriteDel.me?pno="+pno;
+    	});
         	
         	
         	function allDel(){

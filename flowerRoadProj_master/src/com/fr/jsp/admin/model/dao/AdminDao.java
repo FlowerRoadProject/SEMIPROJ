@@ -267,5 +267,21 @@ public class AdminDao {
 		
 		return admin_LeaderBoardList;
 	}
+	// 랜덤 게임 점수 초기화
+	public int admin_deleteLeaderBoard(Connection con) {
+		PreparedStatement pstmt = null;
+		int rset = 0;
+		try { 
+			String query = prop.getProperty("admin_deleteLeaderBoard");
+			pstmt = con.prepareStatement(query);
+			
+			rset = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return rset;
+	}
 
 }

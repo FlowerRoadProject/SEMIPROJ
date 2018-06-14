@@ -10,6 +10,7 @@
 	AdminTheme adminTheme = (AdminTheme)(session.getAttribute("adminTheme"));
 %>
 <script>
+	var adminNum = '<%=admin.getMemberNum()%>';
 	var font_family = '<%=adminTheme.getFontFamily()%>';
 	var font_size = '<%=adminTheme.getFontSize()%>';
 	var font_weight = '<%=adminTheme.getFontWeight()%>';

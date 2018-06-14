@@ -27,7 +27,7 @@ public class AccessLogDao {
 		try {
 			prop.load(new FileReader(fileName));
 		} catch (FileNotFoundException e) {
-			System.out.println("accesslog-query.properties 파일을 찾을 수 없습니다.");
+			//System.out.println("accesslog-query.properties 파일을 찾을 수 없습니다.");
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

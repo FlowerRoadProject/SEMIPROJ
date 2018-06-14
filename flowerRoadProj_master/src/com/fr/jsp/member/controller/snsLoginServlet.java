@@ -27,7 +27,13 @@ public class snsLoginServlet extends HttpServlet {
 
 		Member m = new Member();
 		m.setMemberNum(memberNum);
-		
+		String sns="";
+		for(int i=0; i<memberNum.length(); i++){
+	       if(memberNum.charAt(i)>= '0' && memberNum.charAt(i)<='9'){
+	        }else{
+	            sns+=memberNum.charAt(i);
+	        }
+	      }
 		
 		MemberService ms = new MemberService();
 		int result = ms.findMember(memberNum);
@@ -36,8 +42,10 @@ public class snsLoginServlet extends HttpServlet {
 			//membernum을가지고잇는사람찾음
 			m=ms.SelectMember(m);
 			if(m!=null){//로그인성공
+				
 				session.setAttribute("memberNum", m.getMemberNum());
-				System.out.println("로그인성공");
+				//System.out.println("로그인성공");
+				request.setAttribute("id", sns+"로 로그인 하셨습니다!!");
 				RequestDispatcher view = request.getRequestDispatcher("main.jsp");
 				view.forward(request, response);
 			}else{//로그인 실패
@@ -49,14 +57,22 @@ public class snsLoginServlet extends HttpServlet {
 			//membernum을 가지고있는사람 없음 회원가입과동시에 로그인
 
 			if(ms.snsInsertMember(memberNum) !=0){
-				System.out.println("정상적으로 회원 가입 성공!!");
-				session.setAttribute("memberNum", m.getMemberNum());
-				RequestDispatcher view = request.getRequestDispatcher("main.jsp");
-				view.forward(request, response);
-//				response.sendRedirect("main.jsp");
+				//System.out.println("정상적으로 회원 가입 성공!!");
+				int couponResult=ms.insertCoupon(memberNum);
+				if(couponResult!=0){
+					//System.out.println("sns쿠폰 주기 성공");
+					session.setAttribute("memberNum", m.getMemberNum());
+					request.setAttribute("id", sns+"로 로그인 하셨습니다!!");
+					RequestDispatcher view = request.getRequestDispatcher("main.jsp");
+					view.forward(request, response);
+				}else{
+					request.setAttribute("msg", "쿠폰 주기 실패!!");
+					RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+					view.forward(request, response);
+				}
 				
 			}else{
-				System.out.println("회원 가입 실패!!");
+				//System.out.println("회원 가입 실패!!");
 				request.setAttribute("msg", "회원 가입 실패!!");
 				RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 				view.forward(request, response);
