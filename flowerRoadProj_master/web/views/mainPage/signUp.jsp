@@ -107,12 +107,12 @@
             </tr>
             <tr>
                 <td class="td1"><label for="address" class="control-label">우편번호</label></td>
-                <td class="td2"><input type="text" class="form-control" id="zipCode" name="zipCode"></td>
+                <td class="td2"><input type="text" class="form-control" id="zipCode" name="zipCode" disabled></td>
                 <td class="td3"><a class="btn btn-default" id="ckZip" onclick="addrSearch();">검색</a></td>
             </tr>
             <tr>
                 <td class="td1"><label for="address1" class="control-label">주소</label></td>
-                <td class="td2" colspan="2"><input type="text" id="address1" class="form-control" name="address1"></td>
+                <td class="td2" colspan="2"><input type="text" id="address1" class="form-control" name="address1" disabled></td>
             </tr>
             <tr>
                 <td class="td1"><label for="address1" class="control-label">상세주소</label></td>
@@ -125,12 +125,12 @@
                
             </tr>
             <tr>
-                <td colspan="3" style="text-align:center"><label for="inputAgree" class="control-label">약관 동의</label>
-                    <input id="agree" type="checkbox" name="my_agree">
-                    <a  data-toggle="modal" data-target=".bTerm" style="color:blue; cursor:pointer;">
-                         이용 약관</a>
-                    </td>
-            </tr>
+					<td class="td1"></td>
+					<td class="td2" colspan="2" style="text-align: center"><input
+						id="agree" type="checkbox" name="my_agree"> <a
+						data-toggle="modal" data-target=".aTerm"
+						style="color: blue; cursor: pointer;"> 이용 약관 </a> 에 동의 합니다. </td>
+				</tr>
             
             <tr>
                 <td class="td1"></td>
