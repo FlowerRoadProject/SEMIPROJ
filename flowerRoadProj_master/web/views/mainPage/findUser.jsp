@@ -58,7 +58,7 @@
 .id_pw_srh li .srh_box {
 	padding: 23px 41px 34px;
 	font-family: 'Malgun Gothic', '맑은 고딕';
-	border: 1px solid black;
+	border: 1px solid gainsboro;
 	border-top: none;
 }
 
@@ -99,18 +99,18 @@
 
 #if {
 	width: 50%;
-	height: 100px;
+	height:100px;
 	font-size: 50px;
 	font-family: 'Malgun Gothic', '맑은 고딕';
-	border: 1px solid black;
+	border: 1px solid gainsboro;
 }
 
 #wf {
 	width: 50%;
-	height: 100px;
+	height:100px;
 	font-size: 50px;
 	font-family: 'Malgun Gothic', '맑은 고딕';
-	border: 1px solid black;
+	border: 1px solid gainsboro;
 }
 </style>
 
