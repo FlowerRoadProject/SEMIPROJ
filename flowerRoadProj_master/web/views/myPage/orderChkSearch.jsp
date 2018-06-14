@@ -18,6 +18,16 @@
 <script>
         	var mainPath = '<%=request.getContextPath() %>';
         </script>
+        <style>
+        .noneFavorite {
+			color: black;
+			font-size: 40px;
+			text-align: center;
+			width: 400px;
+			height: 200px;
+			margin: 100px;
+		}
+        </style>
 </head>
 <body>
 	<%@ include file="/views/common/header.jsp"%>
@@ -144,9 +154,10 @@
 		</div>
 	</div>
 
-
+	
 	<!-- 숫자 버튼창 -->
 	<div class="container-fluid">
+		<% if(list.size() != 0) {%>
 		<div class="col-sm-5 col-md-5 col-lg-5"></div>
 		<div class="col-sm-2 col-md-2 col-lg-2">
 			<nav style="color: midnightblue;">
@@ -178,7 +189,9 @@
 			</nav>
 		</div>
 		<div class="col-sm-5 col-md-5 col-lg-5"></div>
+		<% } %>
 	</div>
+	
 	<script>
 		function search(){
 			var start = $('#datepicker1').val();
