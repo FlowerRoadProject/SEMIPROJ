@@ -174,42 +174,97 @@
         <div class="container-fluid">
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-                <button class="blueBtn btn btn-Primary" id="pwd" onclick="pwd();"><b>비밀번호 변경</b></button>
+                <button type="button" class="blueBtn btn btn-Primary" data-toggle="modal" data-target="#pwd1">
+					  비밀번호 변경</button>
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-            <button class="blueBtn btn btn-Primary" id="modify" onclick="modify();"><b>정보 수정</b></button>
+            	<button type="button" class="blueBtn btn btn-Primary" data-toggle="modal" data-target="#modi1">
+					  비밀번호 변경</button>
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
-            <button class="blueBtn btn btn-Primary" id="withdrawal" onclick="withdrawal();"><b>회원 탈퇴</b></button>
+            <button type="button" class="blueBtn btn btn-Primary" data-toggle="modal" data-target="#withdrawal1">
+					  회원 탈퇴</button>
             </div>
         </div>
         
-       
+       <!-- 비밀번호 변경 모달 -->
+	<div class="modal fade" id="pwd1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title" id="myModalLabel">비밀번호를 입력해주세요.</h4>
+	      </div>
+	      			<div class="modal-body">
+		            <input type="password" size="50" id="ChangePwd" />
+			      </div>
+			      <div class="modal-footer">
+				<button id="confirm1" type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
+	  <!-- 정보 변경 모달 -->
+	<div class="modal fade" id="modi1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title" id="myModalLabel">비밀번호를 입력해주세요.</h4>
+	      </div>
+	      			<div class="modal-body">
+		            <input type="password" size="50" id="ChagneModi" />
+			      </div>
+			      <div class="modal-footer">
+				<button id="confirm2" type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
+		<!-- 회원탈퇴 모달 -->
+	<div class="modal fade" id="withdrawal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title" id="myModalLabel">비밀번호를 입력해주세요.</h4>
+	      </div>
+	      			<div class="modal-body">
+		            <input type="password" size="50" id="DeleteMember" />
+			      </div>
+			      <div class="modal-footer">
+				<button id="confirm3" type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
         <%@ include file="/views/common/footer.jsp" %>
         
         <script>
      
         // 비밀번호 변경
-        function pwd(){
+        $('#confirm1').on('click',function(){
         	var sel = 1;
-        <%if(sns.equals("M")){%>
-	        var pwd = prompt("비밀번호를 입력해주세요");
-	        if(pwd == null || pwd == "")
-	        	location.reload();
-	        else 
-	        	location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
-        <%}else{%>
-        	alert('<%=sns%>로 로그인한 계정입니다.');
-        <%}%>
-        }
+        	var pwd = $('#ChangePwd').val();
+            <%if(sns.equals("M")){%>
+               if(pwd == null || pwd == "")
+                  location.reload();
+               else 
+                  location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
+            <%}else{%>
+               alert('<%=sns%>로 로그인한 계정입니다.'); 
+            <%}%>
+        });
+
         // 정보 수정
-        function modify(){
+        $('#confirm2').on('click',function(){
         	var sel = 2;
-        	
-        	<% if(memberNum.substring(0,1).equals("A")||memberNum.substring(0,1).equals("M")){%>
-        	var pwd = prompt("비밀번호를 입력해주세요");
+        	var pwd = $('#ChagneModi').val();
+            <% if(memberNum.substring(0,1).equals("A")||memberNum.substring(0,1).equals("M")){%>
 	        	if(pwd == null || pwd == "") {
 	        		location.reload();
 	        	} else {
@@ -218,18 +273,21 @@
             <%}else{%>
             	 location.href = mainPath+"/views/myPage/myPage_infoModify.jsp";
             <%}%>
-        }
+        });
         
      	// 탈퇴 하기
-        function withdrawal(){
+        $('#confirm3').on('click',function(){
         	var sel = 3;
-        	var pwd = prompt("비밀번호를 입력해주세요");
-        	if(pwd == null || pwd == "") {
-        		location.reload();
-        	} else {
-        		location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
-        	}
-        }
+        	var pwd = $('#DeleteMember').val();
+            <%if(sns.equals("M")){%>
+               if(pwd == null || pwd == "")
+                  location.reload();
+               else 
+                  location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
+            <%}else{%>
+               alert('<%=sns%>로 로그인한 계정입니다.'); 
+            <%}%>
+        });
         </script>
     </body>
 </html>
