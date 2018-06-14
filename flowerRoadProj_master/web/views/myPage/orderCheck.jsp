@@ -195,8 +195,9 @@
 			var cf = confirm("정말 환불 하시겠습니까??");
 			if(cf == true){
 			location.href=" <%=request.getContextPath() %>/orderRefund.or?onum="+onum;
-			}
 			alert("환불이 완료되었습니다!");
+			}
+			
 			
 		});
 		
