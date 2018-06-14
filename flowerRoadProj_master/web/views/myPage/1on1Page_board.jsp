@@ -15,6 +15,16 @@
         <script>
         	var mainPath = '<%=request.getContextPath() %>';
         </script>
+        <style>
+        .noneFavorite {
+			color: black;
+			font-size: 40px;
+			text-align: center;
+			width: 400px;
+			height: 200px;
+			margin: 100px;
+		}
+        </style>
     </head>
     <body>
         <%@ include file="/views/common/header.jsp" %>

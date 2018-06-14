@@ -187,7 +187,7 @@
             <div class="col-sm-2 col-md-2 col-lg-2">
             <button type="button" class="blueBtn btn btn-Primary" data-toggle="modal" data-target="#withdrawal1">
 					  회원 탈퇴</button>
-            </div>
+            </div >
         </div>
         <% } else { %>
         <div class="container-fluid">
