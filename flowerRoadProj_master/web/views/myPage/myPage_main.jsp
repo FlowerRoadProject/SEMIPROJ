@@ -191,14 +191,14 @@
         
        <!-- 비밀번호 변경 모달 -->
 	<div class="modal fade" id="pwd1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-	  <div class="modal-dialog">
+	  <div class="modal-dialog modal-sm">
 	    <div class="modal-content">
 	      <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 		<h4 class="modal-title" id="myModalLabel">비밀번호를 입력해주세요.</h4>
 	      </div>
 	      			<div class="modal-body">
-		            <input type="password" size="50" id="ChangePwd" />
+		            <input type="password" size="30" id="ChangePwd" />
 			      </div>
 			      <div class="modal-footer">
 				<button id="confirm1" type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
@@ -209,14 +209,14 @@
 			
 	  <!-- 정보 변경 모달 -->
 	<div class="modal fade" id="modi1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-	  <div class="modal-dialog">
+	  <div class="modal-dialog modal-sm">
 	    <div class="modal-content">
 	      <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 		<h4 class="modal-title" id="myModalLabel">비밀번호를 입력해주세요.</h4>
 	      </div>
 	      			<div class="modal-body">
-		            <input type="password" size="50" id="ChagneModi" />
+		            <input type="password" size="30" id="ChagneModi" />
 			      </div>
 			      <div class="modal-footer">
 				<button id="confirm2" type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
@@ -227,14 +227,14 @@
 			
 		<!-- 회원탈퇴 모달 -->
 	<div class="modal fade" id="withdrawal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-	  <div class="modal-dialog">
+	  <div class="modal-dialog modal-sm">
 	    <div class="modal-content">
 	      <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
 		<h4 class="modal-title" id="myModalLabel">비밀번호를 입력해주세요.</h4>
 	      </div>
 	      			<div class="modal-body">
-		            <input type="password" size="50" id="DeleteMember" />
+		            <input type="password" size="30" id="DeleteMember" />
 			      </div>
 			      <div class="modal-footer">
 				<button id="confirm3" type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
