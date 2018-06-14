@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>오시는길</title>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 
 @media (max-width: 1200px){ 
@@ -112,7 +112,7 @@
 	<div class="col-xs-11 col-sm-11 col-md-11 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 bus">
 		<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">버스</div>
 		<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">역삼역.포스코P&S타워 정류장</div>
-		<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">지선 146 / 740 / 341 / 360         간선 1100 / 1700 / 2000 / 7007 / 8001</div>
+		<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2"><i class="fa fa-bus" style="color:blue"></i> 146 / 740 / 341 / 360  &nbsp;      <i class="fa fa-bus" style="color:green"></i> 1100 / 1700 / 2000 / 7007 / 8001</div>
 	</div>
 	
 	<div class="col-xs-11 col-sm-11 col-md-11 col-lg-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-2 subway">

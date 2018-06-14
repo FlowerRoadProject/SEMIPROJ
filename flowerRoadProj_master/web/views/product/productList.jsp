@@ -53,6 +53,30 @@
 			}
 		}
 
+
+		.ban{
+			display: none;
+		}
+
+		@media (min-width: 1650px){
+		.banner{
+			position: absolute; 
+			right: 10em;  
+			top: 42em; 
+			width: 10em; 
+			height: 30em;
+			display: inline-block;
+		}
+		.banner2{
+			position: absolute; 
+			right: 10em; 
+			top: 85em; 
+			width: 10em; 
+			height: 30em;
+			display: inline-block;
+		}	
+	
+}
         
         .hrline{
         	background: black;
@@ -164,7 +188,8 @@
 <jsp:param name="category" value="<%=event %>" />
  
 </jsp:include>
-  
+  <img src="<%=request.getContextPath()%>/resources/images/banner.png" class="ban banner" alt=""/>
+  <img src="<%=request.getContextPath()%>/resources/images/bookLogo.jpg" class="ban banner2" alt=""/>
    <!-- 여기부터 내용을 넣겠다 -->
 	<div class="container">
 	<div class="col-lg-12 visible-lg " style="margin-top: 4em"></div>

@@ -29,6 +29,29 @@
 		height:600px;
 	}
 }
+.ban{
+	display: none;
+}
+
+@media (min-width: 1650px){
+	.banner{
+		position: absolute; 
+		right: 10em; 
+		top: 72em; 
+		width: 10em; 
+		height: 30em;
+		display: inline-block;
+	}
+	.banner2{
+		position: absolute; 
+		right: 10em; 
+		top: 115em; 
+		width: 10em; 
+		height: 30em;
+		display: inline-block;
+	}	
+	
+}
 
 
 img {
@@ -96,7 +119,6 @@ img {
 			margin-top:9px;
 		}
 		
-		.
         
 </style>
 <script>
@@ -251,8 +273,8 @@ $(document).ready(function() {
 	<br />
 	<br />
 	<br />
-	<%@include file="/views/common/banner.jsp" %>
-	
+	<img src="<%=request.getContextPath()%>/resources/images/banner.png" alt="" class="ban banner"/>
+	<img src="<%=request.getContextPath()%>/resources/images/bookLogo.jpg" alt="" class="ban banner2"/>
 	<div class="container-fluid">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin:0px;height:420;mheight:190">
 			<!-- Indicators -->

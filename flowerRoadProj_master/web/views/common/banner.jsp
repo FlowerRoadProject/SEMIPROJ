@@ -20,14 +20,15 @@
 .banner{
 	display: inline-block;
 	border: 1px solid black;
-	position:absolute;
+	position: absolute;		
 	right: 10em;
 	top: 72em;
 	background: #f7a8c7;	
 	background-image: url('<%=request.getContextPath()%>/resources/images/background1.jpg');
 	background-size: cover;
 	width: 10em;
-	height: 30em;		
+	height: 30em;
+			
 }
 .banner-title{	
 	font-size: 3.7em;
@@ -40,6 +41,7 @@
 	font-weight: bold;
 	text-shadow: -10px 5px 30px black;
 	
+	
 }
 .banner-content{
 	font-family: flower;
@@ -48,13 +50,10 @@
 	text-align: center;
 	margin-top: 115%;
 	font-size: 1.5em; 
-}
-
-}
-
-
-
 	
+}
+
+}	
 </style>
 </head>
 <div class="ban banner img-responsive">
