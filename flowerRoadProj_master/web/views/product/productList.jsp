@@ -164,7 +164,8 @@
 <jsp:param name="category" value="<%=event %>" />
  
 </jsp:include>
-  
+  <img src="<%=request.getContextPath()%>/resources/images/banner.png" alt="" class="banner" style="position: absolute; right: 10em; top: 42em; width: 10em; height: 30em;"/>
+	
    <!-- 여기부터 내용을 넣겠다 -->
 	<div class="container">
 	<div class="col-lg-12 visible-lg " style="margin-top: 4em"></div>
