@@ -92,8 +92,14 @@ img {
 			text-align:right;
 			margin-top:9px;
 		}
+		.banner{			
+		position: absolute;		
+		right: 10em;
+		top: 72em;
 		
-		.
+		width: 10em;
+		height: 30em;			
+	}
         
 </style>
 <script>
@@ -242,7 +248,7 @@ img {
 	<br />
 	<br />
 	<br />
-	<%@include file="/views/common/banner.jsp" %>
+	<img src="<%=request.getContextPath()%>/resources/images/banner.png" alt="" class="banner"/>
 	
 	<div class="container-fluid">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin:0px;height:420;mheight:190">
