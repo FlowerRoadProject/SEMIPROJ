@@ -27,7 +27,6 @@ public class snsLoginServlet extends HttpServlet {
 
 		Member m = new Member();
 		m.setMemberNum(memberNum);
-		//무슨 sns인지 판별
 		String sns="";
 		for(int i=0; i<memberNum.length(); i++){
 	       if(memberNum.charAt(i)>= '0' && memberNum.charAt(i)<='9'){
@@ -61,8 +60,9 @@ public class snsLoginServlet extends HttpServlet {
 				//System.out.println("정상적으로 회원 가입 성공!!");
 				int couponResult=ms.insertCoupon(memberNum);
 				if(couponResult!=0){
-					System.out.println("sns쿠폰 주기 성공");
+					//System.out.println("sns쿠폰 주기 성공");
 					session.setAttribute("memberNum", m.getMemberNum());
+					request.setAttribute("id", sns+"로 로그인 하셨습니다!!");
 					RequestDispatcher view = request.getRequestDispatcher("main.jsp");
 					view.forward(request, response);
 				}else{
