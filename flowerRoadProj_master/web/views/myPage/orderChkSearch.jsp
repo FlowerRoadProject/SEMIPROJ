@@ -72,7 +72,6 @@
 	</div>
 	<div>
 		<div class="info">
-			<% if(list.size() != 0) { %>
 			<br>
 			 <div class="col-md-4">
 				<div class="input-group date col-md-12" data-provide="datepicker">
@@ -89,6 +88,7 @@
 						<i class="glyphicon glyphicon-calendar"></i></span>
 				</div>
 			</div>
+			
 			<div class="col-md-4">
 				<div class="col-md-6">
 					<input class="ordchk btn-default" type="button" id="search"
@@ -102,7 +102,7 @@
 			
 			<br><br><br>
 
-
+			<% if(list.size() != 0) { %>
 			<table class="table table-hover">
 				<tr style="background-color: lightgray;">
 					<th>주문번호</th>
