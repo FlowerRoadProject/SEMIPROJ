@@ -194,15 +194,16 @@
         // 비밀번호 변경
         function pwd(){
         	var sel = 1;
-        	var pwd = prompt("비밀번호를 입력해주세요");
-        	if(pwd == null || pwd == "") {
-        		location.reload();
-        	} else {
-        		location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
-        	}
-            
+        <%if(sns.equals("M")){%>
+	        var pwd = prompt("비밀번호를 입력해주세요");
+	        if(pwd == null || pwd == "")
+	        	location.reload();
+	        else 
+	        	location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
+        <%}else{%>
+        	alert('<%=sns%>로 로그인한 계정입니다.');
+        <%}%>
         }
-        
         // 정보 수정
         function modify(){
         	var sel = 2;
