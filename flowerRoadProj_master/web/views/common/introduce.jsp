@@ -121,7 +121,7 @@
 			<br /><span style="color: coral;">고객들의 하루에 행복한 놀라움을 선사하길 <br />기대하면서요.</span>		
 		</div>	
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" style="background: black;">
-			<img src="<%=request.getContextPath()%>/resources/images/footerMenu/introduce.jpg" alt="" class="col-lg-12"/>
+			<img src="<%=request.getContextPath()%>/resources/images/mainEventCarousel/aboutggotgil.jpg" alt="" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"/>
 		</div>
 	</div>
 	

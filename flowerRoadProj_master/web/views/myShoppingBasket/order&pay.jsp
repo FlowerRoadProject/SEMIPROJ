@@ -415,7 +415,7 @@ Member member = (Member)request.getAttribute("member");
         </div>
 		<script>
 		$(function(){
-			if($('#mName').val() != null && $('#mPhone').val() != null){
+			if($('#mName').val() != "null" && $('#mPhone').val() != "null"){
 				$('#inputName').val($('#mName').val());
 				$('#inputPhone').val($('#mPhone').val());
 				$('#inputName').prop('disabled',true);
@@ -460,7 +460,7 @@ Member member = (Member)request.getAttribute("member");
       	<script>
       	$('#sameBtn').change(function(){
     		
-      		if($('#mName').val() != null && $('#mPhone').val() != null){
+      		if($('#mName').val() != "null" && $('#mPhone').val() != "null"){
       			if($('#sameBtn').prop('checked') == true){
         			var addrArr = $('#mAddress').val().split("/");    			
         			//우편번호 출력되는 곳
@@ -504,14 +504,15 @@ Member member = (Member)request.getAttribute("member");
                     $('.coupon-cancle').css('display','none');
         			
         		}else{    			
-        			$('#sample6_postcode').val("");    			
-        			$('#sample6_address').val("");   			
-        			$('#sample6_address2').val("");    			
-        			$('#rInputName').val("");    		
-        			$('#rPhone').val("");
+        			$('#sample6_postcode').val(" ");    			
+        			$('#sample6_address').val(" ");   			
+        			$('#sample6_address2').val(" ");    			
+        			$('#rInputName').val(" ");    		
+        			$('#rPhone').val(" ");
         		}
       		}else{
       			alert('SNS로그인을 했을 경우 이 버튼을 사용할 수 없습니다');
+      			$('#sameBtn').prop('checked',false);
       		}
       		
     	});
@@ -520,7 +521,7 @@ Member member = (Member)request.getAttribute("member");
       
       
 
-      			<script>
+      			<!-- <script>
       			$('#sameBtn').change(function(){
     		
     		  		if($('#mName').val() != null && $('#mPhone').val() != null){
@@ -548,7 +549,7 @@ Member member = (Member)request.getAttribute("member");
       				}
       		
     			});
-      			</script>
+      			</script> -->
       		
 
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"></div><!--빈공간 채우기용-->
