@@ -691,6 +691,13 @@ textarea{
 	//찜 목록에 추가 / 삭제
 	function addToFavorite(productNum){
 		
+		if(!checkLogin())
+		{
+			$('#myModal').modal({"show":true});
+			
+			return;
+		}
+		
 		$.ajax({
 			url:"addFavorite.do",
 			data:{pno:productNum},
@@ -852,7 +859,7 @@ textarea{
 	<span id="page_start">  </span>
 	<%@include file="../common/header.jsp"%>
 	<%@include file="../common/loginModal.jsp" %>
-	
+	<%@include file="../common/banner.jsp" %>
 	<br />
 	<br />
 	<br />

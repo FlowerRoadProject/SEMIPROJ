@@ -334,7 +334,7 @@ $(document).ready(function() {
 		
 	</div>
 	<div class="container">
-		<p><b>베스트 셀러</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 팔리는 제품 입니다.</p>
+		<p><span class="glyphicon glyphicon-grain"></span><b>베스트 셀러</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 팔리는 제품 입니다.</p>
 		<hr />
 		<div class="col-lg-12" id="topItem">
 			
@@ -355,7 +355,7 @@ $(document).ready(function() {
 	</div>
 	
 	<div class="container">
-		<p><b>지금 가장 많이 조회한 상품</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 조회 되는 상품입니다.</p>
+		<p><span class="glyphicon glyphicon-eye-open"></span><b>지금 가장 많이 조회한 상품</b> &nbsp;&nbsp; &nbsp;현재 가장 많이 조회 되는 상품입니다.</p>
 		<hr />
 		<div class="col-lg-12" id="mostViewed">
 			
