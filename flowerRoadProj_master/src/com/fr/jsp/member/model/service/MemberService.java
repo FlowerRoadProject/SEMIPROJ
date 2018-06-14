@@ -320,5 +320,25 @@ public class MemberService {
 		
 		return result;
 	}
+	public int insertCoupon(String memberNum) {
+		Connection con = getConnection();
+		int result = 0;
+		result= mDao.insertCoupon(con,memberNum);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+	public String findMemberNum(String memberId) {
+		Connection con = getConnection();
+		String result = "";
+		result= mDao.findMemberNum(con,memberId);
+		
+		close(con);
+		return result;
+	}
 
 }

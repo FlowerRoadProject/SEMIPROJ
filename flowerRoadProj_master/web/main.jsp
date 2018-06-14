@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<% %>
+<%
+	String id = (String)request.getAttribute("id");
+//System.out.println("id : "+id);
+%>
 <html>
 <head>
  <script src="<%=request.getContextPath()%>/resources/js/jquery-1.12.2.min.js"></script>
@@ -98,7 +101,13 @@ img {
 </style>
 <script>
 
-
+$(document).ready(function() {
+	var msg = "<%=id%>";
+	if(msg != "null"){
+		alert(msg);	
+	}
+	});
+	
 	$(function() {
 		setTopSelling(1);
 		setMostViewed();
