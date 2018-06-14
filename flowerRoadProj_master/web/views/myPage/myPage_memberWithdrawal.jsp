@@ -53,16 +53,15 @@
         </div>
         <!-- 수정 및 탈퇴 버튼 -->
         <div class="container-fluid">
-            <div class="col-sm-2 col-md-2 col-lg-2"></div>
-            <div class="col-sm-2 col-md-2 col-lg-2"></div>
-            <div class="col-sm-2 col-md-2 col-lg-2">
+            <div class="col-lg-12 col-md-12 col-sm-12"></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-3 col-md-offset-3 col-sm-offset-3">
                 <button class="blueBtn btn btn-danger" id="finalWithdraw" onclick="finalWithdraw()"><b>탈퇴 하기</b></button>
             </div>
             
-            <div class="col-sm-2 col-md-2 col-lg-2">
+             <div class="col-lg-1 col-md-1 col-sm-1">
                 <button class="grayBtn btn" id="cancel" onclick="cancle();"><b>탈퇴 취소</b></button>
             </div>
-            <div class="col-sm-4 col-md-4 col-lg-4"></div>
+             <div class="col-lg-12 col-md-12 col-sm-12"></div>
         </div>
         
         <script>
