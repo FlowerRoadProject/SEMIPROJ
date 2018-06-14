@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import = "com.fr.jsp.member.model.vo.*,
     						java.util.*"%>
@@ -27,6 +28,19 @@
     
     	<%@ include file="/views/common/header.jsp" %>
     	<%@ include file="/views/myPage/couponModal.jsp" %>
+    	<%
+        String sns="";
+        for(int i=0; i<memberNum.length(); i++){
+          
+                 
+           if(memberNum.charAt(i)>= '0' && memberNum.charAt(i)<='9'){
+              
+           }else{
+              sns+=memberNum.charAt(i);
+           }
+              
+        }
+        %>
         
         <!-- 마이페이지 카테고리  -->
         <br><br><br><br><br><br><br><br><br><br>
@@ -50,11 +64,11 @@
             <div class="info">
                 	<% if(m != null) { %>
                     <br>
+                    <% if(memberNum.substring(0,1).equals("A")||memberNum.substring(0,1).equals("M")){%>
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>아이디</b></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
-                    <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
-                    <%= m.getMemberId() %></p></div>  <br><br><br>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;" id="memId"><%= m.getMemberId() %></p></div>  <br><br><br>
 
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>이름</b></div>
@@ -67,12 +81,12 @@
 					</div>
 					<div class="col-sm-2 col-md-2 col-lg-2"></div> 
 					<br><br><br>
-
-                    <div class="col-sm-1 col-md-1 col-lg-1"></div>
+					
+					<div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>이메일</b></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
-					<%= m.getMemberEmail() %></p></div> <br><br><br>
+					<%=m.getMemberEmail() %></p></div> <br><br><br>
 
                     <div class="col-sm-1 col-md-1 col-lg-1"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><b>주소</b></div>
@@ -96,6 +110,61 @@
                     <div class="col-sm-2 col-md-2 col-lg-2"></div>
                     <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
                     <%= m.getEnrollDate() %></p></div> <br><br><br>
+					
+					<!-- sns 유저 -->
+					<% } else { %>
+					<div class="col-sm-1 col-md-1 col-lg-1"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"><b>아이디</b></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
+                        <%= sns %>로 로그인 한 아이디</p></div>  <br><br><br>
+    
+                        <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"><b>이름</b></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                        <p class="text-muted" style="font-weight:bold;">
+                        <%= sns %>로 로그인 한 회원</p></div><br><br><br>
+                        
+                        <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><b>이메일</b></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                    <% if(m.getMemberEmail() != null) { %>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
+					<%=m.getMemberEmail() %></p></div>
+                    <% } else { %>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
+					정보없음</p></div><% } %> <br><br><br>
+
+                    <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><b>주소</b></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                    <% if(addrArr != null) { %>
+                    <div class="col-sm-3 col-md-3 col-lg-3"><p class="text-muted" style="font-weight:bold;">
+					<%= addrArr[0]+" "+addrArr[1]+" "+addrArr[2] %></p></div><br><br><br>
+					<% } else { %>
+					 <div class="col-sm-3 col-md-3 col-lg-3"><p class="text-muted" style="font-weight:bold;">
+					정보없음</p></div><br><br><br>
+					<% } %>
+
+                    <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><b>전화번호</b></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                    <% if(m.getMemberPhone() != null) { %>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
+					<%=m.getMemberPhone() %></p></div>
+                    <% } else { %>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
+					정보없음</p></div><% } %> <br><br><br>
+
+                    <div class="col-sm-1 col-md-1 col-lg-1"></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><b>가입날짜</b></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2"></div>
+                    <div class="col-sm-2 col-md-2 col-lg-2"><p class="text-muted" style="font-weight:bold;">
+                    <%= m.getEnrollDate() %></p></div> <br><br><br>
+					<% } %>
+
+                    
                 	
                 	<% } %>
             </div>
@@ -120,6 +189,46 @@
        
         <%@ include file="/views/common/footer.jsp" %>
         
+        <script>
+     
+        // 비밀번호 변경
+        function pwd(){
+        	var sel = 1;
+        	var pwd = prompt("비밀번호를 입력해주세요");
+        	if(pwd == null || pwd == "") {
+        		location.reload();
+        	} else {
+        		location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
+        	}
+            
+        }
         
+        // 정보 수정
+        function modify(){
+        	var sel = 2;
+        	
+        	<% if(memberNum.substring(0,1).equals("A")||memberNum.substring(0,1).equals("M")){%>
+        	var pwd = prompt("비밀번호를 입력해주세요");
+	        	if(pwd == null || pwd == "") {
+	        		location.reload();
+	        	} else {
+	        		location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
+	        	}
+            <%}else{%>
+            	 location.href = mainPath+"/views/myPage/myPage_infoModify.jsp";
+            <%}%>
+        }
+        
+     	// 탈퇴 하기
+        function withdrawal(){
+        	var sel = 3;
+        	var pwd = prompt("비밀번호를 입력해주세요");
+        	if(pwd == null || pwd == "") {
+        		location.reload();
+        	} else {
+        		location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
+        	}
+        }
+        </script>
     </body>
 </html>
