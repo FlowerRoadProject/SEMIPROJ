@@ -126,8 +126,7 @@ $("input[name=userPwd]").keydown(function (key) {
 					<tr style="width: 100%">
 						<td style="align: left;"><a
 							href="<%=request.getContextPath()%>/views/mainPage/findUser.jsp">아이디
-								찾기</a> <span class="txt_bar">ㅣ</span> <a
-							href="<%=request.getContextPath()%>/views/mainPage/findUser.jsp">비밀번호
+								찾기<span class="txt_bar">ㅣ</span> 비밀번호
 								찾기</a></td>
 
 						<td style="float: right;"><a href="<%=request.getContextPath()%>/views/mainPage/signUp.jsp">회원가입
