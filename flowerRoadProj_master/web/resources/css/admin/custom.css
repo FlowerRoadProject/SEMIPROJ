@@ -4450,3 +4450,12 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
     transform: scale(1);
   }
 }
+
+.adminTable>tbody>tr,
+.memberTable>tbody>tr,
+.noticeTable>tbody>tr,
+.productTable>tbody>tr,
+.reviewTable>tbody>tr,
+.userQuestionTable>tbody>tr {
+	cursor: pointer;
+}
