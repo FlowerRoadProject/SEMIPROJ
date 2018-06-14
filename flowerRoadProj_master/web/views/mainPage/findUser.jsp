@@ -5,7 +5,7 @@
 	String memberPwd = (String) request.getAttribute("memberPwd");
 %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 <meta charset="UTF-8">
@@ -25,6 +25,9 @@
 	text-align: center;
 }
 
+#all {
+	border: 1px solid black
+}
 /*id_비밀번호 찾기*/
 #wrap {
 	text-align: center;
@@ -49,39 +52,14 @@
 
 .id_pw_srh li {
 	float: left;
-	width: 100%
+	width: 100%;
 }
 
 .id_pw_srh li .srh_box {
-	padding: 23px 41px 34px
-}
-
-.id_pw_srh li .or {
-	border-width: 1px 0 1px 1px;
-	border-color: #d8d8d8;
-	background: #fbfbfb no-repeat
-		left top
-}
-
-.id_pw_srh li .or h2 {
-	margin-bottom: auto;
-	font-size: 22px;
-	font-weight: 900;
-	color: #da6700
-}
-
-.id_pw_srh li .br h2 {
-	margin-bottom: auto;
-	font-size: 22px;
-	font-weight: 900;
-	color: #816950
-}
-
-.id_pw_srh li .br {
-	border-width: 1px;
-	border-color: #d8d8d8;
-	background: #fbfbfb no-repeat
-		left top
+	padding: 23px 41px 34px;
+	font-family: 'Malgun Gothic', '맑은 고딕';
+	border: 1px solid black;
+	border-top: none;
 }
 
 .id_pw_srh li .srh_box .srh_top {
@@ -92,7 +70,7 @@
 .id_pw_srh li .srh_box .info {
 	margin-top: 24px;
 	padding-top: 20px;
-	border-top: 1px dashed #d2d2d2
+	border-top: 1px dashed #d2d2d2;
 }
 
 .id_pw_srh li .srh_box .info label {
@@ -115,50 +93,61 @@
 	border: 1px solid #d4d6d6
 }
 
-.id_pw_srh li .or button {
-	display: block;
-	width: 145px;
-	margin: 26px auto 0;
-	padding: 7px 0;
-	border: 1px solid #e1660b;
-	background-color: #e27819;
-	color: #333333;
-	font-family: 'Malgun Gothic', '맑은 고딕';
-	color: #FFFFFF;
-}
-
-.id_pw_srh li .br button {
-	display: block;
-	width: 145px;
-	margin: 26px auto 0;
-	padding: 7px 0;
-	border: 1px solid #6a5845;
-	background-color: #e27819;
-	font-family: 'Malgun Gothic', '맑은 고딕';
-	color: #FFFFFF
-}
-
 #header {
 	width: 100%;
-	height: 50px;
-	font-size: 36px;
+}
+
+#if {
+	width: 50%;
+	height: 100px;
+	font-size: 50px;
 	font-family: 'Malgun Gothic', '맑은 고딕';
-	background: #fbfbfb no-repeat
-		left top;
+	border: 1px solid black;
+}
+
+#wf {
+	width: 50%;
+	height: 100px;
+	font-size: 50px;
+	font-family: 'Malgun Gothic', '맑은 고딕';
+	border: 1px solid black;
 }
 </style>
 
+
+<!-- <script>
+       
 <script>
-	window.onload = function () {
-	 $('#pwSearch').hide();
-	}
+        $(‘#id ’).on('click', function() {
+            $(‘#ID값 .클래스값’).css('display', 'block');
+            $(‘#ID값 .크래스값’).css('display', 'none');
+        });
+        $(#SHOW GROUP’).on('click', function() {
+            $('#ID값 .크래스값').css('display', 'none');
+            $('#ID값 .크래스값').css('display', 'block');
+        });
+
+    </script>
+    </script> -->
+
+
+
+<script>
 	function idFind() {
 		$('#pwSearch').hide();
 		$('#idSearch').show();
+		$('#if').css('border-bottom', 'none');
+		$('#wf').css('border-bottom', '1px solid black');
+		$('#if').css('border-right', 'none');
+		$('#wf').css('border-left', '1px solid black');
 	}
 	function pwFind() {
 		$('#idSearch').hide();
 		$('#pwSearch').show();
+		$('#wf').css('border-bottom', 'none');
+		$('#if').css('border-bottom', '1px solid black');
+		$('#wf').css('border-left', 'none');
+		$('#if').css('border-right', '1px solid black');
 	}
 
 	function chk_idform() {
@@ -181,7 +170,6 @@
 			return true;
 
 	}
-	
 </script>
 </head>
 
@@ -203,9 +191,11 @@
 				<ul class="id_pw_srh">
 					<table id="header">
 						<tr>
-							<td><a onclick="idFind()" style="cursor:pointer">아이디 찾기</a></td>
+							<td id="if" class="btn" onclick="idFind()"
+								style="cursor: pointer">아이디 찾기</td>
 
-							<td><a onclick="pwFind()" style="cursor:pointer">비밀번호 찾기</a></td>
+							<td id="wf" class="btn" onclick="pwFind()"
+								style="cursor: pointer">비밀번호 찾기</td>
 						</tr>
 					</table>
 					<li>
@@ -242,7 +232,8 @@
 												name="me_email" id="id_mail1" required="required"
 												title="가입시 이메일 입력">
 										</p>
-										<button type="submit">찾기</button>
+										<button type="submit" class="btn-lg btn-warning"
+											style="width: 145px; margin: 26px auto 0; padding: 7px 0;">찾기</button>
 									</fieldset>
 								</form>
 							</div>
@@ -273,48 +264,41 @@
 												name="me_email" id="pw_mail2" required="required"
 												title="가입시 이메일 입력">
 										</p>
-										<button type="submit">찾기</button>
+										<button type="submit" class="btn-lg  btn-warning"
+											style="width: 145px; margin: 26px auto 0; padding: 7px 0;">찾기</button>
 									</fieldset>
 								</form>
 							</div>
 						</div>
 						<div>
 							<p>
-								<label> 
- 	  <%if(memberId != null){
-                        	if(memberId.equals("해당 정보가 틀렸습니다")){%>
-                        		<%-- <%=memberId %> --%>
-                        		<script>
-                        	alert('해당 정보가 틀렸습니다.');
-                        	</script>
-                        	<% }else{%>
-                        	<script>
-                        	alert('회원 아이디는 <%=memberId %>입니다.');
-                        	</script>
-                        	
-                        	<%}
-                        }%>
-                        
-                        <%if(memberPwd != null){
-                        if(memberPwd.equals("비밀번호찾기 정보가 틀렸습니다")){ %>
-                   	 <%-- <%=memberPwd %>. --%>
-                   	 <script>
-                        	alert('비밀번호찾기 정보가 틀렸습니다.');
-                        	</script>
-                   	<%} }%>
-                   
+								<label> <%if(memberId != null){
+		                        	if(memberId.equals("해당 정보가 틀렸습니다")){%> <%-- <%=memberId %> --%>
+									<script>
+		                        	alert('해당 정보가 틀렸습니다.');
+		                        	</script> <% }else{%> <script>
+		                        	alert('회원 아이디는 <%=memberId %>입니다.');
+		                        	</script> <%}
+		                        }%> <%if(memberPwd != null){
+		                        if(memberPwd.equals("비밀번호찾기 정보가 틀렸습니다")){ %> <%-- <%=memberPwd %>. --%>
+									<script>
+		                        	alert('비밀번호찾기 정보가 틀렸습니다.');
+		                        	</script> <%} }%>
 
 								</label>
-						</div>
-
 					</li>
-				</ul>
 			</div>
+			</ul>
 		</div>
+	</div>
 	</div>
 
 	<%@include file="/views/common/footer.jsp"%>
-
+	<script>
+		$(function() {
+			$('#pwSearch').hide();
+		});
+	</script>
 </body>
 
 </html>
