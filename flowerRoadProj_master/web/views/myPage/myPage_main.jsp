@@ -171,6 +171,7 @@
         </div>
 
         <!-- 수정 및 탈퇴 버튼 -->
+        <% if(m.getMemberId() != null) { %>
         <div class="container-fluid">
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
@@ -188,6 +189,25 @@
 					  회원 탈퇴</button>
             </div>
         </div>
+        <% } else { %>
+        <div class="container-fluid">
+            <div class="col-sm-1 col-md-1 col-lg-1"></div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+                <button type="button" class="blueBtn btn btn-Primary" onclick="pwd()">
+					  비밀번호 변경</button>
+            </div>
+            <div class="col-sm-1 col-md-1 col-lg-1"></div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+            	<button type="button" class="blueBtn btn btn-Primary" onclick="modi()">
+					  정보 수정</button>
+            </div>
+            <div class="col-sm-1 col-md-1 col-lg-1"></div>
+            <div class="col-sm-2 col-md-2 col-lg-2">
+            <button type="button" class="blueBtn btn btn-Primary" onclick="withdrawal()">
+					  회원 탈퇴</button>
+            </div>
+        </div>
+        <% } %>
         
        <!-- 비밀번호 변경 모달 -->
 	<div class="modal fade" id="pwd1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
@@ -259,6 +279,10 @@
                alert('<%=sns%>로 로그인한 계정입니다.'); 
             <%}%>
         });
+        
+        function pwd(){
+        	alert('<%=sns%>로 로그인한 계정입니다.');
+        }
 
         // 정보 수정
         $('#confirm2').on('click',function(){
@@ -275,6 +299,10 @@
             <%}%>
         });
         
+        function modi(){
+        	location.href = mainPath+"/views/myPage/myPage_infoModify.jsp";
+        }
+        
      	// 탈퇴 하기
         $('#confirm3').on('click',function(){
         	var sel = 3;
@@ -288,6 +316,10 @@
              location.href = mainPath+"/views/myPage/myPage_memberWithdrawal.jsp";
              <%}%>
         });
+     	
+     	function withdrawal(){
+     		location.href = mainPath+"/views/myPage/myPage_memberWithdrawal.jsp";
+     	}
         </script>
     </body>
 </html>
