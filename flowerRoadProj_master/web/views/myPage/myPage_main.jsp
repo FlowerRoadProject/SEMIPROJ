@@ -180,7 +180,7 @@
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
             	<button type="button" class="blueBtn btn btn-Primary" data-toggle="modal" data-target="#modi1">
-					  비밀번호 변경</button>
+					  정보 수정</button>
             </div>
             <div class="col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-sm-2 col-md-2 col-lg-2">
