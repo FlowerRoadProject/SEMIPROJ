@@ -139,13 +139,11 @@ public class MemberDao {
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			Member resultMember = null;
-			System.out.println(num);
 			try{
 				
 				String query = prop.getProperty("insertInfo");
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, num);
-				System.out.println("m의 num : "+num);
 				rset = pstmt.executeQuery();
 				
 				if(rset.next()){
@@ -168,8 +166,6 @@ public class MemberDao {
 		            resultMember.setEnrollDate((rset.getDate("ENROLL_DATE")));
 		            resultMember.setMemberEmail(rset.getString("MEMBER_EMAIL"));
 					
-				}else{
-					System.out.println("없어!");
 				}
 			}catch(SQLException e){
 				e.printStackTrace();
@@ -191,7 +187,6 @@ public class MemberDao {
 				
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, m.getMemberId());
-				System.out.println("m의 id : "+m.getMemberId());
 				rset = pstmt.executeQuery();
 				
 				if(rset.next()){
@@ -199,8 +194,6 @@ public class MemberDao {
 					
 					resultM.setMemberName(rset.getString(1));
 					resultM.setMemberId(rset.getString(2));
-				}else {
-					System.out.println("없음");
 				}
 				
 				
@@ -246,7 +239,7 @@ public class MemberDao {
 				pstmt.setString(1, m.getMemberEmail());
 				pstmt.setString(2, m.getMemberAddress());
 				pstmt.setString(3, m.getMemberPhone());
-				pstmt.setString(4, m.getMemberId());
+				pstmt.setString(4, m.getMemberNum());
 				
 				result = pstmt.executeUpdate();
 				
@@ -364,7 +357,6 @@ public class MemberDao {
 				close(rset);
 				close(pstmt);
 			}
-			System.out.println(list);
 			return list;
 		}
 
@@ -377,14 +369,10 @@ public class MemberDao {
 			try {
 				pstmt = con.prepareStatement(query);
 				pstmt.setString(1, mb.getBoardTitle());
-				System.out.println("1:"+mb.getBoardTitle());
 				pstmt.setString(3, mb.getMemberNum());
-				System.out.println("2:"+mb.getMemberNum());
 				pstmt.setString(2, mb.getBoardContent());
-				System.out.println("3:"+mb.getBoardContent());
 				
 				result = pstmt.executeUpdate();
-				System.out.println("result="+result);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}finally{
@@ -521,8 +509,7 @@ public class MemberDao {
 		try {
 			String sql = prop.getProperty("accessMember");
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, m.getMemberNum());		
-			System.out.println(m.getMemberNum());
+			pstmt.setString(1, m.getMemberNum());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -602,7 +589,6 @@ public class MemberDao {
 				int result=0;
 				try {
 					String sql = prop.getProperty("memberInsert");
-					System.out.println(sql);
 					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, m.getMemberId());
 					pstmt.setString(2, m.getMemberPw());
@@ -656,7 +642,6 @@ public class MemberDao {
 		try{
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, num);
-			System.out.println(num);
 			
 			result = pstmt.executeUpdate();
 		} catch(SQLException e) {
@@ -665,7 +650,6 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		System.out.println(result);
 		return result;
 	}
 	public int favoriteDel(Connection con, String num, String pno) {
@@ -708,8 +692,6 @@ public class MemberDao {
 				resultBoard.setSubmitDate(rset.getDate(6));
 				resultBoard.setReplyContent(rset.getString("BOARD_REPLY_CONTENT"));
 				
-			}else{
-				System.out.println("없어!");
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -781,7 +763,6 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 		
-		System.out.println("dao:"+result);
 		return result;
 	}
 

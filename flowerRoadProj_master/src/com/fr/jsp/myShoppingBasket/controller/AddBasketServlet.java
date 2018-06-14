@@ -43,7 +43,7 @@ public class AddBasketServlet extends HttpServlet {
 			productNums = pNumString.split(",");
 		
 		for(int i=0;i<productNums.length;++i){
-			System.out.println(productNums[i]);
+			//System.out.println(productNums[i]);
 		}
 
 		int result = 0;

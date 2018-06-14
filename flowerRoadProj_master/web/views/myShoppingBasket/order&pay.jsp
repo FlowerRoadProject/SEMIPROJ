@@ -46,8 +46,7 @@ Member member = (Member)request.getAttribute("member");
                         // 각 주소의 노출 규칙에 따라 주소를 조합한다.
                         // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                         var fullAddr = ''; // 최종 주소 변수
-                        var extraAddr = ''; // 조합형 주소 변수
-                        console.log("되긴해?");
+                        var extraAddr = ''; // 조합형 주소 변수                       
                         // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                         if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                             fullAddr = data.roadAddress;        
@@ -256,16 +255,13 @@ Member member = (Member)request.getAttribute("member");
             </div>
         </div>
         <script>
-        	$(function(){
-        		console.log($('#anonymity').val());
+        	$(function(){        		
         		var sum = 0;
         		for(var i = 0 ; i< $('.product-each').length; i++){
-        			sum += parseInt($('.eachPrice').eq(i).text());
-        			console.log(sum);
+        			sum += parseInt($('.eachPrice').eq(i).text());        			
         		}
         		$('#payPrice').text(sum+"원");
-        		/* $('#lastPrice').text( ((100- parseInt($('#discount').text()))/100)*sum +"원"  ); 
-        		console.log($('#lastPrice').text()+"원"); */
+        		$('#lastPrice').text( ((100- parseInt($('#discount').text()))/100)*sum +"원"  );         		
 				$('#lastPrice').text($('#payPrice').text());
         		$('#totalPrice').text($('#lastPrice').text());
         	});  
@@ -311,14 +307,8 @@ Member member = (Member)request.getAttribute("member");
                         <h3 id="time-result"></h3>
                     </div>
                     <script>
-                        $(function(){          	
-                        	
-                            //console.log($('#datepicker').change());
-                            // console.log("datepicker의 val : "+$('#datepicker').val());
-                            // console.log("selectpicker의 val : "+$('.selectpicker').val());
-                            // console.log("ischanged?"+$('#datepicker').isChanged());
+                        $(function(){
                             $('#time-result').html("날짜와 시간을 선택해주세요");
-                            
                         });
                         
                         $('#datepicker').change(function(){
@@ -339,8 +329,6 @@ Member member = (Member)request.getAttribute("member");
                         });
                         $('.selectpicker').change(function(){
                             if( $('#datepicker').val() != "" || $('.selectpicker').val() != "" ){
-                            	
-                            	console.log('들어옴');
                             	var date = new Array();
                             	date = $('#datepicker').val().split('-');
                             	var fullDate = date[0]+'년 '+date[1]+'월 '+date[2]+'일'
@@ -366,7 +354,7 @@ Member member = (Member)request.getAttribute("member");
                         <li>
                             <b>날짜선택</b>
                             <br>
-                            내일 - 일주일 이내
+                            내일 - 한달 이내
                         </li>
                         <br><br>
                         <li>
@@ -441,17 +429,11 @@ Member member = (Member)request.getAttribute("member");
 		
 
     	$('#anonymity').change(function(){        		
-    		if($('#anonymity').prop('checked')==true){
-    			console.log('체크됨');
-    			console.log($('#anonymity'));
-    			$('#anony').val('Y');
-    			console.log($('#anony').val());
+    		if($('#anonymity').prop('checked')==true){    			
+    			$('#anony').val('Y');  
     		}
-    		if($('#anonymity').prop('checked')==false){
-    			console.log('체크안됨');
-    			console.log($('#anonymity'));
-    			$('#anony').val('N');
-    			console.log($('#anony').val());
+    		if($('#anonymity').prop('checked')==false){    			
+    			$('#anony').val('N');    			
     		}
     	});    	
     	
@@ -617,8 +599,7 @@ Member member = (Member)request.getAttribute("member");
                     		062	광주광역시
                     		063	전라북도
                     		064	제주특별자치도(700번대만 사용) */                    	            	
-                    	var str = $('#rPhone').val();
-                    	console.log(regExp1.test(str));
+                    	var str = $('#rPhone').val();                    	
                     	if(!regExp1.test(str)){
                     		alert('적합한 전화번호가 아닙니다 다시 입력해주세요');
                     		$('#rPhone').val("");
@@ -744,6 +725,15 @@ Member member = (Member)request.getAttribute("member");
                     
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bottom-margin">
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                            <h4>배송비</h4>                            
+                        </div> 
+                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 align-right">
+                            <h4 id="dvPrice">0원</h4>
+                        </div>         
+                    </div>
+                    
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bottom-margin">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                             <h4>쿠폰</h4>
                             <button class="btn btn-success" id="selectCoupon">쿠폰선택하기</button>
                         </div> 
@@ -800,11 +790,10 @@ Member member = (Member)request.getAttribute("member");
                     		
                     	});
                     	//쿠폰 선택 버튼
-                    	$('.coupon-btn').on('click',function(){
-                    		console.log("선택버튼누름: "+ parseInt($(this).parents().siblings('.cDiscount').text()) );
+                    	$('.coupon-btn').on('click',function(){                    		
                     		//합계에서 차감하기
                     		var discount = parseInt($(this).parents().siblings('.cDiscount').text());
-                    		$('#couponInput').text( discount +"원" );
+                    		$('#couponInput').text( "-"+discount +"원" );
                     		$('#finalPay').text( (parseInt($('#finalPay').text()) - parseInt(discount)) +"원" );
                     		//사용버튼 사라지게하기
                     		$(this).css('display',"none");
@@ -814,17 +803,12 @@ Member member = (Member)request.getAttribute("member");
 								if( $('.coupon-btn').eq(i).css('display') != 'none' ){
 									$('.coupon-btn').eq(i).prop('disabled',true);
 								}
-							}
-                    		
-                    		console.log("쿠폰이름: "+$(this).parents().siblings('.cName').text());
+							} 
                     		$('#isCouponUsed').val($(this).parents().siblings('.dNum').val());
-                    		
-
                     		
                     	});
                     	//쿠폰 취소 버튼
-                    	$('.coupon-cancle').on('click',function(){
-                    		console.log("취소버튼누름: "+ parseInt($(this).parents().siblings('.cDiscount').text()) );
+                    	$('.coupon-cancle').on('click',function(){                    		
                     		//합계 되돌리기
                     		var discount = parseInt($(this).parents().siblings('.cDiscount').text());
                     		$('#couponInput').text( 0 +"원" );
@@ -836,24 +820,12 @@ Member member = (Member)request.getAttribute("member");
                     		//취소하기 버튼 누르면 disabled 없애기
                     		for(var i = 0;i < $('.couponList').length;i++){
 								$('.coupon-btn').eq(i).prop('disabled',false);
-							}
-                    		
-                    		console.log("취소된 쿠폰이름: "+$(this).parents().siblings('.dNum').text());
+							} 
                     		$('#isCouponUsed').val("");
-                    	});
+                    	});  
                     	
-                    	
-                    	
-                    </script>
+                    </script>                    
                     
-                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bottom-margin">
-                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                            <h4>배송비</h4>                            
-                        </div> 
-                        <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 align-right">
-                            <h4 id="dvPrice">0원</h4>
-                        </div>         
-                    </div>
                     <hr class="col-xs-12 col-sm-12 col-md-12 col-lg-8" style="background:black;">
                     <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 bottom-margin">
                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
@@ -900,7 +872,7 @@ Member member = (Member)request.getAttribute("member");
     		  alert('결제를 취소하고 메인으로 돌아갑니다');
     		  location.href="<%=request.getContextPath()%>/main.jsp";
     	  }else{
-    		  console.log('취소를 취소한다');
+    		  
     	  }
     	   
        });
@@ -937,7 +909,7 @@ Member member = (Member)request.getAttribute("member");
 			alert('아직은 신용카드결제만 가능합니다..');
 		}else{			
 		
-		console.log("실제결제 시작지점");
+		
 		///////////////////////////////////////////////////////
 		var IMP = window.IMP; // 생략가능
        	IMP.init('imp81291748'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -960,9 +932,8 @@ Member member = (Member)request.getAttribute("member");
        	        msg += '고유ID : ' + rsp.imp_uid;
        	        msg += '상점 거래ID : ' + rsp.merchant_uid;
        	        msg += '결제 금액 : ' + rsp.paid_amount;
-       	        msg += '카드 승인번호 : ' + rsp.apply_num;        	        
-       	        
-       	       	console.log('완료되었니?');
+       	        msg += '카드 승인번호 : ' + rsp.apply_num; 
+       	       
        	       	$('#buy').submit();
        	       	
        	     pNumArr = new Array();
@@ -971,13 +942,13 @@ Member member = (Member)request.getAttribute("member");
              var pNameArr = new Array();
              var imageArr = new Array();
              category = new Array();
-            	console.log("orderDate: "+$('#orderDate').val())
+            
              
              for(var i = 0; i<$('.productNum').length;i++){
              	pNumArr.push($('.productNum').eq(i).val()); 
              	quanArr.push($('.quantity').eq(i).val());
              	category.push($('.category').eq(i).val());
-             	console.log(pNumArr[i]);
+             	
              	
              }
              
@@ -1015,9 +986,9 @@ Member member = (Member)request.getAttribute("member");
              		quantity: quanArr
              	},
              	success: function(){
-             		console.log("장바구니에서 차감성공");
+             		
              	},error: function(){
-             		console.log("장바구니에서 차감실패..");
+             		
              	}
              });
        	       	
@@ -1140,7 +1111,7 @@ Member member = (Member)request.getAttribute("member");
                     
                     */
                     startDate: '0m', // 현재달만 선택가능
-                    endDate: '+10d'  //10일 이후 까지만 선택가능                    
+                    endDate: '+30d'  //10일 이후 까지만 선택가능                    
                 });
             });     
         </script>

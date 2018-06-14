@@ -22,7 +22,7 @@
         					var couponJson = $.parseJSON(data);
         					
         					for(var o in couponJson){
-        						console.log(couponJson[o].couponCode);
+        						//console.log(couponJson[o].couponCode);
         						$('#modalT').append("<tr>");
         						
         						var $tr= $('<tr>');

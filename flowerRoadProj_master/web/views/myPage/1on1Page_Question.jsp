@@ -93,7 +93,11 @@
         		var title = $('#titleBoard').val();
         		var content = $('#contentBoard').val();
         		
-        		location.href="<%=request.getContextPath() %>/oneSend.me?email="+email+"&phone="+phone+"&title="+title+"&content="+content;
+        		if(title != "" && content != "" && title != " " && content != " "){
+        			location.href="<%=request.getContextPath() %>/oneSend.me?email="+email+"&phone="+phone+"&title="+title+"&content="+content;
+        		} else {
+        			alert("제목과 내용을 다시 확인해주세요");
+        		}
         	}
         </script>
         

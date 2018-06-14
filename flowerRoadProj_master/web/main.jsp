@@ -242,6 +242,8 @@ img {
 	<br />
 	<br />
 	<br />
+	<%@include file="/views/common/banner.jsp" %>
+	
 	<div class="container-fluid">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin:0px;height:420;mheight:190">
 			<!-- Indicators -->

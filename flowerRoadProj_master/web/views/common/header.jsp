@@ -123,6 +123,20 @@
 	height: 2.5em;
 	font-size: 1.2em;
 }
+
+@keyframes trans3{
+    from{transform: translateY(7px)},
+    to{transform: translateY(-11px)};
+}
+
+
+.a:hover{
+animation-iteration-count: infinite; 
+animation-name: trans3; 
+animation-duration: 0.4s; 
+animation-direction: alternate;
+}
+
 </style>
 
 
@@ -133,9 +147,9 @@
 	<div class="container-fluid" id="navContainer">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header col-xs-2 col-sm-2 col-md-2 col-lg-2">
-			<button type="button" class="btn btn-default btn-lg" onclick="fav()">
-			 <span class="glyphicon glyphicon-star" style="cursor: pointer" aria-hidden="true"></span> 
-			 </button>
+			
+			 <span class="glyphicon glyphicon-star" style="cursor: pointer; color:gold; font-size: 3em; margin: 0.5em;" aria-hidden="true" onclick="fav()"></span> 
+			 
 			
 		</div>
 		<!-- style="width:200px; height:80px" -->
@@ -214,8 +228,17 @@
 				
 			});
 			
+			var basket_num=0;
+			
 			function getHeight(){
 				return navContainerHeight;
+			}
+			
+			function setBadgeNumber(){
+				
+				basket_num++;
+				$('#basketBadge').text(basket_num);
+				
 			}
 		</script>
 

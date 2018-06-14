@@ -46,8 +46,8 @@ public class ShowNoticeContentServlet extends HttpServlet {
 		
 		//공지사항글의 조회수를 늘린다
 		int count = nService.updateCount(bNum);
-		if(count >0) System.out.println("조회수 1증가");
-		else System.out.println("조회수 안올라감..");	
+		//if(count >0) System.out.println("조회수 1증가");
+		//else System.out.println("조회수 안올라감..");	
 		
 		//공지사항의 내용을 보여준다		
 		NoticeBoard notice = nService.showContent(bNum);	

@@ -29,7 +29,7 @@ public class AdminUserQuestionBoardUpdateServlet extends HttpServlet {
 		String userQuestionReply = request.getParameter("userQuestionReply");
 
 		UserQuestionBoard userQuestionBoard = new UserQuestionBoard();
-		userQuestionBoard.setMemberNum(adminNum);
+		userQuestionBoard.setManagerNum(adminNum);
 		userQuestionBoard.setbNum(userQuestionNum);
 		userQuestionBoard.setReplyContent(userQuestionReply);
 		

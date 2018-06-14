@@ -37,20 +37,21 @@ public class PreventDuplicationLogin implements HttpSessionBindingListener, Http
 	@Override
 	public void valueBound(HttpSessionBindingEvent event) {
 		memberNums.put(event.getSession(), (String)event.getSession().getAttribute("memberNum"));
-		System.out.println("valueBound 에 들어옴");
+		//System.out.println("valueBound 에 들어옴");
 	}
 
 	@Override
 	public void valueUnbound(HttpSessionBindingEvent event) {
 		memberNums.remove(event.getSession());	
-		System.out.println("valueUnBound 에 들어옴");
+		//System.out.println("valueUnBound 에 들어옴");
 	}
 
 	
 	
 	@Override
 	public void attributeAdded(HttpSessionBindingEvent event) {
-		memberNums.put(event.getSession(), (String)event.getSession().getAttribute("memberNum"));
+		if(event.getSession().getAttribute("memberNum")!=null)
+			memberNums.put(event.getSession(), (String)event.getSession().getAttribute("memberNum"));
 	}
 
 	@Override
@@ -76,7 +77,7 @@ public class PreventDuplicationLogin implements HttpSessionBindingListener, Http
 		while(e.hasMoreElements()){
 			HttpSession key =e.nextElement();
 			String value = (String) memberNums.get(key);
-			System.out.println("key : "+ key + "  value : "+value);
+			//System.out.println("key : "+ key + "  value : "+value);
 		}
 	}
 	

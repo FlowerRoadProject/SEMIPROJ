@@ -17,7 +17,7 @@ public class FaqBoardService {
 	}
 	
 	public ArrayList<FaqBoard> showFaq(){	
-		System.out.println("service완료");
+		//System.out.println("service완료");
 		ArrayList<FaqBoard> list = new FaqBoardDao().showFaq(con);
 		close(con);
 		return list;

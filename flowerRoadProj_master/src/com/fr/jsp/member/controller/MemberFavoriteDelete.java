@@ -27,11 +27,14 @@ public class MemberFavoriteDelete extends HttpServlet {
 		
 		String num = (String)session.getAttribute("memberNum");
 		String pno = (String) request.getParameter("pno");
-		System.out.println("num번호:"+num);
-		System.out.println("pno번호:"+pno);
+		//System.out.println("num번호:"+num);
+		//System.out.println("pno번호:"+pno);
 		int result =  new MemberService().favoriteDel(num,pno);
 		if(result != 0){
 			response.sendRedirect("favorite.me");
+		} else {
+			request.setAttribute("msg", "삭제에 실패하였습니다.");
+			response.sendRedirect("views/common/errorPage.jsp");
 		}
 		//new Gson().toJson(result, response.getWriter());
 	}

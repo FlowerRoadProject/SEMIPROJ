@@ -69,17 +69,15 @@
                                 <div class="form-group form-group-sm">
                                   <label class="col-sm-2 control-label" for="formGroupInputSmall">내용</label>
                                   <div class="col-sm-10">
-                                    <textarea class="content text-left text-capitalize" id="QContent" cols="83" rows="10" disabled>
-                                    <%= mb.getBoardContent() %></textarea>
+                                    <textarea class="content text-left text-capitalize" id="QContent" cols="83" rows="10" disabled><%= mb.getBoardContent() %></textarea>
                                   </div>
                                 </div>
                                 <% if(mb.getReplyContent() != null) { %>
-                                >>>>
+                                <hr />
                                 <div class="form-group form-group-sm">
                                   <label class="col-sm-2 control-label" for="formGroupInputSmall">답변내용</label>
                                   <div class="col-sm-10">
-                                    <textarea class="content text-left text-capitalize" id="RContent" cols="83" rows="10" disabled>
-                                    <%= mb.getReplyContent() %></textarea>
+                                    <textarea class="content text-left text-capitalize" id="RContent" cols="83" rows="10" disabled><%= mb.getReplyContent() %></textarea>
                                   </div>
                                  <% } %>
                                 </div>

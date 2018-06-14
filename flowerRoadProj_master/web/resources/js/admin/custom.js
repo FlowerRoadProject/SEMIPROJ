@@ -4795,7 +4795,6 @@ $('#refundOrder').on({
 		}else if(stateCode=="구매 취소"){
 			alert("이미 취소 했어~");
 		}else{
-			console.log(stateCode);
 			var refundCheck = confirm("꼭 이래야만 하니?");
 			if(refundCheck){
 				$.ajax({

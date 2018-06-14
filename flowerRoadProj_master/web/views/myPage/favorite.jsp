@@ -77,8 +77,8 @@
                                 <%= list.get(j).getProductName() %></a></td>
                                 <td><%= list.get(j).getProductPrice() %>원</td>
                                 <td><%= list.get(j).getProductQuantityState() %></td>
-                                <td><input type="button" value="장바구니" class="goBasket"><br>
-                                <input type="button" value="삭제하기" class="delFavorite"></td>
+                                <td><input type="button" value="장바구니" class="goBasket btn btn-default"><br>
+                                <input type="button" value="삭제하기" class="delFavorite btn btn-default"></td>
                                 <td><input type="hidden" class="pN" name="pN" value="<%=list.get(j).getProductNum()%>"></input></td>
                             </tr>
                             <% } %>
@@ -135,31 +135,31 @@
                 <% } %>
         </div>
         <script>
-        	$('.goBasket').on('click',function(){
-        		var product_num = $(this).parent().siblings().children('.pN').val();
-        		alert("장바구니에 추가되었습니다.");
-        		
-        		$.ajax({
-        			url: "addBasket.do",
-        			type: "GET",
-        			data: {
-        				pNum: product_num				
-        			},   				
-        			success: function(){
-        				console.log('update성공');
-        			},error: function(){
-        				console.log('update실패');
-        			}
-        		});
-        		
-        		<%-- location.href="<%=request.getContextPath() %>/addBasket.do?pno="+$(this).parent().siblings().children('.pN').val(); --%>
-        	});
-        	
-        	$('.delFavorite').on('click',function(){
-        		var pno = $(this).parent().siblings().children('.pN').val();
-        		alert("해당 상품이 관심상품에서 삭제 되었습니다.")
-        		location.href="<%=request.getContextPath() %>/favoriteDel.me?pno="+pno;
-        	});
+        $('.goBasket').on('click',function(){
+    		var product_num = $(this).parent().siblings().children('.pN').val();
+    		alert("장바구니에 추가되었습니다.");
+    		
+    		$.ajax({
+    			url: "addBasket.do",
+    			type: "GET",
+    			data: {
+    				pNum: product_num				
+    			},   				
+    			success: function(){
+    				//console.log('update성공');
+    			},error: function(){
+    				//console.log('update실패');
+    			}
+    		});
+    		
+    		<%-- location.href="<%=request.getContextPath() %>/addBasket.do?pno="+$(this).parent().siblings().children('.pN').val(); --%>
+    	});
+    	
+    	$('.delFavorite').on('click',function(){
+    		var pno = $(this).parent().siblings().children('.pN').val();
+    		alert("해당 상품이 관심상품에서 삭제 되었습니다.")
+    		location.href="<%=request.getContextPath() %>/favoriteDel.me?pno="+pno;
+    	});
         	
         	
         	function allDel(){
