@@ -180,7 +180,7 @@
                     <img src="" class="image img-responsive product-img" alt="">
                		<input type="hidden" class="product-image" value=""/>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-0 bottom-margin"><!--정보칸-->
+             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-0 bottom-margin"><!--정보칸-->
                 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3 class="product-name"></h3></div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><br /></div>
@@ -189,12 +189,12 @@
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-md-offset-4 col-lg-offset-4 price-gray product-price align-right">원</div>
                     
                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">합계 : </div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-sm-offset-0 col-md-offset-4 col-lg-offset-4 total-price align-right">16000원</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 col-sm-offset-0 col-md-offset-4 col-lg-offset-4 total-price align-right">0원</div>
      
             </div>
             <div class="col-xs-7 col-sm-7 col-md-7 col-lg-2 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-0 button-group top-margin bottom-margin"><!--버튼칸-->
                     <div class="col-xs-5 col-sm-5 col-md-5 col-lg-8">
-                        <input type="number" class="form-control product-number" value=1 min=1 >
+                        <input type="number" class="form-control product-number" value="1" min="1" max="9">
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">
                         <button class="btn btn-default update-btn">수정하기</button>
@@ -223,10 +223,23 @@
           		
       			$('.product-each1 .outputName').eq(i).text( $('.product-each .product-name').eq(i).text()  );
        			$('.product-each1 .outputPrice').eq(i).text( $('.product-each .total-price').eq(i).text()  );  
-           			
+       			if($('.product-each .product-number').eq(i).val() > 9){
+           			alert('한번에 구매 가능한 상품 갯수는 9개 입니다');
+           			$('.product-each .product-number').eq(i).val(1);           			
+           			$('.product-each .total-price').eq(i).text($('.product-each .product-price').eq(i).text());
+           			$('.product-each1 .outputPrice').eq(i).text( $('.product-each .product-price').eq(i).text());  
+       			
+       			}
        			//최종합계를 밑으로 보낸다
        			sum += parseInt($('.product-each1 .outputPrice').eq(i).text());           			
-       		}       
+       		} 
+       		/* if($('.product-each .product-number').val() > 9){
+       			alert('9개 추가');
+       			$(this).val(1);
+       			$(this).parent().parent().siblings().children('.total-price').val($(this).parent().parent().siblings().children('.product-price').val());
+       			
+       		} */
+       		
        		$('#finalPrice').text(sum+"원");   
            		
 				
@@ -236,6 +249,9 @@
     		var product_num= $(this).parent().parent().parent().find('.productNum').val();
     		var quantity = $(this).parent().siblings().find('.product-number').val();
     		
+    		if(parseInt(product_num) > 9){
+    			alert("한번에 9개까지만 주문하실수 있습니다");
+    		}else{    			
     		
     		$.ajax({
     			url: "update.bk",
@@ -245,12 +261,12 @@
     				pQuantity: quantity    					
     			},   				
     			success: function(){
-    				alert('상품갯수가 수정되었습니다');
+    				alert('상품갯수가 수정되었습니다');    				
     			},error: function(){
     				alert('상품갯수 수정에 실패하였습니다');
     			}
     		});
-    			 
+    		}	 
     	});
 
         //삭제하기 버튼을 누르면 상품이 사라지는 함수. DB에서도 DELETE를 시킨다
