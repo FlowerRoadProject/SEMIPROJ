@@ -279,14 +279,11 @@
         $('#confirm3').on('click',function(){
         	var sel = 3;
         	var pwd = $('#DeleteMember').val();
-            <%if(sns.equals("M")){%>
-               if(pwd == null || pwd == "")
-                  location.reload();
-               else 
+             if(pwd == null || pwd == "")
+                location.reload();
+             else 
                   location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
-            <%}else{%>
-               alert('<%=sns%>로 로그인한 계정입니다.'); 
-            <%}%>
+            
         });
         </script>
     </body>
