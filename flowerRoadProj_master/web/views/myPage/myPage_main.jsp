@@ -279,11 +279,14 @@
         $('#confirm3').on('click',function(){
         	var sel = 3;
         	var pwd = $('#DeleteMember').val();
+        	<% if(memberNum.substring(0,1).equals("A")||memberNum.substring(0,1).equals("M")){%>
              if(pwd == null || pwd == "")
                 location.reload();
              else 
                   location.href = mainPath+"/pwdRechk.me?pwd="+pwd+"&sel="+sel;
-            
+             <%}else{%>
+             location.href = mainPath+"/views/myPage/myPage_memberWithdrawal.jsp";
+             <%}%>
         });
         </script>
     </body>
