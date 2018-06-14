@@ -49,7 +49,7 @@
 	                    <div class="clearfix"></div>
 	                  </div>
 	                  <div class="randomGame page"  style=" width: auto;height:500px">
-							  <button id="target" class="fun-btn" style="width:200px;height:200px;position:absolute;top:<%=adminRandomGame.getTopNum()%>%;left:<%=adminRandomGame.getLeftNum()%>%;">press</button>
+							  <button id="target" class="fun-btn" style="width:200px;height:200px;position:absolute;top:<%=adminRandomGame.getTopNum()%>%;left:<%=adminRandomGame.getLeftNum()%>%;">click</button>
 	                    	  <div id="goal" style="border-radius: 100px;border:2px solid pink;width:200px;height:200px;position:absolute;top:<%=adminRandomGame.getGoalTopNum()%>%;left:<%=adminRandomGame.getGoalLeftNum()%>%;"></div>
 	                    	
 	                  </div>

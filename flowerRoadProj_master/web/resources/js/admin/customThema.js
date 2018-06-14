@@ -658,7 +658,7 @@ $('.randomGame #target').on({
 		var targetLeft = $('#target').css('left').replace(/[^-\d\.]/g, '');
 		
 		if((Math.abs(goalTop - targetTop))<=difficultyNum && (Math.abs(goalLeft - targetLeft)<=difficultyNum)){
-			alert(Math.abs(goalTop - targetTop)+","+Math.abs(goalLeft - targetLeft));
+			//alert(Math.abs(goalTop - targetTop)+","+Math.abs(goalLeft - targetLeft));
 			var finalCount = $('#clickCount').text();
 			var gameCheck = confirm(finalCount+"회 만에 성공하셨네요.\n등록하시겠습니까?");
 			var $page = $('.page');
